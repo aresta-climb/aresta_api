@@ -37,6 +37,7 @@ const CroquiExperimental$json = {
       '10': 'ultimaEdicao'
     },
     {'1': 'resumo_edicao', '3': 4, '4': 1, '5': 9, '10': 'resumoEdicao'},
+    {'1': 'id_original', '3': 5, '4': 1, '5': 9, '10': 'idOriginal'},
   ],
 };
 
@@ -45,4 +46,5 @@ final $typed_data.Uint8List croquiExperimentalDescriptor = $convert.base64Decode
     'ChJDcm9xdWlFeHBlcmltZW50YWwSGAoHYXV0b3JlcxgBIAMoCVIHYXV0b3JlcxI9CgxkYXRhX2'
     'NyaWFjYW8YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtkYXRhQ3JpYWNhbxI/'
     'Cg11bHRpbWFfZWRpY2FvGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMdWx0aW'
-    '1hRWRpY2FvEiMKDXJlc3Vtb19lZGljYW8YBCABKAlSDHJlc3Vtb0VkaWNhbw==');
+    '1hRWRpY2FvEiMKDXJlc3Vtb19lZGljYW8YBCABKAlSDHJlc3Vtb0VkaWNhbxIfCgtpZF9vcmln'
+    'aW5hbBgFIAEoCVIKaWRPcmlnaW5hbA==');
