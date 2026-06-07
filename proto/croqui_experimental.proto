@@ -1,0 +1,33 @@
+// Copyright (C) 2026 ARESTA
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+edition = "2023";
+
+package aresta;
+
+import "google/protobuf/timestamp.proto";
+
+// Representa os metadados básicos de um croqui experimental sendo editado localmente.
+message CroquiExperimental {
+  // Autores ou editores trabalhando neste croqui experimental.
+  // Funciona como um set: toda vez que um croqui experimental é criado ou aberto,
+  // é feito o append do nome de usuário do GitHub, caso não esteja na lista.
+  repeated string autores = 1;
+
+  // Timestamp de criação do croqui experimental (ISO-8601).
+  google.protobuf.Timestamp data_criacao = 2;
+
+  // Timestamp da última edição do croqui experimental (ISO-8601).
+  google.protobuf.Timestamp ultima_edicao = 3;
+
+  // Breve resumo ou objetivo desta edição (ex: "Corrigindo graduação do Setor 1").
+  string resumo_edicao = 4;
+
+  // ID original do croqui antes de qualquer renomeação.
+  // Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
+  string id_original = 5;
+}

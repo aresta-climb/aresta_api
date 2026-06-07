@@ -1,0 +1,1283 @@
+// Copyright (C) 2026 ARESTA
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+edition = "2023";
+
+package aresta;
+
+import "google/protobuf/descriptor.proto";
+
+// Especifica onde o conteúdo de campos do tipo string ou bytes está localizado.
+message TipoConteudo {
+  enum Enum {
+    // Tipo não especificado.
+    INDEFINIDO = 0;
+
+    // O conteúdo está contido diretamente no próprio campo (em Base64 para strings ou binário para bytes).
+    INLINE = 1;
+
+    // O valor do campo é um caminho para um arquivo externo contendo o conteúdo.
+    CAMINHO = 2;
+  }
+}
+
+// Representa a forma de organização de um campo no editor de formulário.
+message CampoFormatoUi {
+  enum Enum {
+    // Tipo não especificado.
+    INDEFINIDO = 0;
+
+    // O campo é editado inline dentro da mesma tela de seu elemento pai, com formato apropriado ao tipo.
+    // Os padrões são:
+    // Para tipos numéricos: campo numérico (input numérico).
+    // Para string: campo de texto curto.
+    INLINE = 1;
+
+    // O campo é invisível no editor.
+    INVISIVEL = 2;
+
+    // O campo é um campo de texto forçado como um texto curto de uma linha.
+    // Erro caso for outro formato de proto, checado por testes.
+    TEXTO_CURTO = 3;
+
+    // O campo é um campo de texto de múltiplas linhas.
+    // Erro caso for outro formato de proto, checado por testes.
+    TEXTO_LONGO = 4;
+
+    // O campo abre um editor de markdown com preview.
+    MARKDOWN = 5;
+  }
+}
+
+extend google.protobuf.FieldOptions {
+  // Especifica o tipo MIME do dado contido no campo (ex: "text/markdown", "application/protobuf", etc.).
+  string mime_type = 50001;
+  
+  // Define o rótulo (Label) amigável a ser exibido na interface do usuário (UI) do editor.
+  // Caso não disponível, usa o nome do campo.
+  string texto_na_ui = 50002;
+  
+  // Indica se o conteúdo é armazenado em formato inline ou em arquivo separado (caminho).
+  TipoConteudo.Enum tipo_conteudo = 50003;
+  
+  // Nome qualificado do tipo de mensagem Protobuf que este campo contém/representa (ex: tipo da mensagem em formato string).
+  string mensagem = 50004;
+  
+  // Sinaliza qual campo de uma mensagem contém o corpo de texto principal de um Markdown com frontmatter YAML (geralmente 'descricao').
+  bool conteudo_markdown = 50005;
+
+  // Define como o campo é mostrado no editor.
+  CampoFormatoUi.Enum formato_na_ui = 50006;
+
+  // Sinaliza qual campo do oneof é o "padrão" no caso de criação de uma nova instância da mensagem.
+  bool oneof_default = 50007;
+
+  // Representa qual o campo que vai ser usado como título da mensagem na árvore do editor do croqui.
+  // Apenas um campo pode ser preenchido com esse bool.
+  bool titulo_na_ui = 50008;
+}
+
+// Representa a forma de exibição/organização de uma mensagem no editor de formulário.
+message MensagemFormatoUi {
+  enum Enum {
+    // Tipo não especificado.
+    INDEFINIDO = 0;
+
+    // A mensagem abre em uma tela/página separada na árvore de navegação do editor.
+    SEPARADO = 1;
+
+    // A mensagem é editada inline dentro da mesma tela de seu elemento pai.
+    INLINE = 2;
+    
+    // Mensagem especial de união (oneof).
+    // É abstraída pelo editor (não aparece na árvore de edição, usa o campo já existente).
+    // Mostra na árvore como o filho com o título `titulo_na_ui`.
+    ONEOF = 3;
+
+    // Mensagem que não é mostrada no editor (uso interno). Também inclui as submensagens.
+    INVISIVEL = 4;
+
+    // Mensagem wrapper de conteúdo com dois campos fixos: 'caminho' e 'conteudo'.
+    // Sempre representa o conteúdo em memória no campo 'conteudo'.
+    //
+    // No editor, funciona assim:
+    // - Na escrita para disco (save), o conteudo é serializado para o arquivo em 'caminho'.
+    // - Na leitura do disco (load), o arquivo em 'caminho' é desserializado para 'conteudo'.
+    //
+    // No croqui compilado, sempre utiliza o 'conteudo'.
+    ONEOF_CONTEUDO = 5;
+  }
+}
+
+extend google.protobuf.MessageOptions {
+  // Rótulo padrão da mensagem para exibição na interface do usuário (UI).
+  // Caso não disponível, usa o nome da mensagem.
+  string mensagem_texto_na_ui = 50001;
+  
+  // Define o formato de renderização e navegação desta mensagem na interface de edição.
+  MensagemFormatoUi.Enum mensagem_formato_na_ui = 50002;
+}
+
+extend google.protobuf.EnumValueOptions {
+  // Rótulo padrão do valor do enum para exibição na interface do usuário (UI).
+  // Caso não disponível, usa o nome do valor.
+  string enum_texto_na_ui = 50001;
+}
+
+// Representa um croqui de escalada, que pode incluir um ou mais picos.
+// NEXT_ID: 17
+message Croqui {
+  // Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande".
+  string id = 1;
+
+  // Nome oficial do croqui.
+  string nome = 2 [(aresta.titulo_na_ui) = true];
+
+  // Descrição curta do pico do croqui, que será exibida na lista de croquis.
+  // Máximo recomendado de 100 palavras.
+  string descricao = 3 [(aresta.texto_na_ui) = "Descrição", (aresta.formato_na_ui) = TEXTO_LONGO];
+
+  // Créditos ao criador do croqui.
+  repeated string creditos = 4 [(aresta.texto_na_ui) = "Créditos"];
+  
+  // Botões que aparecem no croqui para mostrarem mais informações.
+  repeated Botao botoes = 14 [(aresta.texto_na_ui) = "Botões"];
+
+  // Picos que fazem parte desse croqui.
+  repeated Pico picos = 6;
+
+  // Repositório interno de arquivos externos que não estão incluídos no .binarypb.
+  repeated ArquivoExterno arquivos_externos = 7 [(aresta.formato_na_ui) = INVISIVEL];
+
+  // Caminho para a thumbnail do croqui (imagem em miniatura para prever croquis não baixados).
+  // Essa imagem deve ter no máximo 1200x1200.
+  string caminho_thumbnail = 8 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "image/webp"];
+
+  // Representa se o croqui já foi revisado manualmente para garantir qualidade.
+  bool revisado_manualmente = 9;
+
+  // Representa se o croqui já foi revisado para ter bounding circles apropriados.
+  bool revisado_bounding_circle = 11;
+
+  // Representa se o croqui tem desenhos extraíveis do PDF.
+  // Isso indica se as linhas do croqui podem ser extraídas do PDF como desenho vetorial, o que resulta
+  // em extrações de PDF de mais alta qualidade.
+  message StatusDesenhoExtraivel {
+    enum Enum {
+        // Não definido.
+        INDEFINIDO = 0;
+
+        // Não tem desenhos extraíveis no PDF.
+        NAO_TEM_DESENHO = 1 [(aresta.enum_texto_na_ui) = "Não tem desenho"];
+
+        // Tem desenhos extraíveis no PDF, mas não foram extraídos.
+        TEM_DESENHO_MAS_NAO_EXTRAIDO = 2 [(aresta.enum_texto_na_ui) = "Tem desenho, mas não foi extraído"];
+
+        // Tem desenhos extraíveis no PDF e foram extraídos.
+        DESENHO_EXTRAIDO = 3 [(aresta.enum_texto_na_ui) = "Desenho extraído"];
+      }
+  }
+  StatusDesenhoExtraivel.Enum status_desenho_extraivel = 13;
+
+  // Identificador da última migração aplicada a este croqui (prefixo numérico sequencial).
+  int32 ultima_migracao = 15 [(aresta.formato_na_ui) = INVISIVEL];
+
+  // Define se o croqui está publicado no índice principal para os usuários do aplicativo.
+  // Se false (padrão do proto3), ele funcionará apenas como rascunho.
+  bool publicar_croqui = 16 [(aresta.texto_na_ui) = "Publicar Croqui"];
+
+  reserved 5, 10, 12;
+}
+
+// Representa um botão que leva a alguma outra parte do croqui.
+message Botao {
+  option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Texto que aparecerá no botão.
+  string texto = 1;
+
+  // Representa o que será mostrado caso o botão for clicado.
+  DestinoBotao destino = 2;
+}
+
+// Representa o que será mostrado caso o botão for clicado.
+message DestinoBotao {
+  option (aresta.mensagem_formato_na_ui) = ONEOF;
+
+  // O que será mostrado caso o botão for clicado.
+  oneof destino {
+    // Uma seção textual em Markdown.
+    ArquivoMarkdown secao_textual = 1;
+  }
+}
+
+// Informações sobre arquivos externos que não estão incluídos no .binarypb.
+message ArquivoExterno {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Caminho do arquivo, relativo à localização do .binarypb.
+  string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO];
+  
+  // Checksum SHA256 do arquivo.
+  string checksum_sha256 = 2;
+}
+
+// Extensão usada para manter o estado original e de rascunho de um arquivo
+// ao ser editado pelo editor Aresta, garantindo que o ciclo de vida funcione
+// de forma isolada de `oneof arquivo`
+message MetadadosArquivoNoEditor {
+  // Caminho original do arquivo em disco (se ele já existia antes da edição atual).
+  // Serve para sabermos qual arquivo antigo deletar após salvar o novo arquivo renomeado.
+  string caminho_original = 1;
+
+  // Caminho final e modificado durante a edição na UI (Shadow State).
+  // Este é o nome que o arquivo receberá em disco no momento de salvar.
+  string caminho_novo = 2;
+}
+
+// Representa um arquivo markdown com informações sobre o croqui.
+message ArquivoMarkdown {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  // Conteúdo do arquivo. Ou um caminho relativo para um arquivo .md existente, ou
+  // uma string com o conteúdo do arquivo.
+  oneof arquivo {
+    string caminho = 2 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "text/markdown", (aresta.oneof_default) = true];
+    string conteudo = 3 [(aresta.tipo_conteudo) = INLINE, (aresta.mime_type) = "text/markdown", (aresta.formato_na_ui) = MARKDOWN];
+  }
+
+  extensions 1000 to max;
+  reserved 1;
+  extend ArquivoMarkdown {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
+}
+
+// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
+message Pico {
+  option (aresta.mensagem_formato_na_ui) = SEPARADO;
+  // Nome oficial do pico de escalada.
+  string nome = 1 [(aresta.titulo_na_ui) = true];
+  
+  // Visão geral, história e informações gerais de acesso.
+  string descricao = 2 [(aresta.conteudo_markdown) = true];
+
+  // Estado do local de escalada.
+  string estado = 3;
+  
+  // Localização do ponto de referência principal (geralmente o estacionamento).
+  Coordenada localizacao = 4;
+
+  // Link para o ponto de referência principal no Google Maps.
+  string url_google_maps = 5 [(aresta.texto_na_ui) = "URL Google Maps"];
+  
+  // Nome da associação local responsável (ex: ARESTA).
+  string nome_associacao = 6;
+  
+  // Link para a página onde o escalador pode se afiliar.
+  string url_filiacao_associacao = 7 [(aresta.texto_na_ui) = "URL de Filiação"];
+  
+  // Chave Pix para contribuições diretas ao fundo de manutenção local.
+  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  
+  // Patrocinadores atuais do croqui deste local.
+  repeated Patrocinador patrocinadores = 9;
+  
+  // Elementos de escalada contidos neste pico (setores ou grupos).
+  repeated SetorOuGrupo setores_ou_grupos = 11;
+
+  reserved 10;
+}
+
+// Representa um elemento (Setor ou Grupo) de um Pico.
+message SetorOuGrupo {
+  option (aresta.mensagem_formato_na_ui) = ONEOF;
+
+  oneof tipo {
+    ArquivoSetor setor = 1;
+    ArquivoGrupo grupo = 2;
+  }
+}
+
+// Use para referenciar um outro arquivo que contenha informação de setor caso necessário.
+message ArquivoSetor {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  oneof arquivo {
+    string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "text/markdown", (aresta.oneof_default) = true, (aresta.mensagem) = "aresta.Setor"];
+    Setor conteudo = 2 [(aresta.tipo_conteudo) = INLINE];
+  }
+
+  extensions 1000 to max;
+  extend ArquivoSetor {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
+}
+
+// Use para referenciar um outro arquivo que contenha informação de grupo caso necessário.
+message ArquivoGrupo {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  oneof arquivo {
+    string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "text/markdown", (aresta.oneof_default) = true, (aresta.mensagem) = "aresta.Grupo"];
+    Grupo conteudo = 2 [(aresta.tipo_conteudo) = INLINE];
+  }
+
+  extensions 1000 to max;
+  extend ArquivoGrupo {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
+}
+
+// Representa um grupo de setores (ex: Vale Oculto na Sinuosa, ou conjuntos de blocos de Boulder).
+message Grupo {
+  option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Nome do grupo (ex: Vale Oculto).
+  string nome = 1 [(aresta.titulo_na_ui) = true];
+
+  // Características do grupo, acesso, etc.
+  string descricao = 2 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // Se presente, representa o ID do grupo no mapa geral.
+  string id_no_mapa = 5 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // Coordenada do estacionamento.
+  Coordenada localizacao_estacionamento = 6 [(aresta.texto_na_ui) = "Localização Estacionamento"];
+
+  // Coordenada da escalada do setor.
+  Coordenada localizacao_escalada = 7 [(aresta.texto_na_ui) = "Localização Escalada"];
+  
+  // Mapas do grupo para detalhar os setores (geralmente mapas de acesso ou visão geral).
+  repeated Mapa mapas = 3;
+  
+  // Setores que compõem este grupo.
+  repeated ArquivoSetor setores = 4;
+}
+
+// Representa uma parede ou setor específico dentro de um Pico.
+// Para boulders, isso costuma ser o bloco.
+// NEXT_ID: 15
+message Setor {
+  option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Nome do setor (ex: Savassinha).
+  string nome = 1 [(aresta.titulo_na_ui) = true];
+
+  // Coordenada do estacionamento.
+  Coordenada localizacao_estacionamento = 2 [(aresta.texto_na_ui) = "Localização Estacionamento"];
+
+  // Coordenada da escalada do setor.
+  Coordenada localizacao_escalada = 3 [(aresta.texto_na_ui) = "Localização Escalada"];
+  
+  // Trilhas que vão do estacionamento ao setor.
+  repeated Trilha trilhas = 4; 
+
+  // Possível sinal de celular no setor.
+  bool sinal_de_celular = 6;
+
+  // Setor e acesso favorável a crianças.
+  bool amigavel_a_criancas = 7 [(aresta.texto_na_ui) = "Amigável a Crianças"];
+
+  // Setor e acesso favorável a bebês.
+  bool amigavel_a_bebes = 8 [(aresta.texto_na_ui) = "Amigável a Bebês"];
+
+  // Características da escalada no setor, insolação, qualidade da rocha, etc.
+  string descricao = 9 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // Se presente, representa o ID do setor no mapa acima (do grupo ou geral).
+  string id_no_mapa = 14 [(aresta.texto_na_ui) = "ID no Mapa"];
+  
+  // Mapas do setor.
+  repeated Mapa mapas = 13;
+  
+  // Todas as escaladas deste setor.
+  repeated Escalada escaladas = 11;
+
+  // Reservado. Anteriormente sub_setores. 
+  // Use Grupos no Pico para organizar múltiplos setores.
+  reserved 12;
+}
+
+// Representa um mapa do setor.
+message Mapa {
+  // Caminho do arquivo (geralmente em .webp) contendo a foto desenhada da parede.
+  string caminho_imagem_mapa = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "image/webp"];
+
+  // Largura do mapa em pixels.
+  int32 largura_mapa = 2 [(aresta.texto_na_ui) = "Largura do Mapa"];
+
+  // Altura do mapa em pixels.
+  int32 altura_mapa = 3 [(aresta.texto_na_ui) = "Altura do Mapa"];
+
+  // Representa um ponto de interesse no mapa.
+  message PontoDeInteresse {
+    option (aresta.mensagem_formato_na_ui) = INLINE;
+
+    // ID do ponto de interesse no mapa.
+    string id = 1;
+
+    // Label do ponto de interesse que estava escrita no mapa.
+    string label = 2;
+
+    // Bounding area do ponto de interesse na imagem.
+    // Prefira usar na seguinte ordem de preferência:
+    //  - 'circular': mais preciso e simples, use sempre que possível.
+    //  - 'box': use apenas caso precisar representar uma área retangular,
+    //      que não é possível representar bem com círculos. Aceita também angulação.
+    //  - 'area_livre': última opção, use apenas se não for possível usar as outras.
+    oneof tipo_area {
+      // Bounding area circular.
+      BoundingCircular circular = 6;
+      // Bounding box retangular, angulação opcional.
+      BoundingBox box = 3;
+      // Bounding area livre.
+      BoundingAreaLivre area_livre = 7 [(aresta.texto_na_ui) = "Área Livre"];
+    }
+  }
+
+  // Posição de cada ponto de interesse.
+  repeated PontoDeInteresse pontos_de_interesse = 4;
+
+  reserved 5;
+}
+
+// Circulo de enquadramento / bounding area circula rde parte da imagem.
+message BoundingCircular {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Coordenadas (x, y) do centro do círculo em pixels.
+  int32 x = 1;
+  int32 y = 2;
+
+  // Raio do círculo em pixels.
+  int32 raio = 3;
+}
+
+// Caixa de enquadramento / bounding box retangular de parte da imagem.
+// Definido pela posição central (x, y), comprimento e largura.
+// Opcionalmente aceita um ângulo para especificar a box de maneira angulada.
+message BoundingBox {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Coordenadas (x, y) do centro da caixa em pixels.
+  int32 x = 1;
+  int32 y = 2;
+  
+  // Comprimento (eixo horizontal local) e largura (eixo vertical local) em pixels.
+  int32 comprimento = 5;
+  int32 largura = 6;
+
+  // Ângulo em graus * 10^2 (sentido horário, relativo ao eixo horizontal).
+  // Isso permite armazenar até 2 casas decimais de precisão angular em inteiros.
+  // Se não especificado, assume-se 0.
+  sint32 angulo_graus_x100 = 7 [(aresta.texto_na_ui) = "Ângulo (graus * 100)"];
+
+  reserved 3, 4;
+}
+
+// Área de enquadramento livre pra parte da imagem.
+// Definido pela posição dos cantos da área de bounding box, que formam
+// um polígono. Os cantos devem ser consecutivos.
+message BoundingAreaLivre {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Coordenadas dos pontos que formam a área, na ordem.
+  // x1, y1, x2, y2, x3, y3, x4, y4, etc...
+  repeated int32 coordenadas = 1;
+}
+
+// Representa uma escalada de qualquer tipo.
+message Escalada {
+  option (aresta.mensagem_formato_na_ui) = SEPARADO;
+  oneof tipo {
+    ViaEsportiva via_esportiva = 1;
+    ViaMovel via_movel = 2 [(aresta.texto_na_ui) = "Via Móvel"];
+    Boulder boulder = 3;
+    ViaMultiplasEnfiadas via_multiplas_enfiadas = 4 [(aresta.texto_na_ui) = "Via Múltiplas Enfiadas"];
+    Highline highline = 5;
+  }
+}
+
+// Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.
+// NEXT_ID: 20
+message ViaEsportiva {
+  // Nome da via.
+  string nome = 1;
+
+  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
+  string id_no_mapa = 16 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente um número, letra ou símbolo (como um triângulo).
+  string id_no_mapa_meio = 19 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
+
+  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente outro número ou uma letra, como "x".
+  string id_no_mapa_fim = 17 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
+
+  // Se é um destaque para o setor.
+  bool destaque = 18 [(aresta.texto_na_ui) = "É Destaque"];
+  
+  // Grau de dificuldade em livre da via (ex "BR_6sup").
+  GrauVia.GrauVia dificuldade = 2;
+
+  // Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
+  GrauArtificial.GrauArtificial dificuldade_artificial = 3;
+
+  // Grau de exposição da via. Normalmente não preenchido em vias esportivas, que
+  // costumam ser "E1".
+  GrauExposicao.GrauExposicao exposicao = 4 [(aresta.texto_na_ui) = "Grau de Exposição"];
+
+  // Tipo de parede predominante (negativo, vertical, positivo).
+  TipoParede.TipoParede tipo_parede = 5 [(aresta.texto_na_ui) = "Tipo de Parede"];
+
+  // Extensão da via, em metros.
+  int32 extensao = 6 [(aresta.texto_na_ui) = "Extensão"];
+  
+  // Número de proteções fixas intermediárias (chapeletas) na via (define quantas costuras levar).
+  int32 quantidade_protecoes_intermediarias = 7 [(aresta.texto_na_ui) = "Quantidade de Proteções Intermediárias"];
+
+  // Número de proteções fixas na parada da via (define quantas costuras levar).
+  int32 quantidade_protecoes_parada = 8 [(aresta.texto_na_ui) = "Quantidade de Proteções na Parada"];
+  
+  // TODO: Tipo da parada (ex: "Corrente", "Pinus", "Parabolt Duplo").
+  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem"];
+  
+  // Nomes dos conquistadores.
+  repeated string conquistadores = 10;
+
+  // Data de abertura da via (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_abertura = 11 [(aresta.texto_na_ui) = "Data de Abertura"];
+
+  // Data da última manutenção da via (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  
+  // Dicas de segurança, movimentação chave (beta) e equipamentos recomendados.
+  string descricao = 13 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+  
+  // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
+  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  
+  // Chave Pix do mantenedor ou conquistador específico desta via.
+  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+}
+
+// Representa uma linha de escalada (via) individual de uma enfiada ou totalmente móvel ou mista com proteções fixas.
+// NEXT_ID: 22
+message ViaMovel {
+  // Nome da via.
+  string nome = 1;
+
+  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
+  string id_no_mapa = 16 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente um número, letra ou símbolo (como um triângulo).
+  string id_no_mapa_meio = 21 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
+
+  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente outro número ou uma letra, como "x".
+  string id_no_mapa_fim = 19 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
+
+  // Se é um destaque para o setor.
+  bool destaque = 20 [(aresta.texto_na_ui) = "É Destaque"];
+  
+  // Grau de dificuldade em livre da via (ex "BR_6sup").
+  GrauVia.GrauVia dificuldade = 2;
+
+  // Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
+  GrauArtificial.GrauArtificial dificuldade_artificial = 17;
+
+  // Grau do lance em artificial se escalado em livre.
+  GrauVia.GrauVia dificuldade_artificial_em_livre = 18 [(aresta.texto_na_ui) = "Dificuldade do lance artificial em livre"];
+
+  // Grau de exposição da via.
+  GrauExposicao.GrauExposicao exposicao = 3 [(aresta.texto_na_ui) = "Grau de Exposição"];
+
+  // Tipo de parede predominante (negativo, vertical, positivo).
+  TipoParede.TipoParede tipo_parede = 4 [(aresta.texto_na_ui) = "Tipo de Parede"];
+
+  // Extensão da via, em metros.
+  int32 extensao = 5 [(aresta.texto_na_ui) = "Extensão"];
+  
+  // Número de proteções fixas intermediárias (chapeletas) na via.
+  int32 quantidade_protecoes_intermediarias = 6 [(aresta.texto_na_ui) = "Quantidade de Proteções Intermediárias"];
+
+  // Número de proteções fixas na parada da via.
+  int32 quantidade_protecoes_parada = 7 [(aresta.texto_na_ui) = "Quantidade de Proteções na Parada"];
+
+  // Tipo de proteções móveis a serem usadas na via. Descrição textual.
+  string protecoes_moveis = 8 [(aresta.texto_na_ui) = "Tipo de Proteções Móveis"];
+  
+  // TODO: Tipo da parada (ex: "Corrente", "Pinus", "Parabolt Duplo").
+  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem"];
+  
+  // Nomes dos conquistadores.
+  repeated string conquistadores = 10;
+
+  // Data de abertura da via (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_abertura = 11 [(aresta.texto_na_ui) = "Data de Abertura"];
+
+  // Data da última manutenção da via (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  
+  // Dicas de segurança, movimentação chave (beta) e equipamentos recomendados.
+  string descricao = 13 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+  
+  // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
+  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  
+  // Chave Pix do mantenedor ou conquistador específico desta via.
+  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+}
+
+// Representa uma linha de boulder individual.
+// NEXT_ID: 13
+message Boulder {
+  // Nome do boulder.
+  string nome = 1;
+
+  // ID no mapa com o local onde *começa* o boulder. Provavelmente um número, como 1, ou a, ou 1a, etc.
+  string id_no_mapa = 9 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // ID no mapa marcando o *meio* do boulder, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente um número, letra ou símbolo (como um triângulo).
+  string id_no_mapa_meio = 12 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
+
+  // ID no mapa com o local onde *termina* o boulder, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente outro número ou uma letra, como "x".
+  string id_no_mapa_fim = 10 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
+
+  // Se é um destaque para o setor.
+  bool destaque = 11 [(aresta.texto_na_ui) = "É Destaque"];
+
+  // Grau de dificuldade (ex: "V3", "V8").
+  GrauBoulder.GrauBoulder dificuldade = 2;
+
+  // Tipo de parede predominante (negativo, vertical, positivo).
+  TipoParede.TipoParede tipo_parede = 3 [(aresta.texto_na_ui) = "Tipo de Parede"];
+
+  // Nomes dos conquistadores ou primeira ascensão.
+  repeated string conquistadores = 4;
+
+  // Data de abertura do boulder (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_abertura = 5 [(aresta.texto_na_ui) = "Data de Abertura"];
+
+  // Dicas de segurança, movimentação chave (beta) e número/posicionamento de crashpads recomendados.
+  string descricao = 6 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
+  string url_video_beta = 7 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+
+  // Chave Pix do mantenedor ou conquistador específico deste boulder.
+  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+}
+
+// Representa uma via de escalada de múltiplas enfiadas.
+// NEXT_ID: 27
+message ViaMultiplasEnfiadas {
+  // Nome da via.
+  string nome = 1;
+
+  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
+  string id_no_mapa = 20 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente um número, letra ou símbolo (como um triângulo).
+  string id_no_mapa_meio = 26 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
+
+  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente outro número ou uma letra, como "x".
+  string id_no_mapa_fim = 24 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
+
+  // Se é um destaque para o setor.
+  bool destaque = 25 [(aresta.texto_na_ui) = "É Destaque"];
+
+  // Mapas da via de múltiplas enfiadas, se houver.
+  repeated Mapa mapas = 21;
+
+  // Grau de dificuldade médio da via (ex: "5sup", "7a").
+  GrauVia.GrauVia dificuldade_media = 2 [(aresta.texto_na_ui) = "Dificuldade Média"];
+
+  // Grau de dificuldade do lance mais difícil da via (ex: "5sup", "7a").
+  GrauVia.GrauVia dificuldade_maxima = 3 [(aresta.texto_na_ui) = "Dificuldade Máxima"];
+
+  // Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
+  GrauArtificial.GrauArtificial dificuldade_artificial = 4 [(aresta.texto_na_ui) = "Dificuldade Artificial"];
+
+  // Grau do lance em artificial se escalado em livre.
+  GrauVia.GrauVia dificuldade_artificial_em_livre = 5 [(aresta.texto_na_ui) = "Dificuldade Artificial em Livre"];
+
+  // Grau de exposição da via trad (ex: "E2", "E3"). Determina a qualidade/risco das proteções.
+  GrauExposicao.GrauExposicao exposicao = 6 [(aresta.texto_na_ui) = "Grau de Exposição"];
+
+  // Duração estimada para escalar a via.
+  GrauDuracao.GrauDuracao duracao = 7 [(aresta.texto_na_ui) = "Duração"];
+
+  // Número de enfiadas.
+  int32 numero_enfiadas = 8 [(aresta.texto_na_ui) = "Número de Enfiadas"];
+
+  // Comprimento total da via.
+  int32 comprimento_total = 9;
+
+  // Comprimento da maior enfiada da via.
+  int32 comprimento_maior_enfiada = 10;
+
+  // Número de costuras a levar para proteções intermediárias por enfiada.
+  int32 quantidade_costuras_intermediarias = 22 [(aresta.texto_na_ui) = "Quantidade de Costuras Intermediárias"];
+
+  // Número de equipamentos a levar para proteções nas paradas da via.
+  int32 quantidade_equipamentos_parada = 23 [(aresta.texto_na_ui) = "Quantidade de Equipamentos para Parada"];
+  
+
+  // Se a via é toda fixa, mista ou toda em móvel.
+  enum TipoViaMultiplasEnfiadas {
+    INDEFINIDO = 0;
+    TODA_FIXA = 1;
+    MISTA = 2;
+    TODA_MOVEL = 3;
+  }
+  TipoViaMultiplasEnfiadas tipo_via_multiplas_enfiadas = 11;
+
+  // Descrição do rack/equipamentos móveis recomendados (ex: "Camalots duplos #0.3-3, 1 jogo stoppers").
+  string equipamento_recomendado = 12;
+
+  // Detalhamento de cada enfiada da via, se houver.
+  repeated Escalada enfiadas = 13;
+
+  // Relato por escrito do croqui (enfiada por enfiada, orientações, etc).
+  string descricao = 14 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // Nome dos conquistadores.
+  repeated string conquistadores = 15;
+
+  // Data de abertura da via (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_abertura = 16 [(aresta.texto_na_ui) = "Data de Abertura"];
+
+  // Data da última manutenção da via.
+  string data_manutencao = 17 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+
+  // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
+  string url_video_beta = 18 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+
+  // Chave Pix do mantenedor ou conquistador específico desta via.
+  string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+}
+
+// Um highline montado na rocha.
+// NEXT_ID: 17
+message Highline {
+  // Nome do highline.
+  string nome = 1;
+
+  // ID no mapa com o local onde *começa* o highline. Provavelmente um número, como 1, ou a, ou 1a, etc.
+  string id_no_mapa = 13 [(aresta.texto_na_ui) = "ID no Mapa"];
+
+  // ID no mapa marcando o *meio* do highline, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente um número, letra ou símbolo (como um triângulo).
+  string id_no_mapa_meio = 16 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
+
+  // ID no mapa com o local onde *termina* o highline, se houver. Esse campo é opcional, mas se existir é
+  // provavelmente outro número ou uma letra, como "x".
+  string id_no_mapa_fim = 14 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
+
+  // Se é um destaque para o setor.
+  bool destaque = 15 [(aresta.texto_na_ui) = "É Destaque"];
+
+  // Distância do highline.
+  int32 distancia = 2 [(aresta.texto_na_ui) = "Distância"];
+
+  // Altura do highline.
+  int32 altura = 3;
+
+  // Exposição do highline.
+  int32 exposicao = 4 [(aresta.texto_na_ui) = "Exposição"];
+
+  // Nome dos conquistadores.
+  repeated string conquistadores = 5;
+
+  // Data de abertura do highline (ex: "1997" ou "1997-06" ou "1997-06-30").
+  string data_abertura = 6 [(aresta.texto_na_ui) = "Data de Abertura"];
+
+  // Data da última manutenção do highline.
+  string data_manutencao = 7 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+
+  // Descrição do acesso do highline.
+  string descricao_acesso = 8 [(aresta.texto_na_ui) = "Descrição do Acesso"];
+
+  // Descrição da ancoragem do highline.
+  string descricao_ancoragem = 9 [(aresta.texto_na_ui) = "Descrição da Ancoragem"];
+
+  // Outras descrições do highline.
+  string descricao = 10 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
+  string url_video_beta = 11 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+
+  // Chave Pix do mantenedor ou conquistador específico deste highline.
+  string chave_pix_manutencao = 12 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+}
+
+// Dados de um patrocinador que apoia financeiramente a manutenção ou os croquis.
+message Patrocinador {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Nome da empresa ou entidade apoiadora.
+  string nome = 1;
+  
+  // Slogan curto ou mensagem de agradecimento.
+  string mensagem = 2;
+  
+  // URL do arquivo de imagem da marca do patrocinador.
+  string url_logo = 3 [(aresta.texto_na_ui) = "URL da Logo"];
+  
+  // Link para o site oficial ou Instagram do patrocinador.
+  string url_link = 4 [(aresta.texto_na_ui) = "URL do Link"];
+}
+
+// Dados de uma trilha de aproximação.
+message Trilha {
+  // Nome dessa trilha.
+  string nome = 1;
+
+  // Descrição dessa trilha.
+  string descricao = 2 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // Tempo estimado de caminhada da trilha.
+  string tempo_aproximacao = 3 [(aresta.texto_na_ui) = "Tempo Estimado de Caminhada"];
+
+  // Cada ponto de interesse da trilha em sequência, do início ao fim.
+  repeated PontoDeInteresse pontos = 4;
+}
+
+// Ponto de interesse de uma trilha.
+message PontoDeInteresse {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Nome do ponto de interesse.
+  string nome = 1;
+
+  // Descrição do ponto de interesse.
+  string descricao = 2 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
+
+  // Localização do ponto de interesse.
+  Coordenada localizacao = 3 [(aresta.texto_na_ui) = "Localização"];
+
+}
+
+// Estrutura de geolocalização.
+//
+// Utiliza-se o padrão E7 para armazenamento de coordenadas. Esse padrão representa basicamente
+// pegar a coordenada (por exemplo a retornada pelo Google Maps) e multiplicar o valor por 10^7.
+// Para obter a coordenada novamente, basta dividir o valor por 10^7.
+//
+// Isso utiliza basicamente metade do espaço de armazenamento comparado com tipo double, e ainda
+// permite precisão de 1,1cm no pior caso para as coordenadas.
+// Utiliza-se sintaxe alternativa para economizar espaço
+//
+// scripts/deploy_generated.py automaticamente converte as coordenadas de arquivos .yaml e .md que
+// forem colados como doubles para esse formato E7.
+message Coordenada {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  sint32 latitude = 1;
+  sint32 longitude = 2;
+}
+
+// Tipo de uma parede.
+message TipoParede {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum TipoParede {
+    INDEFINIDO = 0;
+
+    POSITIVO = 1;
+
+    VERTICAL = 2;
+
+    NEGATIVO = 3; 
+  }
+}
+
+// Representa grau de dificuldade de vias de escalada em livre, em vários estilos de graduações
+// diferentes.
+// Referência: https://www.thecrag.com/en/article/grades
+message GrauVia {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum GrauVia {
+    option allow_alias = true;
+    INDEFINIDO = 0;
+    PROJETO = 1;
+
+    BR_1 = 2;
+
+    BR_1_BARRA_1SUP = 35;  // 1/1sup
+
+    BR_1SUP = 3;
+    FR_1 = 3;
+    US_5_0 = 3;
+
+    BR_1SUP_BARRA_2 = 36;  // 1sup/2
+
+    BR_2 = 4;
+    FR_2A = 4;
+    US_5_2 = 4;
+
+    BR_2_BARRA_2SUP = 37;  // 2/2sup
+
+    BR_2SUP = 5;
+    FR_2C = 5;
+    US_5_3 = 5;
+
+    BR_2SUP_BARRA_3 = 38;  // 2sup/3
+
+    BR_3 = 6;
+    FR_3B = 6;
+    US_5_5 = 6;
+
+    BR_3_BARRA_3SUP = 39;  // 3/3sup
+
+    BR_3SUP = 7;
+    FR_4A = 7;
+    US_5_6 = 7;
+
+    BR_3SUP_BARRA_4 = 40;  // 3sup/4
+
+    BR_4 = 8;
+    FR_4B_MAIS = 8;
+    US_5_7 = 8;
+
+    BR_4_BARRA_4SUP = 41;  // 4/4sup
+
+    BR_4SUP = 9;
+    FR_5A_MAIS = 9;
+    US_5_9 = 9;
+
+    BR_4SUP_BARRA_5 = 42;  // 4sup/5
+
+    BR_5 = 10;
+    FR_5C= 10;
+    US_5_10A = 10;
+
+    BR_5_BARRA_5SUP = 43;  // 5/5sup
+
+    BR_5SUP = 11;
+    FR_6A_MAIS = 11;
+    US_5_10B = 11;
+
+    BR_5SUP_BARRA_6 = 44;  // 5sup/6
+
+    BR_6 = 12;
+    FR_6B = 12;
+    US_5_10C = 12;
+
+    BR_6_BARRA_6SUP = 45;  // 6/6sup
+
+    BR_6SUP = 13;
+    FR_6B_MAIS = 13;
+    US_5_10D = 13;
+
+    BR_6SUP_BARRA_7A = 46;  // 6sup/7a
+
+    BR_7A = 14;
+    FR_6C = 14;
+    US_5_11A = 14;
+
+    BR_7A_BARRA_7B = 47;  // 7a/b
+
+    BR_7B = 17;
+    FR_6C_MAIS = 17;
+    US_5_11c = 17;
+
+    BR_7B_BARRA_7C = 48;  // 7b/c
+
+    BR_7C = 18;
+    FR_7A = 18;
+    US_5_11D = 18;
+
+    BR_7C_BARRA_8A = 49;  // 7c/8a
+
+    BR_8A = 19;
+    FR_7A_MAIS = 19;
+    US_5_12A = 19;
+
+    BR_8A_BARRA_8B = 50;  // 8a/b
+
+    BR_8B = 20;
+    FR_7B = 20;
+    US_5_12B = 20;
+
+    BR_8B_BARRA_8C = 51;  // 8b/c
+
+    BR_8C = 21;
+    FR_7B_MAIS = 21;
+    US_5_12C = 21;
+
+    BR_8C_BARRA_9A = 52;  // 8c/9a
+
+    BR_9A = 22;
+    FR_7C = 22;
+    US_5_12D = 22;
+
+    BR_9A_BARRA_9B = 53;  // 9a/b
+
+    BR_9B = 23;
+    FR_7C_MAIS = 23;
+    US_5_13A = 23;
+
+    BR_9B_BARRA_9C = 54;  // 9b/c
+
+    BR_9C = 24;
+    FR_8A = 24;
+    US_5_13B = 24;
+
+    BR_9C_BARRA_10A = 55;  // 9c/10a
+
+    BR_10A = 25;
+    FR_8A_MAIS = 25;
+    US_5_13C = 25;
+
+    BR_10A_BARRA_10B = 56;  // 10a/b
+
+    BR_10B = 26;
+    FR_8B = 26;
+    US_5_13D = 26;
+
+    BR_10B_BARRA_10C = 57;  // 10b/c
+
+    BR_10C = 27;
+    FR_8B_MAIS = 27;
+    US_5_14A = 27;
+
+    BR_10C_BARRA_11A = 58;  // 10c/11a
+
+    BR_11A = 28;
+    FR_8C = 28;
+    US_5_14B = 28;
+
+    BR_11A_BARRA_11B = 59;  // 11a/b
+
+    BR_11B = 29;
+    FR_8C_MAIS = 29;
+    US_5_14C = 29;
+
+    BR_11B_BARRA_11C = 60;  // 11b/c
+
+    BR_11C = 30;
+    FR_9A = 30;
+    US_5_14D = 30;
+
+    BR_11C_BARRA_12A = 61;  // 11c/12a
+
+    BR_12A = 31;
+    FR_9A_MAIS = 31;
+    US_5_15A = 31;
+
+    BR_12A_BARRA_12B = 62;  // 12a/b
+
+    BR_12B = 32;
+    FR_9B = 32;
+    US_5_15B = 32;
+
+    BR_12B_BARRA_12C = 63;  // 12b/c
+
+    BR_12C = 33;
+    FR_9B_MAIS = 33;
+    US_5_15C = 33;
+
+    BR_12C_BARRA_13A = 64;  // 12c/13a
+
+    BR_13A = 34;
+    FR_9C = 34;
+    US_5_15D = 34;
+  }
+}
+
+// Representa grau de dificuldade de boulders, em vários estilos de graduações
+// diferentes.
+// Referência: https://www.thecrag.com/en/article/grades
+message GrauBoulder {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum GrauBoulder {
+    INDEFINIDO = 0;
+
+    VB = 1;
+    VB_BARRA_V0 = 20;  // VB/0
+
+    V0 = 2;
+    V0_BARRA_V1 = 21;  // V0/1
+
+    V1 = 3;
+    V1_BARRA_V2 = 22;  // V1/2
+
+    V2 = 4;
+    V2_BARRA_V3 = 23;  // V2/3
+    
+    V3 = 5;
+    V3_BARRA_V4 = 24;  // V3/4
+
+    V4 = 6;
+    V4_BARRA_V5 = 25;  // V4/5
+
+    V5 = 7;
+    V5_BARRA_V6 = 26;  // V5/6
+
+    V6 = 8;
+    V6_BARRA_V7 = 27;  // V6/7
+
+    V7 = 9;
+    V7_BARRA_V8 = 28;  // V7/8
+
+    V8 = 10;
+    V8_BARRA_V9 = 29;  // V8/9
+
+    V9 = 11;
+    V9_BARRA_V10 = 30;  // V9/10
+
+    V10 = 12;
+    V10_BARRA_V11 = 31;  // V10/11
+
+    V11 = 13;
+    V11_BARRA_V12 = 32;  // V11/12
+    
+    V12 = 14;
+    V12_BARRA_V13 = 33;  // V12/13
+
+    V13 = 15;
+    V13_BARRA_V14 = 34;  // V13/14
+
+    V14 = 16;
+    V14_BARRA_V15 = 35;  // V14/15
+
+    V15 = 17;
+    V15_BARRA_V16 = 36;  // V15/16
+
+    V16 = 18;
+    V16_BARRA_V17 = 37;  // V16/17
+
+    V17 = 19;
+  }
+}
+
+// Representa grau de dificuldade de escalada em artificial.
+// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
+message GrauArtificial {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum GrauArtificial {
+    INDEFINIDO = 0;
+
+    // Pontos de apoio sólidos isolados ou em uma curta sequência, com pouca exposição.
+    A0 = 1;
+
+    A0_MAIS = 2;
+
+    // Peças fixas ou colocações sólidas de material móvel, fáceis e seguras, em uma
+    // sequência razoavelmente longa.
+    A1 = 3;
+
+    A1_MAIS = 4;
+
+    // Colocação geralmente sólida das proteções móveis, porém mais difíceis. Algumas
+    // colocações podem não ser sólidas, mas estarão logo acima de uma boa peça. Não
+    // há quedas perigosas.
+    A2 = 5;
+
+    // Como A2, mas com possibilidade de mais colocações ruins acima de uma boa. Potencial
+    // de queda aproximado de 6 a 9 metros, mas sem atingir platôs.
+    A2_MAIS = 6;
+
+    // Artificial difícil. Várias colocações frágeis em sequência, poucas proteções sólidas.
+    // Potencial de queda de até 15 metros, mas geralmente não causa acidentes graves.
+    A3 = 7;
+
+    // Como A3, mas com maior potencial de quedas perigosas.
+    A3_MAIS = 8;
+
+    // Escaladas muito perigosas. Quedas potenciais de 18 a 30 metros, com perigo de atingir
+    // platôs ou lacas de pedra. Peças que aguentam somente o peso do corpo.
+    A4 = 9;
+
+    // Como o A4, mas são necessárias várias horas para cada enfiada de corda.
+    A4_MAIS = 10;
+
+    // Extremo, sob o ponto de vista técnico e psicológico.
+    A5 = 11;
+
+    // Como um A5 em que as paradas não são sólidas.
+    A5_MAIS = 12;
+  }
+}
+
+// Representa grau de duração de uma via tradicional.
+// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
+message GrauDuracao {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum GrauDuracao {
+    INDEFINIDO = 0;
+
+    // Poucas horas de escalada.
+    D1 = 1;
+
+    // Meio dia de escalada.
+    D2 = 2;
+
+    // Um dia quase inteiro de escalada.
+    D3 = 3;
+
+    // Um longo dia de escalada.
+    D4 = 4;
+
+    // Requer uma noite na parede. Cordadas muito velozes podem repeti-la em um dia.
+    D5 = 5;
+
+    // Dois dias inteiros ou mais de escalada. Normalmente inclui longos e complicados
+    // trechos de escalada em artificial.
+    D6 = 6;
+
+    // Expedições a locais de acesso remoto com longa aproximação e muitos dias de escalada.
+    D7 = 7;
+  }
+}
+
+// Representa grau de exposição de uma via tradicional.
+// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
+message GrauExposicao {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum GrauExposicao {
+    INDEFINIDO = 0;
+
+    // Vias bem protegidas, grampeação nível esportiva.
+    E1 = 1;
+
+    // Vias com proteção regular.
+    E2 = 2;
+
+
+    // Vias com proteção regular com trechos perigosos.
+    E3 = 3;
+
+    // Vias perigosas em caso de queda.
+    E4 = 4;
+
+    // Vias muito perigosas em caso de queda.
+    E5 = 5;
+  }
+}
