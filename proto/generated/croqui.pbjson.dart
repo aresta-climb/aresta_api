@@ -77,14 +77,15 @@ const MensagemFormatoUi_Enum$json = {
     {'1': 'ONEOF', '2': 3},
     {'1': 'INVISIVEL', '2': 4},
     {'1': 'ONEOF_CONTEUDO', '2': 5},
+    {'1': 'MAPA', '2': 6},
   ],
 };
 
 /// Descriptor for `MensagemFormatoUi`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List mensagemFormatoUiDescriptor = $convert.base64Decode(
-    'ChFNZW5zYWdlbUZvcm1hdG9VaSJeCgRFbnVtEg4KCklOREVGSU5JRE8QABIMCghTRVBBUkFETx'
+    'ChFNZW5zYWdlbUZvcm1hdG9VaSJoCgRFbnVtEg4KCklOREVGSU5JRE8QABIMCghTRVBBUkFETx'
     'ABEgoKBklOTElORRACEgkKBU9ORU9GEAMSDQoJSU5WSVNJVkVMEAQSEgoOT05FT0ZfQ09OVEVV'
-    'RE8QBQ==');
+    'RE8QBRIICgRNQVBBEAY=');
 
 @$core.Deprecated('Use croquiDescriptor instead')
 const Croqui$json = {
@@ -689,6 +690,7 @@ const Mapa$json = {
     },
   ],
   '3': [Mapa_PontoDeInteresse$json],
+  '7': {},
   '9': [
     {'1': 5, '2': 6},
   ],
@@ -746,7 +748,7 @@ final $typed_data.Uint8List mapaDescriptor = $convert.base64Decode(
     'GAYgASgLMhguYXJlc3RhLkJvdW5kaW5nQ2lyY3VsYXJIAFIIY2lyY3VsYXISJwoDYm94GAMgAS'
     'gLMhMuYXJlc3RhLkJvdW5kaW5nQm94SABSA2JveBJLCgphcmVhX2xpdnJlGAcgASgLMhkuYXJl'
     'c3RhLkJvdW5kaW5nQXJlYUxpdnJlQg+StRgLw4FyZWEgTGl2cmVIAFIJYXJlYUxpdnJlOgSQtR'
-    'gCQgsKCXRpcG9fYXJlYUoECAUQBg==');
+    'gCQgsKCXRpcG9fYXJlYToEkLUYBkoECAUQBg==');
 
 @$core.Deprecated('Use boundingCircularDescriptor instead')
 const BoundingCircular$json = {

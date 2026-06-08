@@ -18,7 +18,7 @@ edition = "2023";
 package aresta;
 
 import "google/protobuf/timestamp.proto";
-
+import "croqui.proto";
 // Representa um índice de croquis de escalada, apontando para onde recuperar o
 // croqui inteiro.
 message Indice {
@@ -58,6 +58,9 @@ message ResumoCroqui {
 
     // Timestamp do último update.
     google.protobuf.Timestamp timestamp_update = 9;
+
+    // Coordenada principal do croqui (baseada no estacionamento do primeiro pico).
+    Coordenada localizacao = 10;
 
     reserved 7;
     reserved data_update;

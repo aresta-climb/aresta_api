@@ -25,12 +25,14 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $0.Timestamp? dataCriacao,
     $0.Timestamp? ultimaEdicao,
     $core.String? resumoEdicao,
+    $core.String? idOriginal,
   }) {
     final result = create();
     if (autores != null) result.autores.addAll(autores);
     if (dataCriacao != null) result.dataCriacao = dataCriacao;
     if (ultimaEdicao != null) result.ultimaEdicao = ultimaEdicao;
     if (resumoEdicao != null) result.resumoEdicao = resumoEdicao;
+    if (idOriginal != null) result.idOriginal = idOriginal;
     return result;
   }
 
@@ -53,6 +55,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'ultimaEdicao',
         subBuilder: $0.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'resumoEdicao')
+    ..aOS(5, _omitFieldNames ? '' : 'idOriginal')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -113,6 +116,17 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   $core.bool hasResumoEdicao() => $_has(3);
   @$pb.TagNumber(4)
   void clearResumoEdicao() => $_clearField(4);
+
+  /// ID original do croqui antes de qualquer renomeação.
+  /// Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
+  @$pb.TagNumber(5)
+  $core.String get idOriginal => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set idOriginal($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasIdOriginal() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearIdOriginal() => $_clearField(5);
 }
 
 const $core.bool _omitFieldNames =

@@ -122,6 +122,11 @@ class MensagemFormatoUi_Enum extends $pb.ProtobufEnum {
   static const MensagemFormatoUi_Enum ONEOF_CONTEUDO =
       MensagemFormatoUi_Enum._(5, _omitEnumNames ? '' : 'ONEOF_CONTEUDO');
 
+  /// A mensagem é gerida e editada por um editor visual especializado, o Editor de Mapas.
+  /// O editor de dados padrão mostrará apenas um botão "Abrir no Editor de Mapas".
+  static const MensagemFormatoUi_Enum MAPA =
+      MensagemFormatoUi_Enum._(6, _omitEnumNames ? '' : 'MAPA');
+
   static const $core.List<MensagemFormatoUi_Enum> values =
       <MensagemFormatoUi_Enum>[
     INDEFINIDO,
@@ -130,10 +135,11 @@ class MensagemFormatoUi_Enum extends $pb.ProtobufEnum {
     ONEOF,
     INVISIVEL,
     ONEOF_CONTEUDO,
+    MAPA,
   ];
 
   static final $core.List<MensagemFormatoUi_Enum?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 5);
+      $pb.ProtobufEnum.$_initByValueList(values, 6);
   static MensagemFormatoUi_Enum? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

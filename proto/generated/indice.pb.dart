@@ -16,6 +16,8 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/timestamp.pb.dart'
     as $0;
 
+import 'croqui.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 /// Representa um índice de croquis de escalada, apontando para onde recuperar o
@@ -93,6 +95,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     $core.String? checksumSha256Croqui,
     $core.String? checksumSha256Thumbnail,
     $0.Timestamp? timestampUpdate,
+    $1.Coordenada? localizacao,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -105,6 +108,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     if (checksumSha256Thumbnail != null)
       result.checksumSha256Thumbnail = checksumSha256Thumbnail;
     if (timestampUpdate != null) result.timestampUpdate = timestampUpdate;
+    if (localizacao != null) result.localizacao = localizacao;
     return result;
   }
 
@@ -130,6 +134,8 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     ..aOS(8, _omitFieldNames ? '' : 'checksumSha256Thumbnail')
     ..aOM<$0.Timestamp>(9, _omitFieldNames ? '' : 'timestampUpdate',
         subBuilder: $0.Timestamp.create)
+    ..aOM<$1.Coordenada>(10, _omitFieldNames ? '' : 'localizacao',
+        subBuilder: $1.Coordenada.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -236,6 +242,18 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   void clearTimestampUpdate() => $_clearField(9);
   @$pb.TagNumber(9)
   $0.Timestamp ensureTimestampUpdate() => $_ensure(7);
+
+  /// Coordenada principal do croqui (baseada no estacionamento do primeiro pico).
+  @$pb.TagNumber(10)
+  $1.Coordenada get localizacao => $_getN(8);
+  @$pb.TagNumber(10)
+  set localizacao($1.Coordenada value) => $_setField(10, value);
+  @$pb.TagNumber(10)
+  $core.bool hasLocalizacao() => $_has(8);
+  @$pb.TagNumber(10)
+  void clearLocalizacao() => $_clearField(10);
+  @$pb.TagNumber(10)
+  $1.Coordenada ensureLocalizacao() => $_ensure(8);
 }
 
 const $core.bool _omitFieldNames =

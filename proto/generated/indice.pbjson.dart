@@ -67,6 +67,14 @@ const ResumoCroqui$json = {
       '6': '.google.protobuf.Timestamp',
       '10': 'timestampUpdate'
     },
+    {
+      '1': 'localizacao',
+      '3': 10,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.Coordenada',
+      '10': 'localizacao'
+    },
   ],
   '9': [
     {'1': 7, '2': 8},
@@ -81,5 +89,6 @@ final $typed_data.Uint8List resumoCroquiDescriptor = $convert.base64Decode(
     'dWl2bxIQCgN1cmwYBSABKAlSA3VybBI0ChZjaGVja3N1bV9zaGEyNTZfY3JvcXVpGAYgASgJUh'
     'RjaGVja3N1bVNoYTI1NkNyb3F1aRI6ChljaGVja3N1bV9zaGEyNTZfdGh1bWJuYWlsGAggASgJ'
     'UhdjaGVja3N1bVNoYTI1NlRodW1ibmFpbBJFChB0aW1lc3RhbXBfdXBkYXRlGAkgASgLMhouZ2'
-    '9vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIPdGltZXN0YW1wVXBkYXRlSgQIBxAIUgtkYXRhX3Vw'
-    'ZGF0ZQ==');
+    '9vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIPdGltZXN0YW1wVXBkYXRlEjQKC2xvY2FsaXphY2Fv'
+    'GAogASgLMhIuYXJlc3RhLkNvb3JkZW5hZGFSC2xvY2FsaXphY2FvSgQIBxAIUgtkYXRhX3VwZG'
+    'F0ZQ==');

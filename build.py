@@ -59,9 +59,9 @@ def generate_protos(argv=None):
 
     # Cria o arquivo __init__.py para que o Python trate a pasta "generated" como um módulo
     init_path = os.path.join(generated_dir, "__init__.py")
-    if not os.path.exists(init_path):
+    if not os.path.exists(init_path) or os.path.getsize(init_path) == 0:
         with open(init_path, "w") as f:
-            f.write("")
+            f.write("import sys\nimport os\nsys.path.insert(0, os.path.dirname(__file__))\n")
 
     print(f"Foram encontrados {len(proto_files)} arquivos .proto. Gerando os arquivos...")
 

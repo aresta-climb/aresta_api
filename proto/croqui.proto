@@ -118,6 +118,10 @@ message MensagemFormatoUi {
     //
     // No croqui compilado, sempre utiliza o 'conteudo'.
     ONEOF_CONTEUDO = 5;
+
+    // A mensagem é gerida e editada por um editor visual especializado, o Editor de Mapas.
+    // O editor de dados padrão mostrará apenas um botão "Abrir no Editor de Mapas".
+    MAPA = 6;
   }
 }
 
@@ -413,6 +417,8 @@ message Setor {
 
 // Representa um mapa do setor.
 message Mapa {
+  option (aresta.mensagem_formato_na_ui) = MAPA;
+
   // Caminho do arquivo (geralmente em .webp) contendo a foto desenhada da parede.
   string caminho_imagem_mapa = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "image/webp"];
 
