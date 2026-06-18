@@ -202,7 +202,11 @@ message Croqui {
   // Se false (padrão do proto3), ele funcionará apenas como rascunho.
   bool publicar_croqui = 16 [(aresta.texto_na_ui) = "Publicar Croqui"];
 
+  extensions 1000 to max;
   reserved 5, 10, 12;
+  extend Croqui {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
 }
 
 // Representa um botão que leva a alguma outra parte do croqui.
@@ -249,6 +253,9 @@ message MetadadosArquivoNoEditor {
   // Caminho final e modificado durante a edição na UI (Shadow State).
   // Este é o nome que o arquivo receberá em disco no momento de salvar.
   string caminho_novo = 2;
+
+  // Ordem original dos campos ao carregar do disco (usada para não causar diffs inúteis ao salvar).
+  repeated string ordem_campos_original = 3;
 }
 
 // Representa um arquivo markdown com informações sobre o croqui.

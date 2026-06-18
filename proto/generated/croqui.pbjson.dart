@@ -162,6 +162,20 @@ const Croqui$json = {
     },
   ],
   '3': [Croqui_StatusDesenhoExtraivel$json],
+  '5': [
+    {'1': 1000, '2': 536870912},
+  ],
+  '6': [
+    {
+      '1': 'ext_metadados_arquivo',
+      '2': '.aresta.Croqui',
+      '3': 1000,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MetadadosArquivoNoEditor',
+      '10': 'extMetadadosArquivo'
+    },
+  ],
   '9': [
     {'1': 5, '2': 6},
     {'1': 10, '2': 11},
@@ -204,7 +218,9 @@ final $typed_data.Uint8List croquiDescriptor = $convert.base64Decode(
     'EKBEVudW0SDgoKSU5ERUZJTklETxAAEikKD05BT19URU1fREVTRU5ITxABGhSKtRgQTsOjbyB0'
     'ZW0gZGVzZW5obxJJChxURU1fREVTRU5IT19NQVNfTkFPX0VYVFJBSURPEAIaJ4q1GCNUZW0gZG'
     'VzZW5obywgbWFzIG7Do28gZm9pIGV4dHJhw61kbxIrChBERVNFTkhPX0VYVFJBSURPEAMaFYq1'
-    'GBFEZXNlbmhvIGV4dHJhw61kb0oECAUQBkoECAoQC0oECAwQDQ==');
+    'GBFEZXNlbmhvIGV4dHJhw61kbyoJCOgHEICAgIACMmUKFWV4dF9tZXRhZGFkb3NfYXJxdWl2bx'
+    'IOLmFyZXN0YS5Dcm9xdWkY6AcgASgLMiAuYXJlc3RhLk1ldGFkYWRvc0FycXVpdm9Ob0VkaXRv'
+    'clITZXh0TWV0YWRhZG9zQXJxdWl2b0oECAUQBkoECAoQC0oECAwQDQ==');
 
 @$core.Deprecated('Use botaoDescriptor instead')
 const Botao$json = {
@@ -274,14 +290,21 @@ const MetadadosArquivoNoEditor$json = {
   '2': [
     {'1': 'caminho_original', '3': 1, '4': 1, '5': 9, '10': 'caminhoOriginal'},
     {'1': 'caminho_novo', '3': 2, '4': 1, '5': 9, '10': 'caminhoNovo'},
+    {
+      '1': 'ordem_campos_original',
+      '3': 3,
+      '4': 3,
+      '5': 9,
+      '10': 'ordemCamposOriginal'
+    },
   ],
 };
 
 /// Descriptor for `MetadadosArquivoNoEditor`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List metadadosArquivoNoEditorDescriptor =
-    $convert.base64Decode(
-        'ChhNZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3ISKQoQY2FtaW5ob19vcmlnaW5hbBgBIAEoCVIPY2'
-        'FtaW5ob09yaWdpbmFsEiEKDGNhbWluaG9fbm92bxgCIAEoCVILY2FtaW5ob05vdm8=');
+final $typed_data.Uint8List metadadosArquivoNoEditorDescriptor = $convert.base64Decode(
+    'ChhNZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3ISKQoQY2FtaW5ob19vcmlnaW5hbBgBIAEoCVIPY2'
+    'FtaW5ob09yaWdpbmFsEiEKDGNhbWluaG9fbm92bxgCIAEoCVILY2FtaW5ob05vdm8SMgoVb3Jk'
+    'ZW1fY2FtcG9zX29yaWdpbmFsGAMgAygJUhNvcmRlbUNhbXBvc09yaWdpbmFs');
 
 @$core.Deprecated('Use arquivoMarkdownDescriptor instead')
 const ArquivoMarkdown$json = {

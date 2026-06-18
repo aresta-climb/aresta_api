@@ -248,7 +248,15 @@ class Croqui extends $pb.GeneratedMessage {
         enumValues: Croqui_StatusDesenhoExtraivel_Enum.values)
     ..pPM<Botao>(14, _omitFieldNames ? '' : 'botoes', subBuilder: Botao.create)
     ..aI(15, _omitFieldNames ? '' : 'ultimaMigracao')
-    ..aOB(16, _omitFieldNames ? '' : 'publicarCroqui');
+    ..aOB(16, _omitFieldNames ? '' : 'publicarCroqui')
+    ..hasExtensions = true;
+  static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
+      _omitMessageNames ? '' : 'aresta.Croqui',
+      _omitFieldNames ? '' : 'extMetadadosArquivo',
+      1000,
+      $pb.PbFieldType.OM,
+      defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
+      subBuilder: MetadadosArquivoNoEditor.create);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Croqui clone() => deepCopy();
@@ -596,10 +604,13 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
   factory MetadadosArquivoNoEditor({
     $core.String? caminhoOriginal,
     $core.String? caminhoNovo,
+    $core.Iterable<$core.String>? ordemCamposOriginal,
   }) {
     final result = create();
     if (caminhoOriginal != null) result.caminhoOriginal = caminhoOriginal;
     if (caminhoNovo != null) result.caminhoNovo = caminhoNovo;
+    if (ordemCamposOriginal != null)
+      result.ordemCamposOriginal.addAll(ordemCamposOriginal);
     return result;
   }
 
@@ -618,6 +629,7 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoOriginal')
     ..aOS(2, _omitFieldNames ? '' : 'caminhoNovo')
+    ..pPS(3, _omitFieldNames ? '' : 'ordemCamposOriginal')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -661,6 +673,10 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
   $core.bool hasCaminhoNovo() => $_has(1);
   @$pb.TagNumber(2)
   void clearCaminhoNovo() => $_clearField(2);
+
+  /// Ordem original dos campos ao carregar do disco (usada para não causar diffs inúteis ao salvar).
+  @$pb.TagNumber(3)
+  $pb.PbList<$core.String> get ordemCamposOriginal => $_getList(2);
 }
 
 enum ArquivoMarkdown_Arquivo { caminho, conteudo, notSet }
