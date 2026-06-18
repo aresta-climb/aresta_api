@@ -604,13 +604,13 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
   factory MetadadosArquivoNoEditor({
     $core.String? caminhoOriginal,
     $core.String? caminhoNovo,
-    $core.Iterable<$core.String>? ordemCamposOriginal,
+    $core.String? dadosJsonOriginais,
   }) {
     final result = create();
     if (caminhoOriginal != null) result.caminhoOriginal = caminhoOriginal;
     if (caminhoNovo != null) result.caminhoNovo = caminhoNovo;
-    if (ordemCamposOriginal != null)
-      result.ordemCamposOriginal.addAll(ordemCamposOriginal);
+    if (dadosJsonOriginais != null)
+      result.dadosJsonOriginais = dadosJsonOriginais;
     return result;
   }
 
@@ -629,7 +629,7 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoOriginal')
     ..aOS(2, _omitFieldNames ? '' : 'caminhoNovo')
-    ..pPS(3, _omitFieldNames ? '' : 'ordemCamposOriginal')
+    ..aOS(4, _omitFieldNames ? '' : 'dadosJsonOriginais')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -674,9 +674,15 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearCaminhoNovo() => $_clearField(2);
 
-  /// Ordem original dos campos ao carregar do disco (usada para não causar diffs inúteis ao salvar).
-  @$pb.TagNumber(3)
-  $pb.PbList<$core.String> get ordemCamposOriginal => $_getList(2);
+  /// Estado completo original em JSON (preserva toda a ordem hierárquica das chaves para dicionários aninhados).
+  @$pb.TagNumber(4)
+  $core.String get dadosJsonOriginais => $_getSZ(2);
+  @$pb.TagNumber(4)
+  set dadosJsonOriginais($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(4)
+  $core.bool hasDadosJsonOriginais() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearDadosJsonOriginais() => $_clearField(4);
 }
 
 enum ArquivoMarkdown_Arquivo { caminho, conteudo, notSet }

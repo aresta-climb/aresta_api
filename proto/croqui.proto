@@ -254,8 +254,10 @@ message MetadadosArquivoNoEditor {
   // Este é o nome que o arquivo receberá em disco no momento de salvar.
   string caminho_novo = 2;
 
-  // Ordem original dos campos ao carregar do disco (usada para não causar diffs inúteis ao salvar).
-  repeated string ordem_campos_original = 3;
+  // Estado completo original em JSON (preserva toda a ordem hierárquica das chaves para dicionários aninhados).
+  string dados_json_originais = 4;
+
+  reserved 3;
 }
 
 // Representa um arquivo markdown com informações sobre o croqui.

@@ -291,20 +291,23 @@ const MetadadosArquivoNoEditor$json = {
     {'1': 'caminho_original', '3': 1, '4': 1, '5': 9, '10': 'caminhoOriginal'},
     {'1': 'caminho_novo', '3': 2, '4': 1, '5': 9, '10': 'caminhoNovo'},
     {
-      '1': 'ordem_campos_original',
-      '3': 3,
-      '4': 3,
+      '1': 'dados_json_originais',
+      '3': 4,
+      '4': 1,
       '5': 9,
-      '10': 'ordemCamposOriginal'
+      '10': 'dadosJsonOriginais'
     },
+  ],
+  '9': [
+    {'1': 3, '2': 4},
   ],
 };
 
 /// Descriptor for `MetadadosArquivoNoEditor`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List metadadosArquivoNoEditorDescriptor = $convert.base64Decode(
     'ChhNZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3ISKQoQY2FtaW5ob19vcmlnaW5hbBgBIAEoCVIPY2'
-    'FtaW5ob09yaWdpbmFsEiEKDGNhbWluaG9fbm92bxgCIAEoCVILY2FtaW5ob05vdm8SMgoVb3Jk'
-    'ZW1fY2FtcG9zX29yaWdpbmFsGAMgAygJUhNvcmRlbUNhbXBvc09yaWdpbmFs');
+    'FtaW5ob09yaWdpbmFsEiEKDGNhbWluaG9fbm92bxgCIAEoCVILY2FtaW5ob05vdm8SMAoUZGFk'
+    'b3NfanNvbl9vcmlnaW5haXMYBCABKAlSEmRhZG9zSnNvbk9yaWdpbmFpc0oECAMQBA==');
 
 @$core.Deprecated('Use arquivoMarkdownDescriptor instead')
 const ArquivoMarkdown$json = {
