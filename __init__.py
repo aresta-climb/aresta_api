@@ -1,0 +1,1 @@
+"""Pacote aresta_api."""
