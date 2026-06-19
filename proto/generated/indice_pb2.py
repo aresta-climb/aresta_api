@@ -26,7 +26,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 import croqui_pb2 as croqui__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cindice.proto\x12\x06\x61resta\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63roqui.proto\"?\n\x06Indice\x12%\n\x07\x63roquis\x18\x02 \x03(\x0b\x32\x14.aresta.ResumoCroquiJ\x04\x08\x01\x10\x02R\x08url_base\"\x93\x02\n\x0cResumoCroqui\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04nome\x18\x02 \x01(\t\x12\x11\n\tdescricao\x18\x03 \x01(\t\x12\x14\n\x0cnome_arquivo\x18\x04 \x01(\t\x12\x0b\n\x03url\x18\x05 \x01(\t\x12\x1e\n\x16\x63hecksum_sha256_croqui\x18\x06 \x01(\t\x12!\n\x19\x63hecksum_sha256_thumbnail\x18\x08 \x01(\t\x12\x34\n\x10timestamp_update\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0blocalizacao\x18\n \x01(\x0b\x32\x12.aresta.CoordenadaJ\x04\x08\x07\x10\x08R\x0b\x64\x61ta_updateb\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cindice.proto\x12\x06\x61resta\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63roqui.proto\"?\n\x06Indice\x12%\n\x07\x63roquis\x18\x02 \x03(\x0b\x32\x14.aresta.ResumoCroquiJ\x04\x08\x01\x10\x02R\x08url_base\"\x9e\x02\n\x0cResumoCroqui\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04nome\x18\x02 \x01(\t\x12\x11\n\tdescricao\x18\x03 \x01(\t\x12\x18\n\x10\x63\x61minho_relativo\x18\x05 \x01(\t\x12\x1e\n\x16\x63hecksum_sha256_croqui\x18\x06 \x01(\t\x12!\n\x19\x63hecksum_sha256_thumbnail\x18\x08 \x01(\t\x12\x34\n\x10timestamp_update\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0blocalizacao\x18\n \x01(\x0b\x32\x12.aresta.CoordenadaJ\x04\x08\x04\x10\x05J\x04\x08\x07\x10\x08R\x0b\x64\x61ta_updateR\x0cnome_arquivob\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,5 +36,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_INDICE']._serialized_start=71
   _globals['_INDICE']._serialized_end=134
   _globals['_RESUMOCROQUI']._serialized_start=137
-  _globals['_RESUMOCROQUI']._serialized_end=412
+  _globals['_RESUMOCROQUI']._serialized_end=423
 # @@protoc_insertion_point(module_scope)

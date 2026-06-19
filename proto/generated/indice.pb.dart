@@ -77,8 +77,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     $core.String? id,
     $core.String? nome,
     $core.String? descricao,
-    $core.String? nomeArquivo,
-    $core.String? url,
+    $core.String? caminhoRelativo,
     $core.String? checksumSha256Croqui,
     $core.String? checksumSha256Thumbnail,
     $0.Timestamp? timestampUpdate,
@@ -88,8 +87,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     if (id != null) result.id = id;
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
-    if (nomeArquivo != null) result.nomeArquivo = nomeArquivo;
-    if (url != null) result.url = url;
+    if (caminhoRelativo != null) result.caminhoRelativo = caminhoRelativo;
     if (checksumSha256Croqui != null)
       result.checksumSha256Croqui = checksumSha256Croqui;
     if (checksumSha256Thumbnail != null)
@@ -115,8 +113,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'nome')
     ..aOS(3, _omitFieldNames ? '' : 'descricao')
-    ..aOS(4, _omitFieldNames ? '' : 'nomeArquivo')
-    ..aOS(5, _omitFieldNames ? '' : 'url')
+    ..aOS(5, _omitFieldNames ? '' : 'caminhoRelativo')
     ..aOS(6, _omitFieldNames ? '' : 'checksumSha256Croqui')
     ..aOS(8, _omitFieldNames ? '' : 'checksumSha256Thumbnail')
     ..aOM<$0.Timestamp>(9, _omitFieldNames ? '' : 'timestampUpdate',
@@ -174,34 +171,25 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearDescricao() => $_clearField(3);
 
-  /// Nome do arquivo do croqui.
-  @$pb.TagNumber(4)
-  $core.String get nomeArquivo => $_getSZ(3);
-  @$pb.TagNumber(4)
-  set nomeArquivo($core.String value) => $_setString(3, value);
-  @$pb.TagNumber(4)
-  $core.bool hasNomeArquivo() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearNomeArquivo() => $_clearField(4);
-
-  /// URL para recuperar o croqui inteiro, relativo ao website do indice.
+  /// localização do arquivo relativo ao indice (i.e.
+  /// "br_mg_pedro_leopoldo_gruta_do_bau/compilado.binarypb").
   @$pb.TagNumber(5)
-  $core.String get url => $_getSZ(4);
+  $core.String get caminhoRelativo => $_getSZ(3);
   @$pb.TagNumber(5)
-  set url($core.String value) => $_setString(4, value);
+  set caminhoRelativo($core.String value) => $_setString(3, value);
   @$pb.TagNumber(5)
-  $core.bool hasUrl() => $_has(4);
+  $core.bool hasCaminhoRelativo() => $_has(3);
   @$pb.TagNumber(5)
-  void clearUrl() => $_clearField(5);
+  void clearCaminhoRelativo() => $_clearField(5);
 
   /// Checksum SHA256 da última versão do croqui.
   /// Se diferente do checksum da versão baixada, há atualizações.
   @$pb.TagNumber(6)
-  $core.String get checksumSha256Croqui => $_getSZ(5);
+  $core.String get checksumSha256Croqui => $_getSZ(4);
   @$pb.TagNumber(6)
-  set checksumSha256Croqui($core.String value) => $_setString(5, value);
+  set checksumSha256Croqui($core.String value) => $_setString(4, value);
   @$pb.TagNumber(6)
-  $core.bool hasChecksumSha256Croqui() => $_has(5);
+  $core.bool hasChecksumSha256Croqui() => $_has(4);
   @$pb.TagNumber(6)
   void clearChecksumSha256Croqui() => $_clearField(6);
 
@@ -210,37 +198,37 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   /// A thumbnail *sempre* será localizada em "imagens/thumbnail.webp", relativa
   /// à pasta onde está o croqui.binarypb.
   @$pb.TagNumber(8)
-  $core.String get checksumSha256Thumbnail => $_getSZ(6);
+  $core.String get checksumSha256Thumbnail => $_getSZ(5);
   @$pb.TagNumber(8)
-  set checksumSha256Thumbnail($core.String value) => $_setString(6, value);
+  set checksumSha256Thumbnail($core.String value) => $_setString(5, value);
   @$pb.TagNumber(8)
-  $core.bool hasChecksumSha256Thumbnail() => $_has(6);
+  $core.bool hasChecksumSha256Thumbnail() => $_has(5);
   @$pb.TagNumber(8)
   void clearChecksumSha256Thumbnail() => $_clearField(8);
 
   /// Timestamp do último update.
   @$pb.TagNumber(9)
-  $0.Timestamp get timestampUpdate => $_getN(7);
+  $0.Timestamp get timestampUpdate => $_getN(6);
   @$pb.TagNumber(9)
   set timestampUpdate($0.Timestamp value) => $_setField(9, value);
   @$pb.TagNumber(9)
-  $core.bool hasTimestampUpdate() => $_has(7);
+  $core.bool hasTimestampUpdate() => $_has(6);
   @$pb.TagNumber(9)
   void clearTimestampUpdate() => $_clearField(9);
   @$pb.TagNumber(9)
-  $0.Timestamp ensureTimestampUpdate() => $_ensure(7);
+  $0.Timestamp ensureTimestampUpdate() => $_ensure(6);
 
   /// Coordenada principal do croqui (baseada no estacionamento do primeiro pico).
   @$pb.TagNumber(10)
-  $1.Coordenada get localizacao => $_getN(8);
+  $1.Coordenada get localizacao => $_getN(7);
   @$pb.TagNumber(10)
   set localizacao($1.Coordenada value) => $_setField(10, value);
   @$pb.TagNumber(10)
-  $core.bool hasLocalizacao() => $_has(8);
+  $core.bool hasLocalizacao() => $_has(7);
   @$pb.TagNumber(10)
   void clearLocalizacao() => $_clearField(10);
   @$pb.TagNumber(10)
-  $1.Coordenada ensureLocalizacao() => $_ensure(8);
+  $1.Coordenada ensureLocalizacao() => $_ensure(7);
 }
 
 const $core.bool _omitFieldNames =

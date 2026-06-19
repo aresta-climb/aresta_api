@@ -46,8 +46,7 @@ const ResumoCroqui$json = {
     {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
     {'1': 'nome', '3': 2, '4': 1, '5': 9, '10': 'nome'},
     {'1': 'descricao', '3': 3, '4': 1, '5': 9, '10': 'descricao'},
-    {'1': 'nome_arquivo', '3': 4, '4': 1, '5': 9, '10': 'nomeArquivo'},
-    {'1': 'url', '3': 5, '4': 1, '5': 9, '10': 'url'},
+    {'1': 'caminho_relativo', '3': 5, '4': 1, '5': 9, '10': 'caminhoRelativo'},
     {
       '1': 'checksum_sha256_croqui',
       '3': 6,
@@ -80,18 +79,19 @@ const ResumoCroqui$json = {
     },
   ],
   '9': [
+    {'1': 4, '2': 5},
     {'1': 7, '2': 8},
   ],
-  '10': ['data_update'],
+  '10': ['data_update', 'nome_arquivo'],
 };
 
 /// Descriptor for `ResumoCroqui`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List resumoCroquiDescriptor = $convert.base64Decode(
     'CgxSZXN1bW9Dcm9xdWkSDgoCaWQYASABKAlSAmlkEhIKBG5vbWUYAiABKAlSBG5vbWUSHAoJZG'
-    'VzY3JpY2FvGAMgASgJUglkZXNjcmljYW8SIQoMbm9tZV9hcnF1aXZvGAQgASgJUgtub21lQXJx'
-    'dWl2bxIQCgN1cmwYBSABKAlSA3VybBI0ChZjaGVja3N1bV9zaGEyNTZfY3JvcXVpGAYgASgJUh'
-    'RjaGVja3N1bVNoYTI1NkNyb3F1aRI6ChljaGVja3N1bV9zaGEyNTZfdGh1bWJuYWlsGAggASgJ'
-    'UhdjaGVja3N1bVNoYTI1NlRodW1ibmFpbBJFChB0aW1lc3RhbXBfdXBkYXRlGAkgASgLMhouZ2'
-    '9vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIPdGltZXN0YW1wVXBkYXRlEjQKC2xvY2FsaXphY2Fv'
-    'GAogASgLMhIuYXJlc3RhLkNvb3JkZW5hZGFSC2xvY2FsaXphY2FvSgQIBxAIUgtkYXRhX3VwZG'
-    'F0ZQ==');
+    'VzY3JpY2FvGAMgASgJUglkZXNjcmljYW8SKQoQY2FtaW5ob19yZWxhdGl2bxgFIAEoCVIPY2Ft'
+    'aW5ob1JlbGF0aXZvEjQKFmNoZWNrc3VtX3NoYTI1Nl9jcm9xdWkYBiABKAlSFGNoZWNrc3VtU2'
+    'hhMjU2Q3JvcXVpEjoKGWNoZWNrc3VtX3NoYTI1Nl90aHVtYm5haWwYCCABKAlSF2NoZWNrc3Vt'
+    'U2hhMjU2VGh1bWJuYWlsEkUKEHRpbWVzdGFtcF91cGRhdGUYCSABKAsyGi5nb29nbGUucHJvdG'
+    '9idWYuVGltZXN0YW1wUg90aW1lc3RhbXBVcGRhdGUSNAoLbG9jYWxpemFjYW8YCiABKAsyEi5h'
+    'cmVzdGEuQ29vcmRlbmFkYVILbG9jYWxpemFjYW9KBAgEEAVKBAgHEAhSC2RhdGFfdXBkYXRlUg'
+    'xub21lX2FycXVpdm8=');

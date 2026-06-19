@@ -41,11 +41,9 @@ message ResumoCroqui {
     // Descrição curta e em alto nível do local.
     string descricao = 3;
 
-    // Nome do arquivo do croqui.
-    string nome_arquivo = 4;
-
-    // URL para recuperar o croqui inteiro, relativo ao website do indice.
-    string url = 5;
+    // localização do arquivo relativo ao indice (i.e.
+    // "br_mg_pedro_leopoldo_gruta_do_bau/compilado.binarypb").
+    string caminho_relativo = 5;
 
     // Checksum SHA256 da última versão do croqui.
     // Se diferente do checksum da versão baixada, há atualizações.
@@ -63,6 +61,6 @@ message ResumoCroqui {
     // Coordenada principal do croqui (baseada no estacionamento do primeiro pico).
     Coordenada localizacao = 10;
 
-    reserved 7;
-    reserved data_update;
+    reserved 4, 7;
+    reserved data_update, nome_arquivo;
 }
