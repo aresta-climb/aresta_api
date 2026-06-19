@@ -19,7 +19,6 @@ import 'dart:typed_data' as $typed_data;
 const Indice$json = {
   '1': 'Indice',
   '2': [
-    {'1': 'url_base', '3': 1, '4': 1, '5': 9, '10': 'urlBase'},
     {
       '1': 'croquis',
       '3': 2,
@@ -29,12 +28,16 @@ const Indice$json = {
       '10': 'croquis'
     },
   ],
+  '9': [
+    {'1': 1, '2': 2},
+  ],
+  '10': ['url_base'],
 };
 
 /// Descriptor for `Indice`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List indiceDescriptor = $convert.base64Decode(
-    'CgZJbmRpY2USGQoIdXJsX2Jhc2UYASABKAlSB3VybEJhc2USLgoHY3JvcXVpcxgCIAMoCzIULm'
-    'FyZXN0YS5SZXN1bW9Dcm9xdWlSB2Nyb3F1aXM=');
+    'CgZJbmRpY2USLgoHY3JvcXVpcxgCIAMoCzIULmFyZXN0YS5SZXN1bW9Dcm9xdWlSB2Nyb3F1aX'
+    'NKBAgBEAJSCHVybF9iYXNl');
 
 @$core.Deprecated('Use resumoCroquiDescriptor instead')
 const ResumoCroqui$json = {

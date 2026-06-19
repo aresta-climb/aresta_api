@@ -24,11 +24,9 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 /// croqui inteiro.
 class Indice extends $pb.GeneratedMessage {
   factory Indice({
-    $core.String? urlBase,
     $core.Iterable<ResumoCroqui>? croquis,
   }) {
     final result = create();
-    if (urlBase != null) result.urlBase = urlBase;
     if (croquis != null) result.croquis.addAll(croquis);
     return result;
   }
@@ -46,7 +44,6 @@ class Indice extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'Indice',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'urlBase')
     ..pPM<ResumoCroqui>(2, _omitFieldNames ? '' : 'croquis',
         subBuilder: ResumoCroqui.create)
     ..hasRequiredFields = false;
@@ -69,19 +66,9 @@ class Indice extends $pb.GeneratedMessage {
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Indice>(create);
   static Indice? _defaultInstance;
 
-  /// URL base da qual todos os croquis possuem suas URLs relativas a.
-  @$pb.TagNumber(1)
-  $core.String get urlBase => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set urlBase($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasUrlBase() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearUrlBase() => $_clearField(1);
-
   /// Lista de croquis disponíveis.
   @$pb.TagNumber(2)
-  $pb.PbList<ResumoCroqui> get croquis => $_getList(1);
+  $pb.PbList<ResumoCroqui> get croquis => $_getList(0);
 }
 
 /// Resumo de um croqui que está disponível para o índice.
