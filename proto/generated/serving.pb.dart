@@ -88,6 +88,8 @@ class ArquivosServing_ArquivoServido extends $pb.GeneratedMessage {
   void clearChecksumSha256() => $_clearField(2);
 }
 
+/// Esse proto representa os arquivos que são importantes para o deploy para nosso
+/// repositório de serving.
 class ArquivosServing extends $pb.GeneratedMessage {
   factory ArquivosServing({
     $core.Iterable<ArquivosServing_ArquivoServido>? arquivos,
