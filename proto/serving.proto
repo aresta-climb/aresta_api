@@ -1,0 +1,19 @@
+edition = "2023";
+
+package aresta;
+
+// Esse proto representa os arquivos que são importantes para o deploy para nosso
+// repositório de serving.
+message ArquivosServing {
+  // Representa um único arquivo servido no bucket R2
+  message ArquivoServido {
+    // Caminho relativo ao bucket
+    string caminho_relativo = 1;
+    
+    // Checksum SHA256 do arquivo
+    string checksum_sha256 = 2;
+  }
+
+  // Lista de todos os arquivos no R2
+  repeated ArquivoServido arquivos = 1;
+}
