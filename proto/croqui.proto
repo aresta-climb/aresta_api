@@ -364,8 +364,6 @@ message Grupo {
   // Características do grupo, acesso, etc.
   string descricao = 2 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
-  // Se presente, representa o ID do grupo no mapa geral.
-  string id_no_mapa = 5 [(aresta.texto_na_ui) = "ID no Mapa"];
 
   // Coordenada do estacionamento.
   Coordenada localizacao_estacionamento = 6 [(aresta.texto_na_ui) = "Localização Estacionamento"];
@@ -410,8 +408,6 @@ message Setor {
   // Características da escalada no setor, insolação, qualidade da rocha, etc.
   string descricao = 9 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
-  // Se presente, representa o ID do setor no mapa acima (do grupo ou geral).
-  string id_no_mapa = 14 [(aresta.texto_na_ui) = "ID no Mapa"];
   
   // Mapas do setor.
   repeated Mapa mapas = 13;
@@ -465,6 +461,63 @@ message Mapa {
 
   // Posição de cada ponto de interesse.
   repeated PontoDeInteresse pontos_de_interesse = 4;
+
+  // Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
+  message AjusteDeCamera {
+    option (aresta.mensagem_formato_na_ui) = INLINE;
+
+    // Índice dentro da lista 'ids' da Referência que servirá de ponto focal principal.
+    // Se não fornecido, a engine calculará o centroide visual de toda a linha/geometria.
+    int32 foco_id_indice = 1;
+
+    // Ajuste de enquadramento vertical (0 a 100), representando a porcentagem da tela.
+    // Exemplo: 50 tentará deixar o foco exatamente no centro vertical da tela.
+    int32 posicao_vertical = 2; 
+
+    // Ajuste de enquadramento horizontal (0 a 100), representando a porcentagem da tela.
+    // Exemplo: 50 tentará deixar o foco exatamente no centro horizontal da tela.
+    int32 posicao_horizontal = 3; 
+    
+    // Fator multiplicador de zoom a ser aplicado quando a referência estiver focada.
+    float zoom = 4;
+  }
+
+  // Define uma entidade sendo referenciada (desenhada) no mapa, permitindo interligar N pontos
+  // de interesse a seu destino.
+  message Referencia {
+    option (aresta.mensagem_formato_na_ui) = INLINE;
+
+    // IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
+    // A ordem importa: o primeiro ID é o início, os intermediários desenham o trajeto, e o último é o
+    // fim.
+    // Remove a limitação legada de apenas inicio, meio e fim.
+    repeated string ids = 1;
+
+    // Identificação do Grupo alvo. Se preenchido, um clique neste desenho deverá referenciar/abrir o
+    // grupo especificado.
+    // Caso seja uma referência de setor no mesmo grupo, não precisa mencionar.
+    string grupo = 2;
+
+    // Identificação do Setor alvo. Útil para desenhar escaladas pertencentes a um setor vizinho, 
+    // ou para desenhar um botão/área de clique que abra outro Setor.
+    // Caso for uma escalada no mesmo setor, não precisa mencionar.
+    string setor = 3;
+
+    // Identificação da Escalada (via, boulder, highline) alvo. 
+    // Escopo implícito: se `setor` não for provido, assume-se que a escalada pertence ao mesmo Setor 
+    // onde o Mapa atual está aninhado.
+    string escalada = 4;
+    
+    // Opcional: Se o Grupo ou Setor alvo possuir múltiplos mapas, define o índice do mapa a ser focado.
+    int32 indice_mapa_alvo = 5;
+
+    // Ajustes finos opcionais de visualização ao focar nesta referência.
+    AjusteDeCamera ajuste_de_camera = 6;
+  }
+
+  // Lista de referências visuais que conectam os pontos de interesse no mapa às entidades lógicas do
+  // banco de dados.
+  repeated Referencia referencias = 6;
 
   reserved 5;
 }
@@ -532,16 +585,6 @@ message ViaEsportiva {
   // Nome da via.
   string nome = 1;
 
-  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  string id_no_mapa = 16 [(aresta.texto_na_ui) = "ID no Mapa"];
-
-  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente um número, letra ou símbolo (como um triângulo).
-  string id_no_mapa_meio = 19 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
-
-  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente outro número ou uma letra, como "x".
-  string id_no_mapa_fim = 17 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
 
   // Se é um destaque para o setor.
   bool destaque = 18 [(aresta.texto_na_ui) = "É Destaque"];
@@ -596,16 +639,6 @@ message ViaMovel {
   // Nome da via.
   string nome = 1;
 
-  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  string id_no_mapa = 16 [(aresta.texto_na_ui) = "ID no Mapa"];
-
-  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente um número, letra ou símbolo (como um triângulo).
-  string id_no_mapa_meio = 21 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
-
-  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente outro número ou uma letra, como "x".
-  string id_no_mapa_fim = 19 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
 
   // Se é um destaque para o setor.
   bool destaque = 20 [(aresta.texto_na_ui) = "É Destaque"];
@@ -665,16 +698,6 @@ message Boulder {
   // Nome do boulder.
   string nome = 1;
 
-  // ID no mapa com o local onde *começa* o boulder. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  string id_no_mapa = 9 [(aresta.texto_na_ui) = "ID no Mapa"];
-
-  // ID no mapa marcando o *meio* do boulder, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente um número, letra ou símbolo (como um triângulo).
-  string id_no_mapa_meio = 12 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
-
-  // ID no mapa com o local onde *termina* o boulder, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente outro número ou uma letra, como "x".
-  string id_no_mapa_fim = 10 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
 
   // Se é um destaque para o setor.
   bool destaque = 11 [(aresta.texto_na_ui) = "É Destaque"];
@@ -707,16 +730,6 @@ message ViaMultiplasEnfiadas {
   // Nome da via.
   string nome = 1;
 
-  // ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  string id_no_mapa = 20 [(aresta.texto_na_ui) = "ID no Mapa"];
-
-  // ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente um número, letra ou símbolo (como um triângulo).
-  string id_no_mapa_meio = 26 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
-
-  // ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente outro número ou uma letra, como "x".
-  string id_no_mapa_fim = 24 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
 
   // Se é um destaque para o setor.
   bool destaque = 25 [(aresta.texto_na_ui) = "É Destaque"];
@@ -798,16 +811,6 @@ message Highline {
   // Nome do highline.
   string nome = 1;
 
-  // ID no mapa com o local onde *começa* o highline. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  string id_no_mapa = 13 [(aresta.texto_na_ui) = "ID no Mapa"];
-
-  // ID no mapa marcando o *meio* do highline, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente um número, letra ou símbolo (como um triângulo).
-  string id_no_mapa_meio = 16 [(aresta.texto_na_ui) = "ID no Mapa (Meio)"];
-
-  // ID no mapa com o local onde *termina* o highline, se houver. Esse campo é opcional, mas se existir é
-  // provavelmente outro número ou uma letra, como "x".
-  string id_no_mapa_fim = 14 [(aresta.texto_na_ui) = "ID no Mapa (Fim)"];
 
   // Se é um destaque para o setor.
   bool destaque = 15 [(aresta.texto_na_ui) = "É Destaque"];

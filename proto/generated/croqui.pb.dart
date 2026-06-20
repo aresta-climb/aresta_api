@@ -1223,7 +1223,6 @@ class Grupo extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.Iterable<Mapa>? mapas,
     $core.Iterable<ArquivoSetor>? setores,
-    $core.String? idNoMapa,
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
   }) {
@@ -1232,7 +1231,6 @@ class Grupo extends $pb.GeneratedMessage {
     if (descricao != null) result.descricao = descricao;
     if (mapas != null) result.mapas.addAll(mapas);
     if (setores != null) result.setores.addAll(setores);
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
     if (localizacaoEstacionamento != null)
       result.localizacaoEstacionamento = localizacaoEstacionamento;
     if (localizacaoEscalada != null)
@@ -1258,7 +1256,6 @@ class Grupo extends $pb.GeneratedMessage {
     ..pPM<Mapa>(3, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
     ..pPM<ArquivoSetor>(4, _omitFieldNames ? '' : 'setores',
         subBuilder: ArquivoSetor.create)
-    ..aOS(5, _omitFieldNames ? '' : 'idNoMapa')
     ..aOM<Coordenada>(6, _omitFieldNames ? '' : 'localizacaoEstacionamento',
         subBuilder: Coordenada.create)
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
@@ -1310,39 +1307,29 @@ class Grupo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $pb.PbList<ArquivoSetor> get setores => $_getList(3);
 
-  /// Se presente, representa o ID do grupo no mapa geral.
-  @$pb.TagNumber(5)
-  $core.String get idNoMapa => $_getSZ(4);
-  @$pb.TagNumber(5)
-  set idNoMapa($core.String value) => $_setString(4, value);
-  @$pb.TagNumber(5)
-  $core.bool hasIdNoMapa() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearIdNoMapa() => $_clearField(5);
-
   /// Coordenada do estacionamento.
   @$pb.TagNumber(6)
-  Coordenada get localizacaoEstacionamento => $_getN(5);
+  Coordenada get localizacaoEstacionamento => $_getN(4);
   @$pb.TagNumber(6)
   set localizacaoEstacionamento(Coordenada value) => $_setField(6, value);
   @$pb.TagNumber(6)
-  $core.bool hasLocalizacaoEstacionamento() => $_has(5);
+  $core.bool hasLocalizacaoEstacionamento() => $_has(4);
   @$pb.TagNumber(6)
   void clearLocalizacaoEstacionamento() => $_clearField(6);
   @$pb.TagNumber(6)
-  Coordenada ensureLocalizacaoEstacionamento() => $_ensure(5);
+  Coordenada ensureLocalizacaoEstacionamento() => $_ensure(4);
 
   /// Coordenada da escalada do setor.
   @$pb.TagNumber(7)
-  Coordenada get localizacaoEscalada => $_getN(6);
+  Coordenada get localizacaoEscalada => $_getN(5);
   @$pb.TagNumber(7)
   set localizacaoEscalada(Coordenada value) => $_setField(7, value);
   @$pb.TagNumber(7)
-  $core.bool hasLocalizacaoEscalada() => $_has(6);
+  $core.bool hasLocalizacaoEscalada() => $_has(5);
   @$pb.TagNumber(7)
   void clearLocalizacaoEscalada() => $_clearField(7);
   @$pb.TagNumber(7)
-  Coordenada ensureLocalizacaoEscalada() => $_ensure(6);
+  Coordenada ensureLocalizacaoEscalada() => $_ensure(5);
 }
 
 /// Representa uma parede ou setor específico dentro de um Pico.
@@ -1360,7 +1347,6 @@ class Setor extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.Iterable<Escalada>? escaladas,
     $core.Iterable<Mapa>? mapas,
-    $core.String? idNoMapa,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -1375,7 +1361,6 @@ class Setor extends $pb.GeneratedMessage {
     if (descricao != null) result.descricao = descricao;
     if (escaladas != null) result.escaladas.addAll(escaladas);
     if (mapas != null) result.mapas.addAll(mapas);
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
     return result;
   }
 
@@ -1406,7 +1391,6 @@ class Setor extends $pb.GeneratedMessage {
     ..pPM<Escalada>(11, _omitFieldNames ? '' : 'escaladas',
         subBuilder: Escalada.create)
     ..pPM<Mapa>(13, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
-    ..aOS(14, _omitFieldNames ? '' : 'idNoMapa')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1512,16 +1496,6 @@ class Setor extends $pb.GeneratedMessage {
   /// Mapas do setor.
   @$pb.TagNumber(13)
   $pb.PbList<Mapa> get mapas => $_getList(9);
-
-  /// Se presente, representa o ID do setor no mapa acima (do grupo ou geral).
-  @$pb.TagNumber(14)
-  $core.String get idNoMapa => $_getSZ(10);
-  @$pb.TagNumber(14)
-  set idNoMapa($core.String value) => $_setString(10, value);
-  @$pb.TagNumber(14)
-  $core.bool hasIdNoMapa() => $_has(10);
-  @$pb.TagNumber(14)
-  void clearIdNoMapa() => $_clearField(14);
 }
 
 enum Mapa_PontoDeInteresse_TipoArea { box, circular, areaLivre, notSet }
@@ -1662,6 +1636,232 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   BoundingAreaLivre ensureAreaLivre() => $_ensure(4);
 }
 
+/// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
+class Mapa_AjusteDeCamera extends $pb.GeneratedMessage {
+  factory Mapa_AjusteDeCamera({
+    $core.int? focoIdIndice,
+    $core.int? posicaoVertical,
+    $core.int? posicaoHorizontal,
+    $core.double? zoom,
+  }) {
+    final result = create();
+    if (focoIdIndice != null) result.focoIdIndice = focoIdIndice;
+    if (posicaoVertical != null) result.posicaoVertical = posicaoVertical;
+    if (posicaoHorizontal != null) result.posicaoHorizontal = posicaoHorizontal;
+    if (zoom != null) result.zoom = zoom;
+    return result;
+  }
+
+  Mapa_AjusteDeCamera._();
+
+  factory Mapa_AjusteDeCamera.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory Mapa_AjusteDeCamera.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Mapa.AjusteDeCamera',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'focoIdIndice')
+    ..aI(2, _omitFieldNames ? '' : 'posicaoVertical')
+    ..aI(3, _omitFieldNames ? '' : 'posicaoHorizontal')
+    ..aD(4, _omitFieldNames ? '' : 'zoom', fieldType: $pb.PbFieldType.OF)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Mapa_AjusteDeCamera clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Mapa_AjusteDeCamera copyWith(void Function(Mapa_AjusteDeCamera) updates) =>
+      super.copyWith((message) => updates(message as Mapa_AjusteDeCamera))
+          as Mapa_AjusteDeCamera;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Mapa_AjusteDeCamera create() => Mapa_AjusteDeCamera._();
+  @$core.override
+  Mapa_AjusteDeCamera createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static Mapa_AjusteDeCamera getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Mapa_AjusteDeCamera>(create);
+  static Mapa_AjusteDeCamera? _defaultInstance;
+
+  /// Índice dentro da lista 'ids' da Referência que servirá de ponto focal principal.
+  /// Se não fornecido, a engine calculará o centroide visual de toda a linha/geometria.
+  @$pb.TagNumber(1)
+  $core.int get focoIdIndice => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set focoIdIndice($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasFocoIdIndice() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearFocoIdIndice() => $_clearField(1);
+
+  /// Ajuste de enquadramento vertical (0 a 100), representando a porcentagem da tela.
+  /// Exemplo: 50 tentará deixar o foco exatamente no centro vertical da tela.
+  @$pb.TagNumber(2)
+  $core.int get posicaoVertical => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set posicaoVertical($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPosicaoVertical() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPosicaoVertical() => $_clearField(2);
+
+  /// Ajuste de enquadramento horizontal (0 a 100), representando a porcentagem da tela.
+  /// Exemplo: 50 tentará deixar o foco exatamente no centro horizontal da tela.
+  @$pb.TagNumber(3)
+  $core.int get posicaoHorizontal => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set posicaoHorizontal($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasPosicaoHorizontal() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPosicaoHorizontal() => $_clearField(3);
+
+  /// Fator multiplicador de zoom a ser aplicado quando a referência estiver focada.
+  @$pb.TagNumber(4)
+  $core.double get zoom => $_getN(3);
+  @$pb.TagNumber(4)
+  set zoom($core.double value) => $_setFloat(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasZoom() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearZoom() => $_clearField(4);
+}
+
+/// Define uma entidade sendo referenciada (desenhada) no mapa, permitindo interligar N pontos
+/// de interesse a seu destino.
+class Mapa_Referencia extends $pb.GeneratedMessage {
+  factory Mapa_Referencia({
+    $core.Iterable<$core.String>? ids,
+    $core.String? grupo,
+    $core.String? setor,
+    $core.String? escalada,
+    $core.int? indiceMapaAlvo,
+    Mapa_AjusteDeCamera? ajusteDeCamera,
+  }) {
+    final result = create();
+    if (ids != null) result.ids.addAll(ids);
+    if (grupo != null) result.grupo = grupo;
+    if (setor != null) result.setor = setor;
+    if (escalada != null) result.escalada = escalada;
+    if (indiceMapaAlvo != null) result.indiceMapaAlvo = indiceMapaAlvo;
+    if (ajusteDeCamera != null) result.ajusteDeCamera = ajusteDeCamera;
+    return result;
+  }
+
+  Mapa_Referencia._();
+
+  factory Mapa_Referencia.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory Mapa_Referencia.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Mapa.Referencia',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..pPS(1, _omitFieldNames ? '' : 'ids')
+    ..aOS(2, _omitFieldNames ? '' : 'grupo')
+    ..aOS(3, _omitFieldNames ? '' : 'setor')
+    ..aOS(4, _omitFieldNames ? '' : 'escalada')
+    ..aI(5, _omitFieldNames ? '' : 'indiceMapaAlvo')
+    ..aOM<Mapa_AjusteDeCamera>(6, _omitFieldNames ? '' : 'ajusteDeCamera',
+        subBuilder: Mapa_AjusteDeCamera.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Mapa_Referencia clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Mapa_Referencia copyWith(void Function(Mapa_Referencia) updates) =>
+      super.copyWith((message) => updates(message as Mapa_Referencia))
+          as Mapa_Referencia;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Mapa_Referencia create() => Mapa_Referencia._();
+  @$core.override
+  Mapa_Referencia createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static Mapa_Referencia getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Mapa_Referencia>(create);
+  static Mapa_Referencia? _defaultInstance;
+
+  /// IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
+  /// A ordem importa: o primeiro ID é o início, os intermediários desenham o trajeto, e o último é o
+  /// fim.
+  /// Remove a limitação legada de apenas inicio, meio e fim.
+  @$pb.TagNumber(1)
+  $pb.PbList<$core.String> get ids => $_getList(0);
+
+  /// Identificação do Grupo alvo. Se preenchido, um clique neste desenho deverá referenciar/abrir o
+  /// grupo especificado.
+  /// Caso seja uma referência de setor no mesmo grupo, não precisa mencionar.
+  @$pb.TagNumber(2)
+  $core.String get grupo => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set grupo($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGrupo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGrupo() => $_clearField(2);
+
+  /// Identificação do Setor alvo. Útil para desenhar escaladas pertencentes a um setor vizinho,
+  /// ou para desenhar um botão/área de clique que abra outro Setor.
+  /// Caso for uma escalada no mesmo setor, não precisa mencionar.
+  @$pb.TagNumber(3)
+  $core.String get setor => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set setor($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasSetor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSetor() => $_clearField(3);
+
+  /// Identificação da Escalada (via, boulder, highline) alvo.
+  /// Escopo implícito: se `setor` não for provido, assume-se que a escalada pertence ao mesmo Setor
+  /// onde o Mapa atual está aninhado.
+  @$pb.TagNumber(4)
+  $core.String get escalada => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set escalada($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasEscalada() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEscalada() => $_clearField(4);
+
+  /// Opcional: Se o Grupo ou Setor alvo possuir múltiplos mapas, define o índice do mapa a ser focado.
+  @$pb.TagNumber(5)
+  $core.int get indiceMapaAlvo => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set indiceMapaAlvo($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasIndiceMapaAlvo() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearIndiceMapaAlvo() => $_clearField(5);
+
+  /// Ajustes finos opcionais de visualização ao focar nesta referência.
+  @$pb.TagNumber(6)
+  Mapa_AjusteDeCamera get ajusteDeCamera => $_getN(5);
+  @$pb.TagNumber(6)
+  set ajusteDeCamera(Mapa_AjusteDeCamera value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasAjusteDeCamera() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearAjusteDeCamera() => $_clearField(6);
+  @$pb.TagNumber(6)
+  Mapa_AjusteDeCamera ensureAjusteDeCamera() => $_ensure(5);
+}
+
 /// Representa um mapa do setor.
 class Mapa extends $pb.GeneratedMessage {
   factory Mapa({
@@ -1669,6 +1869,7 @@ class Mapa extends $pb.GeneratedMessage {
     $core.int? larguraMapa,
     $core.int? alturaMapa,
     $core.Iterable<Mapa_PontoDeInteresse>? pontosDeInteresse,
+    $core.Iterable<Mapa_Referencia>? referencias,
   }) {
     final result = create();
     if (caminhoImagemMapa != null) result.caminhoImagemMapa = caminhoImagemMapa;
@@ -1676,6 +1877,7 @@ class Mapa extends $pb.GeneratedMessage {
     if (alturaMapa != null) result.alturaMapa = alturaMapa;
     if (pontosDeInteresse != null)
       result.pontosDeInteresse.addAll(pontosDeInteresse);
+    if (referencias != null) result.referencias.addAll(referencias);
     return result;
   }
 
@@ -1697,6 +1899,8 @@ class Mapa extends $pb.GeneratedMessage {
     ..aI(3, _omitFieldNames ? '' : 'alturaMapa')
     ..pPM<Mapa_PontoDeInteresse>(4, _omitFieldNames ? '' : 'pontosDeInteresse',
         subBuilder: Mapa_PontoDeInteresse.create)
+    ..pPM<Mapa_Referencia>(6, _omitFieldNames ? '' : 'referencias',
+        subBuilder: Mapa_Referencia.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1750,6 +1954,11 @@ class Mapa extends $pb.GeneratedMessage {
   /// Posição de cada ponto de interesse.
   @$pb.TagNumber(4)
   $pb.PbList<Mapa_PontoDeInteresse> get pontosDeInteresse => $_getList(3);
+
+  /// Lista de referências visuais que conectam os pontos de interesse no mapa às entidades lógicas do
+  /// banco de dados.
+  @$pb.TagNumber(6)
+  $pb.PbList<Mapa_Referencia> get referencias => $_getList(4);
 }
 
 /// Circulo de enquadramento / bounding area circula rde parte da imagem.
@@ -2166,10 +2375,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.String? idNoMapa,
-    $core.String? idNoMapaFim,
     $core.bool? destaque,
-    $core.String? idNoMapaMeio,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -2192,10 +2398,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
-    if (idNoMapaFim != null) result.idNoMapaFim = idNoMapaFim;
     if (destaque != null) result.destaque = destaque;
-    if (idNoMapaMeio != null) result.idNoMapaMeio = idNoMapaMeio;
     return result;
   }
 
@@ -2232,10 +2435,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     ..aOS(13, _omitFieldNames ? '' : 'descricao')
     ..aOS(14, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(15, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..aOS(16, _omitFieldNames ? '' : 'idNoMapa')
-    ..aOS(17, _omitFieldNames ? '' : 'idNoMapaFim')
     ..aOB(18, _omitFieldNames ? '' : 'destaque')
-    ..aOS(19, _omitFieldNames ? '' : 'idNoMapaMeio')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2404,47 +2604,15 @@ class ViaEsportiva extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   void clearChavePixManutencao() => $_clearField(15);
 
-  /// ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  @$pb.TagNumber(16)
-  $core.String get idNoMapa => $_getSZ(15);
-  @$pb.TagNumber(16)
-  set idNoMapa($core.String value) => $_setString(15, value);
-  @$pb.TagNumber(16)
-  $core.bool hasIdNoMapa() => $_has(15);
-  @$pb.TagNumber(16)
-  void clearIdNoMapa() => $_clearField(16);
-
-  /// ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente outro número ou uma letra, como "x".
-  @$pb.TagNumber(17)
-  $core.String get idNoMapaFim => $_getSZ(16);
-  @$pb.TagNumber(17)
-  set idNoMapaFim($core.String value) => $_setString(16, value);
-  @$pb.TagNumber(17)
-  $core.bool hasIdNoMapaFim() => $_has(16);
-  @$pb.TagNumber(17)
-  void clearIdNoMapaFim() => $_clearField(17);
-
   /// Se é um destaque para o setor.
   @$pb.TagNumber(18)
-  $core.bool get destaque => $_getBF(17);
+  $core.bool get destaque => $_getBF(15);
   @$pb.TagNumber(18)
-  set destaque($core.bool value) => $_setBool(17, value);
+  set destaque($core.bool value) => $_setBool(15, value);
   @$pb.TagNumber(18)
-  $core.bool hasDestaque() => $_has(17);
+  $core.bool hasDestaque() => $_has(15);
   @$pb.TagNumber(18)
   void clearDestaque() => $_clearField(18);
-
-  /// ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente um número, letra ou símbolo (como um triângulo).
-  @$pb.TagNumber(19)
-  $core.String get idNoMapaMeio => $_getSZ(18);
-  @$pb.TagNumber(19)
-  set idNoMapaMeio($core.String value) => $_setString(18, value);
-  @$pb.TagNumber(19)
-  $core.bool hasIdNoMapaMeio() => $_has(18);
-  @$pb.TagNumber(19)
-  void clearIdNoMapaMeio() => $_clearField(19);
 }
 
 /// Representa uma linha de escalada (via) individual de uma enfiada ou totalmente móvel ou mista com proteções fixas.
@@ -2466,12 +2634,9 @@ class ViaMovel extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.String? idNoMapa,
     GrauArtificial_GrauArtificial? dificuldadeArtificial,
     GrauVia_GrauVia? dificuldadeArtificialEmLivre,
-    $core.String? idNoMapaFim,
     $core.bool? destaque,
-    $core.String? idNoMapaMeio,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -2493,14 +2658,11 @@ class ViaMovel extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
     if (dificuldadeArtificial != null)
       result.dificuldadeArtificial = dificuldadeArtificial;
     if (dificuldadeArtificialEmLivre != null)
       result.dificuldadeArtificialEmLivre = dificuldadeArtificialEmLivre;
-    if (idNoMapaFim != null) result.idNoMapaFim = idNoMapaFim;
     if (destaque != null) result.destaque = destaque;
-    if (idNoMapaMeio != null) result.idNoMapaMeio = idNoMapaMeio;
     return result;
   }
 
@@ -2535,16 +2697,13 @@ class ViaMovel extends $pb.GeneratedMessage {
     ..aOS(13, _omitFieldNames ? '' : 'descricao')
     ..aOS(14, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(15, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..aOS(16, _omitFieldNames ? '' : 'idNoMapa')
     ..aE<GrauArtificial_GrauArtificial>(
         17, _omitFieldNames ? '' : 'dificuldadeArtificial',
         enumValues: GrauArtificial_GrauArtificial.values)
     ..aE<GrauVia_GrauVia>(
         18, _omitFieldNames ? '' : 'dificuldadeArtificialEmLivre',
         enumValues: GrauVia_GrauVia.values)
-    ..aOS(19, _omitFieldNames ? '' : 'idNoMapaFim')
     ..aOB(20, _omitFieldNames ? '' : 'destaque')
-    ..aOS(21, _omitFieldNames ? '' : 'idNoMapaMeio')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2710,69 +2869,37 @@ class ViaMovel extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   void clearChavePixManutencao() => $_clearField(15);
 
-  /// ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  @$pb.TagNumber(16)
-  $core.String get idNoMapa => $_getSZ(15);
-  @$pb.TagNumber(16)
-  set idNoMapa($core.String value) => $_setString(15, value);
-  @$pb.TagNumber(16)
-  $core.bool hasIdNoMapa() => $_has(15);
-  @$pb.TagNumber(16)
-  void clearIdNoMapa() => $_clearField(16);
-
   /// Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
   @$pb.TagNumber(17)
-  GrauArtificial_GrauArtificial get dificuldadeArtificial => $_getN(16);
+  GrauArtificial_GrauArtificial get dificuldadeArtificial => $_getN(15);
   @$pb.TagNumber(17)
   set dificuldadeArtificial(GrauArtificial_GrauArtificial value) =>
       $_setField(17, value);
   @$pb.TagNumber(17)
-  $core.bool hasDificuldadeArtificial() => $_has(16);
+  $core.bool hasDificuldadeArtificial() => $_has(15);
   @$pb.TagNumber(17)
   void clearDificuldadeArtificial() => $_clearField(17);
 
   /// Grau do lance em artificial se escalado em livre.
   @$pb.TagNumber(18)
-  GrauVia_GrauVia get dificuldadeArtificialEmLivre => $_getN(17);
+  GrauVia_GrauVia get dificuldadeArtificialEmLivre => $_getN(16);
   @$pb.TagNumber(18)
   set dificuldadeArtificialEmLivre(GrauVia_GrauVia value) =>
       $_setField(18, value);
   @$pb.TagNumber(18)
-  $core.bool hasDificuldadeArtificialEmLivre() => $_has(17);
+  $core.bool hasDificuldadeArtificialEmLivre() => $_has(16);
   @$pb.TagNumber(18)
   void clearDificuldadeArtificialEmLivre() => $_clearField(18);
 
-  /// ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente outro número ou uma letra, como "x".
-  @$pb.TagNumber(19)
-  $core.String get idNoMapaFim => $_getSZ(18);
-  @$pb.TagNumber(19)
-  set idNoMapaFim($core.String value) => $_setString(18, value);
-  @$pb.TagNumber(19)
-  $core.bool hasIdNoMapaFim() => $_has(18);
-  @$pb.TagNumber(19)
-  void clearIdNoMapaFim() => $_clearField(19);
-
   /// Se é um destaque para o setor.
   @$pb.TagNumber(20)
-  $core.bool get destaque => $_getBF(19);
+  $core.bool get destaque => $_getBF(17);
   @$pb.TagNumber(20)
-  set destaque($core.bool value) => $_setBool(19, value);
+  set destaque($core.bool value) => $_setBool(17, value);
   @$pb.TagNumber(20)
-  $core.bool hasDestaque() => $_has(19);
+  $core.bool hasDestaque() => $_has(17);
   @$pb.TagNumber(20)
   void clearDestaque() => $_clearField(20);
-
-  /// ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente um número, letra ou símbolo (como um triângulo).
-  @$pb.TagNumber(21)
-  $core.String get idNoMapaMeio => $_getSZ(20);
-  @$pb.TagNumber(21)
-  set idNoMapaMeio($core.String value) => $_setString(20, value);
-  @$pb.TagNumber(21)
-  $core.bool hasIdNoMapaMeio() => $_has(20);
-  @$pb.TagNumber(21)
-  void clearIdNoMapaMeio() => $_clearField(21);
 }
 
 /// Representa uma linha de boulder individual.
@@ -2787,10 +2914,7 @@ class Boulder extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.String? idNoMapa,
-    $core.String? idNoMapaFim,
     $core.bool? destaque,
-    $core.String? idNoMapaMeio,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -2802,10 +2926,7 @@ class Boulder extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
-    if (idNoMapaFim != null) result.idNoMapaFim = idNoMapaFim;
     if (destaque != null) result.destaque = destaque;
-    if (idNoMapaMeio != null) result.idNoMapaMeio = idNoMapaMeio;
     return result;
   }
 
@@ -2832,10 +2953,7 @@ class Boulder extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'descricao')
     ..aOS(7, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(8, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..aOS(9, _omitFieldNames ? '' : 'idNoMapa')
-    ..aOS(10, _omitFieldNames ? '' : 'idNoMapaFim')
     ..aOB(11, _omitFieldNames ? '' : 'destaque')
-    ..aOS(12, _omitFieldNames ? '' : 'idNoMapaMeio')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2930,47 +3048,15 @@ class Boulder extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearChavePixManutencao() => $_clearField(8);
 
-  /// ID no mapa com o local onde *começa* o boulder. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  @$pb.TagNumber(9)
-  $core.String get idNoMapa => $_getSZ(8);
-  @$pb.TagNumber(9)
-  set idNoMapa($core.String value) => $_setString(8, value);
-  @$pb.TagNumber(9)
-  $core.bool hasIdNoMapa() => $_has(8);
-  @$pb.TagNumber(9)
-  void clearIdNoMapa() => $_clearField(9);
-
-  /// ID no mapa com o local onde *termina* o boulder, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente outro número ou uma letra, como "x".
-  @$pb.TagNumber(10)
-  $core.String get idNoMapaFim => $_getSZ(9);
-  @$pb.TagNumber(10)
-  set idNoMapaFim($core.String value) => $_setString(9, value);
-  @$pb.TagNumber(10)
-  $core.bool hasIdNoMapaFim() => $_has(9);
-  @$pb.TagNumber(10)
-  void clearIdNoMapaFim() => $_clearField(10);
-
   /// Se é um destaque para o setor.
   @$pb.TagNumber(11)
-  $core.bool get destaque => $_getBF(10);
+  $core.bool get destaque => $_getBF(8);
   @$pb.TagNumber(11)
-  set destaque($core.bool value) => $_setBool(10, value);
+  set destaque($core.bool value) => $_setBool(8, value);
   @$pb.TagNumber(11)
-  $core.bool hasDestaque() => $_has(10);
+  $core.bool hasDestaque() => $_has(8);
   @$pb.TagNumber(11)
   void clearDestaque() => $_clearField(11);
-
-  /// ID no mapa marcando o *meio* do boulder, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente um número, letra ou símbolo (como um triângulo).
-  @$pb.TagNumber(12)
-  $core.String get idNoMapaMeio => $_getSZ(11);
-  @$pb.TagNumber(12)
-  set idNoMapaMeio($core.String value) => $_setString(11, value);
-  @$pb.TagNumber(12)
-  $core.bool hasIdNoMapaMeio() => $_has(11);
-  @$pb.TagNumber(12)
-  void clearIdNoMapaMeio() => $_clearField(12);
 }
 
 /// Representa uma via de escalada de múltiplas enfiadas.
@@ -2996,13 +3082,10 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     $core.String? dataManutencao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.String? idNoMapa,
     $core.Iterable<Mapa>? mapas,
     $core.int? quantidadeCosturasIntermediarias,
     $core.int? quantidadeEquipamentosParada,
-    $core.String? idNoMapaFim,
     $core.bool? destaque,
-    $core.String? idNoMapaMeio,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -3030,16 +3113,13 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
     if (mapas != null) result.mapas.addAll(mapas);
     if (quantidadeCosturasIntermediarias != null)
       result.quantidadeCosturasIntermediarias =
           quantidadeCosturasIntermediarias;
     if (quantidadeEquipamentosParada != null)
       result.quantidadeEquipamentosParada = quantidadeEquipamentosParada;
-    if (idNoMapaFim != null) result.idNoMapaFim = idNoMapaFim;
     if (destaque != null) result.destaque = destaque;
-    if (idNoMapaMeio != null) result.idNoMapaMeio = idNoMapaMeio;
     return result;
   }
 
@@ -3086,13 +3166,10 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     ..aOS(17, _omitFieldNames ? '' : 'dataManutencao')
     ..aOS(18, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(19, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..aOS(20, _omitFieldNames ? '' : 'idNoMapa')
     ..pPM<Mapa>(21, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
     ..aI(22, _omitFieldNames ? '' : 'quantidadeCosturasIntermediarias')
     ..aI(23, _omitFieldNames ? '' : 'quantidadeEquipamentosParada')
-    ..aOS(24, _omitFieldNames ? '' : 'idNoMapaFim')
     ..aOB(25, _omitFieldNames ? '' : 'destaque')
-    ..aOS(26, _omitFieldNames ? '' : 'idNoMapaMeio')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3296,73 +3373,41 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
   @$pb.TagNumber(19)
   void clearChavePixManutencao() => $_clearField(19);
 
-  /// ID no mapa com o local onde *começa* a via. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  @$pb.TagNumber(20)
-  $core.String get idNoMapa => $_getSZ(19);
-  @$pb.TagNumber(20)
-  set idNoMapa($core.String value) => $_setString(19, value);
-  @$pb.TagNumber(20)
-  $core.bool hasIdNoMapa() => $_has(19);
-  @$pb.TagNumber(20)
-  void clearIdNoMapa() => $_clearField(20);
-
   /// Mapas da via de múltiplas enfiadas, se houver.
   @$pb.TagNumber(21)
-  $pb.PbList<Mapa> get mapas => $_getList(20);
+  $pb.PbList<Mapa> get mapas => $_getList(19);
 
   /// Número de costuras a levar para proteções intermediárias por enfiada.
   @$pb.TagNumber(22)
-  $core.int get quantidadeCosturasIntermediarias => $_getIZ(21);
+  $core.int get quantidadeCosturasIntermediarias => $_getIZ(20);
   @$pb.TagNumber(22)
   set quantidadeCosturasIntermediarias($core.int value) =>
-      $_setSignedInt32(21, value);
+      $_setSignedInt32(20, value);
   @$pb.TagNumber(22)
-  $core.bool hasQuantidadeCosturasIntermediarias() => $_has(21);
+  $core.bool hasQuantidadeCosturasIntermediarias() => $_has(20);
   @$pb.TagNumber(22)
   void clearQuantidadeCosturasIntermediarias() => $_clearField(22);
 
   /// Número de equipamentos a levar para proteções nas paradas da via.
   @$pb.TagNumber(23)
-  $core.int get quantidadeEquipamentosParada => $_getIZ(22);
+  $core.int get quantidadeEquipamentosParada => $_getIZ(21);
   @$pb.TagNumber(23)
   set quantidadeEquipamentosParada($core.int value) =>
-      $_setSignedInt32(22, value);
+      $_setSignedInt32(21, value);
   @$pb.TagNumber(23)
-  $core.bool hasQuantidadeEquipamentosParada() => $_has(22);
+  $core.bool hasQuantidadeEquipamentosParada() => $_has(21);
   @$pb.TagNumber(23)
   void clearQuantidadeEquipamentosParada() => $_clearField(23);
 
-  /// ID no mapa com o local onde *termina* a via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente outro número ou uma letra, como "x".
-  @$pb.TagNumber(24)
-  $core.String get idNoMapaFim => $_getSZ(23);
-  @$pb.TagNumber(24)
-  set idNoMapaFim($core.String value) => $_setString(23, value);
-  @$pb.TagNumber(24)
-  $core.bool hasIdNoMapaFim() => $_has(23);
-  @$pb.TagNumber(24)
-  void clearIdNoMapaFim() => $_clearField(24);
-
   /// Se é um destaque para o setor.
   @$pb.TagNumber(25)
-  $core.bool get destaque => $_getBF(24);
+  $core.bool get destaque => $_getBF(22);
   @$pb.TagNumber(25)
-  set destaque($core.bool value) => $_setBool(24, value);
+  set destaque($core.bool value) => $_setBool(22, value);
   @$pb.TagNumber(25)
-  $core.bool hasDestaque() => $_has(24);
+  $core.bool hasDestaque() => $_has(22);
   @$pb.TagNumber(25)
   void clearDestaque() => $_clearField(25);
-
-  /// ID no mapa marcando o *meio* da via, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente um número, letra ou símbolo (como um triângulo).
-  @$pb.TagNumber(26)
-  $core.String get idNoMapaMeio => $_getSZ(25);
-  @$pb.TagNumber(26)
-  set idNoMapaMeio($core.String value) => $_setString(25, value);
-  @$pb.TagNumber(26)
-  $core.bool hasIdNoMapaMeio() => $_has(25);
-  @$pb.TagNumber(26)
-  void clearIdNoMapaMeio() => $_clearField(26);
 }
 
 /// Um highline montado na rocha.
@@ -3381,10 +3426,7 @@ class Highline extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.String? idNoMapa,
-    $core.String? idNoMapaFim,
     $core.bool? destaque,
-    $core.String? idNoMapaMeio,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -3401,10 +3443,7 @@ class Highline extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (idNoMapa != null) result.idNoMapa = idNoMapa;
-    if (idNoMapaFim != null) result.idNoMapaFim = idNoMapaFim;
     if (destaque != null) result.destaque = destaque;
-    if (idNoMapaMeio != null) result.idNoMapaMeio = idNoMapaMeio;
     return result;
   }
 
@@ -3433,10 +3472,7 @@ class Highline extends $pb.GeneratedMessage {
     ..aOS(10, _omitFieldNames ? '' : 'descricao')
     ..aOS(11, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(12, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..aOS(13, _omitFieldNames ? '' : 'idNoMapa')
-    ..aOS(14, _omitFieldNames ? '' : 'idNoMapaFim')
     ..aOB(15, _omitFieldNames ? '' : 'destaque')
-    ..aOS(16, _omitFieldNames ? '' : 'idNoMapaMeio')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3571,47 +3607,15 @@ class Highline extends $pb.GeneratedMessage {
   @$pb.TagNumber(12)
   void clearChavePixManutencao() => $_clearField(12);
 
-  /// ID no mapa com o local onde *começa* o highline. Provavelmente um número, como 1, ou a, ou 1a, etc.
-  @$pb.TagNumber(13)
-  $core.String get idNoMapa => $_getSZ(12);
-  @$pb.TagNumber(13)
-  set idNoMapa($core.String value) => $_setString(12, value);
-  @$pb.TagNumber(13)
-  $core.bool hasIdNoMapa() => $_has(12);
-  @$pb.TagNumber(13)
-  void clearIdNoMapa() => $_clearField(13);
-
-  /// ID no mapa com o local onde *termina* o highline, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente outro número ou uma letra, como "x".
-  @$pb.TagNumber(14)
-  $core.String get idNoMapaFim => $_getSZ(13);
-  @$pb.TagNumber(14)
-  set idNoMapaFim($core.String value) => $_setString(13, value);
-  @$pb.TagNumber(14)
-  $core.bool hasIdNoMapaFim() => $_has(13);
-  @$pb.TagNumber(14)
-  void clearIdNoMapaFim() => $_clearField(14);
-
   /// Se é um destaque para o setor.
   @$pb.TagNumber(15)
-  $core.bool get destaque => $_getBF(14);
+  $core.bool get destaque => $_getBF(12);
   @$pb.TagNumber(15)
-  set destaque($core.bool value) => $_setBool(14, value);
+  set destaque($core.bool value) => $_setBool(12, value);
   @$pb.TagNumber(15)
-  $core.bool hasDestaque() => $_has(14);
+  $core.bool hasDestaque() => $_has(12);
   @$pb.TagNumber(15)
   void clearDestaque() => $_clearField(15);
-
-  /// ID no mapa marcando o *meio* do highline, se houver. Esse campo é opcional, mas se existir é
-  /// provavelmente um número, letra ou símbolo (como um triângulo).
-  @$pb.TagNumber(16)
-  $core.String get idNoMapaMeio => $_getSZ(15);
-  @$pb.TagNumber(16)
-  set idNoMapaMeio($core.String value) => $_setString(15, value);
-  @$pb.TagNumber(16)
-  $core.bool hasIdNoMapaMeio() => $_has(15);
-  @$pb.TagNumber(16)
-  void clearIdNoMapaMeio() => $_clearField(16);
 }
 
 /// Dados de um patrocinador que apoia financeiramente a manutenção ou os croquis.
