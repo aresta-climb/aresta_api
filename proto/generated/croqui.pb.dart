@@ -1225,6 +1225,7 @@ class Grupo extends $pb.GeneratedMessage {
     $core.Iterable<ArquivoSetor>? setores,
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -1235,6 +1236,7 @@ class Grupo extends $pb.GeneratedMessage {
       result.localizacaoEstacionamento = localizacaoEstacionamento;
     if (localizacaoEscalada != null)
       result.localizacaoEscalada = localizacaoEscalada;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -1259,7 +1261,8 @@ class Grupo extends $pb.GeneratedMessage {
     ..aOM<Coordenada>(6, _omitFieldNames ? '' : 'localizacaoEstacionamento',
         subBuilder: Coordenada.create)
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
-        subBuilder: Coordenada.create);
+        subBuilder: Coordenada.create)
+    ..aI(8, _omitFieldNames ? '' : 'indiceMapaPadrao');
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Grupo clone() => deepCopy();
@@ -1330,11 +1333,21 @@ class Grupo extends $pb.GeneratedMessage {
   void clearLocalizacaoEscalada() => $_clearField(7);
   @$pb.TagNumber(7)
   Coordenada ensureLocalizacaoEscalada() => $_ensure(5);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar este grupo no mapa.
+  @$pb.TagNumber(8)
+  $core.int get indiceMapaPadrao => $_getIZ(6);
+  @$pb.TagNumber(8)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(8)
+  $core.bool hasIndiceMapaPadrao() => $_has(6);
+  @$pb.TagNumber(8)
+  void clearIndiceMapaPadrao() => $_clearField(8);
 }
 
 /// Representa uma parede ou setor específico dentro de um Pico.
 /// Para boulders, isso costuma ser o bloco.
-/// NEXT_ID: 15
+/// NEXT_ID: 16
 class Setor extends $pb.GeneratedMessage {
   factory Setor({
     $core.String? nome,
@@ -1347,6 +1360,7 @@ class Setor extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.Iterable<Escalada>? escaladas,
     $core.Iterable<Mapa>? mapas,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -1361,6 +1375,7 @@ class Setor extends $pb.GeneratedMessage {
     if (descricao != null) result.descricao = descricao;
     if (escaladas != null) result.escaladas.addAll(escaladas);
     if (mapas != null) result.mapas.addAll(mapas);
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -1391,6 +1406,7 @@ class Setor extends $pb.GeneratedMessage {
     ..pPM<Escalada>(11, _omitFieldNames ? '' : 'escaladas',
         subBuilder: Escalada.create)
     ..pPM<Mapa>(13, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+    ..aI(14, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1496,6 +1512,16 @@ class Setor extends $pb.GeneratedMessage {
   /// Mapas do setor.
   @$pb.TagNumber(13)
   $pb.PbList<Mapa> get mapas => $_getList(9);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar este setor no mapa.
+  @$pb.TagNumber(14)
+  $core.int get indiceMapaPadrao => $_getIZ(10);
+  @$pb.TagNumber(14)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(10, value);
+  @$pb.TagNumber(14)
+  $core.bool hasIndiceMapaPadrao() => $_has(10);
+  @$pb.TagNumber(14)
+  void clearIndiceMapaPadrao() => $_clearField(14);
 }
 
 enum Mapa_PontoDeInteresse_TipoArea { box, circular, areaLivre, notSet }
@@ -2375,6 +2401,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
+    $core.int? indiceMapaPadrao,
     $core.bool? destaque,
   }) {
     final result = create();
@@ -2398,6 +2425,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     if (destaque != null) result.destaque = destaque;
     return result;
   }
@@ -2435,6 +2463,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     ..aOS(13, _omitFieldNames ? '' : 'descricao')
     ..aOS(14, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(15, _omitFieldNames ? '' : 'chavePixManutencao')
+    ..aI(16, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..aOB(18, _omitFieldNames ? '' : 'destaque')
     ..hasRequiredFields = false;
 
@@ -2604,19 +2633,29 @@ class ViaEsportiva extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   void clearChavePixManutencao() => $_clearField(15);
 
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  @$pb.TagNumber(16)
+  $core.int get indiceMapaPadrao => $_getIZ(15);
+  @$pb.TagNumber(16)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(15, value);
+  @$pb.TagNumber(16)
+  $core.bool hasIndiceMapaPadrao() => $_has(15);
+  @$pb.TagNumber(16)
+  void clearIndiceMapaPadrao() => $_clearField(16);
+
   /// Se é um destaque para o setor.
   @$pb.TagNumber(18)
-  $core.bool get destaque => $_getBF(15);
+  $core.bool get destaque => $_getBF(16);
   @$pb.TagNumber(18)
-  set destaque($core.bool value) => $_setBool(15, value);
+  set destaque($core.bool value) => $_setBool(16, value);
   @$pb.TagNumber(18)
-  $core.bool hasDestaque() => $_has(15);
+  $core.bool hasDestaque() => $_has(16);
   @$pb.TagNumber(18)
   void clearDestaque() => $_clearField(18);
 }
 
 /// Representa uma linha de escalada (via) individual de uma enfiada ou totalmente móvel ou mista com proteções fixas.
-/// NEXT_ID: 22
+/// NEXT_ID: 23
 class ViaMovel extends $pb.GeneratedMessage {
   factory ViaMovel({
     $core.String? nome,
@@ -2637,6 +2676,7 @@ class ViaMovel extends $pb.GeneratedMessage {
     GrauArtificial_GrauArtificial? dificuldadeArtificial,
     GrauVia_GrauVia? dificuldadeArtificialEmLivre,
     $core.bool? destaque,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -2663,6 +2703,7 @@ class ViaMovel extends $pb.GeneratedMessage {
     if (dificuldadeArtificialEmLivre != null)
       result.dificuldadeArtificialEmLivre = dificuldadeArtificialEmLivre;
     if (destaque != null) result.destaque = destaque;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -2704,6 +2745,7 @@ class ViaMovel extends $pb.GeneratedMessage {
         18, _omitFieldNames ? '' : 'dificuldadeArtificialEmLivre',
         enumValues: GrauVia_GrauVia.values)
     ..aOB(20, _omitFieldNames ? '' : 'destaque')
+    ..aI(21, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2900,10 +2942,20 @@ class ViaMovel extends $pb.GeneratedMessage {
   $core.bool hasDestaque() => $_has(17);
   @$pb.TagNumber(20)
   void clearDestaque() => $_clearField(20);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  @$pb.TagNumber(21)
+  $core.int get indiceMapaPadrao => $_getIZ(18);
+  @$pb.TagNumber(21)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(18, value);
+  @$pb.TagNumber(21)
+  $core.bool hasIndiceMapaPadrao() => $_has(18);
+  @$pb.TagNumber(21)
+  void clearIndiceMapaPadrao() => $_clearField(21);
 }
 
 /// Representa uma linha de boulder individual.
-/// NEXT_ID: 13
+/// NEXT_ID: 14
 class Boulder extends $pb.GeneratedMessage {
   factory Boulder({
     $core.String? nome,
@@ -2915,6 +2967,7 @@ class Boulder extends $pb.GeneratedMessage {
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
     $core.bool? destaque,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -2927,6 +2980,7 @@ class Boulder extends $pb.GeneratedMessage {
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
     if (destaque != null) result.destaque = destaque;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -2954,6 +3008,7 @@ class Boulder extends $pb.GeneratedMessage {
     ..aOS(7, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(8, _omitFieldNames ? '' : 'chavePixManutencao')
     ..aOB(11, _omitFieldNames ? '' : 'destaque')
+    ..aI(12, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3057,10 +3112,20 @@ class Boulder extends $pb.GeneratedMessage {
   $core.bool hasDestaque() => $_has(8);
   @$pb.TagNumber(11)
   void clearDestaque() => $_clearField(11);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  @$pb.TagNumber(12)
+  $core.int get indiceMapaPadrao => $_getIZ(9);
+  @$pb.TagNumber(12)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(9, value);
+  @$pb.TagNumber(12)
+  $core.bool hasIndiceMapaPadrao() => $_has(9);
+  @$pb.TagNumber(12)
+  void clearIndiceMapaPadrao() => $_clearField(12);
 }
 
 /// Representa uma via de escalada de múltiplas enfiadas.
-/// NEXT_ID: 27
+/// NEXT_ID: 28
 class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
   factory ViaMultiplasEnfiadas({
     $core.String? nome,
@@ -3086,6 +3151,7 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     $core.int? quantidadeCosturasIntermediarias,
     $core.int? quantidadeEquipamentosParada,
     $core.bool? destaque,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -3120,6 +3186,7 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     if (quantidadeEquipamentosParada != null)
       result.quantidadeEquipamentosParada = quantidadeEquipamentosParada;
     if (destaque != null) result.destaque = destaque;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -3170,6 +3237,7 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     ..aI(22, _omitFieldNames ? '' : 'quantidadeCosturasIntermediarias')
     ..aI(23, _omitFieldNames ? '' : 'quantidadeEquipamentosParada')
     ..aOB(25, _omitFieldNames ? '' : 'destaque')
+    ..aI(26, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3408,10 +3476,20 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
   $core.bool hasDestaque() => $_has(22);
   @$pb.TagNumber(25)
   void clearDestaque() => $_clearField(25);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  @$pb.TagNumber(26)
+  $core.int get indiceMapaPadrao => $_getIZ(23);
+  @$pb.TagNumber(26)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(23, value);
+  @$pb.TagNumber(26)
+  $core.bool hasIndiceMapaPadrao() => $_has(23);
+  @$pb.TagNumber(26)
+  void clearIndiceMapaPadrao() => $_clearField(26);
 }
 
 /// Um highline montado na rocha.
-/// NEXT_ID: 17
+/// NEXT_ID: 18
 class Highline extends $pb.GeneratedMessage {
   factory Highline({
     $core.String? nome,
@@ -3427,6 +3505,7 @@ class Highline extends $pb.GeneratedMessage {
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
     $core.bool? destaque,
+    $core.int? indiceMapaPadrao,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -3444,6 +3523,7 @@ class Highline extends $pb.GeneratedMessage {
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
     if (destaque != null) result.destaque = destaque;
+    if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
     return result;
   }
 
@@ -3473,6 +3553,7 @@ class Highline extends $pb.GeneratedMessage {
     ..aOS(11, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(12, _omitFieldNames ? '' : 'chavePixManutencao')
     ..aOB(15, _omitFieldNames ? '' : 'destaque')
+    ..aI(16, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3616,6 +3697,16 @@ class Highline extends $pb.GeneratedMessage {
   $core.bool hasDestaque() => $_has(12);
   @$pb.TagNumber(15)
   void clearDestaque() => $_clearField(15);
+
+  /// Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  @$pb.TagNumber(16)
+  $core.int get indiceMapaPadrao => $_getIZ(13);
+  @$pb.TagNumber(16)
+  set indiceMapaPadrao($core.int value) => $_setSignedInt32(13, value);
+  @$pb.TagNumber(16)
+  $core.bool hasIndiceMapaPadrao() => $_has(13);
+  @$pb.TagNumber(16)
+  void clearIndiceMapaPadrao() => $_clearField(16);
 }
 
 /// Dados de um patrocinador que apoia financeiramente a manutenção ou os croquis.

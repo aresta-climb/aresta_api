@@ -376,11 +376,14 @@ message Grupo {
   
   // Setores que compõem este grupo.
   repeated ArquivoSetor setores = 4;
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar este grupo no mapa.
+  int32 indice_mapa_padrao = 8 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Representa uma parede ou setor específico dentro de um Pico.
 // Para boulders, isso costuma ser o bloco.
-// NEXT_ID: 15
+// NEXT_ID: 16
 message Setor {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
 
@@ -418,6 +421,9 @@ message Setor {
   // Reservado. Anteriormente sub_setores. 
   // Use Grupos no Pico para organizar múltiplos setores.
   reserved 12;
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar este setor no mapa.
+  int32 indice_mapa_padrao = 14 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Representa um mapa do setor.
@@ -631,10 +637,13 @@ message ViaEsportiva {
   
   // Chave Pix do mantenedor ou conquistador específico desta via.
   string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  int32 indice_mapa_padrao = 16 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Representa uma linha de escalada (via) individual de uma enfiada ou totalmente móvel ou mista com proteções fixas.
-// NEXT_ID: 22
+// NEXT_ID: 23
 message ViaMovel {
   // Nome da via.
   string nome = 1;
@@ -690,10 +699,13 @@ message ViaMovel {
   
   // Chave Pix do mantenedor ou conquistador específico desta via.
   string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  int32 indice_mapa_padrao = 21 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Representa uma linha de boulder individual.
-// NEXT_ID: 13
+// NEXT_ID: 14
 message Boulder {
   // Nome do boulder.
   string nome = 1;
@@ -722,10 +734,13 @@ message Boulder {
 
   // Chave Pix do mantenedor ou conquistador específico deste boulder.
   string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  int32 indice_mapa_padrao = 12 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Representa uma via de escalada de múltiplas enfiadas.
-// NEXT_ID: 27
+// NEXT_ID: 28
 message ViaMultiplasEnfiadas {
   // Nome da via.
   string nome = 1;
@@ -803,10 +818,13 @@ message ViaMultiplasEnfiadas {
 
   // Chave Pix do mantenedor ou conquistador específico desta via.
   string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  int32 indice_mapa_padrao = 26 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Um highline montado na rocha.
-// NEXT_ID: 17
+// NEXT_ID: 18
 message Highline {
   // Nome do highline.
   string nome = 1;
@@ -847,6 +865,9 @@ message Highline {
 
   // Chave Pix do mantenedor ou conquistador específico deste highline.
   string chave_pix_manutencao = 12 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+
+  // Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa.
+  int32 indice_mapa_padrao = 16 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
 }
 
 // Dados de um patrocinador que apoia financeiramente a manutenção ou os croquis.
