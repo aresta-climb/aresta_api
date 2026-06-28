@@ -311,7 +311,31 @@ message Pico {
   // Elementos de escalada contidos neste pico (setores ou grupos).
   repeated SetorOuGrupo setores_ou_grupos = 11;
 
+  // Mapas gerais do pico, como por exemplo mapas de acesso.
+  ArquivoMapas mapas_gerais = 12 [(aresta.texto_na_ui) = "Mapas Gerais"];
+
   reserved 10;
+}
+
+// Coleção de mapas para uso externo.
+message ColecaoDeMapas {
+  // Mapas da coleção.
+  repeated Mapa mapas = 1;
+}
+
+// Arquivo externo que contém apenas uma ColecaoDeMapas em seu frontmatter.
+message ArquivoMapas {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  oneof arquivo {
+    string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "text/markdown", (aresta.oneof_default) = true, (aresta.mensagem) = "aresta.ColecaoDeMapas"];
+    ColecaoDeMapas conteudo = 2 [(aresta.tipo_conteudo) = INLINE];
+  }
+
+  extensions 1000 to max;
+  extend ArquivoMapas {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
 }
 
 // Representa um elemento (Setor ou Grupo) de um Pico.

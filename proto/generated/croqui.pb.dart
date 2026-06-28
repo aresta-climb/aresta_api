@@ -789,6 +789,7 @@ class Pico extends $pb.GeneratedMessage {
     $core.String? chavePixManutencao,
     $core.Iterable<Patrocinador>? patrocinadores,
     $core.Iterable<SetorOuGrupo>? setoresOuGrupos,
+    ArquivoMapas? mapasGerais,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -803,6 +804,7 @@ class Pico extends $pb.GeneratedMessage {
       result.chavePixManutencao = chavePixManutencao;
     if (patrocinadores != null) result.patrocinadores.addAll(patrocinadores);
     if (setoresOuGrupos != null) result.setoresOuGrupos.addAll(setoresOuGrupos);
+    if (mapasGerais != null) result.mapasGerais = mapasGerais;
     return result;
   }
 
@@ -831,7 +833,9 @@ class Pico extends $pb.GeneratedMessage {
     ..pPM<Patrocinador>(9, _omitFieldNames ? '' : 'patrocinadores',
         subBuilder: Patrocinador.create)
     ..pPM<SetorOuGrupo>(11, _omitFieldNames ? '' : 'setoresOuGrupos',
-        subBuilder: SetorOuGrupo.create);
+        subBuilder: SetorOuGrupo.create)
+    ..aOM<ArquivoMapas>(12, _omitFieldNames ? '' : 'mapasGerais',
+        subBuilder: ArquivoMapas.create);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -940,6 +944,162 @@ class Pico extends $pb.GeneratedMessage {
   /// Elementos de escalada contidos neste pico (setores ou grupos).
   @$pb.TagNumber(11)
   $pb.PbList<SetorOuGrupo> get setoresOuGrupos => $_getList(9);
+
+  /// Mapas gerais do pico, como por exemplo mapas de acesso.
+  @$pb.TagNumber(12)
+  ArquivoMapas get mapasGerais => $_getN(10);
+  @$pb.TagNumber(12)
+  set mapasGerais(ArquivoMapas value) => $_setField(12, value);
+  @$pb.TagNumber(12)
+  $core.bool hasMapasGerais() => $_has(10);
+  @$pb.TagNumber(12)
+  void clearMapasGerais() => $_clearField(12);
+  @$pb.TagNumber(12)
+  ArquivoMapas ensureMapasGerais() => $_ensure(10);
+}
+
+/// Coleção de mapas para uso externo.
+class ColecaoDeMapas extends $pb.GeneratedMessage {
+  factory ColecaoDeMapas({
+    $core.Iterable<Mapa>? mapas,
+  }) {
+    final result = create();
+    if (mapas != null) result.mapas.addAll(mapas);
+    return result;
+  }
+
+  ColecaoDeMapas._();
+
+  factory ColecaoDeMapas.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory ColecaoDeMapas.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ColecaoDeMapas',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..pPM<Mapa>(1, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ColecaoDeMapas clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ColecaoDeMapas copyWith(void Function(ColecaoDeMapas) updates) =>
+      super.copyWith((message) => updates(message as ColecaoDeMapas))
+          as ColecaoDeMapas;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ColecaoDeMapas create() => ColecaoDeMapas._();
+  @$core.override
+  ColecaoDeMapas createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static ColecaoDeMapas getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ColecaoDeMapas>(create);
+  static ColecaoDeMapas? _defaultInstance;
+
+  /// Mapas da coleção.
+  @$pb.TagNumber(1)
+  $pb.PbList<Mapa> get mapas => $_getList(0);
+}
+
+enum ArquivoMapas_Arquivo { caminho, conteudo, notSet }
+
+/// Arquivo externo que contém apenas uma ColecaoDeMapas em seu frontmatter.
+class ArquivoMapas extends $pb.GeneratedMessage {
+  factory ArquivoMapas({
+    $core.String? caminho,
+    ColecaoDeMapas? conteudo,
+  }) {
+    final result = create();
+    if (caminho != null) result.caminho = caminho;
+    if (conteudo != null) result.conteudo = conteudo;
+    return result;
+  }
+
+  ArquivoMapas._();
+
+  factory ArquivoMapas.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory ArquivoMapas.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static const $core.Map<$core.int, ArquivoMapas_Arquivo>
+      _ArquivoMapas_ArquivoByTag = {
+    1: ArquivoMapas_Arquivo.caminho,
+    2: ArquivoMapas_Arquivo.conteudo,
+    0: ArquivoMapas_Arquivo.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ArquivoMapas',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..oo(0, [1, 2])
+    ..aOS(1, _omitFieldNames ? '' : 'caminho')
+    ..aOM<ColecaoDeMapas>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: ColecaoDeMapas.create)
+    ..hasExtensions = true;
+  static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
+      _omitMessageNames ? '' : 'aresta.ArquivoMapas',
+      _omitFieldNames ? '' : 'extMetadadosArquivo',
+      1000,
+      $pb.PbFieldType.OM,
+      defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
+      subBuilder: MetadadosArquivoNoEditor.create);
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoMapas clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoMapas copyWith(void Function(ArquivoMapas) updates) =>
+      super.copyWith((message) => updates(message as ArquivoMapas))
+          as ArquivoMapas;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ArquivoMapas create() => ArquivoMapas._();
+  @$core.override
+  ArquivoMapas createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static ArquivoMapas getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ArquivoMapas>(create);
+  static ArquivoMapas? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  ArquivoMapas_Arquivo whichArquivo() =>
+      _ArquivoMapas_ArquivoByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  void clearArquivo() => $_clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.String get caminho => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set caminho($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCaminho() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCaminho() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  ColecaoDeMapas get conteudo => $_getN(1);
+  @$pb.TagNumber(2)
+  set conteudo(ColecaoDeMapas value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasConteudo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearConteudo() => $_clearField(2);
+  @$pb.TagNumber(2)
+  ColecaoDeMapas ensureConteudo() => $_ensure(1);
 }
 
 enum SetorOuGrupo_Tipo { setor, grupo, notSet }

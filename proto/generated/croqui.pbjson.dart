@@ -411,6 +411,15 @@ const Pico$json = {
       '6': '.aresta.SetorOuGrupo',
       '10': 'setoresOuGrupos'
     },
+    {
+      '1': 'mapas_gerais',
+      '3': 12,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.ArquivoMapas',
+      '8': {},
+      '10': 'mapasGerais'
+    },
   ],
   '7': {},
   '9': [
@@ -429,7 +438,66 @@ final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'YXZlX3BpeF9tYW51dGVuY2FvGAggASgJQh+StRgbQ2hhdmUgUGl4IHBhcmEgTWFudXRlbsOnw6'
     'NvUhJjaGF2ZVBpeE1hbnV0ZW5jYW8SPAoOcGF0cm9jaW5hZG9yZXMYCSADKAsyFC5hcmVzdGEu'
     'UGF0cm9jaW5hZG9yUg5wYXRyb2NpbmFkb3JlcxJAChFzZXRvcmVzX291X2dydXBvcxgLIAMoCz'
-    'IULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydXBvczoEkLUYAUoECAoQCw==');
+    'IULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydXBvcxJJCgxtYXBhc19nZXJhaXMY'
+    'DCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFwYXMgR2VyYWlzUgttYXBhc0dlcm'
+    'FpczoEkLUYAUoECAoQCw==');
+
+@$core.Deprecated('Use colecaoDeMapasDescriptor instead')
+const ColecaoDeMapas$json = {
+  '1': 'ColecaoDeMapas',
+  '2': [
+    {'1': 'mapas', '3': 1, '4': 3, '5': 11, '6': '.aresta.Mapa', '10': 'mapas'},
+  ],
+};
+
+/// Descriptor for `ColecaoDeMapas`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List colecaoDeMapasDescriptor = $convert.base64Decode(
+    'Cg5Db2xlY2FvRGVNYXBhcxIiCgVtYXBhcxgBIAMoCzIMLmFyZXN0YS5NYXBhUgVtYXBhcw==');
+
+@$core.Deprecated('Use arquivoMapasDescriptor instead')
+const ArquivoMapas$json = {
+  '1': 'ArquivoMapas',
+  '2': [
+    {'1': 'caminho', '3': 1, '4': 1, '5': 9, '8': {}, '9': 0, '10': 'caminho'},
+    {
+      '1': 'conteudo',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.ColecaoDeMapas',
+      '8': {},
+      '9': 0,
+      '10': 'conteudo'
+    },
+  ],
+  '5': [
+    {'1': 1000, '2': 536870912},
+  ],
+  '6': [
+    {
+      '1': 'ext_metadados_arquivo',
+      '2': '.aresta.ArquivoMapas',
+      '3': 1000,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MetadadosArquivoNoEditor',
+      '10': 'extMetadadosArquivo'
+    },
+  ],
+  '7': {},
+  '8': [
+    {'1': 'arquivo'},
+  ],
+};
+
+/// Descriptor for `ArquivoMapas`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List arquivoMapasDescriptor = $convert.base64Decode(
+    'CgxBcnF1aXZvTWFwYXMSTgoHY2FtaW5obxgBIAEoCUIyirUYDXRleHQvbWFya2Rvd26YtRgCor'
+    'UYFWFyZXN0YS5Db2xlY2FvRGVNYXBhc7i1GAFIAFIHY2FtaW5obxI6Cghjb250ZXVkbxgCIAEo'
+    'CzIWLmFyZXN0YS5Db2xlY2FvRGVNYXBhc0IEmLUYAUgAUghjb250ZXVkbyoJCOgHEICAgIACMm'
+    'sKFWV4dF9tZXRhZGFkb3NfYXJxdWl2bxIULmFyZXN0YS5BcnF1aXZvTWFwYXMY6AcgASgLMiAu'
+    'YXJlc3RhLk1ldGFkYWRvc0FycXVpdm9Ob0VkaXRvclITZXh0TWV0YWRhZG9zQXJxdWl2bzoEkL'
+    'UYBUIJCgdhcnF1aXZv');
 
 @$core.Deprecated('Use setorOuGrupoDescriptor instead')
 const SetorOuGrupo$json = {
