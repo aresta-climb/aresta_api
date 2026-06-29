@@ -319,6 +319,8 @@ message Pico {
 
 // Coleção de mapas para uso externo.
 message ColecaoDeMapas {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
   // Mapas da coleção.
   repeated Mapa mapas = 1;
 }

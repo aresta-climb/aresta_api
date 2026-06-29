@@ -448,11 +448,13 @@ const ColecaoDeMapas$json = {
   '2': [
     {'1': 'mapas', '3': 1, '4': 3, '5': 11, '6': '.aresta.Mapa', '10': 'mapas'},
   ],
+  '7': {},
 };
 
 /// Descriptor for `ColecaoDeMapas`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List colecaoDeMapasDescriptor = $convert.base64Decode(
-    'Cg5Db2xlY2FvRGVNYXBhcxIiCgVtYXBhcxgBIAMoCzIMLmFyZXN0YS5NYXBhUgVtYXBhcw==');
+    'Cg5Db2xlY2FvRGVNYXBhcxIiCgVtYXBhcxgBIAMoCzIMLmFyZXN0YS5NYXBhUgVtYXBhczoEkL'
+    'UYAg==');
 
 @$core.Deprecated('Use arquivoMapasDescriptor instead')
 const ArquivoMapas$json = {
