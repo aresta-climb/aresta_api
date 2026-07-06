@@ -1684,23 +1684,31 @@ class Setor extends $pb.GeneratedMessage {
   void clearIndiceMapaPadrao() => $_clearField(14);
 }
 
-enum Mapa_PontoDeInteresse_TipoArea { box, circular, areaLivre, notSet }
+enum Mapa_PontoDeInteresse_TipoArea {
+  retangulo,
+  circular,
+  areaLivre,
+  quadrado,
+  notSet
+}
 
 /// Representa um ponto de interesse no mapa.
 class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   factory Mapa_PontoDeInteresse({
     $core.String? id,
     $core.String? label,
-    BoundingBox? box,
+    BoundingRetangulo? retangulo,
     BoundingCircular? circular,
     BoundingAreaLivre? areaLivre,
+    BoundingQuadrado? quadrado,
   }) {
     final result = create();
     if (id != null) result.id = id;
     if (label != null) result.label = label;
-    if (box != null) result.box = box;
+    if (retangulo != null) result.retangulo = retangulo;
     if (circular != null) result.circular = circular;
     if (areaLivre != null) result.areaLivre = areaLivre;
+    if (quadrado != null) result.quadrado = quadrado;
     return result;
   }
 
@@ -1715,24 +1723,27 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
 
   static const $core.Map<$core.int, Mapa_PontoDeInteresse_TipoArea>
       _Mapa_PontoDeInteresse_TipoAreaByTag = {
-    3: Mapa_PontoDeInteresse_TipoArea.box,
+    3: Mapa_PontoDeInteresse_TipoArea.retangulo,
     6: Mapa_PontoDeInteresse_TipoArea.circular,
     7: Mapa_PontoDeInteresse_TipoArea.areaLivre,
+    8: Mapa_PontoDeInteresse_TipoArea.quadrado,
     0: Mapa_PontoDeInteresse_TipoArea.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa.PontoDeInteresse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
-    ..oo(0, [3, 6, 7])
+    ..oo(0, [3, 6, 7, 8])
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'label')
-    ..aOM<BoundingBox>(3, _omitFieldNames ? '' : 'box',
-        subBuilder: BoundingBox.create)
+    ..aOM<BoundingRetangulo>(3, _omitFieldNames ? '' : 'retangulo',
+        subBuilder: BoundingRetangulo.create)
     ..aOM<BoundingCircular>(6, _omitFieldNames ? '' : 'circular',
         subBuilder: BoundingCircular.create)
     ..aOM<BoundingAreaLivre>(7, _omitFieldNames ? '' : 'areaLivre',
         subBuilder: BoundingAreaLivre.create)
+    ..aOM<BoundingQuadrado>(8, _omitFieldNames ? '' : 'quadrado',
+        subBuilder: BoundingQuadrado.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1758,11 +1769,13 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
+  @$pb.TagNumber(8)
   Mapa_PontoDeInteresse_TipoArea whichTipoArea() =>
       _Mapa_PontoDeInteresse_TipoAreaByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(3)
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
+  @$pb.TagNumber(8)
   void clearTipoArea() => $_clearField($_whichOneof(0));
 
   /// ID do ponto de interesse no mapa.
@@ -1787,15 +1800,15 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
 
   /// Bounding box retangular, angulação opcional.
   @$pb.TagNumber(3)
-  BoundingBox get box => $_getN(2);
+  BoundingRetangulo get retangulo => $_getN(2);
   @$pb.TagNumber(3)
-  set box(BoundingBox value) => $_setField(3, value);
+  set retangulo(BoundingRetangulo value) => $_setField(3, value);
   @$pb.TagNumber(3)
-  $core.bool hasBox() => $_has(2);
+  $core.bool hasRetangulo() => $_has(2);
   @$pb.TagNumber(3)
-  void clearBox() => $_clearField(3);
+  void clearRetangulo() => $_clearField(3);
   @$pb.TagNumber(3)
-  BoundingBox ensureBox() => $_ensure(2);
+  BoundingRetangulo ensureRetangulo() => $_ensure(2);
 
   /// Bounding area circular.
   @$pb.TagNumber(6)
@@ -1820,6 +1833,18 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   void clearAreaLivre() => $_clearField(7);
   @$pb.TagNumber(7)
   BoundingAreaLivre ensureAreaLivre() => $_ensure(4);
+
+  /// Bounding quadrado.
+  @$pb.TagNumber(8)
+  BoundingQuadrado get quadrado => $_getN(5);
+  @$pb.TagNumber(8)
+  set quadrado(BoundingQuadrado value) => $_setField(8, value);
+  @$pb.TagNumber(8)
+  $core.bool hasQuadrado() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearQuadrado() => $_clearField(8);
+  @$pb.TagNumber(8)
+  BoundingQuadrado ensureQuadrado() => $_ensure(5);
 }
 
 /// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
@@ -2228,11 +2253,93 @@ class BoundingCircular extends $pb.GeneratedMessage {
   void clearRaio() => $_clearField(3);
 }
 
+/// Quadrado de enquadramento de parte da imagem.
+/// Definido pela posição central (x, y) e o tamanho do lado.
+class BoundingQuadrado extends $pb.GeneratedMessage {
+  factory BoundingQuadrado({
+    $core.int? x,
+    $core.int? y,
+    $core.int? lado,
+  }) {
+    final result = create();
+    if (x != null) result.x = x;
+    if (y != null) result.y = y;
+    if (lado != null) result.lado = lado;
+    return result;
+  }
+
+  BoundingQuadrado._();
+
+  factory BoundingQuadrado.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BoundingQuadrado.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BoundingQuadrado',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'x')
+    ..aI(2, _omitFieldNames ? '' : 'y')
+    ..aI(3, _omitFieldNames ? '' : 'lado')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BoundingQuadrado clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BoundingQuadrado copyWith(void Function(BoundingQuadrado) updates) =>
+      super.copyWith((message) => updates(message as BoundingQuadrado))
+          as BoundingQuadrado;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static BoundingQuadrado create() => BoundingQuadrado._();
+  @$core.override
+  BoundingQuadrado createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static BoundingQuadrado getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BoundingQuadrado>(create);
+  static BoundingQuadrado? _defaultInstance;
+
+  /// Coordenadas (x, y) do centro do quadrado em pixels.
+  @$pb.TagNumber(1)
+  $core.int get x => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set x($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasX() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearX() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get y => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set y($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasY() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearY() => $_clearField(2);
+
+  /// Tamanho do lado do quadrado em pixels.
+  @$pb.TagNumber(3)
+  $core.int get lado => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set lado($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasLado() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLado() => $_clearField(3);
+}
+
 /// Caixa de enquadramento / bounding box retangular de parte da imagem.
 /// Definido pela posição central (x, y), comprimento e largura.
 /// Opcionalmente aceita um ângulo para especificar a box de maneira angulada.
-class BoundingBox extends $pb.GeneratedMessage {
-  factory BoundingBox({
+class BoundingRetangulo extends $pb.GeneratedMessage {
+  factory BoundingRetangulo({
     $core.int? x,
     $core.int? y,
     $core.int? comprimento,
@@ -2248,17 +2355,17 @@ class BoundingBox extends $pb.GeneratedMessage {
     return result;
   }
 
-  BoundingBox._();
+  BoundingRetangulo._();
 
-  factory BoundingBox.fromBuffer($core.List<$core.int> data,
+  factory BoundingRetangulo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory BoundingBox.fromJson($core.String json,
+  factory BoundingRetangulo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BoundingBox',
+      _omitMessageNames ? '' : 'BoundingRetangulo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'x')
@@ -2270,23 +2377,23 @@ class BoundingBox extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingBox clone() => deepCopy();
+  BoundingRetangulo clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingBox copyWith(void Function(BoundingBox) updates) =>
-      super.copyWith((message) => updates(message as BoundingBox))
-          as BoundingBox;
+  BoundingRetangulo copyWith(void Function(BoundingRetangulo) updates) =>
+      super.copyWith((message) => updates(message as BoundingRetangulo))
+          as BoundingRetangulo;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static BoundingBox create() => BoundingBox._();
+  static BoundingRetangulo create() => BoundingRetangulo._();
   @$core.override
-  BoundingBox createEmptyInstance() => create();
+  BoundingRetangulo createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static BoundingBox getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingBox>(create);
-  static BoundingBox? _defaultInstance;
+  static BoundingRetangulo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BoundingRetangulo>(create);
+  static BoundingRetangulo? _defaultInstance;
 
   /// Coordenadas (x, y) do centro da caixa em pixels.
   @$pb.TagNumber(1)

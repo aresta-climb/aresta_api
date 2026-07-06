@@ -835,13 +835,22 @@ const Mapa_PontoDeInteresse$json = {
       '10': 'circular'
     },
     {
-      '1': 'box',
+      '1': 'quadrado',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.BoundingQuadrado',
+      '9': 0,
+      '10': 'quadrado'
+    },
+    {
+      '1': 'retangulo',
       '3': 3,
       '4': 1,
       '5': 11,
-      '6': '.aresta.BoundingBox',
+      '6': '.aresta.BoundingRetangulo',
       '9': 0,
-      '10': 'box'
+      '10': 'retangulo'
     },
     {
       '1': 'area_livre',
@@ -906,19 +915,21 @@ final $typed_data.Uint8List mapaDescriptor = $convert.base64Decode(
     'byBNYXBhUgtsYXJndXJhTWFwYRIzCgthbHR1cmFfbWFwYRgDIAEoBUISkrUYDkFsdHVyYSBkby'
     'BNYXBhUgphbHR1cmFNYXBhEk0KE3BvbnRvc19kZV9pbnRlcmVzc2UYBCADKAsyHS5hcmVzdGEu'
     'TWFwYS5Qb250b0RlSW50ZXJlc3NlUhFwb250b3NEZUludGVyZXNzZRI5CgtyZWZlcmVuY2lhcx'
-    'gGIAMoCzIXLmFyZXN0YS5NYXBhLlJlZmVyZW5jaWFSC3JlZmVyZW5jaWFzGvkBChBQb250b0Rl'
+    'gGIAMoCzIXLmFyZXN0YS5NYXBhLlJlZmVyZW5jaWFSC3JlZmVyZW5jaWFzGsMCChBQb250b0Rl'
     'SW50ZXJlc3NlEg4KAmlkGAEgASgJUgJpZBIUCgVsYWJlbBgCIAEoCVIFbGFiZWwSNgoIY2lyY3'
-    'VsYXIYBiABKAsyGC5hcmVzdGEuQm91bmRpbmdDaXJjdWxhckgAUghjaXJjdWxhchInCgNib3gY'
-    'AyABKAsyEy5hcmVzdGEuQm91bmRpbmdCb3hIAFIDYm94EksKCmFyZWFfbGl2cmUYByABKAsyGS'
-    '5hcmVzdGEuQm91bmRpbmdBcmVhTGl2cmVCD5K1GAvDgXJlYSBMaXZyZUgAUglhcmVhTGl2cmU6'
-    'BJC1GAJCCwoJdGlwb19hcmVhGqoBCg5BanVzdGVEZUNhbWVyYRIkCg5mb2NvX2lkX2luZGljZR'
-    'gBIAEoBVIMZm9jb0lkSW5kaWNlEikKEHBvc2ljYW9fdmVydGljYWwYAiABKAVSD3Bvc2ljYW9W'
-    'ZXJ0aWNhbBItChJwb3NpY2FvX2hvcml6b250YWwYAyABKAVSEXBvc2ljYW9Ib3Jpem9udGFsEh'
-    'IKBHpvb20YBCABKAJSBHpvb206BJC1GAIa3QEKClJlZmVyZW5jaWESEAoDaWRzGAEgAygJUgNp'
-    'ZHMSFAoFZ3J1cG8YAiABKAlSBWdydXBvEhQKBXNldG9yGAMgASgJUgVzZXRvchIaCghlc2NhbG'
-    'FkYRgEIAEoCVIIZXNjYWxhZGESKAoQaW5kaWNlX21hcGFfYWx2bxgFIAEoBVIOaW5kaWNlTWFw'
-    'YUFsdm8SRQoQYWp1c3RlX2RlX2NhbWVyYRgGIAEoCzIbLmFyZXN0YS5NYXBhLkFqdXN0ZURlQ2'
-    'FtZXJhUg5hanVzdGVEZUNhbWVyYToEkLUYAjoEkLUYBkoECAUQBg==');
+    'VsYXIYBiABKAsyGC5hcmVzdGEuQm91bmRpbmdDaXJjdWxhckgAUghjaXJjdWxhchI2CghxdWFk'
+    'cmFkbxgIIAEoCzIYLmFyZXN0YS5Cb3VuZGluZ1F1YWRyYWRvSABSCHF1YWRyYWRvEjkKCXJldG'
+    'FuZ3VsbxgDIAEoCzIZLmFyZXN0YS5Cb3VuZGluZ1JldGFuZ3Vsb0gAUglyZXRhbmd1bG8SSwoK'
+    'YXJlYV9saXZyZRgHIAEoCzIZLmFyZXN0YS5Cb3VuZGluZ0FyZWFMaXZyZUIPkrUYC8OBcmVhIE'
+    'xpdnJlSABSCWFyZWFMaXZyZToEkLUYAkILCgl0aXBvX2FyZWEaqgEKDkFqdXN0ZURlQ2FtZXJh'
+    'EiQKDmZvY29faWRfaW5kaWNlGAEgASgFUgxmb2NvSWRJbmRpY2USKQoQcG9zaWNhb192ZXJ0aW'
+    'NhbBgCIAEoBVIPcG9zaWNhb1ZlcnRpY2FsEi0KEnBvc2ljYW9faG9yaXpvbnRhbBgDIAEoBVIR'
+    'cG9zaWNhb0hvcml6b250YWwSEgoEem9vbRgEIAEoAlIEem9vbToEkLUYAhrdAQoKUmVmZXJlbm'
+    'NpYRIQCgNpZHMYASADKAlSA2lkcxIUCgVncnVwbxgCIAEoCVIFZ3J1cG8SFAoFc2V0b3IYAyAB'
+    'KAlSBXNldG9yEhoKCGVzY2FsYWRhGAQgASgJUghlc2NhbGFkYRIoChBpbmRpY2VfbWFwYV9hbH'
+    'ZvGAUgASgFUg5pbmRpY2VNYXBhQWx2bxJFChBhanVzdGVfZGVfY2FtZXJhGAYgASgLMhsuYXJl'
+    'c3RhLk1hcGEuQWp1c3RlRGVDYW1lcmFSDmFqdXN0ZURlQ2FtZXJhOgSQtRgCOgSQtRgGSgQIBR'
+    'AG');
 
 @$core.Deprecated('Use boundingCircularDescriptor instead')
 const BoundingCircular$json = {
@@ -936,9 +947,25 @@ final $typed_data.Uint8List boundingCircularDescriptor = $convert.base64Decode(
     'ChBCb3VuZGluZ0NpcmN1bGFyEgwKAXgYASABKAVSAXgSDAoBeRgCIAEoBVIBeRISCgRyYWlvGA'
     'MgASgFUgRyYWlvOgSQtRgC');
 
-@$core.Deprecated('Use boundingBoxDescriptor instead')
-const BoundingBox$json = {
-  '1': 'BoundingBox',
+@$core.Deprecated('Use boundingQuadradoDescriptor instead')
+const BoundingQuadrado$json = {
+  '1': 'BoundingQuadrado',
+  '2': [
+    {'1': 'x', '3': 1, '4': 1, '5': 5, '10': 'x'},
+    {'1': 'y', '3': 2, '4': 1, '5': 5, '10': 'y'},
+    {'1': 'lado', '3': 3, '4': 1, '5': 5, '10': 'lado'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `BoundingQuadrado`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List boundingQuadradoDescriptor = $convert.base64Decode(
+    'ChBCb3VuZGluZ1F1YWRyYWRvEgwKAXgYASABKAVSAXgSDAoBeRgCIAEoBVIBeRISCgRsYWRvGA'
+    'MgASgFUgRsYWRvOgSQtRgC');
+
+@$core.Deprecated('Use boundingRetanguloDescriptor instead')
+const BoundingRetangulo$json = {
+  '1': 'BoundingRetangulo',
   '2': [
     {'1': 'x', '3': 1, '4': 1, '5': 5, '10': 'x'},
     {'1': 'y', '3': 2, '4': 1, '5': 5, '10': 'y'},
@@ -960,12 +987,12 @@ const BoundingBox$json = {
   ],
 };
 
-/// Descriptor for `BoundingBox`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List boundingBoxDescriptor = $convert.base64Decode(
-    'CgtCb3VuZGluZ0JveBIMCgF4GAEgASgFUgF4EgwKAXkYAiABKAVSAXkSIAoLY29tcHJpbWVudG'
-    '8YBSABKAVSC2NvbXByaW1lbnRvEhgKB2xhcmd1cmEYBiABKAVSB2xhcmd1cmESRQoRYW5ndWxv'
-    'X2dyYXVzX3gxMDAYByABKBFCGZK1GBXDgm5ndWxvIChncmF1cyAqIDEwMClSD2FuZ3Vsb0dyYX'
-    'VzWDEwMDoEkLUYAkoECAMQBEoECAQQBQ==');
+/// Descriptor for `BoundingRetangulo`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List boundingRetanguloDescriptor = $convert.base64Decode(
+    'ChFCb3VuZGluZ1JldGFuZ3VsbxIMCgF4GAEgASgFUgF4EgwKAXkYAiABKAVSAXkSIAoLY29tcH'
+    'JpbWVudG8YBSABKAVSC2NvbXByaW1lbnRvEhgKB2xhcmd1cmEYBiABKAVSB2xhcmd1cmESRQoR'
+    'YW5ndWxvX2dyYXVzX3gxMDAYByABKBFCGZK1GBXDgm5ndWxvIChncmF1cyAqIDEwMClSD2FuZ3'
+    'Vsb0dyYXVzWDEwMDoEkLUYAkoECAMQBEoECAQQBQ==');
 
 @$core.Deprecated('Use boundingAreaLivreDescriptor instead')
 const BoundingAreaLivre$json = {
