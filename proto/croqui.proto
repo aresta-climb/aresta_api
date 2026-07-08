@@ -477,20 +477,19 @@ message Mapa {
 
     // Bounding area do ponto de interesse na imagem.
     // Prefira usar na seguinte ordem de preferência:
-    //  - 'circular': mais preciso e simples, use sempre que possível.
-    //  - 'quadrado': use se precisar de uma área perfeitamente 1:1 (ícones, números).
-    //  - 'retangulo': use apenas caso precisar representar uma área retangular alongada,
-    //      que não é possível representar bem com círculos ou quadrados. Aceita angulação.
-    //  - 'area_livre': última opção, use apenas se não for possível usar as outras.
+    //  - 'circulo': mais preciso e simples, use sempre que possível.
+    //  - 'quadrado': formas simétricas não circulares.
+    //  - 'retangulo': use apenas caso precisar representar uma área retangular. Aceita também angulação.
+    //  - 'poligono': última opção, use apenas se não for possível usar as outras.
     oneof tipo_area {
       // Bounding area circular.
-      BoundingCircular circular = 6;
-      // Bounding quadrado.
+      BoundingCirculo circulo = 6;
+      // Bounding box quadrada.
       BoundingQuadrado quadrado = 8;
       // Bounding box retangular, angulação opcional.
       BoundingRetangulo retangulo = 3;
-      // Bounding area livre.
-      BoundingAreaLivre area_livre = 7 [(aresta.texto_na_ui) = "Área Livre"];
+      // Bounding area livre poligonal.
+      BoundingPoligono poligono = 7 [(aresta.texto_na_ui) = "Área Livre"];
     }
   }
 
@@ -557,8 +556,8 @@ message Mapa {
   reserved 5;
 }
 
-// Circulo de enquadramento / bounding area circula rde parte da imagem.
-message BoundingCircular {
+// Circulo de enquadramento / bounding area circular de parte da imagem.
+message BoundingCirculo {
   option (aresta.mensagem_formato_na_ui) = INLINE;
 
   // Coordenadas (x, y) do centro do círculo em pixels.
@@ -597,17 +596,13 @@ message BoundingRetangulo {
   int32 largura = 6;
 
   // Ângulo em graus * 10^2 (sentido horário, relativo ao eixo horizontal).
-  // Isso permite armazenar até 2 casas decimais de precisão angular em inteiros.
-  // Se não especificado, assume-se 0.
   sint32 angulo_graus_x100 = 7 [(aresta.texto_na_ui) = "Ângulo (graus * 100)"];
 
   reserved 3, 4;
 }
 
-// Área de enquadramento livre pra parte da imagem.
-// Definido pela posição dos cantos da área de bounding box, que formam
-// um polígono. Os cantos devem ser consecutivos.
-message BoundingAreaLivre {
+// Área de enquadramento livre poligonal para parte da imagem.
+message BoundingPoligono {
   option (aresta.mensagem_formato_na_ui) = INLINE;
 
   // Coordenadas dos pontos que formam a área, na ordem.

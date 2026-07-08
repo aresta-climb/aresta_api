@@ -1686,8 +1686,8 @@ class Setor extends $pb.GeneratedMessage {
 
 enum Mapa_PontoDeInteresse_TipoArea {
   retangulo,
-  circular,
-  areaLivre,
+  circulo,
+  poligono,
   quadrado,
   notSet
 }
@@ -1698,16 +1698,16 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     $core.String? id,
     $core.String? label,
     BoundingRetangulo? retangulo,
-    BoundingCircular? circular,
-    BoundingAreaLivre? areaLivre,
+    BoundingCirculo? circulo,
+    BoundingPoligono? poligono,
     BoundingQuadrado? quadrado,
   }) {
     final result = create();
     if (id != null) result.id = id;
     if (label != null) result.label = label;
     if (retangulo != null) result.retangulo = retangulo;
-    if (circular != null) result.circular = circular;
-    if (areaLivre != null) result.areaLivre = areaLivre;
+    if (circulo != null) result.circulo = circulo;
+    if (poligono != null) result.poligono = poligono;
     if (quadrado != null) result.quadrado = quadrado;
     return result;
   }
@@ -1724,8 +1724,8 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, Mapa_PontoDeInteresse_TipoArea>
       _Mapa_PontoDeInteresse_TipoAreaByTag = {
     3: Mapa_PontoDeInteresse_TipoArea.retangulo,
-    6: Mapa_PontoDeInteresse_TipoArea.circular,
-    7: Mapa_PontoDeInteresse_TipoArea.areaLivre,
+    6: Mapa_PontoDeInteresse_TipoArea.circulo,
+    7: Mapa_PontoDeInteresse_TipoArea.poligono,
     8: Mapa_PontoDeInteresse_TipoArea.quadrado,
     0: Mapa_PontoDeInteresse_TipoArea.notSet
   };
@@ -1738,10 +1738,10 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'label')
     ..aOM<BoundingRetangulo>(3, _omitFieldNames ? '' : 'retangulo',
         subBuilder: BoundingRetangulo.create)
-    ..aOM<BoundingCircular>(6, _omitFieldNames ? '' : 'circular',
-        subBuilder: BoundingCircular.create)
-    ..aOM<BoundingAreaLivre>(7, _omitFieldNames ? '' : 'areaLivre',
-        subBuilder: BoundingAreaLivre.create)
+    ..aOM<BoundingCirculo>(6, _omitFieldNames ? '' : 'circulo',
+        subBuilder: BoundingCirculo.create)
+    ..aOM<BoundingPoligono>(7, _omitFieldNames ? '' : 'poligono',
+        subBuilder: BoundingPoligono.create)
     ..aOM<BoundingQuadrado>(8, _omitFieldNames ? '' : 'quadrado',
         subBuilder: BoundingQuadrado.create)
     ..hasRequiredFields = false;
@@ -1812,29 +1812,29 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
 
   /// Bounding area circular.
   @$pb.TagNumber(6)
-  BoundingCircular get circular => $_getN(3);
+  BoundingCirculo get circulo => $_getN(3);
   @$pb.TagNumber(6)
-  set circular(BoundingCircular value) => $_setField(6, value);
+  set circulo(BoundingCirculo value) => $_setField(6, value);
   @$pb.TagNumber(6)
-  $core.bool hasCircular() => $_has(3);
+  $core.bool hasCirculo() => $_has(3);
   @$pb.TagNumber(6)
-  void clearCircular() => $_clearField(6);
+  void clearCirculo() => $_clearField(6);
   @$pb.TagNumber(6)
-  BoundingCircular ensureCircular() => $_ensure(3);
+  BoundingCirculo ensureCirculo() => $_ensure(3);
 
-  /// Bounding area livre.
+  /// Bounding area livre poligonal.
   @$pb.TagNumber(7)
-  BoundingAreaLivre get areaLivre => $_getN(4);
+  BoundingPoligono get poligono => $_getN(4);
   @$pb.TagNumber(7)
-  set areaLivre(BoundingAreaLivre value) => $_setField(7, value);
+  set poligono(BoundingPoligono value) => $_setField(7, value);
   @$pb.TagNumber(7)
-  $core.bool hasAreaLivre() => $_has(4);
+  $core.bool hasPoligono() => $_has(4);
   @$pb.TagNumber(7)
-  void clearAreaLivre() => $_clearField(7);
+  void clearPoligono() => $_clearField(7);
   @$pb.TagNumber(7)
-  BoundingAreaLivre ensureAreaLivre() => $_ensure(4);
+  BoundingPoligono ensurePoligono() => $_ensure(4);
 
-  /// Bounding quadrado.
+  /// Bounding box quadrada.
   @$pb.TagNumber(8)
   BoundingQuadrado get quadrado => $_getN(5);
   @$pb.TagNumber(8)
@@ -2172,9 +2172,9 @@ class Mapa extends $pb.GeneratedMessage {
   $pb.PbList<Mapa_Referencia> get referencias => $_getList(4);
 }
 
-/// Circulo de enquadramento / bounding area circula rde parte da imagem.
-class BoundingCircular extends $pb.GeneratedMessage {
-  factory BoundingCircular({
+/// Circulo de enquadramento / bounding area circular de parte da imagem.
+class BoundingCirculo extends $pb.GeneratedMessage {
+  factory BoundingCirculo({
     $core.int? x,
     $core.int? y,
     $core.int? raio,
@@ -2186,17 +2186,17 @@ class BoundingCircular extends $pb.GeneratedMessage {
     return result;
   }
 
-  BoundingCircular._();
+  BoundingCirculo._();
 
-  factory BoundingCircular.fromBuffer($core.List<$core.int> data,
+  factory BoundingCirculo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory BoundingCircular.fromJson($core.String json,
+  factory BoundingCirculo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BoundingCircular',
+      _omitMessageNames ? '' : 'BoundingCirculo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'x')
@@ -2205,23 +2205,23 @@ class BoundingCircular extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingCircular clone() => deepCopy();
+  BoundingCirculo clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingCircular copyWith(void Function(BoundingCircular) updates) =>
-      super.copyWith((message) => updates(message as BoundingCircular))
-          as BoundingCircular;
+  BoundingCirculo copyWith(void Function(BoundingCirculo) updates) =>
+      super.copyWith((message) => updates(message as BoundingCirculo))
+          as BoundingCirculo;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static BoundingCircular create() => BoundingCircular._();
+  static BoundingCirculo create() => BoundingCirculo._();
   @$core.override
-  BoundingCircular createEmptyInstance() => create();
+  BoundingCirculo createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static BoundingCircular getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingCircular>(create);
-  static BoundingCircular? _defaultInstance;
+  static BoundingCirculo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BoundingCirculo>(create);
+  static BoundingCirculo? _defaultInstance;
 
   /// Coordenadas (x, y) do centro do círculo em pixels.
   @$pb.TagNumber(1)
@@ -2434,8 +2434,6 @@ class BoundingRetangulo extends $pb.GeneratedMessage {
   void clearLargura() => $_clearField(6);
 
   /// Ângulo em graus * 10^2 (sentido horário, relativo ao eixo horizontal).
-  /// Isso permite armazenar até 2 casas decimais de precisão angular em inteiros.
-  /// Se não especificado, assume-se 0.
   @$pb.TagNumber(7)
   $core.int get anguloGrausX100 => $_getIZ(4);
   @$pb.TagNumber(7)
@@ -2446,11 +2444,9 @@ class BoundingRetangulo extends $pb.GeneratedMessage {
   void clearAnguloGrausX100() => $_clearField(7);
 }
 
-/// Área de enquadramento livre pra parte da imagem.
-/// Definido pela posição dos cantos da área de bounding box, que formam
-/// um polígono. Os cantos devem ser consecutivos.
-class BoundingAreaLivre extends $pb.GeneratedMessage {
-  factory BoundingAreaLivre({
+/// Área de enquadramento livre poligonal para parte da imagem.
+class BoundingPoligono extends $pb.GeneratedMessage {
+  factory BoundingPoligono({
     $core.Iterable<$core.int>? coordenadas,
   }) {
     final result = create();
@@ -2458,40 +2454,40 @@ class BoundingAreaLivre extends $pb.GeneratedMessage {
     return result;
   }
 
-  BoundingAreaLivre._();
+  BoundingPoligono._();
 
-  factory BoundingAreaLivre.fromBuffer($core.List<$core.int> data,
+  factory BoundingPoligono.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory BoundingAreaLivre.fromJson($core.String json,
+  factory BoundingPoligono.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BoundingAreaLivre',
+      _omitMessageNames ? '' : 'BoundingPoligono',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..p<$core.int>(1, _omitFieldNames ? '' : 'coordenadas', $pb.PbFieldType.K3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingAreaLivre clone() => deepCopy();
+  BoundingPoligono clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BoundingAreaLivre copyWith(void Function(BoundingAreaLivre) updates) =>
-      super.copyWith((message) => updates(message as BoundingAreaLivre))
-          as BoundingAreaLivre;
+  BoundingPoligono copyWith(void Function(BoundingPoligono) updates) =>
+      super.copyWith((message) => updates(message as BoundingPoligono))
+          as BoundingPoligono;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static BoundingAreaLivre create() => BoundingAreaLivre._();
+  static BoundingPoligono create() => BoundingPoligono._();
   @$core.override
-  BoundingAreaLivre createEmptyInstance() => create();
+  BoundingPoligono createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static BoundingAreaLivre getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingAreaLivre>(create);
-  static BoundingAreaLivre? _defaultInstance;
+  static BoundingPoligono getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BoundingPoligono>(create);
+  static BoundingPoligono? _defaultInstance;
 
   /// Coordenadas dos pontos que formam a área, na ordem.
   /// x1, y1, x2, y2, x3, y3, x4, y4, etc...
