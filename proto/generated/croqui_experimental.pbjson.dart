@@ -38,6 +38,21 @@ const CroquiExperimental$json = {
     },
     {'1': 'resumo_edicao', '3': 4, '4': 1, '5': 9, '10': 'resumoEdicao'},
     {'1': 'id_original', '3': 5, '4': 1, '5': 9, '10': 'idOriginal'},
+    {'1': 'pull_request_url', '3': 6, '4': 1, '5': 9, '10': 'pullRequestUrl'},
+    {
+      '1': 'pull_request_branch',
+      '3': 7,
+      '4': 1,
+      '5': 9,
+      '10': 'pullRequestBranch'
+    },
+    {
+      '1': 'pull_request_fork_owner',
+      '3': 8,
+      '4': 1,
+      '5': 9,
+      '10': 'pullRequestForkOwner'
+    },
   ],
 };
 
@@ -47,4 +62,7 @@ final $typed_data.Uint8List croquiExperimentalDescriptor = $convert.base64Decode
     'NyaWFjYW8YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtkYXRhQ3JpYWNhbxI/'
     'Cg11bHRpbWFfZWRpY2FvGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMdWx0aW'
     '1hRWRpY2FvEiMKDXJlc3Vtb19lZGljYW8YBCABKAlSDHJlc3Vtb0VkaWNhbxIfCgtpZF9vcmln'
-    'aW5hbBgFIAEoCVIKaWRPcmlnaW5hbA==');
+    'aW5hbBgFIAEoCVIKaWRPcmlnaW5hbBIoChBwdWxsX3JlcXVlc3RfdXJsGAYgASgJUg5wdWxsUm'
+    'VxdWVzdFVybBIuChNwdWxsX3JlcXVlc3RfYnJhbmNoGAcgASgJUhFwdWxsUmVxdWVzdEJyYW5j'
+    'aBI1ChdwdWxsX3JlcXVlc3RfZm9ya19vd25lchgIIAEoCVIUcHVsbFJlcXVlc3RGb3JrT3duZX'
+    'I=');

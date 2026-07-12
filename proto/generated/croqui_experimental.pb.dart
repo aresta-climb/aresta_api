@@ -26,6 +26,9 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $0.Timestamp? ultimaEdicao,
     $core.String? resumoEdicao,
     $core.String? idOriginal,
+    $core.String? pullRequestUrl,
+    $core.String? pullRequestBranch,
+    $core.String? pullRequestForkOwner,
   }) {
     final result = create();
     if (autores != null) result.autores.addAll(autores);
@@ -33,6 +36,10 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     if (ultimaEdicao != null) result.ultimaEdicao = ultimaEdicao;
     if (resumoEdicao != null) result.resumoEdicao = resumoEdicao;
     if (idOriginal != null) result.idOriginal = idOriginal;
+    if (pullRequestUrl != null) result.pullRequestUrl = pullRequestUrl;
+    if (pullRequestBranch != null) result.pullRequestBranch = pullRequestBranch;
+    if (pullRequestForkOwner != null)
+      result.pullRequestForkOwner = pullRequestForkOwner;
     return result;
   }
 
@@ -56,6 +63,9 @@ class CroquiExperimental extends $pb.GeneratedMessage {
         subBuilder: $0.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'resumoEdicao')
     ..aOS(5, _omitFieldNames ? '' : 'idOriginal')
+    ..aOS(6, _omitFieldNames ? '' : 'pullRequestUrl')
+    ..aOS(7, _omitFieldNames ? '' : 'pullRequestBranch')
+    ..aOS(8, _omitFieldNames ? '' : 'pullRequestForkOwner')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -127,6 +137,36 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   $core.bool hasIdOriginal() => $_has(4);
   @$pb.TagNumber(5)
   void clearIdOriginal() => $_clearField(5);
+
+  /// URL do pull request no GitHub, se este croqui já possuir um associado.
+  @$pb.TagNumber(6)
+  $core.String get pullRequestUrl => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set pullRequestUrl($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasPullRequestUrl() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearPullRequestUrl() => $_clearField(6);
+
+  /// Nome da branch no fork do usuário onde este croqui está sendo editado.
+  @$pb.TagNumber(7)
+  $core.String get pullRequestBranch => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set pullRequestBranch($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasPullRequestBranch() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearPullRequestBranch() => $_clearField(7);
+
+  /// Nome de usuário (login) do proprietário do fork onde a branch reside.
+  @$pb.TagNumber(8)
+  $core.String get pullRequestForkOwner => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set pullRequestForkOwner($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasPullRequestForkOwner() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearPullRequestForkOwner() => $_clearField(8);
 }
 
 const $core.bool _omitFieldNames =

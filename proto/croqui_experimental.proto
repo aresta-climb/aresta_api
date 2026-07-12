@@ -30,4 +30,13 @@ message CroquiExperimental {
   // ID original do croqui antes de qualquer renomeação.
   // Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
   string id_original = 5;
+
+  // URL do pull request no GitHub, se este croqui já possuir um associado.
+  string pull_request_url = 6;
+
+  // Nome da branch no fork do usuário onde este croqui está sendo editado.
+  string pull_request_branch = 7;
+
+  // Nome de usuário (login) do proprietário do fork onde a branch reside.
+  string pull_request_fork_owner = 8;
 }
