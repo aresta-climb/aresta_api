@@ -18,6 +18,18 @@ message Indice {
     reserved url_base;
 }
 
+// Pré-computados para acesso rápido a estatísticas do croqui no índice.
+message PrecomputadosResumoCroqui {
+    // Soma total de escaladas em todos os picos do croqui.
+    int32 total_escaladas = 1;
+
+    // Número total de setores no croqui.
+    int32 total_setores = 2;
+
+    // Número total de grupos no croqui.
+    int32 total_grupos = 3;
+}
+
 // Resumo de um croqui que está disponível para o índice.
 message ResumoCroqui {
     // Identificador único do croqui.
@@ -48,6 +60,9 @@ message ResumoCroqui {
 
     // Coordenada principal do croqui (baseada no estacionamento do primeiro pico).
     Coordenada localizacao = 10;
+
+    // Estatísticas pré-computadas agregando todos os picos do croqui.
+    PrecomputadosResumoCroqui precomputados = 11;
 
     reserved 4, 7;
     reserved data_update, nome_arquivo;

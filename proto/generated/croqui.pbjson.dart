@@ -355,6 +355,51 @@ final $typed_data.Uint8List arquivoMarkdownDescriptor = $convert.base64Decode(
     'cuYXJlc3RhLkFycXVpdm9NYXJrZG93bhjoByABKAsyIC5hcmVzdGEuTWV0YWRhZG9zQXJxdWl2'
     'b05vRWRpdG9yUhNleHRNZXRhZGFkb3NBcnF1aXZvOgSQtRgFQgkKB2FycXVpdm9KBAgBEAI=');
 
+@$core.Deprecated('Use precomputadosSetorDescriptor instead')
+const PrecomputadosSetor$json = {
+  '1': 'PrecomputadosSetor',
+  '2': [
+    {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `PrecomputadosSetor`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List precomputadosSetorDescriptor = $convert.base64Decode(
+    'ChJQcmVjb21wdXRhZG9zU2V0b3ISJwoPdG90YWxfZXNjYWxhZGFzGAEgASgFUg50b3RhbEVzY2'
+    'FsYWRhczoEkLUYBA==');
+
+@$core.Deprecated('Use precomputadosGrupoDescriptor instead')
+const PrecomputadosGrupo$json = {
+  '1': 'PrecomputadosGrupo',
+  '2': [
+    {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `PrecomputadosGrupo`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List precomputadosGrupoDescriptor = $convert.base64Decode(
+    'ChJQcmVjb21wdXRhZG9zR3J1cG8SJwoPdG90YWxfZXNjYWxhZGFzGAEgASgFUg50b3RhbEVzY2'
+    'FsYWRhczoEkLUYBA==');
+
+@$core.Deprecated('Use precomputadosPicoDescriptor instead')
+const PrecomputadosPico$json = {
+  '1': 'PrecomputadosPico',
+  '2': [
+    {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+    {'1': 'total_setores', '3': 2, '4': 1, '5': 5, '10': 'totalSetores'},
+    {'1': 'total_grupos', '3': 3, '4': 1, '5': 5, '10': 'totalGrupos'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `PrecomputadosPico`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List precomputadosPicoDescriptor = $convert.base64Decode(
+    'ChFQcmVjb21wdXRhZG9zUGljbxInCg90b3RhbF9lc2NhbGFkYXMYASABKAVSDnRvdGFsRXNjYW'
+    'xhZGFzEiMKDXRvdGFsX3NldG9yZXMYAiABKAVSDHRvdGFsU2V0b3JlcxIhCgx0b3RhbF9ncnVw'
+    'b3MYAyABKAVSC3RvdGFsR3J1cG9zOgSQtRgE');
+
 @$core.Deprecated('Use picoDescriptor instead')
 const Pico$json = {
   '1': 'Pico',
@@ -420,6 +465,15 @@ const Pico$json = {
       '8': {},
       '10': 'mapasGerais'
     },
+    {
+      '1': 'precomputados',
+      '3': 13,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.PrecomputadosPico',
+      '8': {},
+      '10': 'precomputados'
+    },
   ],
   '7': {},
   '9': [
@@ -440,7 +494,8 @@ final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'UGF0cm9jaW5hZG9yUg5wYXRyb2NpbmFkb3JlcxJAChFzZXRvcmVzX291X2dydXBvcxgLIAMoCz'
     'IULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydXBvcxJJCgxtYXBhc19nZXJhaXMY'
     'DCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFwYXMgR2VyYWlzUgttYXBhc0dlcm'
-    'FpczoEkLUYAUoECAoQCw==');
+    'FpcxJFCg1wcmVjb21wdXRhZG9zGA0gASgLMhkuYXJlc3RhLlByZWNvbXB1dGFkb3NQaWNvQgSw'
+    'tRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIChAL');
 
 @$core.Deprecated('Use colecaoDeMapasDescriptor instead')
 const ColecaoDeMapas$json = {
@@ -665,6 +720,15 @@ const Grupo$json = {
       '8': {},
       '10': 'indiceMapaPadrao'
     },
+    {
+      '1': 'precomputados',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.PrecomputadosGrupo',
+      '8': {},
+      '10': 'precomputados'
+    },
   ],
   '7': {},
 };
@@ -679,7 +743,8 @@ final $typed_data.Uint8List grupoDescriptor = $convert.base64Decode(
     'RhUhNsb2NhbGl6YWNhb0VzY2FsYWRhEiIKBW1hcGFzGAMgAygLMgwuYXJlc3RhLk1hcGFSBW1h'
     'cGFzEi4KB3NldG9yZXMYBCADKAsyFC5hcmVzdGEuQXJxdWl2b1NldG9yUgdzZXRvcmVzEkkKEm'
     'luZGljZV9tYXBhX3BhZHJhbxgIIAEoBUIbkrUYF8ONbmRpY2UgZG8gTWFwYSBQYWRyw6NvUhBp'
-    'bmRpY2VNYXBhUGFkcmFvOgSQtRgB');
+    'bmRpY2VNYXBhUGFkcmFvEkYKDXByZWNvbXB1dGFkb3MYCSABKAsyGi5hcmVzdGEuUHJlY29tcH'
+    'V0YWRvc0dydXBvQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgB');
 
 @$core.Deprecated('Use setorDescriptor instead')
 const Setor$json = {
@@ -754,6 +819,15 @@ const Setor$json = {
       '8': {},
       '10': 'indiceMapaPadrao'
     },
+    {
+      '1': 'precomputados',
+      '3': 15,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.PrecomputadosSetor',
+      '8': {},
+      '10': 'precomputados'
+    },
   ],
   '7': {},
   '9': [
@@ -775,7 +849,8 @@ final $typed_data.Uint8List setorDescriptor = $convert.base64Decode(
     'Rlc2NyacOnw6NvqLUYAVIJZGVzY3JpY2FvEiIKBW1hcGFzGA0gAygLMgwuYXJlc3RhLk1hcGFS'
     'BW1hcGFzEi4KCWVzY2FsYWRhcxgLIAMoCzIQLmFyZXN0YS5Fc2NhbGFkYVIJZXNjYWxhZGFzEk'
     'kKEmluZGljZV9tYXBhX3BhZHJhbxgOIAEoBUIbkrUYF8ONbmRpY2UgZG8gTWFwYSBQYWRyw6Nv'
-    'UhBpbmRpY2VNYXBhUGFkcmFvOgSQtRgBSgQIDBAN');
+    'UhBpbmRpY2VNYXBhUGFkcmFvEkYKDXByZWNvbXB1dGFkb3MYDyABKAsyGi5hcmVzdGEuUHJlY2'
+    '9tcHV0YWRvc1NldG9yQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIDBAN');
 
 @$core.Deprecated('Use mapaDescriptor instead')
 const Mapa$json = {

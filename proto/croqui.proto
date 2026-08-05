@@ -266,6 +266,36 @@ message ArquivoMarkdown {
   }
 }
 
+// Pré-computados para um Setor.
+message PrecomputadosSetor {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Soma total de todas as escaladas neste setor.
+  int32 total_escaladas = 1;
+}
+
+// Pré-computados para um Grupo.
+message PrecomputadosGrupo {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Soma total de todas as escaladas em todos os setores deste grupo.
+  int32 total_escaladas = 1;
+}
+
+// Pré-computados para o Pico.
+message PrecomputadosPico {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Soma total de todas as escaladas de todos os setores e grupos do pico.
+  int32 total_escaladas = 1;
+
+  // Número total de setores contidos neste pico (incluindo os que estão dentro de grupos).
+  int32 total_setores = 2;
+  
+  // Número total de grupos contidos neste pico.
+  int32 total_grupos = 3;
+}
+
 // Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
 message Pico {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
@@ -301,6 +331,9 @@ message Pico {
 
   // Mapas gerais do pico, como por exemplo mapas de acesso.
   ArquivoMapas mapas_gerais = 12 [(aresta.texto_na_ui) = "Mapas Gerais"];
+
+  // Estatísticas pré-computadas do pico, geradas na compilação.
+  PrecomputadosPico precomputados = 13 [(aresta.formato_na_ui) = INVISIVEL];
 
   reserved 10;
 }
@@ -393,6 +426,9 @@ message Grupo {
 
   // Índice do mapa a ser aberto por padrão ao pedir para visualizar este grupo no mapa.
   int32 indice_mapa_padrao = 8 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
+  
+  // Estatísticas pré-computadas do grupo, geradas na compilação.
+  PrecomputadosGrupo precomputados = 9 [(aresta.formato_na_ui) = INVISIVEL];
 }
 
 // Representa uma parede ou setor específico dentro de um Pico.
@@ -438,6 +474,9 @@ message Setor {
 
   // Índice do mapa a ser aberto por padrão ao pedir para visualizar este setor no mapa.
   int32 indice_mapa_padrao = 14 [(aresta.texto_na_ui) = "Índice do Mapa Padrão"];
+  
+  // Estatísticas pré-computadas do setor, geradas na compilação.
+  PrecomputadosSetor precomputados = 15 [(aresta.formato_na_ui) = INVISIVEL];
 }
 
 // Representa um mapa do setor.

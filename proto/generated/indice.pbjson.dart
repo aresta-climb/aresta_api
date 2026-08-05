@@ -39,6 +39,22 @@ final $typed_data.Uint8List indiceDescriptor = $convert.base64Decode(
     'CgZJbmRpY2USLgoHY3JvcXVpcxgCIAMoCzIULmFyZXN0YS5SZXN1bW9Dcm9xdWlSB2Nyb3F1aX'
     'NKBAgBEAJSCHVybF9iYXNl');
 
+@$core.Deprecated('Use precomputadosResumoCroquiDescriptor instead')
+const PrecomputadosResumoCroqui$json = {
+  '1': 'PrecomputadosResumoCroqui',
+  '2': [
+    {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+    {'1': 'total_setores', '3': 2, '4': 1, '5': 5, '10': 'totalSetores'},
+    {'1': 'total_grupos', '3': 3, '4': 1, '5': 5, '10': 'totalGrupos'},
+  ],
+};
+
+/// Descriptor for `PrecomputadosResumoCroqui`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List precomputadosResumoCroquiDescriptor = $convert.base64Decode(
+    'ChlQcmVjb21wdXRhZG9zUmVzdW1vQ3JvcXVpEicKD3RvdGFsX2VzY2FsYWRhcxgBIAEoBVIOdG'
+    '90YWxFc2NhbGFkYXMSIwoNdG90YWxfc2V0b3JlcxgCIAEoBVIMdG90YWxTZXRvcmVzEiEKDHRv'
+    'dGFsX2dydXBvcxgDIAEoBVILdG90YWxHcnVwb3M=');
+
 @$core.Deprecated('Use resumoCroquiDescriptor instead')
 const ResumoCroqui$json = {
   '1': 'ResumoCroqui',
@@ -77,6 +93,14 @@ const ResumoCroqui$json = {
       '6': '.aresta.Coordenada',
       '10': 'localizacao'
     },
+    {
+      '1': 'precomputados',
+      '3': 11,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.PrecomputadosResumoCroqui',
+      '10': 'precomputados'
+    },
   ],
   '9': [
     {'1': 4, '2': 5},
@@ -93,5 +117,6 @@ final $typed_data.Uint8List resumoCroquiDescriptor = $convert.base64Decode(
     'hhMjU2Q3JvcXVpEjoKGWNoZWNrc3VtX3NoYTI1Nl90aHVtYm5haWwYCCABKAlSF2NoZWNrc3Vt'
     'U2hhMjU2VGh1bWJuYWlsEkUKEHRpbWVzdGFtcF91cGRhdGUYCSABKAsyGi5nb29nbGUucHJvdG'
     '9idWYuVGltZXN0YW1wUg90aW1lc3RhbXBVcGRhdGUSNAoLbG9jYWxpemFjYW8YCiABKAsyEi5h'
-    'cmVzdGEuQ29vcmRlbmFkYVILbG9jYWxpemFjYW9KBAgEEAVKBAgHEAhSC2RhdGFfdXBkYXRlUg'
-    'xub21lX2FycXVpdm8=');
+    'cmVzdGEuQ29vcmRlbmFkYVILbG9jYWxpemFjYW8SRwoNcHJlY29tcHV0YWRvcxgLIAEoCzIhLm'
+    'FyZXN0YS5QcmVjb21wdXRhZG9zUmVzdW1vQ3JvcXVpUg1wcmVjb21wdXRhZG9zSgQIBBAFSgQI'
+    'BxAIUgtkYXRhX3VwZGF0ZVIMbm9tZV9hcnF1aXZv');

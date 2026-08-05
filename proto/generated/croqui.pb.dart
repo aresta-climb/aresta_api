@@ -776,6 +776,200 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
   void clearConteudo() => $_clearField(3);
 }
 
+/// Pré-computados para um Setor.
+class PrecomputadosSetor extends $pb.GeneratedMessage {
+  factory PrecomputadosSetor({
+    $core.int? totalEscaladas,
+  }) {
+    final result = create();
+    if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    return result;
+  }
+
+  PrecomputadosSetor._();
+
+  factory PrecomputadosSetor.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PrecomputadosSetor.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PrecomputadosSetor',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosSetor clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosSetor copyWith(void Function(PrecomputadosSetor) updates) =>
+      super.copyWith((message) => updates(message as PrecomputadosSetor))
+          as PrecomputadosSetor;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosSetor create() => PrecomputadosSetor._();
+  @$core.override
+  PrecomputadosSetor createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosSetor getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosSetor>(create);
+  static PrecomputadosSetor? _defaultInstance;
+
+  /// Soma total de todas as escaladas neste setor.
+  @$pb.TagNumber(1)
+  $core.int get totalEscaladas => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set totalEscaladas($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTotalEscaladas() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTotalEscaladas() => $_clearField(1);
+}
+
+/// Pré-computados para um Grupo.
+class PrecomputadosGrupo extends $pb.GeneratedMessage {
+  factory PrecomputadosGrupo({
+    $core.int? totalEscaladas,
+  }) {
+    final result = create();
+    if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    return result;
+  }
+
+  PrecomputadosGrupo._();
+
+  factory PrecomputadosGrupo.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PrecomputadosGrupo.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PrecomputadosGrupo',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosGrupo clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosGrupo copyWith(void Function(PrecomputadosGrupo) updates) =>
+      super.copyWith((message) => updates(message as PrecomputadosGrupo))
+          as PrecomputadosGrupo;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosGrupo create() => PrecomputadosGrupo._();
+  @$core.override
+  PrecomputadosGrupo createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosGrupo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosGrupo>(create);
+  static PrecomputadosGrupo? _defaultInstance;
+
+  /// Soma total de todas as escaladas em todos os setores deste grupo.
+  @$pb.TagNumber(1)
+  $core.int get totalEscaladas => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set totalEscaladas($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTotalEscaladas() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTotalEscaladas() => $_clearField(1);
+}
+
+/// Pré-computados para o Pico.
+class PrecomputadosPico extends $pb.GeneratedMessage {
+  factory PrecomputadosPico({
+    $core.int? totalEscaladas,
+    $core.int? totalSetores,
+    $core.int? totalGrupos,
+  }) {
+    final result = create();
+    if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    if (totalSetores != null) result.totalSetores = totalSetores;
+    if (totalGrupos != null) result.totalGrupos = totalGrupos;
+    return result;
+  }
+
+  PrecomputadosPico._();
+
+  factory PrecomputadosPico.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PrecomputadosPico.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PrecomputadosPico',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..aI(2, _omitFieldNames ? '' : 'totalSetores')
+    ..aI(3, _omitFieldNames ? '' : 'totalGrupos')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosPico clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosPico copyWith(void Function(PrecomputadosPico) updates) =>
+      super.copyWith((message) => updates(message as PrecomputadosPico))
+          as PrecomputadosPico;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosPico create() => PrecomputadosPico._();
+  @$core.override
+  PrecomputadosPico createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosPico getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosPico>(create);
+  static PrecomputadosPico? _defaultInstance;
+
+  /// Soma total de todas as escaladas de todos os setores e grupos do pico.
+  @$pb.TagNumber(1)
+  $core.int get totalEscaladas => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set totalEscaladas($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTotalEscaladas() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTotalEscaladas() => $_clearField(1);
+
+  /// Número total de setores contidos neste pico (incluindo os que estão dentro de grupos).
+  @$pb.TagNumber(2)
+  $core.int get totalSetores => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set totalSetores($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasTotalSetores() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTotalSetores() => $_clearField(2);
+
+  /// Número total de grupos contidos neste pico.
+  @$pb.TagNumber(3)
+  $core.int get totalGrupos => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set totalGrupos($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasTotalGrupos() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTotalGrupos() => $_clearField(3);
+}
+
 /// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
 class Pico extends $pb.GeneratedMessage {
   factory Pico({
@@ -790,6 +984,7 @@ class Pico extends $pb.GeneratedMessage {
     $core.Iterable<Patrocinador>? patrocinadores,
     $core.Iterable<SetorOuGrupo>? setoresOuGrupos,
     ArquivoMapas? mapasGerais,
+    PrecomputadosPico? precomputados,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -805,6 +1000,7 @@ class Pico extends $pb.GeneratedMessage {
     if (patrocinadores != null) result.patrocinadores.addAll(patrocinadores);
     if (setoresOuGrupos != null) result.setoresOuGrupos.addAll(setoresOuGrupos);
     if (mapasGerais != null) result.mapasGerais = mapasGerais;
+    if (precomputados != null) result.precomputados = precomputados;
     return result;
   }
 
@@ -835,7 +1031,9 @@ class Pico extends $pb.GeneratedMessage {
     ..pPM<SetorOuGrupo>(11, _omitFieldNames ? '' : 'setoresOuGrupos',
         subBuilder: SetorOuGrupo.create)
     ..aOM<ArquivoMapas>(12, _omitFieldNames ? '' : 'mapasGerais',
-        subBuilder: ArquivoMapas.create);
+        subBuilder: ArquivoMapas.create)
+    ..aOM<PrecomputadosPico>(13, _omitFieldNames ? '' : 'precomputados',
+        subBuilder: PrecomputadosPico.create);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -956,6 +1154,18 @@ class Pico extends $pb.GeneratedMessage {
   void clearMapasGerais() => $_clearField(12);
   @$pb.TagNumber(12)
   ArquivoMapas ensureMapasGerais() => $_ensure(10);
+
+  /// Estatísticas pré-computadas do pico, geradas na compilação.
+  @$pb.TagNumber(13)
+  PrecomputadosPico get precomputados => $_getN(11);
+  @$pb.TagNumber(13)
+  set precomputados(PrecomputadosPico value) => $_setField(13, value);
+  @$pb.TagNumber(13)
+  $core.bool hasPrecomputados() => $_has(11);
+  @$pb.TagNumber(13)
+  void clearPrecomputados() => $_clearField(13);
+  @$pb.TagNumber(13)
+  PrecomputadosPico ensurePrecomputados() => $_ensure(11);
 }
 
 /// Coleção de mapas para uso externo.
@@ -1386,6 +1596,7 @@ class Grupo extends $pb.GeneratedMessage {
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
     $core.int? indiceMapaPadrao,
+    PrecomputadosGrupo? precomputados,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -1397,6 +1608,7 @@ class Grupo extends $pb.GeneratedMessage {
     if (localizacaoEscalada != null)
       result.localizacaoEscalada = localizacaoEscalada;
     if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
+    if (precomputados != null) result.precomputados = precomputados;
     return result;
   }
 
@@ -1422,7 +1634,9 @@ class Grupo extends $pb.GeneratedMessage {
         subBuilder: Coordenada.create)
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
         subBuilder: Coordenada.create)
-    ..aI(8, _omitFieldNames ? '' : 'indiceMapaPadrao');
+    ..aI(8, _omitFieldNames ? '' : 'indiceMapaPadrao')
+    ..aOM<PrecomputadosGrupo>(9, _omitFieldNames ? '' : 'precomputados',
+        subBuilder: PrecomputadosGrupo.create);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Grupo clone() => deepCopy();
@@ -1503,6 +1717,18 @@ class Grupo extends $pb.GeneratedMessage {
   $core.bool hasIndiceMapaPadrao() => $_has(6);
   @$pb.TagNumber(8)
   void clearIndiceMapaPadrao() => $_clearField(8);
+
+  /// Estatísticas pré-computadas do grupo, geradas na compilação.
+  @$pb.TagNumber(9)
+  PrecomputadosGrupo get precomputados => $_getN(7);
+  @$pb.TagNumber(9)
+  set precomputados(PrecomputadosGrupo value) => $_setField(9, value);
+  @$pb.TagNumber(9)
+  $core.bool hasPrecomputados() => $_has(7);
+  @$pb.TagNumber(9)
+  void clearPrecomputados() => $_clearField(9);
+  @$pb.TagNumber(9)
+  PrecomputadosGrupo ensurePrecomputados() => $_ensure(7);
 }
 
 /// Representa uma parede ou setor específico dentro de um Pico.
@@ -1521,6 +1747,7 @@ class Setor extends $pb.GeneratedMessage {
     $core.Iterable<Escalada>? escaladas,
     $core.Iterable<Mapa>? mapas,
     $core.int? indiceMapaPadrao,
+    PrecomputadosSetor? precomputados,
   }) {
     final result = create();
     if (nome != null) result.nome = nome;
@@ -1536,6 +1763,7 @@ class Setor extends $pb.GeneratedMessage {
     if (escaladas != null) result.escaladas.addAll(escaladas);
     if (mapas != null) result.mapas.addAll(mapas);
     if (indiceMapaPadrao != null) result.indiceMapaPadrao = indiceMapaPadrao;
+    if (precomputados != null) result.precomputados = precomputados;
     return result;
   }
 
@@ -1567,6 +1795,8 @@ class Setor extends $pb.GeneratedMessage {
         subBuilder: Escalada.create)
     ..pPM<Mapa>(13, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
     ..aI(14, _omitFieldNames ? '' : 'indiceMapaPadrao')
+    ..aOM<PrecomputadosSetor>(15, _omitFieldNames ? '' : 'precomputados',
+        subBuilder: PrecomputadosSetor.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1682,6 +1912,18 @@ class Setor extends $pb.GeneratedMessage {
   $core.bool hasIndiceMapaPadrao() => $_has(10);
   @$pb.TagNumber(14)
   void clearIndiceMapaPadrao() => $_clearField(14);
+
+  /// Estatísticas pré-computadas do setor, geradas na compilação.
+  @$pb.TagNumber(15)
+  PrecomputadosSetor get precomputados => $_getN(11);
+  @$pb.TagNumber(15)
+  set precomputados(PrecomputadosSetor value) => $_setField(15, value);
+  @$pb.TagNumber(15)
+  $core.bool hasPrecomputados() => $_has(11);
+  @$pb.TagNumber(15)
+  void clearPrecomputados() => $_clearField(15);
+  @$pb.TagNumber(15)
+  PrecomputadosSetor ensurePrecomputados() => $_ensure(11);
 }
 
 enum Mapa_PontoDeInteresse_TipoArea {

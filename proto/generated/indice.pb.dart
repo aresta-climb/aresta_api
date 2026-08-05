@@ -71,6 +71,89 @@ class Indice extends $pb.GeneratedMessage {
   $pb.PbList<ResumoCroqui> get croquis => $_getList(0);
 }
 
+/// Pré-computados para acesso rápido a estatísticas do croqui no índice.
+class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
+  factory PrecomputadosResumoCroqui({
+    $core.int? totalEscaladas,
+    $core.int? totalSetores,
+    $core.int? totalGrupos,
+  }) {
+    final result = create();
+    if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    if (totalSetores != null) result.totalSetores = totalSetores;
+    if (totalGrupos != null) result.totalGrupos = totalGrupos;
+    return result;
+  }
+
+  PrecomputadosResumoCroqui._();
+
+  factory PrecomputadosResumoCroqui.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PrecomputadosResumoCroqui.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PrecomputadosResumoCroqui',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..aI(2, _omitFieldNames ? '' : 'totalSetores')
+    ..aI(3, _omitFieldNames ? '' : 'totalGrupos')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosResumoCroqui clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PrecomputadosResumoCroqui copyWith(
+          void Function(PrecomputadosResumoCroqui) updates) =>
+      super.copyWith((message) => updates(message as PrecomputadosResumoCroqui))
+          as PrecomputadosResumoCroqui;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosResumoCroqui create() => PrecomputadosResumoCroqui._();
+  @$core.override
+  PrecomputadosResumoCroqui createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PrecomputadosResumoCroqui getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosResumoCroqui>(create);
+  static PrecomputadosResumoCroqui? _defaultInstance;
+
+  /// Soma total de escaladas em todos os picos do croqui.
+  @$pb.TagNumber(1)
+  $core.int get totalEscaladas => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set totalEscaladas($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTotalEscaladas() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTotalEscaladas() => $_clearField(1);
+
+  /// Número total de setores no croqui.
+  @$pb.TagNumber(2)
+  $core.int get totalSetores => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set totalSetores($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasTotalSetores() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTotalSetores() => $_clearField(2);
+
+  /// Número total de grupos no croqui.
+  @$pb.TagNumber(3)
+  $core.int get totalGrupos => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set totalGrupos($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasTotalGrupos() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTotalGrupos() => $_clearField(3);
+}
+
 /// Resumo de um croqui que está disponível para o índice.
 class ResumoCroqui extends $pb.GeneratedMessage {
   factory ResumoCroqui({
@@ -82,6 +165,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     $core.String? checksumSha256Thumbnail,
     $0.Timestamp? timestampUpdate,
     $1.Coordenada? localizacao,
+    PrecomputadosResumoCroqui? precomputados,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -94,6 +178,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
       result.checksumSha256Thumbnail = checksumSha256Thumbnail;
     if (timestampUpdate != null) result.timestampUpdate = timestampUpdate;
     if (localizacao != null) result.localizacao = localizacao;
+    if (precomputados != null) result.precomputados = precomputados;
     return result;
   }
 
@@ -120,6 +205,8 @@ class ResumoCroqui extends $pb.GeneratedMessage {
         subBuilder: $0.Timestamp.create)
     ..aOM<$1.Coordenada>(10, _omitFieldNames ? '' : 'localizacao',
         subBuilder: $1.Coordenada.create)
+    ..aOM<PrecomputadosResumoCroqui>(11, _omitFieldNames ? '' : 'precomputados',
+        subBuilder: PrecomputadosResumoCroqui.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -229,6 +316,18 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   void clearLocalizacao() => $_clearField(10);
   @$pb.TagNumber(10)
   $1.Coordenada ensureLocalizacao() => $_ensure(7);
+
+  /// Estatísticas pré-computadas agregando todos os picos do croqui.
+  @$pb.TagNumber(11)
+  PrecomputadosResumoCroqui get precomputados => $_getN(8);
+  @$pb.TagNumber(11)
+  set precomputados(PrecomputadosResumoCroqui value) => $_setField(11, value);
+  @$pb.TagNumber(11)
+  $core.bool hasPrecomputados() => $_has(8);
+  @$pb.TagNumber(11)
+  void clearPrecomputados() => $_clearField(11);
+  @$pb.TagNumber(11)
+  PrecomputadosResumoCroqui ensurePrecomputados() => $_ensure(8);
 }
 
 const $core.bool _omitFieldNames =
