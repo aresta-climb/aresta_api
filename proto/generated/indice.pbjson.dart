@@ -46,6 +46,17 @@ const PrecomputadosResumoCroqui$json = {
     {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
     {'1': 'total_setores', '3': 2, '4': 1, '5': 5, '10': 'totalSetores'},
     {'1': 'total_grupos', '3': 3, '4': 1, '5': 5, '10': 'totalGrupos'},
+    {'1': 'total_esportivas', '3': 4, '4': 1, '5': 5, '10': 'totalEsportivas'},
+    {'1': 'total_moveis', '3': 5, '4': 1, '5': 5, '10': 'totalMoveis'},
+    {'1': 'total_boulders', '3': 6, '4': 1, '5': 5, '10': 'totalBoulders'},
+    {
+      '1': 'total_multiplas_enfiadas',
+      '3': 7,
+      '4': 1,
+      '5': 5,
+      '10': 'totalMultiplasEnfiadas'
+    },
+    {'1': 'total_highlines', '3': 8, '4': 1, '5': 5, '10': 'totalHighlines'},
   ],
 };
 
@@ -53,7 +64,11 @@ const PrecomputadosResumoCroqui$json = {
 final $typed_data.Uint8List precomputadosResumoCroquiDescriptor = $convert.base64Decode(
     'ChlQcmVjb21wdXRhZG9zUmVzdW1vQ3JvcXVpEicKD3RvdGFsX2VzY2FsYWRhcxgBIAEoBVIOdG'
     '90YWxFc2NhbGFkYXMSIwoNdG90YWxfc2V0b3JlcxgCIAEoBVIMdG90YWxTZXRvcmVzEiEKDHRv'
-    'dGFsX2dydXBvcxgDIAEoBVILdG90YWxHcnVwb3M=');
+    'dGFsX2dydXBvcxgDIAEoBVILdG90YWxHcnVwb3MSKQoQdG90YWxfZXNwb3J0aXZhcxgEIAEoBV'
+    'IPdG90YWxFc3BvcnRpdmFzEiEKDHRvdGFsX21vdmVpcxgFIAEoBVILdG90YWxNb3ZlaXMSJQoO'
+    'dG90YWxfYm91bGRlcnMYBiABKAVSDXRvdGFsQm91bGRlcnMSOAoYdG90YWxfbXVsdGlwbGFzX2'
+    'VuZmlhZGFzGAcgASgFUhZ0b3RhbE11bHRpcGxhc0VuZmlhZGFzEicKD3RvdGFsX2hpZ2hsaW5l'
+    'cxgIIAEoBVIOdG90YWxIaWdobGluZXM=');
 
 @$core.Deprecated('Use resumoCroquiDescriptor instead')
 const ResumoCroqui$json = {

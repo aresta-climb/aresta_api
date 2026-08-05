@@ -360,6 +360,17 @@ const PrecomputadosSetor$json = {
   '1': 'PrecomputadosSetor',
   '2': [
     {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+    {'1': 'total_esportivas', '3': 4, '4': 1, '5': 5, '10': 'totalEsportivas'},
+    {'1': 'total_moveis', '3': 5, '4': 1, '5': 5, '10': 'totalMoveis'},
+    {'1': 'total_boulders', '3': 6, '4': 1, '5': 5, '10': 'totalBoulders'},
+    {
+      '1': 'total_multiplas_enfiadas',
+      '3': 7,
+      '4': 1,
+      '5': 5,
+      '10': 'totalMultiplasEnfiadas'
+    },
+    {'1': 'total_highlines', '3': 8, '4': 1, '5': 5, '10': 'totalHighlines'},
   ],
   '7': {},
 };
@@ -367,13 +378,28 @@ const PrecomputadosSetor$json = {
 /// Descriptor for `PrecomputadosSetor`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List precomputadosSetorDescriptor = $convert.base64Decode(
     'ChJQcmVjb21wdXRhZG9zU2V0b3ISJwoPdG90YWxfZXNjYWxhZGFzGAEgASgFUg50b3RhbEVzY2'
-    'FsYWRhczoEkLUYBA==');
+    'FsYWRhcxIpChB0b3RhbF9lc3BvcnRpdmFzGAQgASgFUg90b3RhbEVzcG9ydGl2YXMSIQoMdG90'
+    'YWxfbW92ZWlzGAUgASgFUgt0b3RhbE1vdmVpcxIlCg50b3RhbF9ib3VsZGVycxgGIAEoBVINdG'
+    '90YWxCb3VsZGVycxI4Chh0b3RhbF9tdWx0aXBsYXNfZW5maWFkYXMYByABKAVSFnRvdGFsTXVs'
+    'dGlwbGFzRW5maWFkYXMSJwoPdG90YWxfaGlnaGxpbmVzGAggASgFUg50b3RhbEhpZ2hsaW5lcz'
+    'oEkLUYBA==');
 
 @$core.Deprecated('Use precomputadosGrupoDescriptor instead')
 const PrecomputadosGrupo$json = {
   '1': 'PrecomputadosGrupo',
   '2': [
     {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
+    {'1': 'total_esportivas', '3': 4, '4': 1, '5': 5, '10': 'totalEsportivas'},
+    {'1': 'total_moveis', '3': 5, '4': 1, '5': 5, '10': 'totalMoveis'},
+    {'1': 'total_boulders', '3': 6, '4': 1, '5': 5, '10': 'totalBoulders'},
+    {
+      '1': 'total_multiplas_enfiadas',
+      '3': 7,
+      '4': 1,
+      '5': 5,
+      '10': 'totalMultiplasEnfiadas'
+    },
+    {'1': 'total_highlines', '3': 8, '4': 1, '5': 5, '10': 'totalHighlines'},
   ],
   '7': {},
 };
@@ -381,7 +407,11 @@ const PrecomputadosGrupo$json = {
 /// Descriptor for `PrecomputadosGrupo`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List precomputadosGrupoDescriptor = $convert.base64Decode(
     'ChJQcmVjb21wdXRhZG9zR3J1cG8SJwoPdG90YWxfZXNjYWxhZGFzGAEgASgFUg50b3RhbEVzY2'
-    'FsYWRhczoEkLUYBA==');
+    'FsYWRhcxIpChB0b3RhbF9lc3BvcnRpdmFzGAQgASgFUg90b3RhbEVzcG9ydGl2YXMSIQoMdG90'
+    'YWxfbW92ZWlzGAUgASgFUgt0b3RhbE1vdmVpcxIlCg50b3RhbF9ib3VsZGVycxgGIAEoBVINdG'
+    '90YWxCb3VsZGVycxI4Chh0b3RhbF9tdWx0aXBsYXNfZW5maWFkYXMYByABKAVSFnRvdGFsTXVs'
+    'dGlwbGFzRW5maWFkYXMSJwoPdG90YWxfaGlnaGxpbmVzGAggASgFUg50b3RhbEhpZ2hsaW5lcz'
+    'oEkLUYBA==');
 
 @$core.Deprecated('Use precomputadosPicoDescriptor instead')
 const PrecomputadosPico$json = {
@@ -390,6 +420,17 @@ const PrecomputadosPico$json = {
     {'1': 'total_escaladas', '3': 1, '4': 1, '5': 5, '10': 'totalEscaladas'},
     {'1': 'total_setores', '3': 2, '4': 1, '5': 5, '10': 'totalSetores'},
     {'1': 'total_grupos', '3': 3, '4': 1, '5': 5, '10': 'totalGrupos'},
+    {'1': 'total_esportivas', '3': 4, '4': 1, '5': 5, '10': 'totalEsportivas'},
+    {'1': 'total_moveis', '3': 5, '4': 1, '5': 5, '10': 'totalMoveis'},
+    {'1': 'total_boulders', '3': 6, '4': 1, '5': 5, '10': 'totalBoulders'},
+    {
+      '1': 'total_multiplas_enfiadas',
+      '3': 7,
+      '4': 1,
+      '5': 5,
+      '10': 'totalMultiplasEnfiadas'
+    },
+    {'1': 'total_highlines', '3': 8, '4': 1, '5': 5, '10': 'totalHighlines'},
   ],
   '7': {},
 };
@@ -398,7 +439,11 @@ const PrecomputadosPico$json = {
 final $typed_data.Uint8List precomputadosPicoDescriptor = $convert.base64Decode(
     'ChFQcmVjb21wdXRhZG9zUGljbxInCg90b3RhbF9lc2NhbGFkYXMYASABKAVSDnRvdGFsRXNjYW'
     'xhZGFzEiMKDXRvdGFsX3NldG9yZXMYAiABKAVSDHRvdGFsU2V0b3JlcxIhCgx0b3RhbF9ncnVw'
-    'b3MYAyABKAVSC3RvdGFsR3J1cG9zOgSQtRgE');
+    'b3MYAyABKAVSC3RvdGFsR3J1cG9zEikKEHRvdGFsX2VzcG9ydGl2YXMYBCABKAVSD3RvdGFsRX'
+    'Nwb3J0aXZhcxIhCgx0b3RhbF9tb3ZlaXMYBSABKAVSC3RvdGFsTW92ZWlzEiUKDnRvdGFsX2Jv'
+    'dWxkZXJzGAYgASgFUg10b3RhbEJvdWxkZXJzEjgKGHRvdGFsX211bHRpcGxhc19lbmZpYWRhcx'
+    'gHIAEoBVIWdG90YWxNdWx0aXBsYXNFbmZpYWRhcxInCg90b3RhbF9oaWdobGluZXMYCCABKAVS'
+    'DnRvdGFsSGlnaGxpbmVzOgSQtRgE');
 
 @$core.Deprecated('Use picoDescriptor instead')
 const Pico$json = {

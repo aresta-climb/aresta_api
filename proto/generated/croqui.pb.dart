@@ -780,9 +780,20 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
 class PrecomputadosSetor extends $pb.GeneratedMessage {
   factory PrecomputadosSetor({
     $core.int? totalEscaladas,
+    $core.int? totalEsportivas,
+    $core.int? totalMoveis,
+    $core.int? totalBoulders,
+    $core.int? totalMultiplasEnfiadas,
+    $core.int? totalHighlines,
   }) {
     final result = create();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    if (totalEsportivas != null) result.totalEsportivas = totalEsportivas;
+    if (totalMoveis != null) result.totalMoveis = totalMoveis;
+    if (totalBoulders != null) result.totalBoulders = totalBoulders;
+    if (totalMultiplasEnfiadas != null)
+      result.totalMultiplasEnfiadas = totalMultiplasEnfiadas;
+    if (totalHighlines != null) result.totalHighlines = totalHighlines;
     return result;
   }
 
@@ -800,6 +811,11 @@ class PrecomputadosSetor extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..aI(4, _omitFieldNames ? '' : 'totalEsportivas')
+    ..aI(5, _omitFieldNames ? '' : 'totalMoveis')
+    ..aI(6, _omitFieldNames ? '' : 'totalBoulders')
+    ..aI(7, _omitFieldNames ? '' : 'totalMultiplasEnfiadas')
+    ..aI(8, _omitFieldNames ? '' : 'totalHighlines')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -830,15 +846,71 @@ class PrecomputadosSetor extends $pb.GeneratedMessage {
   $core.bool hasTotalEscaladas() => $_has(0);
   @$pb.TagNumber(1)
   void clearTotalEscaladas() => $_clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.int get totalEsportivas => $_getIZ(1);
+  @$pb.TagNumber(4)
+  set totalEsportivas($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(4)
+  $core.bool hasTotalEsportivas() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearTotalEsportivas() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get totalMoveis => $_getIZ(2);
+  @$pb.TagNumber(5)
+  set totalMoveis($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(5)
+  $core.bool hasTotalMoveis() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearTotalMoveis() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get totalBoulders => $_getIZ(3);
+  @$pb.TagNumber(6)
+  set totalBoulders($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTotalBoulders() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearTotalBoulders() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get totalMultiplasEnfiadas => $_getIZ(4);
+  @$pb.TagNumber(7)
+  set totalMultiplasEnfiadas($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(7)
+  $core.bool hasTotalMultiplasEnfiadas() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearTotalMultiplasEnfiadas() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.int get totalHighlines => $_getIZ(5);
+  @$pb.TagNumber(8)
+  set totalHighlines($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(8)
+  $core.bool hasTotalHighlines() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearTotalHighlines() => $_clearField(8);
 }
 
 /// Pré-computados para um Grupo.
 class PrecomputadosGrupo extends $pb.GeneratedMessage {
   factory PrecomputadosGrupo({
     $core.int? totalEscaladas,
+    $core.int? totalEsportivas,
+    $core.int? totalMoveis,
+    $core.int? totalBoulders,
+    $core.int? totalMultiplasEnfiadas,
+    $core.int? totalHighlines,
   }) {
     final result = create();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
+    if (totalEsportivas != null) result.totalEsportivas = totalEsportivas;
+    if (totalMoveis != null) result.totalMoveis = totalMoveis;
+    if (totalBoulders != null) result.totalBoulders = totalBoulders;
+    if (totalMultiplasEnfiadas != null)
+      result.totalMultiplasEnfiadas = totalMultiplasEnfiadas;
+    if (totalHighlines != null) result.totalHighlines = totalHighlines;
     return result;
   }
 
@@ -856,6 +928,11 @@ class PrecomputadosGrupo extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
+    ..aI(4, _omitFieldNames ? '' : 'totalEsportivas')
+    ..aI(5, _omitFieldNames ? '' : 'totalMoveis')
+    ..aI(6, _omitFieldNames ? '' : 'totalBoulders')
+    ..aI(7, _omitFieldNames ? '' : 'totalMultiplasEnfiadas')
+    ..aI(8, _omitFieldNames ? '' : 'totalHighlines')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -886,6 +963,51 @@ class PrecomputadosGrupo extends $pb.GeneratedMessage {
   $core.bool hasTotalEscaladas() => $_has(0);
   @$pb.TagNumber(1)
   void clearTotalEscaladas() => $_clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.int get totalEsportivas => $_getIZ(1);
+  @$pb.TagNumber(4)
+  set totalEsportivas($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(4)
+  $core.bool hasTotalEsportivas() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearTotalEsportivas() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get totalMoveis => $_getIZ(2);
+  @$pb.TagNumber(5)
+  set totalMoveis($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(5)
+  $core.bool hasTotalMoveis() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearTotalMoveis() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get totalBoulders => $_getIZ(3);
+  @$pb.TagNumber(6)
+  set totalBoulders($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTotalBoulders() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearTotalBoulders() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get totalMultiplasEnfiadas => $_getIZ(4);
+  @$pb.TagNumber(7)
+  set totalMultiplasEnfiadas($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(7)
+  $core.bool hasTotalMultiplasEnfiadas() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearTotalMultiplasEnfiadas() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.int get totalHighlines => $_getIZ(5);
+  @$pb.TagNumber(8)
+  set totalHighlines($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(8)
+  $core.bool hasTotalHighlines() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearTotalHighlines() => $_clearField(8);
 }
 
 /// Pré-computados para o Pico.
@@ -894,11 +1016,22 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
     $core.int? totalEscaladas,
     $core.int? totalSetores,
     $core.int? totalGrupos,
+    $core.int? totalEsportivas,
+    $core.int? totalMoveis,
+    $core.int? totalBoulders,
+    $core.int? totalMultiplasEnfiadas,
+    $core.int? totalHighlines,
   }) {
     final result = create();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
     if (totalSetores != null) result.totalSetores = totalSetores;
     if (totalGrupos != null) result.totalGrupos = totalGrupos;
+    if (totalEsportivas != null) result.totalEsportivas = totalEsportivas;
+    if (totalMoveis != null) result.totalMoveis = totalMoveis;
+    if (totalBoulders != null) result.totalBoulders = totalBoulders;
+    if (totalMultiplasEnfiadas != null)
+      result.totalMultiplasEnfiadas = totalMultiplasEnfiadas;
+    if (totalHighlines != null) result.totalHighlines = totalHighlines;
     return result;
   }
 
@@ -918,6 +1051,11 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
     ..aI(2, _omitFieldNames ? '' : 'totalSetores')
     ..aI(3, _omitFieldNames ? '' : 'totalGrupos')
+    ..aI(4, _omitFieldNames ? '' : 'totalEsportivas')
+    ..aI(5, _omitFieldNames ? '' : 'totalMoveis')
+    ..aI(6, _omitFieldNames ? '' : 'totalBoulders')
+    ..aI(7, _omitFieldNames ? '' : 'totalMultiplasEnfiadas')
+    ..aI(8, _omitFieldNames ? '' : 'totalHighlines')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -968,6 +1106,51 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
   $core.bool hasTotalGrupos() => $_has(2);
   @$pb.TagNumber(3)
   void clearTotalGrupos() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get totalEsportivas => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set totalEsportivas($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasTotalEsportivas() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTotalEsportivas() => $_clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get totalMoveis => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set totalMoveis($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasTotalMoveis() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearTotalMoveis() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get totalBoulders => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set totalBoulders($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTotalBoulders() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearTotalBoulders() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get totalMultiplasEnfiadas => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set totalMultiplasEnfiadas($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasTotalMultiplasEnfiadas() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearTotalMultiplasEnfiadas() => $_clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.int get totalHighlines => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set totalHighlines($core.int value) => $_setSignedInt32(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasTotalHighlines() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearTotalHighlines() => $_clearField(8);
 }
 
 /// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).

@@ -28,6 +28,12 @@ message PrecomputadosResumoCroqui {
 
     // Número total de grupos no croqui.
     int32 total_grupos = 3;
+
+    int32 total_esportivas = 4;
+    int32 total_moveis = 5;
+    int32 total_boulders = 6;
+    int32 total_multiplas_enfiadas = 7;
+    int32 total_highlines = 8;
 }
 
 // Resumo de um croqui que está disponível para o índice.

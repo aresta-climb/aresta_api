@@ -272,6 +272,12 @@ message PrecomputadosSetor {
 
   // Soma total de todas as escaladas neste setor.
   int32 total_escaladas = 1;
+
+  int32 total_esportivas = 4;
+  int32 total_moveis = 5;
+  int32 total_boulders = 6;
+  int32 total_multiplas_enfiadas = 7;
+  int32 total_highlines = 8;
 }
 
 // Pré-computados para um Grupo.
@@ -280,6 +286,12 @@ message PrecomputadosGrupo {
 
   // Soma total de todas as escaladas em todos os setores deste grupo.
   int32 total_escaladas = 1;
+
+  int32 total_esportivas = 4;
+  int32 total_moveis = 5;
+  int32 total_boulders = 6;
+  int32 total_multiplas_enfiadas = 7;
+  int32 total_highlines = 8;
 }
 
 // Pré-computados para o Pico.
@@ -294,6 +306,12 @@ message PrecomputadosPico {
   
   // Número total de grupos contidos neste pico.
   int32 total_grupos = 3;
+
+  int32 total_esportivas = 4;
+  int32 total_moveis = 5;
+  int32 total_boulders = 6;
+  int32 total_multiplas_enfiadas = 7;
+  int32 total_highlines = 8;
 }
 
 // Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
