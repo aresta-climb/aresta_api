@@ -6,6 +6,7 @@ edition = "2023";
 package aresta;
 
 import "google/protobuf/descriptor.proto";
+import "beta.proto";
 
 // Especifica onde o conteúdo de campos do tipo string ou bytes está localizado.
 message TipoConteudo {
@@ -665,6 +666,9 @@ message Escalada {
     ViaMultiplasEnfiadas via_multiplas_enfiadas = 4 [(aresta.texto_na_ui) = "Via Múltiplas Enfiadas"];
     Highline highline = 5;
   }
+
+  // Lista de vídeos e postagens de mídia demonstrando o beta desta escalada.
+  repeated MidiaBeta betas = 6 [(aresta.texto_na_ui) = "Betas da Escalada"];
 }
 
 // Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.

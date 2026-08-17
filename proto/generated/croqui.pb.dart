@@ -14,6 +14,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'beta.pb.dart' as $0;
 import 'croqui.pbenum.dart';
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
@@ -2937,6 +2938,7 @@ class Escalada extends $pb.GeneratedMessage {
     Boulder? boulder,
     ViaMultiplasEnfiadas? viaMultiplasEnfiadas,
     Highline? highline,
+    $core.Iterable<$0.MidiaBeta>? betas,
   }) {
     final result = create();
     if (viaEsportiva != null) result.viaEsportiva = viaEsportiva;
@@ -2945,6 +2947,7 @@ class Escalada extends $pb.GeneratedMessage {
     if (viaMultiplasEnfiadas != null)
       result.viaMultiplasEnfiadas = viaMultiplasEnfiadas;
     if (highline != null) result.highline = highline;
+    if (betas != null) result.betas.addAll(betas);
     return result;
   }
 
@@ -2981,6 +2984,8 @@ class Escalada extends $pb.GeneratedMessage {
         subBuilder: ViaMultiplasEnfiadas.create)
     ..aOM<Highline>(5, _omitFieldNames ? '' : 'highline',
         subBuilder: Highline.create)
+    ..pPM<$0.MidiaBeta>(6, _omitFieldNames ? '' : 'betas',
+        subBuilder: $0.MidiaBeta.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3068,6 +3073,10 @@ class Escalada extends $pb.GeneratedMessage {
   void clearHighline() => $_clearField(5);
   @$pb.TagNumber(5)
   Highline ensureHighline() => $_ensure(4);
+
+  /// Lista de vídeos e postagens de mídia demonstrando o beta desta escalada.
+  @$pb.TagNumber(6)
+  $pb.PbList<$0.MidiaBeta> get betas => $_getList(5);
 }
 
 /// Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.

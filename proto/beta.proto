@@ -1,0 +1,75 @@
+// SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
+// SPDX-License-Identifier: MPL-2.0
+
+edition = "2023";
+
+package aresta;
+
+// Identifica a plataforma de origem da mídia de beta.
+message FonteMidia {
+  enum Enum {
+    INDEFINIDO = 0;
+    YOUTUBE = 1;
+    INSTAGRAM = 2;
+  }
+}
+
+// Metadados semânticos e resultado avaliado por modelo LLM.
+message ResultadoLLMBeta {
+  // Grau de confiança estimado pelo modelo de IA (0 a 100).
+  int32 llm_confidence_score = 1;
+
+  // Justificativa e raciocínio textual gerado pelo modelo de IA sobre a correspondência.
+  string llm_reasoning = 2;
+}
+
+// Representa uma referência multimídia (vídeo ou post) contendo o beta da escalada.
+message MidiaBeta {
+  // URL pública de acesso ao vídeo ou postagem.
+  string url = 1;
+
+  // Título da postagem ou do vídeo.
+  string titulo = 2;
+
+  // URL da imagem de thumbnail (se disponível).
+  string thumbnail_url = 3;
+
+  // Plataforma de onde a mídia foi extraída.
+  FonteMidia.Enum fonte = 4;
+
+  // Resultado da avaliação e metadados gerados pelo modelo de IA.
+  ResultadoLLMBeta resultado_llm = 5;
+
+  // Se a mídia foi encontrada em múltiplas fontes (ex: Google e DuckDuckGo).
+  bool match_multiplas_fontes = 6;
+
+  // Se o nome da via foi explicitamente identificado no snippet textual.
+  bool match_nome_no_snippet = 7;
+
+  // Trechos textuais e snippets coletados nas buscas.
+  repeated string snippets = 8;
+}
+
+// Container para os candidatos de beta de uma escalada específica em fase de curadoria.
+message CandidatosBetaPorEscalada {
+  // Identificador ou nome da escalada associada.
+  string nome_escalada = 1;
+
+  // Nome do setor onde a escalada está localizada.
+  string nome_setor = 2;
+
+  // Nome do grupo ou setor pai onde a escalada está localizada.
+  string nome_grupo = 3;
+
+  // Lista de mídias candidatas coletadas para esta escalada.
+  repeated MidiaBeta candidatos = 4;
+}
+
+// Mensagem raiz para o arquivo intermediário de trabalho (betas_pendentes.binarypb).
+message BetasPendentes {
+  // Identificador único ou nome do croqui associado.
+  string id_croqui = 1;
+
+  // Lista de escaladas com seus respectivos candidatos a beta pendentes de curadoria.
+  repeated CandidatosBetaPorEscalada candidatos_por_escalada = 2;
+}

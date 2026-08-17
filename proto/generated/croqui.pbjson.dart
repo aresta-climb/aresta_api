@@ -1178,6 +1178,15 @@ const Escalada$json = {
       '9': 0,
       '10': 'highline'
     },
+    {
+      '1': 'betas',
+      '3': 6,
+      '4': 3,
+      '5': 11,
+      '6': '.aresta.MidiaBeta',
+      '8': {},
+      '10': 'betas'
+    },
   ],
   '7': {},
   '8': [
@@ -1193,7 +1202,8 @@ final $typed_data.Uint8List escaladaDescriptor = $convert.base64Decode(
     'xkZXJIAFIHYm91bGRlchJxChZ2aWFfbXVsdGlwbGFzX2VuZmlhZGFzGAQgASgLMhwuYXJlc3Rh'
     'LlZpYU11bHRpcGxhc0VuZmlhZGFzQhuStRgXVmlhIE3Dumx0aXBsYXMgRW5maWFkYXNIAFIUdm'
     'lhTXVsdGlwbGFzRW5maWFkYXMSLgoIaGlnaGxpbmUYBSABKAsyEC5hcmVzdGEuSGlnaGxpbmVI'
-    'AFIIaGlnaGxpbmU6BJC1GAFCBgoEdGlwbw==');
+    'AFIIaGlnaGxpbmUSPgoFYmV0YXMYBiADKAsyES5hcmVzdGEuTWlkaWFCZXRhQhWStRgRQmV0YX'
+    'MgZGEgRXNjYWxhZGFSBWJldGFzOgSQtRgBQgYKBHRpcG8=');
 
 @$core.Deprecated('Use viaEsportivaDescriptor instead')
 const ViaEsportiva$json = {
