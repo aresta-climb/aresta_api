@@ -274,18 +274,315 @@ class MidiaBeta extends $pb.GeneratedMessage {
   $pb.PbList<$core.String> get snippets => $_getList(7);
 }
 
+/// Identifica uma via/boulder com seu contexto geográfico completo para busca de mídias.
+class EscaladaAlvoBusca extends $pb.GeneratedMessage {
+  factory EscaladaAlvoBusca({
+    $core.String? idEscalada,
+    $core.String? nome,
+    $core.String? grau,
+    $core.String? tipo,
+    $core.String? nomeSetor,
+    $core.String? nomeGrupo,
+    $core.String? nomePico,
+    $core.String? cidade,
+    $core.String? estado,
+    $core.String? arquivoOrigem,
+  }) {
+    final result = create();
+    if (idEscalada != null) result.idEscalada = idEscalada;
+    if (nome != null) result.nome = nome;
+    if (grau != null) result.grau = grau;
+    if (tipo != null) result.tipo = tipo;
+    if (nomeSetor != null) result.nomeSetor = nomeSetor;
+    if (nomeGrupo != null) result.nomeGrupo = nomeGrupo;
+    if (nomePico != null) result.nomePico = nomePico;
+    if (cidade != null) result.cidade = cidade;
+    if (estado != null) result.estado = estado;
+    if (arquivoOrigem != null) result.arquivoOrigem = arquivoOrigem;
+    return result;
+  }
+
+  EscaladaAlvoBusca._();
+
+  factory EscaladaAlvoBusca.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory EscaladaAlvoBusca.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'EscaladaAlvoBusca',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'idEscalada')
+    ..aOS(2, _omitFieldNames ? '' : 'nome')
+    ..aOS(3, _omitFieldNames ? '' : 'grau')
+    ..aOS(4, _omitFieldNames ? '' : 'tipo')
+    ..aOS(5, _omitFieldNames ? '' : 'nomeSetor')
+    ..aOS(6, _omitFieldNames ? '' : 'nomeGrupo')
+    ..aOS(7, _omitFieldNames ? '' : 'nomePico')
+    ..aOS(8, _omitFieldNames ? '' : 'cidade')
+    ..aOS(9, _omitFieldNames ? '' : 'estado')
+    ..aOS(10, _omitFieldNames ? '' : 'arquivoOrigem')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  EscaladaAlvoBusca clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  EscaladaAlvoBusca copyWith(void Function(EscaladaAlvoBusca) updates) =>
+      super.copyWith((message) => updates(message as EscaladaAlvoBusca))
+          as EscaladaAlvoBusca;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static EscaladaAlvoBusca create() => EscaladaAlvoBusca._();
+  @$core.override
+  EscaladaAlvoBusca createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static EscaladaAlvoBusca getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<EscaladaAlvoBusca>(create);
+  static EscaladaAlvoBusca? _defaultInstance;
+
+  /// Identificador da escalada (ex: número sequencial ou slug).
+  @$pb.TagNumber(1)
+  $core.String get idEscalada => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set idEscalada($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasIdEscalada() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIdEscalada() => $_clearField(1);
+
+  /// Nome da escalada.
+  @$pb.TagNumber(2)
+  $core.String get nome => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set nome($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasNome() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearNome() => $_clearField(2);
+
+  /// Grau da escalada (ex: V4, 7a, 6sup).
+  @$pb.TagNumber(3)
+  $core.String get grau => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set grau($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasGrau() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearGrau() => $_clearField(3);
+
+  /// Tipo de escalada (ex: boulder, via_esportiva, via_movel, etc.).
+  @$pb.TagNumber(4)
+  $core.String get tipo => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set tipo($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasTipo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTipo() => $_clearField(4);
+
+  /// Nome do setor onde a escalada está localizada.
+  @$pb.TagNumber(5)
+  $core.String get nomeSetor => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set nomeSetor($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasNomeSetor() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearNomeSetor() => $_clearField(5);
+
+  /// Nome do grupo ou setor pai.
+  @$pb.TagNumber(6)
+  $core.String get nomeGrupo => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set nomeGrupo($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasNomeGrupo() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearNomeGrupo() => $_clearField(6);
+
+  /// Nome do pico ou montanha onde a escalada está localizada.
+  @$pb.TagNumber(7)
+  $core.String get nomePico => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set nomePico($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasNomePico() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearNomePico() => $_clearField(7);
+
+  /// Cidade da localização do croqui.
+  @$pb.TagNumber(8)
+  $core.String get cidade => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set cidade($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasCidade() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearCidade() => $_clearField(8);
+
+  /// Estado (UF) da localização do croqui.
+  @$pb.TagNumber(9)
+  $core.String get estado => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set estado($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasEstado() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearEstado() => $_clearField(9);
+
+  /// Nome do arquivo markdown de origem onde a escalada está cadastrada.
+  @$pb.TagNumber(10)
+  $core.String get arquivoOrigem => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set arquivoOrigem($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasArquivoOrigem() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearArquivoOrigem() => $_clearField(10);
+}
+
+/// Schema de dados para vias extraídas de um croqui (vias_extraidas.yaml).
+class ViasExtraidasCroqui extends $pb.GeneratedMessage {
+  factory ViasExtraidasCroqui({
+    $core.String? idCroqui,
+    $core.String? nomeCroqui,
+    $core.String? cidade,
+    $core.String? estado,
+    $core.String? pais,
+    $core.Iterable<EscaladaAlvoBusca>? escaladas,
+  }) {
+    final result = create();
+    if (idCroqui != null) result.idCroqui = idCroqui;
+    if (nomeCroqui != null) result.nomeCroqui = nomeCroqui;
+    if (cidade != null) result.cidade = cidade;
+    if (estado != null) result.estado = estado;
+    if (pais != null) result.pais = pais;
+    if (escaladas != null) result.escaladas.addAll(escaladas);
+    return result;
+  }
+
+  ViasExtraidasCroqui._();
+
+  factory ViasExtraidasCroqui.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory ViasExtraidasCroqui.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ViasExtraidasCroqui',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'idCroqui')
+    ..aOS(2, _omitFieldNames ? '' : 'nomeCroqui')
+    ..aOS(3, _omitFieldNames ? '' : 'cidade')
+    ..aOS(4, _omitFieldNames ? '' : 'estado')
+    ..aOS(5, _omitFieldNames ? '' : 'pais')
+    ..pPM<EscaladaAlvoBusca>(6, _omitFieldNames ? '' : 'escaladas',
+        subBuilder: EscaladaAlvoBusca.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ViasExtraidasCroqui clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ViasExtraidasCroqui copyWith(void Function(ViasExtraidasCroqui) updates) =>
+      super.copyWith((message) => updates(message as ViasExtraidasCroqui))
+          as ViasExtraidasCroqui;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ViasExtraidasCroqui create() => ViasExtraidasCroqui._();
+  @$core.override
+  ViasExtraidasCroqui createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static ViasExtraidasCroqui getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ViasExtraidasCroqui>(create);
+  static ViasExtraidasCroqui? _defaultInstance;
+
+  /// Identificador do croqui (slug da pasta).
+  @$pb.TagNumber(1)
+  $core.String get idCroqui => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set idCroqui($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasIdCroqui() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIdCroqui() => $_clearField(1);
+
+  /// Nome legível do croqui.
+  @$pb.TagNumber(2)
+  $core.String get nomeCroqui => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set nomeCroqui($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasNomeCroqui() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearNomeCroqui() => $_clearField(2);
+
+  /// Cidade do croqui.
+  @$pb.TagNumber(3)
+  $core.String get cidade => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set cidade($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasCidade() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearCidade() => $_clearField(3);
+
+  /// Estado (UF) do croqui.
+  @$pb.TagNumber(4)
+  $core.String get estado => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set estado($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasEstado() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEstado() => $_clearField(4);
+
+  /// País do croqui.
+  @$pb.TagNumber(5)
+  $core.String get pais => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set pais($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasPais() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPais() => $_clearField(5);
+
+  /// Lista de escaladas alvo extraídas do croqui.
+  @$pb.TagNumber(6)
+  $pb.PbList<EscaladaAlvoBusca> get escaladas => $_getList(5);
+}
+
 /// Container para os candidatos de beta de uma escalada específica em fase de curadoria.
 class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
   factory CandidatosBetaPorEscalada({
     $core.String? nomeEscalada,
+    $core.String? grau,
     $core.String? nomeSetor,
     $core.String? nomeGrupo,
+    $core.String? nomePico,
+    $core.String? cidade,
+    $core.String? estado,
     $core.Iterable<MidiaBeta>? candidatos,
   }) {
     final result = create();
     if (nomeEscalada != null) result.nomeEscalada = nomeEscalada;
+    if (grau != null) result.grau = grau;
     if (nomeSetor != null) result.nomeSetor = nomeSetor;
     if (nomeGrupo != null) result.nomeGrupo = nomeGrupo;
+    if (nomePico != null) result.nomePico = nomePico;
+    if (cidade != null) result.cidade = cidade;
+    if (estado != null) result.estado = estado;
     if (candidatos != null) result.candidatos.addAll(candidatos);
     return result;
   }
@@ -304,9 +601,13 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'nomeEscalada')
-    ..aOS(2, _omitFieldNames ? '' : 'nomeSetor')
-    ..aOS(3, _omitFieldNames ? '' : 'nomeGrupo')
-    ..pPM<MidiaBeta>(4, _omitFieldNames ? '' : 'candidatos',
+    ..aOS(2, _omitFieldNames ? '' : 'grau')
+    ..aOS(3, _omitFieldNames ? '' : 'nomeSetor')
+    ..aOS(4, _omitFieldNames ? '' : 'nomeGrupo')
+    ..aOS(5, _omitFieldNames ? '' : 'nomePico')
+    ..aOS(6, _omitFieldNames ? '' : 'cidade')
+    ..aOS(7, _omitFieldNames ? '' : 'estado')
+    ..pPM<MidiaBeta>(8, _omitFieldNames ? '' : 'candidatos',
         subBuilder: MidiaBeta.create)
     ..hasRequiredFields = false;
 
@@ -340,32 +641,72 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearNomeEscalada() => $_clearField(1);
 
+  /// Grau da escalada.
+  @$pb.TagNumber(2)
+  $core.String get grau => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set grau($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGrau() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGrau() => $_clearField(2);
+
   /// Nome do setor onde a escalada está localizada.
-  @$pb.TagNumber(2)
-  $core.String get nomeSetor => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set nomeSetor($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasNomeSetor() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearNomeSetor() => $_clearField(2);
+  @$pb.TagNumber(3)
+  $core.String get nomeSetor => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set nomeSetor($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasNomeSetor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearNomeSetor() => $_clearField(3);
 
   /// Nome do grupo ou setor pai onde a escalada está localizada.
-  @$pb.TagNumber(3)
-  $core.String get nomeGrupo => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set nomeGrupo($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasNomeGrupo() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearNomeGrupo() => $_clearField(3);
+  @$pb.TagNumber(4)
+  $core.String get nomeGrupo => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set nomeGrupo($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasNomeGrupo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearNomeGrupo() => $_clearField(4);
+
+  /// Nome do pico ou montanha onde a escalada está localizada.
+  @$pb.TagNumber(5)
+  $core.String get nomePico => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set nomePico($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasNomePico() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearNomePico() => $_clearField(5);
+
+  /// Cidade da localização do croqui.
+  @$pb.TagNumber(6)
+  $core.String get cidade => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set cidade($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCidade() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCidade() => $_clearField(6);
+
+  /// Estado (UF) da localização do croqui.
+  @$pb.TagNumber(7)
+  $core.String get estado => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set estado($core.String value) => $_setString(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasEstado() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearEstado() => $_clearField(7);
 
   /// Lista de mídias candidatas coletadas para esta escalada.
-  @$pb.TagNumber(4)
-  $pb.PbList<MidiaBeta> get candidatos => $_getList(3);
+  @$pb.TagNumber(8)
+  $pb.PbList<MidiaBeta> get candidatos => $_getList(7);
 }
 
-/// Mensagem raiz para o arquivo intermediário de trabalho (betas_pendentes.binarypb).
+/// Mensagem raiz para os arquivos intermediários (candidatos_brutos.yaml e betas_pendentes.binarypb).
 class BetasPendentes extends $pb.GeneratedMessage {
   factory BetasPendentes({
     $core.String? idCroqui,

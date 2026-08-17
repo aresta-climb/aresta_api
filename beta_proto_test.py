@@ -5,16 +5,19 @@ import pytest
 
 def test_beta_proto_messages_exist():
     """
-    Garante que o módulo beta_pb2 foi gerado e exporta as mensagens
-    MidiaBeta, ResultadoLLMBeta e BetasPendentes com seus campos esperados.
+    Garante que o módulo beta_pb2 exporta as mensagens
+    MidiaBeta, ResultadoLLMBeta, EscaladaAlvoBusca, ViasExtraidasCroqui,
+    CandidatosBetaPorEscalada e BetasPendentes com seus campos esperados.
     """
     from aresta_api.proto.generated import beta_pb2
 
     # Verifica existência das mensagens
     assert hasattr(beta_pb2, "MidiaBeta")
     assert hasattr(beta_pb2, "ResultadoLLMBeta")
-    assert hasattr(beta_pb2, "BetasPendentes")
+    assert hasattr(beta_pb2, "EscaladaAlvoBusca")
+    assert hasattr(beta_pb2, "ViasExtraidasCroqui")
     assert hasattr(beta_pb2, "CandidatosBetaPorEscalada")
+    assert hasattr(beta_pb2, "BetasPendentes")
 
     # Instancia mensagens para validar campos
     midia = beta_pb2.MidiaBeta()
@@ -34,13 +37,38 @@ def test_beta_proto_messages_exist():
     assert hasattr(res_llm, "llm_confidence_score")
     assert hasattr(res_llm, "llm_reasoning")
 
+    alvo = beta_pb2.EscaladaAlvoBusca()
+    assert hasattr(alvo, "id_escalada")
+    assert hasattr(alvo, "nome")
+    assert hasattr(alvo, "grau")
+    assert hasattr(alvo, "tipo")
+    assert hasattr(alvo, "nome_setor")
+    assert hasattr(alvo, "nome_grupo")
+    assert hasattr(alvo, "nome_pico")
+    assert hasattr(alvo, "cidade")
+    assert hasattr(alvo, "estado")
+    assert hasattr(alvo, "arquivo_origem")
+
+    vias_croqui = beta_pb2.ViasExtraidasCroqui()
+    assert hasattr(vias_croqui, "id_croqui")
+    assert hasattr(vias_croqui, "nome_croqui")
+    assert hasattr(vias_croqui, "cidade")
+    assert hasattr(vias_croqui, "estado")
+    assert hasattr(vias_croqui, "pais")
+    assert hasattr(vias_croqui, "escaladas")
+
     cand_esc = beta_pb2.CandidatosBetaPorEscalada()
     assert hasattr(cand_esc, "nome_escalada")
+    assert hasattr(cand_esc, "grau")
     assert hasattr(cand_esc, "nome_setor")
     assert hasattr(cand_esc, "nome_grupo")
+    assert hasattr(cand_esc, "nome_pico")
+    assert hasattr(cand_esc, "cidade")
+    assert hasattr(cand_esc, "estado")
     assert hasattr(cand_esc, "candidatos")
 
     pendentes = beta_pb2.BetasPendentes()
+    assert hasattr(pendentes, "id_croqui")
     assert hasattr(pendentes, "candidatos_por_escalada")
 
 

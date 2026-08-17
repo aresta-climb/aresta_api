@@ -106,16 +106,73 @@ final $typed_data.Uint8List midiaBetaDescriptor = $convert.base64Decode(
     'bnRlcxgGIAEoCFIUbWF0Y2hNdWx0aXBsYXNGb250ZXMSMQoVbWF0Y2hfbm9tZV9ub19zbmlwcG'
     'V0GAcgASgIUhJtYXRjaE5vbWVOb1NuaXBwZXQSGgoIc25pcHBldHMYCCADKAlSCHNuaXBwZXRz');
 
+@$core.Deprecated('Use escaladaAlvoBuscaDescriptor instead')
+const EscaladaAlvoBusca$json = {
+  '1': 'EscaladaAlvoBusca',
+  '2': [
+    {'1': 'id_escalada', '3': 1, '4': 1, '5': 9, '10': 'idEscalada'},
+    {'1': 'nome', '3': 2, '4': 1, '5': 9, '10': 'nome'},
+    {'1': 'grau', '3': 3, '4': 1, '5': 9, '10': 'grau'},
+    {'1': 'tipo', '3': 4, '4': 1, '5': 9, '10': 'tipo'},
+    {'1': 'nome_setor', '3': 5, '4': 1, '5': 9, '10': 'nomeSetor'},
+    {'1': 'nome_grupo', '3': 6, '4': 1, '5': 9, '10': 'nomeGrupo'},
+    {'1': 'nome_pico', '3': 7, '4': 1, '5': 9, '10': 'nomePico'},
+    {'1': 'cidade', '3': 8, '4': 1, '5': 9, '10': 'cidade'},
+    {'1': 'estado', '3': 9, '4': 1, '5': 9, '10': 'estado'},
+    {'1': 'arquivo_origem', '3': 10, '4': 1, '5': 9, '10': 'arquivoOrigem'},
+  ],
+};
+
+/// Descriptor for `EscaladaAlvoBusca`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List escaladaAlvoBuscaDescriptor = $convert.base64Decode(
+    'ChFFc2NhbGFkYUFsdm9CdXNjYRIfCgtpZF9lc2NhbGFkYRgBIAEoCVIKaWRFc2NhbGFkYRISCg'
+    'Rub21lGAIgASgJUgRub21lEhIKBGdyYXUYAyABKAlSBGdyYXUSEgoEdGlwbxgEIAEoCVIEdGlw'
+    'bxIdCgpub21lX3NldG9yGAUgASgJUglub21lU2V0b3ISHQoKbm9tZV9ncnVwbxgGIAEoCVIJbm'
+    '9tZUdydXBvEhsKCW5vbWVfcGljbxgHIAEoCVIIbm9tZVBpY28SFgoGY2lkYWRlGAggASgJUgZj'
+    'aWRhZGUSFgoGZXN0YWRvGAkgASgJUgZlc3RhZG8SJQoOYXJxdWl2b19vcmlnZW0YCiABKAlSDW'
+    'FycXVpdm9PcmlnZW0=');
+
+@$core.Deprecated('Use viasExtraidasCroquiDescriptor instead')
+const ViasExtraidasCroqui$json = {
+  '1': 'ViasExtraidasCroqui',
+  '2': [
+    {'1': 'id_croqui', '3': 1, '4': 1, '5': 9, '10': 'idCroqui'},
+    {'1': 'nome_croqui', '3': 2, '4': 1, '5': 9, '10': 'nomeCroqui'},
+    {'1': 'cidade', '3': 3, '4': 1, '5': 9, '10': 'cidade'},
+    {'1': 'estado', '3': 4, '4': 1, '5': 9, '10': 'estado'},
+    {'1': 'pais', '3': 5, '4': 1, '5': 9, '10': 'pais'},
+    {
+      '1': 'escaladas',
+      '3': 6,
+      '4': 3,
+      '5': 11,
+      '6': '.aresta.EscaladaAlvoBusca',
+      '10': 'escaladas'
+    },
+  ],
+};
+
+/// Descriptor for `ViasExtraidasCroqui`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List viasExtraidasCroquiDescriptor = $convert.base64Decode(
+    'ChNWaWFzRXh0cmFpZGFzQ3JvcXVpEhsKCWlkX2Nyb3F1aRgBIAEoCVIIaWRDcm9xdWkSHwoLbm'
+    '9tZV9jcm9xdWkYAiABKAlSCm5vbWVDcm9xdWkSFgoGY2lkYWRlGAMgASgJUgZjaWRhZGUSFgoG'
+    'ZXN0YWRvGAQgASgJUgZlc3RhZG8SEgoEcGFpcxgFIAEoCVIEcGFpcxI3Cgllc2NhbGFkYXMYBi'
+    'ADKAsyGS5hcmVzdGEuRXNjYWxhZGFBbHZvQnVzY2FSCWVzY2FsYWRhcw==');
+
 @$core.Deprecated('Use candidatosBetaPorEscaladaDescriptor instead')
 const CandidatosBetaPorEscalada$json = {
   '1': 'CandidatosBetaPorEscalada',
   '2': [
     {'1': 'nome_escalada', '3': 1, '4': 1, '5': 9, '10': 'nomeEscalada'},
-    {'1': 'nome_setor', '3': 2, '4': 1, '5': 9, '10': 'nomeSetor'},
-    {'1': 'nome_grupo', '3': 3, '4': 1, '5': 9, '10': 'nomeGrupo'},
+    {'1': 'grau', '3': 2, '4': 1, '5': 9, '10': 'grau'},
+    {'1': 'nome_setor', '3': 3, '4': 1, '5': 9, '10': 'nomeSetor'},
+    {'1': 'nome_grupo', '3': 4, '4': 1, '5': 9, '10': 'nomeGrupo'},
+    {'1': 'nome_pico', '3': 5, '4': 1, '5': 9, '10': 'nomePico'},
+    {'1': 'cidade', '3': 6, '4': 1, '5': 9, '10': 'cidade'},
+    {'1': 'estado', '3': 7, '4': 1, '5': 9, '10': 'estado'},
     {
       '1': 'candidatos',
-      '3': 4,
+      '3': 8,
       '4': 3,
       '5': 11,
       '6': '.aresta.MidiaBeta',
@@ -127,9 +184,10 @@ const CandidatosBetaPorEscalada$json = {
 /// Descriptor for `CandidatosBetaPorEscalada`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List candidatosBetaPorEscaladaDescriptor = $convert.base64Decode(
     'ChlDYW5kaWRhdG9zQmV0YVBvckVzY2FsYWRhEiMKDW5vbWVfZXNjYWxhZGEYASABKAlSDG5vbW'
-    'VFc2NhbGFkYRIdCgpub21lX3NldG9yGAIgASgJUglub21lU2V0b3ISHQoKbm9tZV9ncnVwbxgD'
-    'IAEoCVIJbm9tZUdydXBvEjEKCmNhbmRpZGF0b3MYBCADKAsyES5hcmVzdGEuTWlkaWFCZXRhUg'
-    'pjYW5kaWRhdG9z');
+    'VFc2NhbGFkYRISCgRncmF1GAIgASgJUgRncmF1Eh0KCm5vbWVfc2V0b3IYAyABKAlSCW5vbWVT'
+    'ZXRvchIdCgpub21lX2dydXBvGAQgASgJUglub21lR3J1cG8SGwoJbm9tZV9waWNvGAUgASgJUg'
+    'hub21lUGljbxIWCgZjaWRhZGUYBiABKAlSBmNpZGFkZRIWCgZlc3RhZG8YByABKAlSBmVzdGFk'
+    'bxIxCgpjYW5kaWRhdG9zGAggAygLMhEuYXJlc3RhLk1pZGlhQmV0YVIKY2FuZGlkYXRvcw==');
 
 @$core.Deprecated('Use betasPendentesDescriptor instead')
 const BetasPendentes$json = {

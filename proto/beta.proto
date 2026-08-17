@@ -50,22 +50,88 @@ message MidiaBeta {
   repeated string snippets = 8;
 }
 
+// Identifica uma via/boulder com seu contexto geográfico completo para busca de mídias.
+message EscaladaAlvoBusca {
+  // Identificador da escalada (ex: número sequencial ou slug).
+  string id_escalada = 1;
+
+  // Nome da escalada.
+  string nome = 2;
+
+  // Grau da escalada (ex: V4, 7a, 6sup).
+  string grau = 3;
+
+  // Tipo de escalada (ex: boulder, via_esportiva, via_movel, etc.).
+  string tipo = 4;
+
+  // Nome do setor onde a escalada está localizada.
+  string nome_setor = 5;
+
+  // Nome do grupo ou setor pai.
+  string nome_grupo = 6;
+
+  // Nome do pico ou montanha onde a escalada está localizada.
+  string nome_pico = 7;
+
+  // Cidade da localização do croqui.
+  string cidade = 8;
+
+  // Estado (UF) da localização do croqui.
+  string estado = 9;
+
+  // Nome do arquivo markdown de origem onde a escalada está cadastrada.
+  string arquivo_origem = 10;
+}
+
+// Schema de dados para vias extraídas de um croqui (vias_extraidas.yaml).
+message ViasExtraidasCroqui {
+  // Identificador do croqui (slug da pasta).
+  string id_croqui = 1;
+
+  // Nome legível do croqui.
+  string nome_croqui = 2;
+
+  // Cidade do croqui.
+  string cidade = 3;
+
+  // Estado (UF) do croqui.
+  string estado = 4;
+
+  // País do croqui.
+  string pais = 5;
+
+  // Lista de escaladas alvo extraídas do croqui.
+  repeated EscaladaAlvoBusca escaladas = 6;
+}
+
 // Container para os candidatos de beta de uma escalada específica em fase de curadoria.
 message CandidatosBetaPorEscalada {
   // Identificador ou nome da escalada associada.
   string nome_escalada = 1;
 
+  // Grau da escalada.
+  string grau = 2;
+
   // Nome do setor onde a escalada está localizada.
-  string nome_setor = 2;
+  string nome_setor = 3;
 
   // Nome do grupo ou setor pai onde a escalada está localizada.
-  string nome_grupo = 3;
+  string nome_grupo = 4;
+
+  // Nome do pico ou montanha onde a escalada está localizada.
+  string nome_pico = 5;
+
+  // Cidade da localização do croqui.
+  string cidade = 6;
+
+  // Estado (UF) da localização do croqui.
+  string estado = 7;
 
   // Lista de mídias candidatas coletadas para esta escalada.
-  repeated MidiaBeta candidatos = 4;
+  repeated MidiaBeta candidatos = 8;
 }
 
-// Mensagem raiz para o arquivo intermediário de trabalho (betas_pendentes.binarypb).
+// Mensagem raiz para os arquivos intermediários (candidatos_brutos.yaml e betas_pendentes.binarypb).
 message BetasPendentes {
   // Identificador único ou nome do croqui associado.
   string id_croqui = 1;

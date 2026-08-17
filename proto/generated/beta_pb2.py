@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbeta.proto\x12\x06\x61resta\"@\n\nFonteMidia\"2\n\x04\x45num\x12\x0e\n\nINDEFINIDO\x10\x00\x12\x0b\n\x07YOUTUBE\x10\x01\x12\r\n\tINSTAGRAM\x10\x02\"G\n\x10ResultadoLLMBeta\x12\x1c\n\x14llm_confidence_score\x18\x01 \x01(\x05\x12\x15\n\rllm_reasoning\x18\x02 \x01(\t\"\xe9\x01\n\tMidiaBeta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x15\n\rthumbnail_url\x18\x03 \x01(\t\x12&\n\x05\x66onte\x18\x04 \x01(\x0e\x32\x17.aresta.FonteMidia.Enum\x12/\n\rresultado_llm\x18\x05 \x01(\x0b\x32\x18.aresta.ResultadoLLMBeta\x12\x1e\n\x16match_multiplas_fontes\x18\x06 \x01(\x08\x12\x1d\n\x15match_nome_no_snippet\x18\x07 \x01(\x08\x12\x10\n\x08snippets\x18\x08 \x03(\t\"\x81\x01\n\x19\x43\x61ndidatosBetaPorEscalada\x12\x15\n\rnome_escalada\x18\x01 \x01(\t\x12\x12\n\nnome_setor\x18\x02 \x01(\t\x12\x12\n\nnome_grupo\x18\x03 \x01(\t\x12%\n\ncandidatos\x18\x04 \x03(\x0b\x32\x11.aresta.MidiaBeta\"g\n\x0e\x42\x65tasPendentes\x12\x11\n\tid_croqui\x18\x01 \x01(\t\x12\x42\n\x17\x63\x61ndidatos_por_escalada\x18\x02 \x03(\x0b\x32!.aresta.CandidatosBetaPorEscaladab\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbeta.proto\x12\x06\x61resta\"@\n\nFonteMidia\"2\n\x04\x45num\x12\x0e\n\nINDEFINIDO\x10\x00\x12\x0b\n\x07YOUTUBE\x10\x01\x12\r\n\tINSTAGRAM\x10\x02\"G\n\x10ResultadoLLMBeta\x12\x1c\n\x14llm_confidence_score\x18\x01 \x01(\x05\x12\x15\n\rllm_reasoning\x18\x02 \x01(\t\"\xe9\x01\n\tMidiaBeta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x15\n\rthumbnail_url\x18\x03 \x01(\t\x12&\n\x05\x66onte\x18\x04 \x01(\x0e\x32\x17.aresta.FonteMidia.Enum\x12/\n\rresultado_llm\x18\x05 \x01(\x0b\x32\x18.aresta.ResultadoLLMBeta\x12\x1e\n\x16match_multiplas_fontes\x18\x06 \x01(\x08\x12\x1d\n\x15match_nome_no_snippet\x18\x07 \x01(\x08\x12\x10\n\x08snippets\x18\x08 \x03(\t\"\xc5\x01\n\x11\x45scaladaAlvoBusca\x12\x13\n\x0bid_escalada\x18\x01 \x01(\t\x12\x0c\n\x04nome\x18\x02 \x01(\t\x12\x0c\n\x04grau\x18\x03 \x01(\t\x12\x0c\n\x04tipo\x18\x04 \x01(\t\x12\x12\n\nnome_setor\x18\x05 \x01(\t\x12\x12\n\nnome_grupo\x18\x06 \x01(\t\x12\x11\n\tnome_pico\x18\x07 \x01(\t\x12\x0e\n\x06\x63idade\x18\x08 \x01(\t\x12\x0e\n\x06\x65stado\x18\t \x01(\t\x12\x16\n\x0e\x61rquivo_origem\x18\n \x01(\t\"\x99\x01\n\x13ViasExtraidasCroqui\x12\x11\n\tid_croqui\x18\x01 \x01(\t\x12\x13\n\x0bnome_croqui\x18\x02 \x01(\t\x12\x0e\n\x06\x63idade\x18\x03 \x01(\t\x12\x0e\n\x06\x65stado\x18\x04 \x01(\t\x12\x0c\n\x04pais\x18\x05 \x01(\t\x12,\n\tescaladas\x18\x06 \x03(\x0b\x32\x19.aresta.EscaladaAlvoBusca\"\xc2\x01\n\x19\x43\x61ndidatosBetaPorEscalada\x12\x15\n\rnome_escalada\x18\x01 \x01(\t\x12\x0c\n\x04grau\x18\x02 \x01(\t\x12\x12\n\nnome_setor\x18\x03 \x01(\t\x12\x12\n\nnome_grupo\x18\x04 \x01(\t\x12\x11\n\tnome_pico\x18\x05 \x01(\t\x12\x0e\n\x06\x63idade\x18\x06 \x01(\t\x12\x0e\n\x06\x65stado\x18\x07 \x01(\t\x12%\n\ncandidatos\x18\x08 \x03(\x0b\x32\x11.aresta.MidiaBeta\"g\n\x0e\x42\x65tasPendentes\x12\x11\n\tid_croqui\x18\x01 \x01(\t\x12\x42\n\x17\x63\x61ndidatos_por_escalada\x18\x02 \x03(\x0b\x32!.aresta.CandidatosBetaPorEscaladab\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,8 +39,12 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_RESULTADOLLMBETA']._serialized_end=159
   _globals['_MIDIABETA']._serialized_start=162
   _globals['_MIDIABETA']._serialized_end=395
-  _globals['_CANDIDATOSBETAPORESCALADA']._serialized_start=398
-  _globals['_CANDIDATOSBETAPORESCALADA']._serialized_end=527
-  _globals['_BETASPENDENTES']._serialized_start=529
-  _globals['_BETASPENDENTES']._serialized_end=632
+  _globals['_ESCALADAALVOBUSCA']._serialized_start=398
+  _globals['_ESCALADAALVOBUSCA']._serialized_end=595
+  _globals['_VIASEXTRAIDASCROQUI']._serialized_start=598
+  _globals['_VIASEXTRAIDASCROQUI']._serialized_end=751
+  _globals['_CANDIDATOSBETAPORESCALADA']._serialized_start=754
+  _globals['_CANDIDATOSBETAPORESCALADA']._serialized_end=948
+  _globals['_BETASPENDENTES']._serialized_start=950
+  _globals['_BETASPENDENTES']._serialized_end=1053
 # @@protoc_insertion_point(module_scope)
