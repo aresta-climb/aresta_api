@@ -76,6 +76,15 @@ extend google.protobuf.FieldOptions {
   // Representa qual o campo que vai ser usado como título da mensagem na árvore do editor do croqui.
   // Apenas um campo pode ser preenchido com esse bool.
   bool titulo_na_ui = 50008;
+
+  // Define o rótulo do estado indefinido (ausente/None) de campos booleanos na UI.
+  string booleano_texto_indefinido = 50009;
+
+  // Define o rótulo do estado verdadeiro (True) de campos booleanos na UI.
+  string booleano_texto_sim = 50010;
+
+  // Define o rótulo do estado falso (False) de campos booleanos na UI.
+  string booleano_texto_nao = 50011;
 }
 
 // Representa a forma de exibição/organização de uma mensagem no editor de formulário.
@@ -159,10 +168,20 @@ message Croqui {
   string caminho_thumbnail = 8 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "image/webp"];
 
   // Representa se o croqui já foi revisado manualmente para garantir qualidade.
-  bool revisado_manualmente = 9;
+  bool revisado_manualmente = 9 [
+    (aresta.texto_na_ui) = "Revisado Manualmente",
+    (aresta.booleano_texto_sim) = "Revisado",
+    (aresta.booleano_texto_nao) = "Não revisado",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Representa se o croqui já foi revisado para ter bounding circles apropriados.
-  bool revisado_bounding_circle = 11;
+  bool revisado_bounding_circle = 11 [
+    (aresta.texto_na_ui) = "Revisado Bounding Circle",
+    (aresta.booleano_texto_sim) = "Revisado",
+    (aresta.booleano_texto_nao) = "Não revisado",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Representa se o croqui tem desenhos extraíveis do PDF.
   // Isso indica se as linhas do croqui podem ser extraídas do PDF como desenho vetorial, o que resulta
@@ -189,7 +208,12 @@ message Croqui {
 
   // Define se o croqui está publicado no índice principal para os usuários do aplicativo.
   // Se false (padrão do proto3), ele funcionará apenas como rascunho.
-  bool publicar_croqui = 16 [(aresta.texto_na_ui) = "Publicar Croqui"];
+  bool publicar_croqui = 16 [
+    (aresta.texto_na_ui) = "Publicar Croqui",
+    (aresta.booleano_texto_sim) = "Publicado",
+    (aresta.booleano_texto_nao) = "Rascunho",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   extensions 1000 to max;
   reserved 5, 10, 12;
@@ -469,13 +493,28 @@ message Setor {
   repeated Trilha trilhas = 4; 
 
   // Possível sinal de celular no setor.
-  bool sinal_de_celular = 6;
+  bool sinal_de_celular = 6 [
+    (aresta.texto_na_ui) = "Sinal de Celular",
+    (aresta.booleano_texto_sim) = "Possui sinal",
+    (aresta.booleano_texto_nao) = "Sem sinal",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Setor e acesso favorável a crianças.
-  bool amigavel_a_criancas = 7 [(aresta.texto_na_ui) = "Amigável a Crianças"];
+  bool amigavel_a_criancas = 7 [
+    (aresta.texto_na_ui) = "Amigável a Crianças",
+    (aresta.booleano_texto_sim) = "Adequado para crianças",
+    (aresta.booleano_texto_nao) = "Não recomendado para crianças",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Setor e acesso favorável a bebês.
-  bool amigavel_a_bebes = 8 [(aresta.texto_na_ui) = "Amigável a Bebês"];
+  bool amigavel_a_bebes = 8 [
+    (aresta.texto_na_ui) = "Amigável a Bebês",
+    (aresta.booleano_texto_sim) = "Adequado para bebês",
+    (aresta.booleano_texto_nao) = "Não recomendado para bebês",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Características da escalada no setor, insolação, qualidade da rocha, etc.
   string descricao = 9 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
@@ -679,7 +718,12 @@ message ViaEsportiva {
 
 
   // Se é um destaque para o setor.
-  bool destaque = 18 [(aresta.texto_na_ui) = "É Destaque"];
+  bool destaque = 18 [
+    (aresta.texto_na_ui) = "É Destaque",
+    (aresta.booleano_texto_sim) = "Sim (Destaque)",
+    (aresta.booleano_texto_nao) = "Não",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
   
   // Grau de dificuldade em livre da via (ex "BR_6sup").
   GrauVia.GrauVia dificuldade = 2;
@@ -736,7 +780,12 @@ message ViaMovel {
 
 
   // Se é um destaque para o setor.
-  bool destaque = 20 [(aresta.texto_na_ui) = "É Destaque"];
+  bool destaque = 20 [
+    (aresta.texto_na_ui) = "É Destaque",
+    (aresta.booleano_texto_sim) = "Sim (Destaque)",
+    (aresta.booleano_texto_nao) = "Não",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
   
   // Grau de dificuldade em livre da via (ex "BR_6sup").
   GrauVia.GrauVia dificuldade = 2;
@@ -798,7 +847,12 @@ message Boulder {
 
 
   // Se é um destaque para o setor.
-  bool destaque = 11 [(aresta.texto_na_ui) = "É Destaque"];
+  bool destaque = 11 [
+    (aresta.texto_na_ui) = "É Destaque",
+    (aresta.booleano_texto_sim) = "Sim (Destaque)",
+    (aresta.booleano_texto_nao) = "Não",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Grau de dificuldade (ex: "V3", "V8").
   GrauBoulder.GrauBoulder dificuldade = 2;
@@ -816,7 +870,7 @@ message Boulder {
   string descricao = 6 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 7 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  string url_video_beta = 7 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta"];
 
   // Chave Pix do mantenedor ou conquistador específico deste boulder.
   string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
@@ -833,7 +887,12 @@ message ViaMultiplasEnfiadas {
 
 
   // Se é um destaque para o setor.
-  bool destaque = 25 [(aresta.texto_na_ui) = "É Destaque"];
+  bool destaque = 25 [
+    (aresta.texto_na_ui) = "É Destaque",
+    (aresta.booleano_texto_sim) = "Sim (Destaque)",
+    (aresta.booleano_texto_nao) = "Não",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Mapas da via de múltiplas enfiadas, se houver.
   repeated Mapa mapas = 21;
@@ -900,7 +959,7 @@ message ViaMultiplasEnfiadas {
   string data_manutencao = 17 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
 
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 18 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  string url_video_beta = 18 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta"];
 
   // Chave Pix do mantenedor ou conquistador específico desta via.
   string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
@@ -917,7 +976,12 @@ message Highline {
 
 
   // Se é um destaque para o setor.
-  bool destaque = 15 [(aresta.texto_na_ui) = "É Destaque"];
+  bool destaque = 15 [
+    (aresta.texto_na_ui) = "É Destaque",
+    (aresta.booleano_texto_sim) = "Sim (Destaque)",
+    (aresta.booleano_texto_nao) = "Não",
+    (aresta.booleano_texto_indefinido) = "Não informado"
+  ];
 
   // Distância do highline.
   int32 distancia = 2 [(aresta.texto_na_ui) = "Distância"];
