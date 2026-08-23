@@ -47,6 +47,15 @@ message CampoFormatoUi {
 
     // O campo abre um editor de markdown com preview.
     MARKDOWN = 5;
+
+    // O campo é um valor de latitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos.
+    LATITUDE_E7 = 6;
+
+    // O campo é um valor de longitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos.
+    LONGITUDE_E7 = 7;
+
+    // O campo representa uma imagem com pré-visualização, metadados e pré-processamento WebP.
+    IMAGEM = 8;
   }
 }
 
@@ -85,6 +94,9 @@ extend google.protobuf.FieldOptions {
 
   // Define o rótulo do estado falso (False) de campos booleanos na UI.
   string booleano_texto_nao = 50011;
+
+  // Define o nome de arquivo fixo de destino para campos de imagem (ex: "thumbnail.webp").
+  string nome_arquivo_imagem = 50012;
 }
 
 // Representa a forma de exibição/organização de uma mensagem no editor de formulário.
@@ -120,6 +132,9 @@ message MensagemFormatoUi {
     // A mensagem é gerida e editada por um editor visual especializado, o Editor de Mapas.
     // O editor de dados padrão mostrará apenas um botão "Abrir no Editor de Mapas".
     MAPA = 6;
+
+    // A mensagem representa coordenadas geográficas (Latitude e Longitude na mesma linha com ações de Colar e Abrir no Maps).
+    COORDENADA = 7;
   }
 }
 
@@ -165,7 +180,13 @@ message Croqui {
 
   // Caminho para a thumbnail do croqui (imagem em miniatura para prever croquis não baixados).
   // Essa imagem deve ter no máximo 1200x1200.
-  string caminho_thumbnail = 8 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "image/webp"];
+  string caminho_thumbnail = 8 [
+    (aresta.tipo_conteudo) = CAMINHO,
+    (aresta.mime_type) = "image/webp",
+    (aresta.formato_na_ui) = IMAGEM,
+    (aresta.nome_arquivo_imagem) = "thumbnail.webp",
+    (aresta.texto_na_ui) = "Thumbnail / Capa"
+  ];
 
   // Representa se o croqui já foi revisado manualmente para garantir qualidade.
   bool revisado_manualmente = 9 [
@@ -352,7 +373,7 @@ message Pico {
   string estado = 3;
   
   // Localização do ponto de referência principal (geralmente o estacionamento).
-  Coordenada localizacao = 4;
+  Coordenada localizacao = 4 [(aresta.texto_na_ui) = "Localização"];
 
   // Link para o ponto de referência principal no Google Maps.
   string url_google_maps = 5 [(aresta.texto_na_ui) = "URL Google Maps"];
@@ -1080,10 +1101,10 @@ message PontoDeInteresse {
 // scripts/deploy_generated.py automaticamente converte as coordenadas de arquivos .yaml e .md que
 // forem colados como doubles para esse formato E7.
 message Coordenada {
-  option (aresta.mensagem_formato_na_ui) = INLINE;
+  option (aresta.mensagem_formato_na_ui) = COORDENADA;
 
-  sint32 latitude = 1;
-  sint32 longitude = 2;
+  sint32 latitude = 1 [(aresta.texto_na_ui) = "Latitude", (aresta.formato_na_ui) = LATITUDE_E7];
+  sint32 longitude = 2 [(aresta.texto_na_ui) = "Longitude", (aresta.formato_na_ui) = LONGITUDE_E7];
 }
 
 // Tipo de uma parede.
