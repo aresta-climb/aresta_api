@@ -52,14 +52,17 @@ const CampoFormatoUi_Enum$json = {
     {'1': 'TEXTO_CURTO', '2': 3},
     {'1': 'TEXTO_LONGO', '2': 4},
     {'1': 'MARKDOWN', '2': 5},
+    {'1': 'LATITUDE_E7', '2': 6},
+    {'1': 'LONGITUDE_E7', '2': 7},
+    {'1': 'IMAGEM', '2': 8},
   ],
 };
 
 /// Descriptor for `CampoFormatoUi`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List campoFormatoUiDescriptor = $convert.base64Decode(
-    'Cg5DYW1wb0Zvcm1hdG9VaSJhCgRFbnVtEg4KCklOREVGSU5JRE8QABIKCgZJTkxJTkUQARINCg'
-    'lJTlZJU0lWRUwQAhIPCgtURVhUT19DVVJUTxADEg8KC1RFWFRPX0xPTkdPEAQSDAoITUFSS0RP'
-    'V04QBQ==');
+    'Cg5DYW1wb0Zvcm1hdG9VaSKQAQoERW51bRIOCgpJTkRFRklOSURPEAASCgoGSU5MSU5FEAESDQ'
+    'oJSU5WSVNJVkVMEAISDwoLVEVYVE9fQ1VSVE8QAxIPCgtURVhUT19MT05HTxAEEgwKCE1BUktE'
+    'T1dOEAUSDwoLTEFUSVRVREVfRTcQBhIQCgxMT05HSVRVREVfRTcQBxIKCgZJTUFHRU0QCA==');
 
 @$core.Deprecated('Use mensagemFormatoUiDescriptor instead')
 const MensagemFormatoUi$json = {
@@ -78,14 +81,15 @@ const MensagemFormatoUi_Enum$json = {
     {'1': 'INVISIVEL', '2': 4},
     {'1': 'ONEOF_CONTEUDO', '2': 5},
     {'1': 'MAPA', '2': 6},
+    {'1': 'COORDENADA', '2': 7},
   ],
 };
 
 /// Descriptor for `MensagemFormatoUi`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List mensagemFormatoUiDescriptor = $convert.base64Decode(
-    'ChFNZW5zYWdlbUZvcm1hdG9VaSJoCgRFbnVtEg4KCklOREVGSU5JRE8QABIMCghTRVBBUkFETx'
+    'ChFNZW5zYWdlbUZvcm1hdG9VaSJ4CgRFbnVtEg4KCklOREVGSU5JRE8QABIMCghTRVBBUkFETx'
     'ABEgoKBklOTElORRACEgkKBU9ORU9GEAMSDQoJSU5WSVNJVkVMEAQSEgoOT05FT0ZfQ09OVEVV'
-    'RE8QBRIICgRNQVBBEAY=');
+    'RE8QBRIICgRNQVBBEAYSDgoKQ09PUkRFTkFEQRAH');
 
 @$core.Deprecated('Use croquiDescriptor instead')
 const Croqui$json = {
@@ -209,24 +213,24 @@ final $typed_data.Uint8List croquiDescriptor = $convert.base64Decode(
     'b3MYBCADKAlCDZK1GAlDcsOpZGl0b3NSCGNyZWRpdG9zEjIKBmJvdG9lcxgOIAMoCzINLmFyZX'
     'N0YS5Cb3Rhb0ILkrUYB0JvdMO1ZXNSBmJvdG9lcxIiCgVwaWNvcxgGIAMoCzIMLmFyZXN0YS5Q'
     'aWNvUgVwaWNvcxJJChFhcnF1aXZvc19leHRlcm5vcxgHIAMoCzIWLmFyZXN0YS5BcnF1aXZvRX'
-    'h0ZXJub0IEsLUYAlIQYXJxdWl2b3NFeHRlcm5vcxI/ChFjYW1pbmhvX3RodW1ibmFpbBgIIAEo'
-    'CUISirUYCmltYWdlL3dlYnCYtRgCUhBjYW1pbmhvVGh1bWJuYWlsEnoKFHJldmlzYWRvX21hbn'
-    'VhbG1lbnRlGAkgASgIQkeStRgUUmV2aXNhZG8gTWFudWFsbWVudGXKtRgOTsOjbyBpbmZvcm1h'
-    'ZG/StRgIUmV2aXNhZG/atRgNTsOjbyByZXZpc2Fkb1ITcmV2aXNhZG9NYW51YWxtZW50ZRKFAQ'
-    'oYcmV2aXNhZG9fYm91bmRpbmdfY2lyY2xlGAsgASgIQkuStRgYUmV2aXNhZG8gQm91bmRpbmcg'
-    'Q2lyY2xlyrUYDk7Do28gaW5mb3JtYWRv0rUYCFJldmlzYWRv2rUYDU7Do28gcmV2aXNhZG9SFn'
-    'JldmlzYWRvQm91bmRpbmdDaXJjbGUSZAoYc3RhdHVzX2Rlc2VuaG9fZXh0cmFpdmVsGA0gASgO'
-    'MiouYXJlc3RhLkNyb3F1aS5TdGF0dXNEZXNlbmhvRXh0cmFpdmVsLkVudW1SFnN0YXR1c0Rlc2'
-    'VuaG9FeHRyYWl2ZWwSLQoPdWx0aW1hX21pZ3JhY2FvGA8gASgFQgSwtRgCUg51bHRpbWFNaWdy'
-    'YWNhbxJnCg9wdWJsaWNhcl9jcm9xdWkYECABKAhCPpK1GA9QdWJsaWNhciBDcm9xdWnKtRgOTs'
-    'OjbyBpbmZvcm1hZG/StRgJUHVibGljYWRv2rUYCFJhc2N1bmhvUg5wdWJsaWNhckNyb3F1aRrU'
-    'AQoWU3RhdHVzRGVzZW5ob0V4dHJhaXZlbCK5AQoERW51bRIOCgpJTkRFRklOSURPEAASKQoPTk'
-    'FPX1RFTV9ERVNFTkhPEAEaFIq1GBBOw6NvIHRlbSBkZXNlbmhvEkkKHFRFTV9ERVNFTkhPX01B'
-    'U19OQU9fRVhUUkFJRE8QAhonirUYI1RlbSBkZXNlbmhvLCBtYXMgbsOjbyBmb2kgZXh0cmHDrW'
-    'RvEisKEERFU0VOSE9fRVhUUkFJRE8QAxoVirUYEURlc2VuaG8gZXh0cmHDrWRvKgkI6AcQgICA'
-    'gAIyZQoVZXh0X21ldGFkYWRvc19hcnF1aXZvEg4uYXJlc3RhLkNyb3F1aRjoByABKAsyIC5hcm'
-    'VzdGEuTWV0YWRhZG9zQXJxdWl2b05vRWRpdG9yUhNleHRNZXRhZGFkb3NBcnF1aXZvSgQIBRAG'
-    'SgQIChALSgQIDBAN');
+    'h0ZXJub0IEsLUYAlIQYXJxdWl2b3NFeHRlcm5vcxJpChFjYW1pbmhvX3RodW1ibmFpbBgIIAEo'
+    'CUI8irUYCmltYWdlL3dlYnCStRgQVGh1bWJuYWlsIC8gQ2FwYZi1GAKwtRgI4rUYDnRodW1ibm'
+    'FpbC53ZWJwUhBjYW1pbmhvVGh1bWJuYWlsEnoKFHJldmlzYWRvX21hbnVhbG1lbnRlGAkgASgI'
+    'QkeStRgUUmV2aXNhZG8gTWFudWFsbWVudGXKtRgOTsOjbyBpbmZvcm1hZG/StRgIUmV2aXNhZG'
+    '/atRgNTsOjbyByZXZpc2Fkb1ITcmV2aXNhZG9NYW51YWxtZW50ZRKFAQoYcmV2aXNhZG9fYm91'
+    'bmRpbmdfY2lyY2xlGAsgASgIQkuStRgYUmV2aXNhZG8gQm91bmRpbmcgQ2lyY2xlyrUYDk7Do2'
+    '8gaW5mb3JtYWRv0rUYCFJldmlzYWRv2rUYDU7Do28gcmV2aXNhZG9SFnJldmlzYWRvQm91bmRp'
+    'bmdDaXJjbGUSZAoYc3RhdHVzX2Rlc2VuaG9fZXh0cmFpdmVsGA0gASgOMiouYXJlc3RhLkNyb3'
+    'F1aS5TdGF0dXNEZXNlbmhvRXh0cmFpdmVsLkVudW1SFnN0YXR1c0Rlc2VuaG9FeHRyYWl2ZWwS'
+    'LQoPdWx0aW1hX21pZ3JhY2FvGA8gASgFQgSwtRgCUg51bHRpbWFNaWdyYWNhbxJnCg9wdWJsaW'
+    'Nhcl9jcm9xdWkYECABKAhCPpK1GA9QdWJsaWNhciBDcm9xdWnKtRgOTsOjbyBpbmZvcm1hZG/S'
+    'tRgJUHVibGljYWRv2rUYCFJhc2N1bmhvUg5wdWJsaWNhckNyb3F1aRrUAQoWU3RhdHVzRGVzZW'
+    '5ob0V4dHJhaXZlbCK5AQoERW51bRIOCgpJTkRFRklOSURPEAASKQoPTkFPX1RFTV9ERVNFTkhP'
+    'EAEaFIq1GBBOw6NvIHRlbSBkZXNlbmhvEkkKHFRFTV9ERVNFTkhPX01BU19OQU9fRVhUUkFJRE'
+    '8QAhonirUYI1RlbSBkZXNlbmhvLCBtYXMgbsOjbyBmb2kgZXh0cmHDrWRvEisKEERFU0VOSE9f'
+    'RVhUUkFJRE8QAxoVirUYEURlc2VuaG8gZXh0cmHDrWRvKgkI6AcQgICAgAIyZQoVZXh0X21ldG'
+    'FkYWRvc19hcnF1aXZvEg4uYXJlc3RhLkNyb3F1aRjoByABKAsyIC5hcmVzdGEuTWV0YWRhZG9z'
+    'QXJxdWl2b05vRWRpdG9yUhNleHRNZXRhZGFkb3NBcnF1aXZvSgQIBRAGSgQIChALSgQIDBAN');
 
 @$core.Deprecated('Use botaoDescriptor instead')
 const Botao$json = {
@@ -273,7 +277,7 @@ const DestinoBotao$json = {
 /// Descriptor for `DestinoBotao`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List destinoBotaoDescriptor = $convert.base64Decode(
     'CgxEZXN0aW5vQm90YW8SPgoNc2VjYW9fdGV4dHVhbBgBIAEoCzIXLmFyZXN0YS5BcnF1aXZvTW'
-    'Fya2Rvd25IAFIMc2VjYW9UZXh0dWFsOgSQtRgDQgkKB2Rlc3Rpbm8=');
+    'Fya2Rvd25IAFIMc2VjYW9UZXh0dWFsOgSQtRgCQgkKB2Rlc3Rpbm8=');
 
 @$core.Deprecated('Use arquivoExternoDescriptor instead')
 const ArquivoExterno$json = {
@@ -464,6 +468,7 @@ const Pico$json = {
       '4': 1,
       '5': 11,
       '6': '.aresta.Coordenada',
+      '8': {},
       '10': 'localizacao'
     },
     {
@@ -535,18 +540,18 @@ const Pico$json = {
 /// Descriptor for `Pico`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'CgRQaWNvEhgKBG5vbWUYASABKAlCBMC1GAFSBG5vbWUSIgoJZGVzY3JpY2FvGAIgASgJQgSotR'
-    'gBUglkZXNjcmljYW8SFgoGZXN0YWRvGAMgASgJUgZlc3RhZG8SNAoLbG9jYWxpemFjYW8YBCAB'
-    'KAsyEi5hcmVzdGEuQ29vcmRlbmFkYVILbG9jYWxpemFjYW8SOwoPdXJsX2dvb2dsZV9tYXBzGA'
-    'UgASgJQhOStRgPVVJMIEdvb2dsZSBNYXBzUg11cmxHb29nbGVNYXBzEicKD25vbWVfYXNzb2Np'
-    'YWNhbxgGIAEoCVIObm9tZUFzc29jaWFjYW8STQoXdXJsX2ZpbGlhY2FvX2Fzc29jaWFjYW8YBy'
-    'ABKAlCFZK1GBFVUkwgZGUgRmlsaWHDp8Ojb1IVdXJsRmlsaWFjYW9Bc3NvY2lhY2FvElEKFGNo'
-    'YXZlX3BpeF9tYW51dGVuY2FvGAggASgJQh+StRgbQ2hhdmUgUGl4IHBhcmEgTWFudXRlbsOnw6'
-    'NvUhJjaGF2ZVBpeE1hbnV0ZW5jYW8SPAoOcGF0cm9jaW5hZG9yZXMYCSADKAsyFC5hcmVzdGEu'
-    'UGF0cm9jaW5hZG9yUg5wYXRyb2NpbmFkb3JlcxJAChFzZXRvcmVzX291X2dydXBvcxgLIAMoCz'
-    'IULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydXBvcxJJCgxtYXBhc19nZXJhaXMY'
-    'DCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFwYXMgR2VyYWlzUgttYXBhc0dlcm'
-    'FpcxJFCg1wcmVjb21wdXRhZG9zGA0gASgLMhkuYXJlc3RhLlByZWNvbXB1dGFkb3NQaWNvQgSw'
-    'tRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIChAL');
+    'gBUglkZXNjcmljYW8SFgoGZXN0YWRvGAMgASgJUgZlc3RhZG8SRwoLbG9jYWxpemFjYW8YBCAB'
+    'KAsyEi5hcmVzdGEuQ29vcmRlbmFkYUIRkrUYDUxvY2FsaXphw6fDo29SC2xvY2FsaXphY2FvEj'
+    'sKD3VybF9nb29nbGVfbWFwcxgFIAEoCUITkrUYD1VSTCBHb29nbGUgTWFwc1INdXJsR29vZ2xl'
+    'TWFwcxInCg9ub21lX2Fzc29jaWFjYW8YBiABKAlSDm5vbWVBc3NvY2lhY2FvEk0KF3VybF9maW'
+    'xpYWNhb19hc3NvY2lhY2FvGAcgASgJQhWStRgRVVJMIGRlIEZpbGlhw6fDo29SFXVybEZpbGlh'
+    'Y2FvQXNzb2NpYWNhbxJRChRjaGF2ZV9waXhfbWFudXRlbmNhbxgIIAEoCUIfkrUYG0NoYXZlIF'
+    'BpeCBwYXJhIE1hbnV0ZW7Dp8Ojb1ISY2hhdmVQaXhNYW51dGVuY2FvEjwKDnBhdHJvY2luYWRv'
+    'cmVzGAkgAygLMhQuYXJlc3RhLlBhdHJvY2luYWRvclIOcGF0cm9jaW5hZG9yZXMSQAoRc2V0b3'
+    'Jlc19vdV9ncnVwb3MYCyADKAsyFC5hcmVzdGEuU2V0b3JPdUdydXBvUg9zZXRvcmVzT3VHcnVw'
+    'b3MSSQoMbWFwYXNfZ2VyYWlzGAwgASgLMhQuYXJlc3RhLkFycXVpdm9NYXBhc0IQkrUYDE1hcG'
+    'FzIEdlcmFpc1ILbWFwYXNHZXJhaXMSRQoNcHJlY29tcHV0YWRvcxgNIAEoCzIZLmFyZXN0YS5Q'
+    'cmVjb21wdXRhZG9zUGljb0IEsLUYAlINcHJlY29tcHV0YWRvczoEkLUYAUoECAoQCw==');
 
 @$core.Deprecated('Use colecaoDeMapasDescriptor instead')
 const ColecaoDeMapas$json = {
@@ -1984,16 +1989,17 @@ final $typed_data.Uint8List pontoDeInteresseDescriptor = $convert.base64Decode(
 const Coordenada$json = {
   '1': 'Coordenada',
   '2': [
-    {'1': 'latitude', '3': 1, '4': 1, '5': 17, '10': 'latitude'},
-    {'1': 'longitude', '3': 2, '4': 1, '5': 17, '10': 'longitude'},
+    {'1': 'latitude', '3': 1, '4': 1, '5': 17, '8': {}, '10': 'latitude'},
+    {'1': 'longitude', '3': 2, '4': 1, '5': 17, '8': {}, '10': 'longitude'},
   ],
   '7': {},
 };
 
 /// Descriptor for `Coordenada`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List coordenadaDescriptor = $convert.base64Decode(
-    'CgpDb29yZGVuYWRhEhoKCGxhdGl0dWRlGAEgASgRUghsYXRpdHVkZRIcCglsb25naXR1ZGUYAi'
-    'ABKBFSCWxvbmdpdHVkZToEkLUYAg==');
+    'CgpDb29yZGVuYWRhEiwKCGxhdGl0dWRlGAEgASgRQhCStRgITGF0aXR1ZGWwtRgGUghsYXRpdH'
+    'VkZRIvCglsb25naXR1ZGUYAiABKBFCEZK1GAlMb25naXR1ZGWwtRgHUglsb25naXR1ZGU6BJC1'
+    'GAc=');
 
 @$core.Deprecated('Use tipoParedeDescriptor instead')
 const TipoParede$json = {

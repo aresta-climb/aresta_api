@@ -71,6 +71,18 @@ class CampoFormatoUi_Enum extends $pb.ProtobufEnum {
   static const CampoFormatoUi_Enum MARKDOWN =
       CampoFormatoUi_Enum._(5, _omitEnumNames ? '' : 'MARKDOWN');
 
+  /// O campo é um valor de latitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos.
+  static const CampoFormatoUi_Enum LATITUDE_E7 =
+      CampoFormatoUi_Enum._(6, _omitEnumNames ? '' : 'LATITUDE_E7');
+
+  /// O campo é um valor de longitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos.
+  static const CampoFormatoUi_Enum LONGITUDE_E7 =
+      CampoFormatoUi_Enum._(7, _omitEnumNames ? '' : 'LONGITUDE_E7');
+
+  /// O campo representa uma imagem com pré-visualização, metadados e pré-processamento WebP.
+  static const CampoFormatoUi_Enum IMAGEM =
+      CampoFormatoUi_Enum._(8, _omitEnumNames ? '' : 'IMAGEM');
+
   static const $core.List<CampoFormatoUi_Enum> values = <CampoFormatoUi_Enum>[
     INDEFINIDO,
     INLINE,
@@ -78,10 +90,13 @@ class CampoFormatoUi_Enum extends $pb.ProtobufEnum {
     TEXTO_CURTO,
     TEXTO_LONGO,
     MARKDOWN,
+    LATITUDE_E7,
+    LONGITUDE_E7,
+    IMAGEM,
   ];
 
   static final $core.List<CampoFormatoUi_Enum?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 5);
+      $pb.ProtobufEnum.$_initByValueList(values, 8);
   static CampoFormatoUi_Enum? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 
@@ -127,6 +142,10 @@ class MensagemFormatoUi_Enum extends $pb.ProtobufEnum {
   static const MensagemFormatoUi_Enum MAPA =
       MensagemFormatoUi_Enum._(6, _omitEnumNames ? '' : 'MAPA');
 
+  /// A mensagem representa coordenadas geográficas (Latitude e Longitude na mesma linha com ações de Colar e Abrir no Maps).
+  static const MensagemFormatoUi_Enum COORDENADA =
+      MensagemFormatoUi_Enum._(7, _omitEnumNames ? '' : 'COORDENADA');
+
   static const $core.List<MensagemFormatoUi_Enum> values =
       <MensagemFormatoUi_Enum>[
     INDEFINIDO,
@@ -136,10 +155,11 @@ class MensagemFormatoUi_Enum extends $pb.ProtobufEnum {
     INVISIVEL,
     ONEOF_CONTEUDO,
     MAPA,
+    COORDENADA,
   ];
 
   static final $core.List<MensagemFormatoUi_Enum?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 6);
+      $pb.ProtobufEnum.$_initByValueList(values, 7);
   static MensagemFormatoUi_Enum? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

@@ -5053,6 +5053,11 @@ class CroquiExt {
       _omitFieldNames ? '' : 'booleanoTextoNao',
       50011,
       $pb.PbFieldType.OS);
+  static final nomeArquivoImagem = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
+      _omitFieldNames ? '' : 'nomeArquivoImagem',
+      50012,
+      $pb.PbFieldType.OS);
   static final mensagemTextoNaUi = $pb.Extension<$core.String>(
       _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
       _omitFieldNames ? '' : 'mensagemTextoNaUi',
@@ -5083,6 +5088,7 @@ class CroquiExt {
     registry.add(booleanoTextoIndefinido);
     registry.add(booleanoTextoSim);
     registry.add(booleanoTextoNao);
+    registry.add(nomeArquivoImagem);
     registry.add(mensagemTextoNaUi);
     registry.add(mensagemFormatoNaUi);
     registry.add(enumTextoNaUi);
