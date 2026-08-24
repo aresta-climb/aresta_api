@@ -5038,6 +5038,21 @@ class CroquiExt {
       _omitFieldNames ? '' : 'tituloNaUi',
       50008,
       $pb.PbFieldType.OB);
+  static final booleanoTextoIndefinido = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
+      _omitFieldNames ? '' : 'booleanoTextoIndefinido',
+      50009,
+      $pb.PbFieldType.OS);
+  static final booleanoTextoSim = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
+      _omitFieldNames ? '' : 'booleanoTextoSim',
+      50010,
+      $pb.PbFieldType.OS);
+  static final booleanoTextoNao = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
+      _omitFieldNames ? '' : 'booleanoTextoNao',
+      50011,
+      $pb.PbFieldType.OS);
   static final mensagemTextoNaUi = $pb.Extension<$core.String>(
       _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
       _omitFieldNames ? '' : 'mensagemTextoNaUi',
@@ -5065,6 +5080,9 @@ class CroquiExt {
     registry.add(formatoNaUi);
     registry.add(oneofDefault);
     registry.add(tituloNaUi);
+    registry.add(booleanoTextoIndefinido);
+    registry.add(booleanoTextoSim);
+    registry.add(booleanoTextoNao);
     registry.add(mensagemTextoNaUi);
     registry.add(mensagemFormatoNaUi);
     registry.add(enumTextoNaUi);
