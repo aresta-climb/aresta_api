@@ -53,6 +53,7 @@ const CroquiExperimental$json = {
       '5': 9,
       '10': 'pullRequestForkOwner'
     },
+    {'1': 'commit_base_sha', '3': 9, '4': 1, '5': 9, '10': 'commitBaseSha'},
   ],
 };
 
@@ -65,4 +66,4 @@ final $typed_data.Uint8List croquiExperimentalDescriptor = $convert.base64Decode
     'aW5hbBgFIAEoCVIKaWRPcmlnaW5hbBIoChBwdWxsX3JlcXVlc3RfdXJsGAYgASgJUg5wdWxsUm'
     'VxdWVzdFVybBIuChNwdWxsX3JlcXVlc3RfYnJhbmNoGAcgASgJUhFwdWxsUmVxdWVzdEJyYW5j'
     'aBI1ChdwdWxsX3JlcXVlc3RfZm9ya19vd25lchgIIAEoCVIUcHVsbFJlcXVlc3RGb3JrT3duZX'
-    'I=');
+    'ISJgoPY29tbWl0X2Jhc2Vfc2hhGAkgASgJUg1jb21taXRCYXNlU2hh');

@@ -29,6 +29,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $core.String? pullRequestUrl,
     $core.String? pullRequestBranch,
     $core.String? pullRequestForkOwner,
+    $core.String? commitBaseSha,
   }) {
     final result = create();
     if (autores != null) result.autores.addAll(autores);
@@ -40,6 +41,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     if (pullRequestBranch != null) result.pullRequestBranch = pullRequestBranch;
     if (pullRequestForkOwner != null)
       result.pullRequestForkOwner = pullRequestForkOwner;
+    if (commitBaseSha != null) result.commitBaseSha = commitBaseSha;
     return result;
   }
 
@@ -66,6 +68,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'pullRequestUrl')
     ..aOS(7, _omitFieldNames ? '' : 'pullRequestBranch')
     ..aOS(8, _omitFieldNames ? '' : 'pullRequestForkOwner')
+    ..aOS(9, _omitFieldNames ? '' : 'commitBaseSha')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -167,6 +170,16 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   $core.bool hasPullRequestForkOwner() => $_has(7);
   @$pb.TagNumber(8)
   void clearPullRequestForkOwner() => $_clearField(8);
+
+  /// Hash SHA do commit base do repositório oficial (aresta_db) de onde este croqui se originou.
+  @$pb.TagNumber(9)
+  $core.String get commitBaseSha => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set commitBaseSha($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasCommitBaseSha() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearCommitBaseSha() => $_clearField(9);
 }
 
 const $core.bool _omitFieldNames =

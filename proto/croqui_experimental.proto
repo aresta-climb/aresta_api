@@ -35,4 +35,7 @@ message CroquiExperimental {
 
   // Nome de usuário (login) do proprietário do fork onde a branch reside.
   string pull_request_fork_owner = 8;
+
+  // Hash SHA do commit base do repositório oficial (aresta_db) de onde este croqui se originou.
+  string commit_base_sha = 9;
 }
