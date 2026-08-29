@@ -8,7 +8,7 @@ import hashlib
 import argparse
 from grpc_tools import protoc
 
-def get_protos_hash(proto_files):
+def get_protos_hash(proto_files: list[str]) -> str:
     """Calcula um hash único de todos os arquivos .proto para detectar mudanças."""
     hasher = hashlib.sha256()
     # Ordena para garantir que a ordem dos arquivos não afete o hash
@@ -17,7 +17,7 @@ def get_protos_hash(proto_files):
             hasher.update(fp.read())
     return hasher.hexdigest()
 
-def generate_protos(argv=None):
+def generate_protos(argv: list[str] | None = None) -> None:
     """
     Gera arquivos do Protobuf para Python e Dart.
     argv: Lista de argumentos (ex: ['-f']). Se None, usa sys.argv[1:].
@@ -49,7 +49,7 @@ def generate_protos(argv=None):
             saved_hash = f.read().strip()
         
         # Além de bater o hash, vamos garantir que existe pelo menos algum arquivo gerado além do __init__.py e .protos_hash
-        gerados = [f for f in os.listdir(generated_dir) if f.endswith('_pb2.py') or f.endswith('.pb.dart')]
+        gerados = [f for f in os.listdir(generated_dir) if f.endswith('_pb2.py') or f.endswith('_pb2.pyi') or f.endswith('.pb.dart')]
         
         if current_hash == saved_hash and gerados:
             print("Nenhuma alteração nos arquivos .proto. Compilação pulada.")
@@ -71,12 +71,13 @@ def generate_protos(argv=None):
     from importlib.resources import files
     well_known_types_dir = str(files('grpc_tools').joinpath('_proto'))
 
-    # Geração dos arquivos Python e Dart em uma única chamada usando grpc_tools.protoc
+    # Geração dos arquivos Python, Stubs MyPy e Dart em uma única chamada usando grpc_tools.protoc
     protoc_args = [
         "grpc_tools.protoc",
         f"-I{proto_dir}",
         f"-I{well_known_types_dir}",
         f"--python_out={generated_dir}",
+        f"--mypy_out={generated_dir}",
         f"--dart_out={generated_dir}"
     ] + proto_files
 
@@ -91,8 +92,9 @@ def generate_protos(argv=None):
         with open(hash_file, "w") as f:
             f.write(current_hash)
 
-def main():
+def main() -> None:
     generate_protos()
 
 if __name__ == "__main__":
     main()
+

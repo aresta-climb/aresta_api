@@ -47,11 +47,16 @@ class TestBuild(unittest.TestCase):
             self.fail("generate_protos() chamou sys.exit() de forma inesperada na 1ª execução")
             
         mock_protoc.assert_called_once()
+        args_chamada = mock_protoc.call_args[0][0]
+        self.assertTrue(any(arg.startswith("--mypy_out=") for arg in args_chamada))
+        self.assertTrue(any(arg.startswith("--python_out=") for arg in args_chamada))
         self.assertTrue(os.path.exists(os.path.join(self.generated_dir, ".protos_hash")))
         
-        # Simula a criação do output pelo protoc
+        # Simula a criação do output pelo protoc incluindo .pyi
         with open(os.path.join(self.generated_dir, "dummy_pb2.py"), "w") as f:
             f.write("# dummy")
+        with open(os.path.join(self.generated_dir, "dummy_pb2.pyi"), "w") as f:
+            f.write("# dummy pyi")
             
         # 2ª Execução: o proto não mudou, o hash deve ser igual e ter os arquivos gerados
         # Portanto, o protoc não deve ser chamado novamente
