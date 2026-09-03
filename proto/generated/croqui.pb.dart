@@ -2115,6 +2115,7 @@ enum Mapa_PontoDeInteresse_TipoArea {
   circulo,
   poligono,
   quadrado,
+  linha,
   notSet
 }
 
@@ -2127,6 +2128,9 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     BoundingCirculo? circulo,
     BoundingPoligono? poligono,
     BoundingQuadrado? quadrado,
+    LinhaTrajeto? linha,
+    $core.String? cor,
+    $core.String? textoVisivel,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -2135,6 +2139,9 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     if (circulo != null) result.circulo = circulo;
     if (poligono != null) result.poligono = poligono;
     if (quadrado != null) result.quadrado = quadrado;
+    if (linha != null) result.linha = linha;
+    if (cor != null) result.cor = cor;
+    if (textoVisivel != null) result.textoVisivel = textoVisivel;
     return result;
   }
 
@@ -2153,13 +2160,14 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     6: Mapa_PontoDeInteresse_TipoArea.circulo,
     7: Mapa_PontoDeInteresse_TipoArea.poligono,
     8: Mapa_PontoDeInteresse_TipoArea.quadrado,
+    9: Mapa_PontoDeInteresse_TipoArea.linha,
     0: Mapa_PontoDeInteresse_TipoArea.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa.PontoDeInteresse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
       createEmptyInstance: create)
-    ..oo(0, [3, 6, 7, 8])
+    ..oo(0, [3, 6, 7, 8, 9])
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'label')
     ..aOM<BoundingRetangulo>(3, _omitFieldNames ? '' : 'retangulo',
@@ -2170,6 +2178,10 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
         subBuilder: BoundingPoligono.create)
     ..aOM<BoundingQuadrado>(8, _omitFieldNames ? '' : 'quadrado',
         subBuilder: BoundingQuadrado.create)
+    ..aOM<LinhaTrajeto>(9, _omitFieldNames ? '' : 'linha',
+        subBuilder: LinhaTrajeto.create)
+    ..aOS(10, _omitFieldNames ? '' : 'cor')
+    ..aOS(11, _omitFieldNames ? '' : 'textoVisivel')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2196,12 +2208,14 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
   @$pb.TagNumber(8)
+  @$pb.TagNumber(9)
   Mapa_PontoDeInteresse_TipoArea whichTipoArea() =>
       _Mapa_PontoDeInteresse_TipoAreaByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(3)
   @$pb.TagNumber(6)
   @$pb.TagNumber(7)
   @$pb.TagNumber(8)
+  @$pb.TagNumber(9)
   void clearTipoArea() => $_clearField($_whichOneof(0));
 
   /// ID do ponto de interesse no mapa.
@@ -2271,6 +2285,40 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   void clearQuadrado() => $_clearField(8);
   @$pb.TagNumber(8)
   BoundingQuadrado ensureQuadrado() => $_ensure(5);
+
+  /// Traçado vetorial de linha da escalada.
+  @$pb.TagNumber(9)
+  LinhaTrajeto get linha => $_getN(6);
+  @$pb.TagNumber(9)
+  set linha(LinhaTrajeto value) => $_setField(9, value);
+  @$pb.TagNumber(9)
+  $core.bool hasLinha() => $_has(6);
+  @$pb.TagNumber(9)
+  void clearLinha() => $_clearField(9);
+  @$pb.TagNumber(9)
+  LinhaTrajeto ensureLinha() => $_ensure(6);
+
+  /// Cor customizada em formato hexadecimal (ex: "#FF6D00").
+  /// Se omitida, o editor e o app utilizam a cor padrão.
+  @$pb.TagNumber(10)
+  $core.String get cor => $_getSZ(7);
+  @$pb.TagNumber(10)
+  set cor($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(10)
+  $core.bool hasCor() => $_has(7);
+  @$pb.TagNumber(10)
+  void clearCor() => $_clearField(10);
+
+  /// Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
+  /// Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
+  @$pb.TagNumber(11)
+  $core.String get textoVisivel => $_getSZ(8);
+  @$pb.TagNumber(11)
+  set textoVisivel($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(11)
+  $core.bool hasTextoVisivel() => $_has(8);
+  @$pb.TagNumber(11)
+  void clearTextoVisivel() => $_clearField(11);
 }
 
 /// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
@@ -2919,6 +2967,512 @@ class BoundingPoligono extends $pb.GeneratedMessage {
   /// x1, y1, x2, y2, x3, y3, x4, y4, etc...
   @$pb.TagNumber(1)
   $pb.PbList<$core.int> get coordenadas => $_getList(0);
+}
+
+enum LinhaTrajeto_Representacao { conteudo, compilado, notSet }
+
+/// Representa o traçado vetorial de uma via ou boulder na rocha.
+class LinhaTrajeto extends $pb.GeneratedMessage {
+  factory LinhaTrajeto({
+    LinhaTrajeto_EstiloTraco? estilo,
+    DadosConteudoLinha? conteudo,
+    DadosCompiladosLinha? compilado,
+    $core.int? espessura,
+  }) {
+    final result = create();
+    if (estilo != null) result.estilo = estilo;
+    if (conteudo != null) result.conteudo = conteudo;
+    if (compilado != null) result.compilado = compilado;
+    if (espessura != null) result.espessura = espessura;
+    return result;
+  }
+
+  LinhaTrajeto._();
+
+  factory LinhaTrajeto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LinhaTrajeto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static const $core.Map<$core.int, LinhaTrajeto_Representacao>
+      _LinhaTrajeto_RepresentacaoByTag = {
+    2: LinhaTrajeto_Representacao.conteudo,
+    3: LinhaTrajeto_Representacao.compilado,
+    0: LinhaTrajeto_Representacao.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LinhaTrajeto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..oo(0, [2, 3])
+    ..aE<LinhaTrajeto_EstiloTraco>(1, _omitFieldNames ? '' : 'estilo',
+        enumValues: LinhaTrajeto_EstiloTraco.values)
+    ..aOM<DadosConteudoLinha>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: DadosConteudoLinha.create)
+    ..aOM<DadosCompiladosLinha>(3, _omitFieldNames ? '' : 'compilado',
+        subBuilder: DadosCompiladosLinha.create)
+    ..aI(4, _omitFieldNames ? '' : 'espessura')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LinhaTrajeto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LinhaTrajeto copyWith(void Function(LinhaTrajeto) updates) =>
+      super.copyWith((message) => updates(message as LinhaTrajeto))
+          as LinhaTrajeto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LinhaTrajeto create() => LinhaTrajeto._();
+  @$core.override
+  LinhaTrajeto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LinhaTrajeto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LinhaTrajeto>(create);
+  static LinhaTrajeto? _defaultInstance;
+
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
+  LinhaTrajeto_Representacao whichRepresentacao() =>
+      _LinhaTrajeto_RepresentacaoByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(2)
+  @$pb.TagNumber(3)
+  void clearRepresentacao() => $_clearField($_whichOneof(0));
+
+  /// Estilo visual do traçado.
+  @$pb.TagNumber(1)
+  LinhaTrajeto_EstiloTraco get estilo => $_getN(0);
+  @$pb.TagNumber(1)
+  set estilo(LinhaTrajeto_EstiloTraco value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasEstilo() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearEstilo() => $_clearField(1);
+
+  /// Dados semânticos editáveis pelo usuário no editor e salvos no YAML.
+  @$pb.TagNumber(2)
+  DadosConteudoLinha get conteudo => $_getN(1);
+  @$pb.TagNumber(2)
+  set conteudo(DadosConteudoLinha value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasConteudo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearConteudo() => $_clearField(2);
+  @$pb.TagNumber(2)
+  DadosConteudoLinha ensureConteudo() => $_ensure(1);
+
+  /// Dados pré-calculados na compilação para aceleração por GPU no aplicativo.
+  @$pb.TagNumber(3)
+  DadosCompiladosLinha get compilado => $_getN(2);
+  @$pb.TagNumber(3)
+  set compilado(DadosCompiladosLinha value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasCompilado() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearCompilado() => $_clearField(3);
+  @$pb.TagNumber(3)
+  DadosCompiladosLinha ensureCompilado() => $_ensure(2);
+
+  /// Espessura do traço em pixels (padrão: 3).
+  @$pb.TagNumber(4)
+  $core.int get espessura => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set espessura($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasEspessura() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEspessura() => $_clearField(4);
+}
+
+/// Dados semânticos editáveis de uma linha de traçado.
+class DadosConteudoLinha extends $pb.GeneratedMessage {
+  factory DadosConteudoLinha({
+    $core.Iterable<NoTrajeto>? nos,
+  }) {
+    final result = create();
+    if (nos != null) result.nos.addAll(nos);
+    return result;
+  }
+
+  DadosConteudoLinha._();
+
+  factory DadosConteudoLinha.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DadosConteudoLinha.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DadosConteudoLinha',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..pPM<NoTrajeto>(1, _omitFieldNames ? '' : 'nos',
+        subBuilder: NoTrajeto.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DadosConteudoLinha clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DadosConteudoLinha copyWith(void Function(DadosConteudoLinha) updates) =>
+      super.copyWith((message) => updates(message as DadosConteudoLinha))
+          as DadosConteudoLinha;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DadosConteudoLinha create() => DadosConteudoLinha._();
+  @$core.override
+  DadosConteudoLinha createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static DadosConteudoLinha getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DadosConteudoLinha>(create);
+  static DadosConteudoLinha? _defaultInstance;
+
+  /// Lista ordenada de nós que compõem o traçado da via.
+  @$pb.TagNumber(1)
+  $pb.PbList<NoTrajeto> get nos => $_getList(0);
+}
+
+/// Representa um nó (vértice) na linha de traçado da via.
+class NoTrajeto extends $pb.GeneratedMessage {
+  factory NoTrajeto({
+    $core.int? x,
+    $core.int? y,
+    NoTrajeto_TipoNo? tipo,
+    $core.String? rotulo,
+    $core.int? raio,
+    $core.int? tamanhoFonte,
+  }) {
+    final result = create();
+    if (x != null) result.x = x;
+    if (y != null) result.y = y;
+    if (tipo != null) result.tipo = tipo;
+    if (rotulo != null) result.rotulo = rotulo;
+    if (raio != null) result.raio = raio;
+    if (tamanhoFonte != null) result.tamanhoFonte = tamanhoFonte;
+    return result;
+  }
+
+  NoTrajeto._();
+
+  factory NoTrajeto.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory NoTrajeto.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'NoTrajeto',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'x')
+    ..aI(2, _omitFieldNames ? '' : 'y')
+    ..aE<NoTrajeto_TipoNo>(3, _omitFieldNames ? '' : 'tipo',
+        enumValues: NoTrajeto_TipoNo.values)
+    ..aOS(4, _omitFieldNames ? '' : 'rotulo')
+    ..aI(5, _omitFieldNames ? '' : 'raio')
+    ..aI(6, _omitFieldNames ? '' : 'tamanhoFonte')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  NoTrajeto clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  NoTrajeto copyWith(void Function(NoTrajeto) updates) =>
+      super.copyWith((message) => updates(message as NoTrajeto)) as NoTrajeto;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static NoTrajeto create() => NoTrajeto._();
+  @$core.override
+  NoTrajeto createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static NoTrajeto getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NoTrajeto>(create);
+  static NoTrajeto? _defaultInstance;
+
+  /// Coordenada X do nó em pixels na imagem.
+  @$pb.TagNumber(1)
+  $core.int get x => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set x($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasX() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearX() => $_clearField(1);
+
+  /// Coordenada Y do nó em pixels na imagem.
+  @$pb.TagNumber(2)
+  $core.int get y => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set y($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasY() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearY() => $_clearField(2);
+
+  /// Tipo semântico deste nó.
+  @$pb.TagNumber(3)
+  NoTrajeto_TipoNo get tipo => $_getN(2);
+  @$pb.TagNumber(3)
+  set tipo(NoTrajeto_TipoNo value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasTipo() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTipo() => $_clearField(3);
+
+  /// Rótulo textual opcional específico deste nó (ex: "01", "P1", "SS").
+  @$pb.TagNumber(4)
+  $core.String get rotulo => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set rotulo($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasRotulo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearRotulo() => $_clearField(4);
+
+  /// Raio do círculo identificador em pixels (se omitido ou 0, padrão: 12).
+  @$pb.TagNumber(5)
+  $core.int get raio => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set raio($core.int value) => $_setSignedInt32(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasRaio() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRaio() => $_clearField(5);
+
+  /// Tamanho da fonte do rótulo em pontos (se omitido ou 0, padrão: 8).
+  @$pb.TagNumber(6)
+  $core.int get tamanhoFonte => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set tamanhoFonte($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTamanhoFonte() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearTamanhoFonte() => $_clearField(6);
+}
+
+/// Dados pré-calculados pelo compilador para renderização direta via GPU no app.
+class DadosCompiladosLinha extends $pb.GeneratedMessage {
+  factory DadosCompiladosLinha({
+    $core.String? caminhoSvg,
+    BoundingRetangulo? caixaDelimitadora,
+    $core.Iterable<MarcadorCompilado>? marcadores,
+  }) {
+    final result = create();
+    if (caminhoSvg != null) result.caminhoSvg = caminhoSvg;
+    if (caixaDelimitadora != null) result.caixaDelimitadora = caixaDelimitadora;
+    if (marcadores != null) result.marcadores.addAll(marcadores);
+    return result;
+  }
+
+  DadosCompiladosLinha._();
+
+  factory DadosCompiladosLinha.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DadosCompiladosLinha.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DadosCompiladosLinha',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'caminhoSvg')
+    ..aOM<BoundingRetangulo>(2, _omitFieldNames ? '' : 'caixaDelimitadora',
+        subBuilder: BoundingRetangulo.create)
+    ..pPM<MarcadorCompilado>(3, _omitFieldNames ? '' : 'marcadores',
+        subBuilder: MarcadorCompilado.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DadosCompiladosLinha clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DadosCompiladosLinha copyWith(void Function(DadosCompiladosLinha) updates) =>
+      super.copyWith((message) => updates(message as DadosCompiladosLinha))
+          as DadosCompiladosLinha;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DadosCompiladosLinha create() => DadosCompiladosLinha._();
+  @$core.override
+  DadosCompiladosLinha createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static DadosCompiladosLinha getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DadosCompiladosLinha>(create);
+  static DadosCompiladosLinha? _defaultInstance;
+
+  /// Caminho SVG padrão contendo comandos de Bézier Cúbica ("M ... C ...").
+  @$pb.TagNumber(1)
+  $core.String get caminhoSvg => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set caminhoSvg($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCaminhoSvg() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCaminhoSvg() => $_clearField(1);
+
+  /// Caixa delimitadora pré-calculada para enquadramento instantâneo de câmera.
+  @$pb.TagNumber(2)
+  BoundingRetangulo get caixaDelimitadora => $_getN(1);
+  @$pb.TagNumber(2)
+  set caixaDelimitadora(BoundingRetangulo value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasCaixaDelimitadora() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCaixaDelimitadora() => $_clearField(2);
+  @$pb.TagNumber(2)
+  BoundingRetangulo ensureCaixaDelimitadora() => $_ensure(1);
+
+  /// Marcadores pré-posicionados com coordenadas e ângulos de rotação calculados.
+  @$pb.TagNumber(3)
+  $pb.PbList<MarcadorCompilado> get marcadores => $_getList(2);
+}
+
+/// Marcador posicionado ao longo da linha compilada.
+class MarcadorCompilado extends $pb.GeneratedMessage {
+  factory MarcadorCompilado({
+    $core.int? x,
+    $core.int? y,
+    $core.int? anguloGrausX100,
+    NoTrajeto_TipoNo? tipo,
+    $core.String? rotulo,
+    $core.int? raio,
+    $core.int? tamanhoFonte,
+  }) {
+    final result = create();
+    if (x != null) result.x = x;
+    if (y != null) result.y = y;
+    if (anguloGrausX100 != null) result.anguloGrausX100 = anguloGrausX100;
+    if (tipo != null) result.tipo = tipo;
+    if (rotulo != null) result.rotulo = rotulo;
+    if (raio != null) result.raio = raio;
+    if (tamanhoFonte != null) result.tamanhoFonte = tamanhoFonte;
+    return result;
+  }
+
+  MarcadorCompilado._();
+
+  factory MarcadorCompilado.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory MarcadorCompilado.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'MarcadorCompilado',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: create)
+    ..aI(1, _omitFieldNames ? '' : 'x')
+    ..aI(2, _omitFieldNames ? '' : 'y')
+    ..aI(3, _omitFieldNames ? '' : 'anguloGrausX100',
+        fieldType: $pb.PbFieldType.OS3)
+    ..aE<NoTrajeto_TipoNo>(4, _omitFieldNames ? '' : 'tipo',
+        enumValues: NoTrajeto_TipoNo.values)
+    ..aOS(5, _omitFieldNames ? '' : 'rotulo')
+    ..aI(6, _omitFieldNames ? '' : 'raio')
+    ..aI(7, _omitFieldNames ? '' : 'tamanhoFonte')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  MarcadorCompilado clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  MarcadorCompilado copyWith(void Function(MarcadorCompilado) updates) =>
+      super.copyWith((message) => updates(message as MarcadorCompilado))
+          as MarcadorCompilado;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static MarcadorCompilado create() => MarcadorCompilado._();
+  @$core.override
+  MarcadorCompilado createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static MarcadorCompilado getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<MarcadorCompilado>(create);
+  static MarcadorCompilado? _defaultInstance;
+
+  /// Coordenadas (x, y) do marcador em pixels.
+  @$pb.TagNumber(1)
+  $core.int get x => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set x($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasX() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearX() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get y => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set y($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasY() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearY() => $_clearField(2);
+
+  /// Ângulo tangencial da curva em graus * 10^2 para rotação do ícone.
+  @$pb.TagNumber(3)
+  $core.int get anguloGrausX100 => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set anguloGrausX100($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasAnguloGrausX100() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAnguloGrausX100() => $_clearField(3);
+
+  /// Tipo semântico do nó representado por este marcador.
+  @$pb.TagNumber(4)
+  NoTrajeto_TipoNo get tipo => $_getN(3);
+  @$pb.TagNumber(4)
+  set tipo(NoTrajeto_TipoNo value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasTipo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTipo() => $_clearField(4);
+
+  /// Rótulo textual associado (se houver).
+  @$pb.TagNumber(5)
+  $core.String get rotulo => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set rotulo($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasRotulo() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRotulo() => $_clearField(5);
+
+  /// Raio do marcador circular em pixels (se aplicável).
+  @$pb.TagNumber(6)
+  $core.int get raio => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set raio($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasRaio() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearRaio() => $_clearField(6);
+
+  /// Tamanho da fonte do rótulo em pontos (se aplicável).
+  @$pb.TagNumber(7)
+  $core.int get tamanhoFonte => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set tamanhoFonte($core.int value) => $_setSignedInt32(6, value);
+  @$pb.TagNumber(7)
+  $core.bool hasTamanhoFonte() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearTamanhoFonte() => $_clearField(7);
 }
 
 enum Escalada_Tipo {

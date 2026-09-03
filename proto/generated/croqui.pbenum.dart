@@ -203,6 +203,111 @@ class Croqui_StatusDesenhoExtraivel_Enum extends $pb.ProtobufEnum {
   const Croqui_StatusDesenhoExtraivel_Enum._(super.value, super.name);
 }
 
+class LinhaTrajeto_EstiloTraco extends $pb.ProtobufEnum {
+  /// Linha tracejada (padrão para rota de escalada livre - FEMEMG B3-a).
+  static const LinhaTrajeto_EstiloTraco TRACEJADO =
+      LinhaTrajeto_EstiloTraco._(0, _omitEnumNames ? '' : 'TRACEJADO');
+
+  /// Linha contínua sólida (corda fixa ou cabo de aço - FEMEMG B3-d).
+  static const LinhaTrajeto_EstiloTraco SOLIDO =
+      LinhaTrajeto_EstiloTraco._(1, _omitEnumNames ? '' : 'SOLIDO');
+
+  /// Linha pontilhada (rota em artificial - FEMEMG B3-b).
+  static const LinhaTrajeto_EstiloTraco PONTILHADO =
+      LinhaTrajeto_EstiloTraco._(2, _omitEnumNames ? '' : 'PONTILHADO');
+
+  /// Trecho de caminhada com setas (FEMEMG B3-c).
+  static const LinhaTrajeto_EstiloTraco CAMINHADA =
+      LinhaTrajeto_EstiloTraco._(3, _omitEnumNames ? '' : 'CAMINHADA');
+
+  static const $core.List<LinhaTrajeto_EstiloTraco> values =
+      <LinhaTrajeto_EstiloTraco>[
+    TRACEJADO,
+    SOLIDO,
+    PONTILHADO,
+    CAMINHADA,
+  ];
+
+  static final $core.List<LinhaTrajeto_EstiloTraco?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 3);
+  static LinhaTrajeto_EstiloTraco? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
+
+  const LinhaTrajeto_EstiloTraco._(super.value, super.name);
+}
+
+class NoTrajeto_TipoNo extends $pb.ProtobufEnum {
+  /// Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico).
+  static const NoTrajeto_TipoNo PASSAGEM =
+      NoTrajeto_TipoNo._(0, _omitEnumNames ? '' : 'PASSAGEM');
+
+  /// Círculo identificador com número da via na base.
+  static const NoTrajeto_TipoNo INICIO_BASE =
+      NoTrajeto_TipoNo._(1, _omitEnumNames ? '' : 'INICIO_BASE');
+
+  /// Saída agachada/sentada para boulder ("SS" / Sit Start).
+  static const NoTrajeto_TipoNo INICIO_AGACHADO =
+      NoTrajeto_TipoNo._(2, _omitEnumNames ? '' : 'INICIO_AGACHADO');
+
+  /// Proteção fixa (grampo, chapeleta) - representado por "X" (FEMEMG B3-g).
+  static const NoTrajeto_TipoNo PROTECAO_FIXA =
+      NoTrajeto_TipoNo._(3, _omitEnumNames ? '' : 'PROTECAO_FIXA');
+
+  /// Parada intermediária - representado por "XX" (dois X).
+  static const NoTrajeto_TipoNo PARADA_INTERMEDIARIA =
+      NoTrajeto_TipoNo._(4, _omitEnumNames ? '' : 'PARADA_INTERMEDIARIA');
+
+  /// Top ou parada final - representado por "XX" (dois X).
+  static const NoTrajeto_TipoNo TOP_PARADA =
+      NoTrajeto_TipoNo._(5, _omitEnumNames ? '' : 'TOP_PARADA');
+
+  /// Ponto chave ou crux da via.
+  static const NoTrajeto_TipoNo CRUX =
+      NoTrajeto_TipoNo._(6, _omitEnumNames ? '' : 'CRUX');
+
+  /// Proteção móvel (friends, camalots, nuts) - representado por triângulo "△" (FEMEMG B3-h).
+  static const NoTrajeto_TipoNo PROTECAO_MOVEL =
+      NoTrajeto_TipoNo._(7, _omitEnumNames ? '' : 'PROTECAO_MOVEL');
+
+  /// Proteção tipo píton - lâmina com olhal (FEMEMG B3-i).
+  static const NoTrajeto_TipoNo PROTECAO_PITON =
+      NoTrajeto_TipoNo._(8, _omitEnumNames ? '' : 'PROTECAO_PITON');
+
+  /// Proteção em fita - bloco, bico de pedra, árvore (FEMEMG B3-j).
+  static const NoTrajeto_TipoNo PROTECAO_FITA =
+      NoTrajeto_TipoNo._(9, _omitEnumNames ? '' : 'PROTECAO_FITA');
+
+  /// Buraco de cliff - furo pequeno sólido (FEMEMG B3-f).
+  static const NoTrajeto_TipoNo BURACO_CLIFF =
+      NoTrajeto_TipoNo._(10, _omitEnumNames ? '' : 'BURACO_CLIFF');
+
+  /// Círculo identificador de fim ou top da via/boulder ("T" / "TOP").
+  static const NoTrajeto_TipoNo FIM_TOP =
+      NoTrajeto_TipoNo._(11, _omitEnumNames ? '' : 'FIM_TOP');
+
+  static const $core.List<NoTrajeto_TipoNo> values = <NoTrajeto_TipoNo>[
+    PASSAGEM,
+    INICIO_BASE,
+    INICIO_AGACHADO,
+    PROTECAO_FIXA,
+    PARADA_INTERMEDIARIA,
+    TOP_PARADA,
+    CRUX,
+    PROTECAO_MOVEL,
+    PROTECAO_PITON,
+    PROTECAO_FITA,
+    BURACO_CLIFF,
+    FIM_TOP,
+  ];
+
+  static final $core.List<NoTrajeto_TipoNo?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 11);
+  static NoTrajeto_TipoNo? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
+
+  const NoTrajeto_TipoNo._(super.value, super.name);
+}
+
 /// Se a via é toda fixa, mista ou toda em móvel.
 class ViaMultiplasEnfiadas_TipoViaMultiplasEnfiadas extends $pb.ProtobufEnum {
   static const ViaMultiplasEnfiadas_TipoViaMultiplasEnfiadas INDEFINIDO =

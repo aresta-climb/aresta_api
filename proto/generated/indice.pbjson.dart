@@ -57,6 +57,13 @@ const PrecomputadosResumoCroqui$json = {
       '10': 'totalMultiplasEnfiadas'
     },
     {'1': 'total_highlines', '3': 8, '4': 1, '5': 5, '10': 'totalHighlines'},
+    {
+      '1': 'tamanho_download_bytes',
+      '3': 9,
+      '4': 1,
+      '5': 3,
+      '10': 'tamanhoDownloadBytes'
+    },
   ],
 };
 
@@ -68,7 +75,8 @@ final $typed_data.Uint8List precomputadosResumoCroquiDescriptor = $convert.base6
     'IPdG90YWxFc3BvcnRpdmFzEiEKDHRvdGFsX21vdmVpcxgFIAEoBVILdG90YWxNb3ZlaXMSJQoO'
     'dG90YWxfYm91bGRlcnMYBiABKAVSDXRvdGFsQm91bGRlcnMSOAoYdG90YWxfbXVsdGlwbGFzX2'
     'VuZmlhZGFzGAcgASgFUhZ0b3RhbE11bHRpcGxhc0VuZmlhZGFzEicKD3RvdGFsX2hpZ2hsaW5l'
-    'cxgIIAEoBVIOdG90YWxIaWdobGluZXM=');
+    'cxgIIAEoBVIOdG90YWxIaWdobGluZXMSNAoWdGFtYW5ob19kb3dubG9hZF9ieXRlcxgJIAEoA1'
+    'IUdGFtYW5ob0Rvd25sb2FkQnl0ZXM=');
 
 @$core.Deprecated('Use resumoCroquiDescriptor instead')
 const ResumoCroqui$json = {

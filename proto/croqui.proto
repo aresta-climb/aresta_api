@@ -581,12 +581,21 @@ message Mapa {
     // Label do ponto de interesse que estava escrita no mapa.
     string label = 2;
 
+    // Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
+    // Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
+    string texto_visivel = 11 [(aresta.texto_na_ui) = "Texto Visível no Mapa"];
+
+    // Cor customizada em formato hexadecimal (ex: "#FF6D00").
+    // Se omitida, o editor e o app utilizam a cor padrão.
+    string cor = 10 [(aresta.texto_na_ui) = "Cor"];
+
     // Bounding area do ponto de interesse na imagem.
     // Prefira usar na seguinte ordem de preferência:
     //  - 'circulo': mais preciso e simples, use sempre que possível.
     //  - 'quadrado': formas simétricas não circulares.
     //  - 'retangulo': use apenas caso precisar representar uma área retangular. Aceita também angulação.
     //  - 'poligono': última opção, use apenas se não for possível usar as outras.
+    //  - 'linha': traçado vetorial suave para linhas de vias e boulders.
     oneof tipo_area {
       // Bounding area circular.
       BoundingCirculo circulo = 6;
@@ -596,6 +605,8 @@ message Mapa {
       BoundingRetangulo retangulo = 3;
       // Bounding area livre poligonal.
       BoundingPoligono poligono = 7 [(aresta.texto_na_ui) = "Área Livre"];
+      // Traçado vetorial de linha da escalada.
+      LinhaTrajeto linha = 9 [(aresta.texto_na_ui) = "Linha do Trajeto"];
     }
   }
 
@@ -714,6 +725,147 @@ message BoundingPoligono {
   // Coordenadas dos pontos que formam a área, na ordem.
   // x1, y1, x2, y2, x3, y3, x4, y4, etc...
   repeated int32 coordenadas = 1;
+}
+
+// Representa o traçado vetorial de uma via ou boulder na rocha.
+message LinhaTrajeto {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  enum EstiloTraco {
+    // Linha tracejada (padrão para rota de escalada livre - FEMEMG B3-a).
+    TRACEJADO = 0 [(aresta.enum_texto_na_ui) = "Tracejado (Rota Livre)"];
+
+    // Linha contínua sólida (corda fixa ou cabo de aço - FEMEMG B3-d).
+    SOLIDO = 1 [(aresta.enum_texto_na_ui) = "Sólido (Corda Fixa / Cabo)"];
+
+    // Linha pontilhada (rota em artificial - FEMEMG B3-b).
+    PONTILHADO = 2 [(aresta.enum_texto_na_ui) = "Pontilhado (Artificial)"];
+
+    // Trecho de caminhada com setas (FEMEMG B3-c).
+    CAMINHADA = 3 [(aresta.enum_texto_na_ui) = "Caminhada (Setas)"];
+  }
+
+  // Estilo visual do traçado.
+  EstiloTraco estilo = 1 [(aresta.texto_na_ui) = "Estilo do Traço"];
+
+  // Espessura do traço em pixels (padrão: 3).
+  int32 espessura = 4 [(aresta.texto_na_ui) = "Espessura"];
+
+  // Representação dos dados da linha (modo de edição vs modo compilado).
+  oneof representacao {
+    // Dados semânticos editáveis pelo usuário no editor e salvos no YAML.
+    DadosConteudoLinha conteudo = 2 [(aresta.texto_na_ui) = "Conteúdo"];
+
+    // Dados pré-calculados na compilação para aceleração por GPU no aplicativo.
+    DadosCompiladosLinha compilado = 3 [(aresta.formato_na_ui) = INVISIVEL];
+  }
+}
+
+// Dados semânticos editáveis de uma linha de traçado.
+message DadosConteudoLinha {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Lista ordenada de nós que compõem o traçado da via.
+  repeated NoTrajeto nos = 1 [(aresta.texto_na_ui) = "Nós do Trajeto"];
+}
+
+// Representa um nó (vértice) na linha de traçado da via.
+message NoTrajeto {
+  option (aresta.mensagem_formato_na_ui) = INLINE;
+
+  // Coordenada X do nó em pixels na imagem.
+  int32 x = 1;
+
+  // Coordenada Y do nó em pixels na imagem.
+  int32 y = 2;
+
+  enum TipoNo {
+    // Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico).
+    PASSAGEM = 0 [(aresta.enum_texto_na_ui) = "Invisível (Curva)"];
+
+    // Círculo identificador com número da via na base.
+    INICIO_BASE = 1 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Início/Base)"];
+
+    // Saída agachada/sentada para boulder ("SS" / Sit Start).
+    INICIO_AGACHADO = 2 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Sit Start)"];
+
+    // Proteção fixa (grampo, chapeleta) - representado por "X" (FEMEMG B3-g).
+    PROTECAO_FIXA = 3 [(aresta.enum_texto_na_ui) = "Proteção Fixa (X)"];
+
+    // Parada intermediária - representado por "XX" (dois X).
+    PARADA_INTERMEDIARIA = 4 [(aresta.enum_texto_na_ui) = "Parada Intermediária (XX)"];
+
+    // Top ou parada final - representado por "XX" (dois X).
+    TOP_PARADA = 5 [(aresta.enum_texto_na_ui) = "Top / Parada Final (XX)"];
+
+    // Ponto chave ou crux da via.
+    CRUX = 6 [(aresta.enum_texto_na_ui) = "Crux (Chave)"];
+
+    // Proteção móvel (friends, camalots, nuts) - representado por triângulo "△" (FEMEMG B3-h).
+    PROTECAO_MOVEL = 7 [(aresta.enum_texto_na_ui) = "Proteção Móvel (△)"];
+
+    // Proteção tipo píton - lâmina com olhal (FEMEMG B3-i).
+    PROTECAO_PITON = 8 [(aresta.enum_texto_na_ui) = "Píton"];
+
+    // Proteção em fita - bloco, bico de pedra, árvore (FEMEMG B3-j).
+    PROTECAO_FITA = 9 [(aresta.enum_texto_na_ui) = "Fita"];
+
+    // Buraco de cliff - furo pequeno sólido (FEMEMG B3-f).
+    BURACO_CLIFF = 10 [(aresta.enum_texto_na_ui) = "Buraco de Cliff"];
+
+    // Círculo identificador de fim ou top da via/boulder ("T" / "TOP").
+    FIM_TOP = 11 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Fim/Top)"];
+  }
+
+  // Tipo semântico deste nó.
+  TipoNo tipo = 3 [(aresta.texto_na_ui) = "Tipo do Nó"];
+
+  // Rótulo textual opcional específico deste nó (ex: "01", "P1", "SS").
+  string rotulo = 4 [(aresta.texto_na_ui) = "Rótulo"];
+
+  // Raio do círculo identificador em pixels (se omitido ou 0, padrão: 12).
+  int32 raio = 5 [(aresta.texto_na_ui) = "Raio do Círculo"];
+
+  // Tamanho da fonte do rótulo em pontos (se omitido ou 0, padrão: 8).
+  int32 tamanho_fonte = 6 [(aresta.texto_na_ui) = "Tamanho da Fonte"];
+}
+
+// Dados pré-calculados pelo compilador para renderização direta via GPU no app.
+message DadosCompiladosLinha {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Caminho SVG padrão contendo comandos de Bézier Cúbica ("M ... C ...").
+  string caminho_svg = 1;
+
+  // Caixa delimitadora pré-calculada para enquadramento instantâneo de câmera.
+  BoundingRetangulo caixa_delimitadora = 2;
+
+  // Marcadores pré-posicionados com coordenadas e ângulos de rotação calculados.
+  repeated MarcadorCompilado marcadores = 3;
+}
+
+// Marcador posicionado ao longo da linha compilada.
+message MarcadorCompilado {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Coordenadas (x, y) do marcador em pixels.
+  int32 x = 1;
+  int32 y = 2;
+
+  // Ângulo tangencial da curva em graus * 10^2 para rotação do ícone.
+  sint32 angulo_graus_x100 = 3;
+
+  // Tipo semântico do nó representado por este marcador.
+  NoTrajeto.TipoNo tipo = 4;
+
+  // Rótulo textual associado (se houver).
+  string rotulo = 5;
+
+  // Raio do marcador circular em pixels (se aplicável).
+  int32 raio = 6;
+
+  // Tamanho da fonte do rótulo em pontos (se aplicável).
+  int32 tamanho_fonte = 7;
 }
 
 // Representa uma escalada de qualquer tipo.

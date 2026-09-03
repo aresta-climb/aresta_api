@@ -988,14 +988,25 @@ class Mapa(_message.Message):
 
         ID_FIELD_NUMBER: _builtins.int
         LABEL_FIELD_NUMBER: _builtins.int
+        TEXTO_VISIVEL_FIELD_NUMBER: _builtins.int
+        COR_FIELD_NUMBER: _builtins.int
         CIRCULO_FIELD_NUMBER: _builtins.int
         QUADRADO_FIELD_NUMBER: _builtins.int
         RETANGULO_FIELD_NUMBER: _builtins.int
         POLIGONO_FIELD_NUMBER: _builtins.int
+        LINHA_FIELD_NUMBER: _builtins.int
         id: _builtins.str
         """ID do ponto de interesse no mapa."""
         label: _builtins.str
         """Label do ponto de interesse que estava escrita no mapa."""
+        texto_visivel: _builtins.str
+        """Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
+        Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
+        """
+        cor: _builtins.str
+        """Cor customizada em formato hexadecimal (ex: "#FF6D00").
+        Se omitida, o editor e o app utilizam a cor padrão.
+        """
         @_builtins.property
         def circulo(self) -> Global___BoundingCirculo:
             """Bounding area circular."""
@@ -1012,21 +1023,28 @@ class Mapa(_message.Message):
         def poligono(self) -> Global___BoundingPoligono:
             """Bounding area livre poligonal."""
 
+        @_builtins.property
+        def linha(self) -> Global___LinhaTrajeto:
+            """Traçado vetorial de linha da escalada."""
+
         def __init__(
             self,
             *,
             id: _builtins.str | None = ...,
             label: _builtins.str | None = ...,
+            texto_visivel: _builtins.str | None = ...,
+            cor: _builtins.str | None = ...,
             circulo: Global___BoundingCirculo | None = ...,
             quadrado: Global___BoundingQuadrado | None = ...,
             retangulo: Global___BoundingRetangulo | None = ...,
             poligono: Global___BoundingPoligono | None = ...,
+            linha: Global___LinhaTrajeto | None = ...,
         ) -> None: ...
-        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "id", b"id", "label", b"label", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "tipo_area", b"tipo_area"]  # noqa: Y015
+        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area"]  # noqa: Y015
         def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "id", b"id", "label", b"label", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "tipo_area", b"tipo_area"]  # noqa: Y015
+        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area"]  # noqa: Y015
         def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-        _WhichOneofReturnType_tipo_area: _TypeAlias = _typing.Literal["circulo", "quadrado", "retangulo", "poligono"]  # noqa: Y015
+        _WhichOneofReturnType_tipo_area: _TypeAlias = _typing.Literal["circulo", "quadrado", "retangulo", "poligono", "linha"]  # noqa: Y015
         _WhichOneofArgType_tipo_area: _TypeAlias = _typing.Literal["tipo_area", b"tipo_area"]  # noqa: Y015
         def WhichOneof(self, oneof_group: _WhichOneofArgType_tipo_area) -> _WhichOneofReturnType_tipo_area | None: ...
 
@@ -1289,6 +1307,273 @@ class BoundingPoligono(_message.Message):
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___BoundingPoligono: _TypeAlias = BoundingPoligono  # noqa: Y015
+
+@_typing.final
+class LinhaTrajeto(_message.Message):
+    """Representa o traçado vetorial de uma via ou boulder na rocha."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    class _EstiloTraco:
+        ValueType = _typing.NewType("ValueType", _builtins.int)
+        V: _TypeAlias = ValueType  # noqa: Y015
+
+    class _EstiloTracoEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[LinhaTrajeto._EstiloTraco.ValueType], _builtins.type):
+        DESCRIPTOR: _descriptor.EnumDescriptor
+        TRACEJADO: LinhaTrajeto._EstiloTraco.ValueType  # 0
+        """Linha tracejada (padrão para rota de escalada livre - FEMEMG B3-a)."""
+        SOLIDO: LinhaTrajeto._EstiloTraco.ValueType  # 1
+        """Linha contínua sólida (corda fixa ou cabo de aço - FEMEMG B3-d)."""
+        PONTILHADO: LinhaTrajeto._EstiloTraco.ValueType  # 2
+        """Linha pontilhada (rota em artificial - FEMEMG B3-b)."""
+        CAMINHADA: LinhaTrajeto._EstiloTraco.ValueType  # 3
+        """Trecho de caminhada com setas (FEMEMG B3-c)."""
+
+    class EstiloTraco(_EstiloTraco, metaclass=_EstiloTracoEnumTypeWrapper): ...
+    TRACEJADO: LinhaTrajeto.EstiloTraco.ValueType  # 0
+    """Linha tracejada (padrão para rota de escalada livre - FEMEMG B3-a)."""
+    SOLIDO: LinhaTrajeto.EstiloTraco.ValueType  # 1
+    """Linha contínua sólida (corda fixa ou cabo de aço - FEMEMG B3-d)."""
+    PONTILHADO: LinhaTrajeto.EstiloTraco.ValueType  # 2
+    """Linha pontilhada (rota em artificial - FEMEMG B3-b)."""
+    CAMINHADA: LinhaTrajeto.EstiloTraco.ValueType  # 3
+    """Trecho de caminhada com setas (FEMEMG B3-c)."""
+
+    ESTILO_FIELD_NUMBER: _builtins.int
+    ESPESSURA_FIELD_NUMBER: _builtins.int
+    CONTEUDO_FIELD_NUMBER: _builtins.int
+    COMPILADO_FIELD_NUMBER: _builtins.int
+    estilo: Global___LinhaTrajeto.EstiloTraco.ValueType
+    """Estilo visual do traçado."""
+    espessura: _builtins.int
+    """Espessura do traço em pixels (padrão: 3)."""
+    @_builtins.property
+    def conteudo(self) -> Global___DadosConteudoLinha:
+        """Dados semânticos editáveis pelo usuário no editor e salvos no YAML."""
+
+    @_builtins.property
+    def compilado(self) -> Global___DadosCompiladosLinha:
+        """Dados pré-calculados na compilação para aceleração por GPU no aplicativo."""
+
+    def __init__(
+        self,
+        *,
+        estilo: Global___LinhaTrajeto.EstiloTraco.ValueType | None = ...,
+        espessura: _builtins.int | None = ...,
+        conteudo: Global___DadosConteudoLinha | None = ...,
+        compilado: Global___DadosCompiladosLinha | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["compilado", b"compilado", "conteudo", b"conteudo", "espessura", b"espessura", "estilo", b"estilo", "representacao", b"representacao"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["compilado", b"compilado", "conteudo", b"conteudo", "espessura", b"espessura", "estilo", b"estilo", "representacao", b"representacao"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_representacao: _TypeAlias = _typing.Literal["conteudo", "compilado"]  # noqa: Y015
+    _WhichOneofArgType_representacao: _TypeAlias = _typing.Literal["representacao", b"representacao"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_representacao) -> _WhichOneofReturnType_representacao | None: ...
+
+Global___LinhaTrajeto: _TypeAlias = LinhaTrajeto  # noqa: Y015
+
+@_typing.final
+class DadosConteudoLinha(_message.Message):
+    """Dados semânticos editáveis de uma linha de traçado."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    NOS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def nos(self) -> _containers.RepeatedCompositeFieldContainer[Global___NoTrajeto]:
+        """Lista ordenada de nós que compõem o traçado da via."""
+
+    def __init__(
+        self,
+        *,
+        nos: _abc.Iterable[Global___NoTrajeto] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["nos", b"nos"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["nos", b"nos"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DadosConteudoLinha: _TypeAlias = DadosConteudoLinha  # noqa: Y015
+
+@_typing.final
+class NoTrajeto(_message.Message):
+    """Representa um nó (vértice) na linha de traçado da via."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    class _TipoNo:
+        ValueType = _typing.NewType("ValueType", _builtins.int)
+        V: _TypeAlias = ValueType  # noqa: Y015
+
+    class _TipoNoEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[NoTrajeto._TipoNo.ValueType], _builtins.type):
+        DESCRIPTOR: _descriptor.EnumDescriptor
+        PASSAGEM: NoTrajeto._TipoNo.ValueType  # 0
+        """Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico)."""
+        INICIO_BASE: NoTrajeto._TipoNo.ValueType  # 1
+        """Círculo identificador com número da via na base."""
+        INICIO_AGACHADO: NoTrajeto._TipoNo.ValueType  # 2
+        """Saída agachada/sentada para boulder ("SS" / Sit Start)."""
+        PROTECAO_FIXA: NoTrajeto._TipoNo.ValueType  # 3
+        """Proteção fixa (grampo, chapeleta) - representado por "X" (FEMEMG B3-g)."""
+        PARADA_INTERMEDIARIA: NoTrajeto._TipoNo.ValueType  # 4
+        """Parada intermediária - representado por "XX" (dois X)."""
+        TOP_PARADA: NoTrajeto._TipoNo.ValueType  # 5
+        """Top ou parada final - representado por "XX" (dois X)."""
+        CRUX: NoTrajeto._TipoNo.ValueType  # 6
+        """Ponto chave ou crux da via."""
+        PROTECAO_MOVEL: NoTrajeto._TipoNo.ValueType  # 7
+        """Proteção móvel (friends, camalots, nuts) - representado por triângulo "△" (FEMEMG B3-h)."""
+        PROTECAO_PITON: NoTrajeto._TipoNo.ValueType  # 8
+        """Proteção tipo píton - lâmina com olhal (FEMEMG B3-i)."""
+        PROTECAO_FITA: NoTrajeto._TipoNo.ValueType  # 9
+        """Proteção em fita - bloco, bico de pedra, árvore (FEMEMG B3-j)."""
+        BURACO_CLIFF: NoTrajeto._TipoNo.ValueType  # 10
+        """Buraco de cliff - furo pequeno sólido (FEMEMG B3-f)."""
+        FIM_TOP: NoTrajeto._TipoNo.ValueType  # 11
+        """Círculo identificador de fim ou top da via/boulder ("T" / "TOP")."""
+
+    class TipoNo(_TipoNo, metaclass=_TipoNoEnumTypeWrapper): ...
+    PASSAGEM: NoTrajeto.TipoNo.ValueType  # 0
+    """Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico)."""
+    INICIO_BASE: NoTrajeto.TipoNo.ValueType  # 1
+    """Círculo identificador com número da via na base."""
+    INICIO_AGACHADO: NoTrajeto.TipoNo.ValueType  # 2
+    """Saída agachada/sentada para boulder ("SS" / Sit Start)."""
+    PROTECAO_FIXA: NoTrajeto.TipoNo.ValueType  # 3
+    """Proteção fixa (grampo, chapeleta) - representado por "X" (FEMEMG B3-g)."""
+    PARADA_INTERMEDIARIA: NoTrajeto.TipoNo.ValueType  # 4
+    """Parada intermediária - representado por "XX" (dois X)."""
+    TOP_PARADA: NoTrajeto.TipoNo.ValueType  # 5
+    """Top ou parada final - representado por "XX" (dois X)."""
+    CRUX: NoTrajeto.TipoNo.ValueType  # 6
+    """Ponto chave ou crux da via."""
+    PROTECAO_MOVEL: NoTrajeto.TipoNo.ValueType  # 7
+    """Proteção móvel (friends, camalots, nuts) - representado por triângulo "△" (FEMEMG B3-h)."""
+    PROTECAO_PITON: NoTrajeto.TipoNo.ValueType  # 8
+    """Proteção tipo píton - lâmina com olhal (FEMEMG B3-i)."""
+    PROTECAO_FITA: NoTrajeto.TipoNo.ValueType  # 9
+    """Proteção em fita - bloco, bico de pedra, árvore (FEMEMG B3-j)."""
+    BURACO_CLIFF: NoTrajeto.TipoNo.ValueType  # 10
+    """Buraco de cliff - furo pequeno sólido (FEMEMG B3-f)."""
+    FIM_TOP: NoTrajeto.TipoNo.ValueType  # 11
+    """Círculo identificador de fim ou top da via/boulder ("T" / "TOP")."""
+
+    X_FIELD_NUMBER: _builtins.int
+    Y_FIELD_NUMBER: _builtins.int
+    TIPO_FIELD_NUMBER: _builtins.int
+    ROTULO_FIELD_NUMBER: _builtins.int
+    RAIO_FIELD_NUMBER: _builtins.int
+    TAMANHO_FONTE_FIELD_NUMBER: _builtins.int
+    x: _builtins.int
+    """Coordenada X do nó em pixels na imagem."""
+    y: _builtins.int
+    """Coordenada Y do nó em pixels na imagem."""
+    tipo: Global___NoTrajeto.TipoNo.ValueType
+    """Tipo semântico deste nó."""
+    rotulo: _builtins.str
+    """Rótulo textual opcional específico deste nó (ex: "01", "P1", "SS")."""
+    raio: _builtins.int
+    """Raio do círculo identificador em pixels (se omitido ou 0, padrão: 12)."""
+    tamanho_fonte: _builtins.int
+    """Tamanho da fonte do rótulo em pontos (se omitido ou 0, padrão: 8)."""
+    def __init__(
+        self,
+        *,
+        x: _builtins.int | None = ...,
+        y: _builtins.int | None = ...,
+        tipo: Global___NoTrajeto.TipoNo.ValueType | None = ...,
+        rotulo: _builtins.str | None = ...,
+        raio: _builtins.int | None = ...,
+        tamanho_fonte: _builtins.int | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["raio", b"raio", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "tipo", b"tipo", "x", b"x", "y", b"y"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["raio", b"raio", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "tipo", b"tipo", "x", b"x", "y", b"y"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___NoTrajeto: _TypeAlias = NoTrajeto  # noqa: Y015
+
+@_typing.final
+class DadosCompiladosLinha(_message.Message):
+    """Dados pré-calculados pelo compilador para renderização direta via GPU no app."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    CAMINHO_SVG_FIELD_NUMBER: _builtins.int
+    CAIXA_DELIMITADORA_FIELD_NUMBER: _builtins.int
+    MARCADORES_FIELD_NUMBER: _builtins.int
+    caminho_svg: _builtins.str
+    """Caminho SVG padrão contendo comandos de Bézier Cúbica ("M ... C ...")."""
+    @_builtins.property
+    def caixa_delimitadora(self) -> Global___BoundingRetangulo:
+        """Caixa delimitadora pré-calculada para enquadramento instantâneo de câmera."""
+
+    @_builtins.property
+    def marcadores(self) -> _containers.RepeatedCompositeFieldContainer[Global___MarcadorCompilado]:
+        """Marcadores pré-posicionados com coordenadas e ângulos de rotação calculados."""
+
+    def __init__(
+        self,
+        *,
+        caminho_svg: _builtins.str | None = ...,
+        caixa_delimitadora: Global___BoundingRetangulo | None = ...,
+        marcadores: _abc.Iterable[Global___MarcadorCompilado] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["caixa_delimitadora", b"caixa_delimitadora", "caminho_svg", b"caminho_svg", "marcadores", b"marcadores"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["caixa_delimitadora", b"caixa_delimitadora", "caminho_svg", b"caminho_svg", "marcadores", b"marcadores"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DadosCompiladosLinha: _TypeAlias = DadosCompiladosLinha  # noqa: Y015
+
+@_typing.final
+class MarcadorCompilado(_message.Message):
+    """Marcador posicionado ao longo da linha compilada."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    X_FIELD_NUMBER: _builtins.int
+    Y_FIELD_NUMBER: _builtins.int
+    ANGULO_GRAUS_X100_FIELD_NUMBER: _builtins.int
+    TIPO_FIELD_NUMBER: _builtins.int
+    ROTULO_FIELD_NUMBER: _builtins.int
+    RAIO_FIELD_NUMBER: _builtins.int
+    TAMANHO_FONTE_FIELD_NUMBER: _builtins.int
+    x: _builtins.int
+    """Coordenadas (x, y) do marcador em pixels."""
+    y: _builtins.int
+    angulo_graus_x100: _builtins.int
+    """Ângulo tangencial da curva em graus * 10^2 para rotação do ícone."""
+    tipo: Global___NoTrajeto.TipoNo.ValueType
+    """Tipo semântico do nó representado por este marcador."""
+    rotulo: _builtins.str
+    """Rótulo textual associado (se houver)."""
+    raio: _builtins.int
+    """Raio do marcador circular em pixels (se aplicável)."""
+    tamanho_fonte: _builtins.int
+    """Tamanho da fonte do rótulo em pontos (se aplicável)."""
+    def __init__(
+        self,
+        *,
+        x: _builtins.int | None = ...,
+        y: _builtins.int | None = ...,
+        angulo_graus_x100: _builtins.int | None = ...,
+        tipo: Global___NoTrajeto.TipoNo.ValueType | None = ...,
+        rotulo: _builtins.str | None = ...,
+        raio: _builtins.int | None = ...,
+        tamanho_fonte: _builtins.int | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["angulo_graus_x100", b"angulo_graus_x100", "raio", b"raio", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "tipo", b"tipo", "x", b"x", "y", b"y"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["angulo_graus_x100", b"angulo_graus_x100", "raio", b"raio", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "tipo", b"tipo", "x", b"x", "y", b"y"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___MarcadorCompilado: _TypeAlias = MarcadorCompilado  # noqa: Y015
 
 @_typing.final
 class Escalada(_message.Message):

@@ -34,6 +34,9 @@ message PrecomputadosResumoCroqui {
     int32 total_boulders = 6;
     int32 total_multiplas_enfiadas = 7;
     int32 total_highlines = 8;
+
+    // Tamanho total estimado em bytes para download offline do croqui (compilado.binarypb + imagens).
+    int64 tamanho_download_bytes = 9;
 }
 
 // Resumo de um croqui que está disponível para o índice.

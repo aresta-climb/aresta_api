@@ -12,6 +12,7 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/timestamp.pb.dart'
     as $0;
@@ -82,6 +83,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     $core.int? totalBoulders,
     $core.int? totalMultiplasEnfiadas,
     $core.int? totalHighlines,
+    $fixnum.Int64? tamanhoDownloadBytes,
   }) {
     final result = create();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
@@ -93,6 +95,8 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     if (totalMultiplasEnfiadas != null)
       result.totalMultiplasEnfiadas = totalMultiplasEnfiadas;
     if (totalHighlines != null) result.totalHighlines = totalHighlines;
+    if (tamanhoDownloadBytes != null)
+      result.tamanhoDownloadBytes = tamanhoDownloadBytes;
     return result;
   }
 
@@ -117,6 +121,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     ..aI(6, _omitFieldNames ? '' : 'totalBoulders')
     ..aI(7, _omitFieldNames ? '' : 'totalMultiplasEnfiadas')
     ..aI(8, _omitFieldNames ? '' : 'totalHighlines')
+    ..aInt64(9, _omitFieldNames ? '' : 'tamanhoDownloadBytes')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -213,6 +218,16 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
   $core.bool hasTotalHighlines() => $_has(7);
   @$pb.TagNumber(8)
   void clearTotalHighlines() => $_clearField(8);
+
+  /// Tamanho total estimado em bytes para download offline do croqui (compilado.binarypb + imagens).
+  @$pb.TagNumber(9)
+  $fixnum.Int64 get tamanhoDownloadBytes => $_getI64(8);
+  @$pb.TagNumber(9)
+  set tamanhoDownloadBytes($fixnum.Int64 value) => $_setInt64(8, value);
+  @$pb.TagNumber(9)
+  $core.bool hasTamanhoDownloadBytes() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearTamanhoDownloadBytes() => $_clearField(9);
 }
 
 /// Resumo de um croqui que está disponível para o índice.

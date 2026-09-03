@@ -968,6 +968,15 @@ const Mapa_PontoDeInteresse$json = {
     {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
     {'1': 'label', '3': 2, '4': 1, '5': 9, '10': 'label'},
     {
+      '1': 'texto_visivel',
+      '3': 11,
+      '4': 1,
+      '5': 9,
+      '8': {},
+      '10': 'textoVisivel'
+    },
+    {'1': 'cor', '3': 10, '4': 1, '5': 9, '8': {}, '10': 'cor'},
+    {
       '1': 'circulo',
       '3': 6,
       '4': 1,
@@ -1003,6 +1012,16 @@ const Mapa_PontoDeInteresse$json = {
       '8': {},
       '9': 0,
       '10': 'poligono'
+    },
+    {
+      '1': 'linha',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.LinhaTrajeto',
+      '8': {},
+      '9': 0,
+      '10': 'linha'
     },
   ],
   '7': {},
@@ -1057,20 +1076,23 @@ final $typed_data.Uint8List mapaDescriptor = $convert.base64Decode(
     'byBNYXBhUgtsYXJndXJhTWFwYRIzCgthbHR1cmFfbWFwYRgDIAEoBUISkrUYDkFsdHVyYSBkby'
     'BNYXBhUgphbHR1cmFNYXBhEk0KE3BvbnRvc19kZV9pbnRlcmVzc2UYBCADKAsyHS5hcmVzdGEu'
     'TWFwYS5Qb250b0RlSW50ZXJlc3NlUhFwb250b3NEZUludGVyZXNzZRI5CgtyZWZlcmVuY2lhcx'
-    'gGIAMoCzIXLmFyZXN0YS5NYXBhLlJlZmVyZW5jaWFSC3JlZmVyZW5jaWFzGrwCChBQb250b0Rl'
-    'SW50ZXJlc3NlEg4KAmlkGAEgASgJUgJpZBIUCgVsYWJlbBgCIAEoCVIFbGFiZWwSMwoHY2lyY3'
-    'VsbxgGIAEoCzIXLmFyZXN0YS5Cb3VuZGluZ0NpcmN1bG9IAFIHY2lyY3VsbxI2CghxdWFkcmFk'
-    'bxgIIAEoCzIYLmFyZXN0YS5Cb3VuZGluZ1F1YWRyYWRvSABSCHF1YWRyYWRvEjkKCXJldGFuZ3'
-    'VsbxgDIAEoCzIZLmFyZXN0YS5Cb3VuZGluZ1JldGFuZ3Vsb0gAUglyZXRhbmd1bG8SRwoIcG9s'
-    'aWdvbm8YByABKAsyGC5hcmVzdGEuQm91bmRpbmdQb2xpZ29ub0IPkrUYC8OBcmVhIExpdnJlSA'
-    'BSCHBvbGlnb25vOgSQtRgCQgsKCXRpcG9fYXJlYRqqAQoOQWp1c3RlRGVDYW1lcmESJAoOZm9j'
-    'b19pZF9pbmRpY2UYASABKAVSDGZvY29JZEluZGljZRIpChBwb3NpY2FvX3ZlcnRpY2FsGAIgAS'
-    'gFUg9wb3NpY2FvVmVydGljYWwSLQoScG9zaWNhb19ob3Jpem9udGFsGAMgASgFUhFwb3NpY2Fv'
-    'SG9yaXpvbnRhbBISCgR6b29tGAQgASgCUgR6b29tOgSQtRgCGt0BCgpSZWZlcmVuY2lhEhAKA2'
-    'lkcxgBIAMoCVIDaWRzEhQKBWdydXBvGAIgASgJUgVncnVwbxIUCgVzZXRvchgDIAEoCVIFc2V0'
-    'b3ISGgoIZXNjYWxhZGEYBCABKAlSCGVzY2FsYWRhEigKEGluZGljZV9tYXBhX2Fsdm8YBSABKA'
-    'VSDmluZGljZU1hcGFBbHZvEkUKEGFqdXN0ZV9kZV9jYW1lcmEYBiABKAsyGy5hcmVzdGEuTWFw'
-    'YS5BanVzdGVEZUNhbWVyYVIOYWp1c3RlRGVDYW1lcmE6BJC1GAI6BJC1GAZKBAgFEAY=');
+    'gGIAMoCzIXLmFyZXN0YS5NYXBhLlJlZmVyZW5jaWFSC3JlZmVyZW5jaWFzGtwDChBQb250b0Rl'
+    'SW50ZXJlc3NlEg4KAmlkGAEgASgJUgJpZBIUCgVsYWJlbBgCIAEoCVIFbGFiZWwSPwoNdGV4dG'
+    '9fdmlzaXZlbBgLIAEoCUIakrUYFlRleHRvIFZpc8OtdmVsIG5vIE1hcGFSDHRleHRvVmlzaXZl'
+    'bBIZCgNjb3IYCiABKAlCB5K1GANDb3JSA2NvchIzCgdjaXJjdWxvGAYgASgLMhcuYXJlc3RhLk'
+    'JvdW5kaW5nQ2lyY3Vsb0gAUgdjaXJjdWxvEjYKCHF1YWRyYWRvGAggASgLMhguYXJlc3RhLkJv'
+    'dW5kaW5nUXVhZHJhZG9IAFIIcXVhZHJhZG8SOQoJcmV0YW5ndWxvGAMgASgLMhkuYXJlc3RhLk'
+    'JvdW5kaW5nUmV0YW5ndWxvSABSCXJldGFuZ3VsbxJHCghwb2xpZ29ubxgHIAEoCzIYLmFyZXN0'
+    'YS5Cb3VuZGluZ1BvbGlnb25vQg+StRgLw4FyZWEgTGl2cmVIAFIIcG9saWdvbm8SQgoFbGluaG'
+    'EYCSABKAsyFC5hcmVzdGEuTGluaGFUcmFqZXRvQhSStRgQTGluaGEgZG8gVHJhamV0b0gAUgVs'
+    'aW5oYToEkLUYAkILCgl0aXBvX2FyZWEaqgEKDkFqdXN0ZURlQ2FtZXJhEiQKDmZvY29faWRfaW'
+    '5kaWNlGAEgASgFUgxmb2NvSWRJbmRpY2USKQoQcG9zaWNhb192ZXJ0aWNhbBgCIAEoBVIPcG9z'
+    'aWNhb1ZlcnRpY2FsEi0KEnBvc2ljYW9faG9yaXpvbnRhbBgDIAEoBVIRcG9zaWNhb0hvcml6b2'
+    '50YWwSEgoEem9vbRgEIAEoAlIEem9vbToEkLUYAhrdAQoKUmVmZXJlbmNpYRIQCgNpZHMYASAD'
+    'KAlSA2lkcxIUCgVncnVwbxgCIAEoCVIFZ3J1cG8SFAoFc2V0b3IYAyABKAlSBXNldG9yEhoKCG'
+    'VzY2FsYWRhGAQgASgJUghlc2NhbGFkYRIoChBpbmRpY2VfbWFwYV9hbHZvGAUgASgFUg5pbmRp'
+    'Y2VNYXBhQWx2bxJFChBhanVzdGVfZGVfY2FtZXJhGAYgASgLMhsuYXJlc3RhLk1hcGEuQWp1c3'
+    'RlRGVDYW1lcmFSDmFqdXN0ZURlQ2FtZXJhOgSQtRgCOgSQtRgGSgQIBRAG');
 
 @$core.Deprecated('Use boundingCirculoDescriptor instead')
 const BoundingCirculo$json = {
@@ -1148,6 +1170,228 @@ const BoundingPoligono$json = {
 final $typed_data.Uint8List boundingPoligonoDescriptor = $convert.base64Decode(
     'ChBCb3VuZGluZ1BvbGlnb25vEiAKC2Nvb3JkZW5hZGFzGAEgAygFUgtjb29yZGVuYWRhczoEkL'
     'UYAg==');
+
+@$core.Deprecated('Use linhaTrajetoDescriptor instead')
+const LinhaTrajeto$json = {
+  '1': 'LinhaTrajeto',
+  '2': [
+    {
+      '1': 'estilo',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.aresta.LinhaTrajeto.EstiloTraco',
+      '8': {},
+      '10': 'estilo'
+    },
+    {'1': 'espessura', '3': 4, '4': 1, '5': 5, '8': {}, '10': 'espessura'},
+    {
+      '1': 'conteudo',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.DadosConteudoLinha',
+      '8': {},
+      '9': 0,
+      '10': 'conteudo'
+    },
+    {
+      '1': 'compilado',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.DadosCompiladosLinha',
+      '8': {},
+      '9': 0,
+      '10': 'compilado'
+    },
+  ],
+  '4': [LinhaTrajeto_EstiloTraco$json],
+  '7': {},
+  '8': [
+    {'1': 'representacao'},
+  ],
+};
+
+@$core.Deprecated('Use linhaTrajetoDescriptor instead')
+const LinhaTrajeto_EstiloTraco$json = {
+  '1': 'EstiloTraco',
+  '2': [
+    {'1': 'TRACEJADO', '2': 0, '3': {}},
+    {'1': 'SOLIDO', '2': 1, '3': {}},
+    {'1': 'PONTILHADO', '2': 2, '3': {}},
+    {'1': 'CAMINHADA', '2': 3, '3': {}},
+  ],
+};
+
+/// Descriptor for `LinhaTrajeto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List linhaTrajetoDescriptor = $convert.base64Decode(
+    'CgxMaW5oYVRyYWpldG8STgoGZXN0aWxvGAEgASgOMiAuYXJlc3RhLkxpbmhhVHJhamV0by5Fc3'
+    'RpbG9UcmFjb0IUkrUYEEVzdGlsbyBkbyBUcmHDp29SBmVzdGlsbxIrCgllc3Blc3N1cmEYBCAB'
+    'KAVCDZK1GAlFc3Blc3N1cmFSCWVzcGVzc3VyYRJHCghjb250ZXVkbxgCIAEoCzIaLmFyZXN0YS'
+    '5EYWRvc0NvbnRldWRvTGluaGFCDZK1GAlDb250ZcO6ZG9IAFIIY29udGV1ZG8SQgoJY29tcGls'
+    'YWRvGAMgASgLMhwuYXJlc3RhLkRhZG9zQ29tcGlsYWRvc0xpbmhhQgSwtRgCSABSCWNvbXBpbG'
+    'FkbyK4AQoLRXN0aWxvVHJhY28SKQoJVFJBQ0VKQURPEAAaGoq1GBZUcmFjZWphZG8gKFJvdGEg'
+    'TGl2cmUpEisKBlNPTElETxABGh+KtRgbU8OzbGlkbyAoQ29yZGEgRml4YSAvIENhYm8pEisKCl'
+    'BPTlRJTEhBRE8QAhobirUYF1BvbnRpbGhhZG8gKEFydGlmaWNpYWwpEiQKCUNBTUlOSEFEQRAD'
+    'GhWKtRgRQ2FtaW5oYWRhIChTZXRhcyk6BJC1GAJCDwoNcmVwcmVzZW50YWNhbw==');
+
+@$core.Deprecated('Use dadosConteudoLinhaDescriptor instead')
+const DadosConteudoLinha$json = {
+  '1': 'DadosConteudoLinha',
+  '2': [
+    {
+      '1': 'nos',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.aresta.NoTrajeto',
+      '8': {},
+      '10': 'nos'
+    },
+  ],
+  '7': {},
+};
+
+/// Descriptor for `DadosConteudoLinha`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List dadosConteudoLinhaDescriptor = $convert.base64Decode(
+    'ChJEYWRvc0NvbnRldWRvTGluaGESOAoDbm9zGAEgAygLMhEuYXJlc3RhLk5vVHJhamV0b0ITkr'
+    'UYD07Ds3MgZG8gVHJhamV0b1IDbm9zOgSQtRgC');
+
+@$core.Deprecated('Use noTrajetoDescriptor instead')
+const NoTrajeto$json = {
+  '1': 'NoTrajeto',
+  '2': [
+    {'1': 'x', '3': 1, '4': 1, '5': 5, '10': 'x'},
+    {'1': 'y', '3': 2, '4': 1, '5': 5, '10': 'y'},
+    {
+      '1': 'tipo',
+      '3': 3,
+      '4': 1,
+      '5': 14,
+      '6': '.aresta.NoTrajeto.TipoNo',
+      '8': {},
+      '10': 'tipo'
+    },
+    {'1': 'rotulo', '3': 4, '4': 1, '5': 9, '8': {}, '10': 'rotulo'},
+    {'1': 'raio', '3': 5, '4': 1, '5': 5, '8': {}, '10': 'raio'},
+    {
+      '1': 'tamanho_fonte',
+      '3': 6,
+      '4': 1,
+      '5': 5,
+      '8': {},
+      '10': 'tamanhoFonte'
+    },
+  ],
+  '4': [NoTrajeto_TipoNo$json],
+  '7': {},
+};
+
+@$core.Deprecated('Use noTrajetoDescriptor instead')
+const NoTrajeto_TipoNo$json = {
+  '1': 'TipoNo',
+  '2': [
+    {'1': 'PASSAGEM', '2': 0, '3': {}},
+    {'1': 'INICIO_BASE', '2': 1, '3': {}},
+    {'1': 'INICIO_AGACHADO', '2': 2, '3': {}},
+    {'1': 'PROTECAO_FIXA', '2': 3, '3': {}},
+    {'1': 'PARADA_INTERMEDIARIA', '2': 4, '3': {}},
+    {'1': 'TOP_PARADA', '2': 5, '3': {}},
+    {'1': 'CRUX', '2': 6, '3': {}},
+    {'1': 'PROTECAO_MOVEL', '2': 7, '3': {}},
+    {'1': 'PROTECAO_PITON', '2': 8, '3': {}},
+    {'1': 'PROTECAO_FITA', '2': 9, '3': {}},
+    {'1': 'BURACO_CLIFF', '2': 10, '3': {}},
+    {'1': 'FIM_TOP', '2': 11, '3': {}},
+  ],
+};
+
+/// Descriptor for `NoTrajeto`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List noTrajetoDescriptor = $convert.base64Decode(
+    'CglOb1RyYWpldG8SDAoBeBgBIAEoBVIBeBIMCgF5GAIgASgFUgF5Ej0KBHRpcG8YAyABKA4yGC'
+    '5hcmVzdGEuTm9UcmFqZXRvLlRpcG9Ob0IPkrUYC1RpcG8gZG8gTsOzUgR0aXBvEiMKBnJvdHVs'
+    'bxgEIAEoCUILkrUYB1LDs3R1bG9SBnJvdHVsbxIoCgRyYWlvGAUgASgFQhSStRgQUmFpbyBkby'
+    'BDw61yY3Vsb1IEcmFpbxI5Cg10YW1hbmhvX2ZvbnRlGAYgASgFQhSStRgQVGFtYW5obyBkYSBG'
+    'b250ZVIMdGFtYW5ob0ZvbnRlIp4ECgZUaXBvTm8SJAoIUEFTU0FHRU0QABoWirUYEkludmlzw6'
+    '12ZWwgKEN1cnZhKRI6CgtJTklDSU9fQkFTRRABGimKtRglQ8OtcmN1bG8gSWRlbnRpZmljYWRv'
+    'ciAoSW7DrWNpby9CYXNlKRI7Cg9JTklDSU9fQUdBQ0hBRE8QAhomirUYIkPDrXJjdWxvIElkZW'
+    '50aWZpY2Fkb3IgKFNpdCBTdGFydCkSKgoNUFJPVEVDQU9fRklYQRADGheKtRgTUHJvdGXDp8Oj'
+    'byBGaXhhIChYKRI4ChRQQVJBREFfSU5URVJNRURJQVJJQRAEGh6KtRgaUGFyYWRhIEludGVybW'
+    'VkacOhcmlhIChYWCkSKwoKVE9QX1BBUkFEQRAFGhuKtRgXVG9wIC8gUGFyYWRhIEZpbmFsIChY'
+    'WCkSGgoEQ1JVWBAGGhCKtRgMQ3J1eCAoQ2hhdmUpEi8KDlBST1RFQ0FPX01PVkVMEAcaG4q1GB'
+    'dQcm90ZcOnw6NvIE3Ds3ZlbCAo4pazKRIeCg5QUk9URUNBT19QSVRPThAIGgqKtRgGUMOtdG9u'
+    'EhsKDVBST1RFQ0FPX0ZJVEEQCRoIirUYBEZpdGESJQoMQlVSQUNPX0NMSUZGEAoaE4q1GA9CdX'
+    'JhY28gZGUgQ2xpZmYSMQoHRklNX1RPUBALGiSKtRggQ8OtcmN1bG8gSWRlbnRpZmljYWRvciAo'
+    'RmltL1RvcCk6BJC1GAI=');
+
+@$core.Deprecated('Use dadosCompiladosLinhaDescriptor instead')
+const DadosCompiladosLinha$json = {
+  '1': 'DadosCompiladosLinha',
+  '2': [
+    {'1': 'caminho_svg', '3': 1, '4': 1, '5': 9, '10': 'caminhoSvg'},
+    {
+      '1': 'caixa_delimitadora',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.BoundingRetangulo',
+      '10': 'caixaDelimitadora'
+    },
+    {
+      '1': 'marcadores',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.aresta.MarcadorCompilado',
+      '10': 'marcadores'
+    },
+  ],
+  '7': {},
+};
+
+/// Descriptor for `DadosCompiladosLinha`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List dadosCompiladosLinhaDescriptor = $convert.base64Decode(
+    'ChREYWRvc0NvbXBpbGFkb3NMaW5oYRIfCgtjYW1pbmhvX3N2ZxgBIAEoCVIKY2FtaW5ob1N2Zx'
+    'JIChJjYWl4YV9kZWxpbWl0YWRvcmEYAiABKAsyGS5hcmVzdGEuQm91bmRpbmdSZXRhbmd1bG9S'
+    'EWNhaXhhRGVsaW1pdGFkb3JhEjkKCm1hcmNhZG9yZXMYAyADKAsyGS5hcmVzdGEuTWFyY2Fkb3'
+    'JDb21waWxhZG9SCm1hcmNhZG9yZXM6BJC1GAQ=');
+
+@$core.Deprecated('Use marcadorCompiladoDescriptor instead')
+const MarcadorCompilado$json = {
+  '1': 'MarcadorCompilado',
+  '2': [
+    {'1': 'x', '3': 1, '4': 1, '5': 5, '10': 'x'},
+    {'1': 'y', '3': 2, '4': 1, '5': 5, '10': 'y'},
+    {
+      '1': 'angulo_graus_x100',
+      '3': 3,
+      '4': 1,
+      '5': 17,
+      '10': 'anguloGrausX100'
+    },
+    {
+      '1': 'tipo',
+      '3': 4,
+      '4': 1,
+      '5': 14,
+      '6': '.aresta.NoTrajeto.TipoNo',
+      '10': 'tipo'
+    },
+    {'1': 'rotulo', '3': 5, '4': 1, '5': 9, '10': 'rotulo'},
+    {'1': 'raio', '3': 6, '4': 1, '5': 5, '10': 'raio'},
+    {'1': 'tamanho_fonte', '3': 7, '4': 1, '5': 5, '10': 'tamanhoFonte'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `MarcadorCompilado`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List marcadorCompiladoDescriptor = $convert.base64Decode(
+    'ChFNYXJjYWRvckNvbXBpbGFkbxIMCgF4GAEgASgFUgF4EgwKAXkYAiABKAVSAXkSKgoRYW5ndW'
+    'xvX2dyYXVzX3gxMDAYAyABKBFSD2FuZ3Vsb0dyYXVzWDEwMBIsCgR0aXBvGAQgASgOMhguYXJl'
+    'c3RhLk5vVHJhamV0by5UaXBvTm9SBHRpcG8SFgoGcm90dWxvGAUgASgJUgZyb3R1bG8SEgoEcm'
+    'FpbxgGIAEoBVIEcmFpbxIjCg10YW1hbmhvX2ZvbnRlGAcgASgFUgx0YW1hbmhvRm9udGU6BJC1'
+    'GAQ=');
 
 @$core.Deprecated('Use escaladaDescriptor instead')
 const Escalada$json = {

@@ -62,6 +62,7 @@ class PrecomputadosResumoCroqui(_message.Message):
     TOTAL_BOULDERS_FIELD_NUMBER: _builtins.int
     TOTAL_MULTIPLAS_ENFIADAS_FIELD_NUMBER: _builtins.int
     TOTAL_HIGHLINES_FIELD_NUMBER: _builtins.int
+    TAMANHO_DOWNLOAD_BYTES_FIELD_NUMBER: _builtins.int
     total_escaladas: _builtins.int
     """Soma total de escaladas em todos os picos do croqui."""
     total_setores: _builtins.int
@@ -73,6 +74,8 @@ class PrecomputadosResumoCroqui(_message.Message):
     total_boulders: _builtins.int
     total_multiplas_enfiadas: _builtins.int
     total_highlines: _builtins.int
+    tamanho_download_bytes: _builtins.int
+    """Tamanho total estimado em bytes para download offline do croqui (compilado.binarypb + imagens)."""
     def __init__(
         self,
         *,
@@ -84,10 +87,11 @@ class PrecomputadosResumoCroqui(_message.Message):
         total_boulders: _builtins.int | None = ...,
         total_multiplas_enfiadas: _builtins.int | None = ...,
         total_highlines: _builtins.int | None = ...,
+        tamanho_download_bytes: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["total_boulders", b"total_boulders", "total_escaladas", b"total_escaladas", "total_esportivas", b"total_esportivas", "total_grupos", b"total_grupos", "total_highlines", b"total_highlines", "total_moveis", b"total_moveis", "total_multiplas_enfiadas", b"total_multiplas_enfiadas", "total_setores", b"total_setores"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["tamanho_download_bytes", b"tamanho_download_bytes", "total_boulders", b"total_boulders", "total_escaladas", b"total_escaladas", "total_esportivas", b"total_esportivas", "total_grupos", b"total_grupos", "total_highlines", b"total_highlines", "total_moveis", b"total_moveis", "total_multiplas_enfiadas", b"total_multiplas_enfiadas", "total_setores", b"total_setores"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["total_boulders", b"total_boulders", "total_escaladas", b"total_escaladas", "total_esportivas", b"total_esportivas", "total_grupos", b"total_grupos", "total_highlines", b"total_highlines", "total_moveis", b"total_moveis", "total_multiplas_enfiadas", b"total_multiplas_enfiadas", "total_setores", b"total_setores"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["tamanho_download_bytes", b"tamanho_download_bytes", "total_boulders", b"total_boulders", "total_escaladas", b"total_escaladas", "total_esportivas", b"total_esportivas", "total_grupos", b"total_grupos", "total_highlines", b"total_highlines", "total_moveis", b"total_moveis", "total_multiplas_enfiadas", b"total_multiplas_enfiadas", "total_setores", b"total_setores"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
