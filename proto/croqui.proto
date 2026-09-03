@@ -783,8 +783,8 @@ message NoTrajeto {
     // Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico).
     PASSAGEM = 0 [(aresta.enum_texto_na_ui) = "Invisível (Curva)"];
 
-    // Círculo identificador com número da via na base.
-    INICIO_BASE = 1 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Início/Base)"];
+    // Círculo identificador com rótulo textual definido pelo autor (começo, meio, fim, etc.).
+    CIRCULO_IDENTIFICADOR = 1 [(aresta.enum_texto_na_ui) = "Círculo Identificador"];
 
     // Saída agachada/sentada para boulder ("SS" / Sit Start).
     INICIO_AGACHADO = 2 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Sit Start)"];

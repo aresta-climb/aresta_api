@@ -1411,8 +1411,8 @@ class NoTrajeto(_message.Message):
         DESCRIPTOR: _descriptor.EnumDescriptor
         PASSAGEM: NoTrajeto._TipoNo.ValueType  # 0
         """Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico)."""
-        INICIO_BASE: NoTrajeto._TipoNo.ValueType  # 1
-        """Círculo identificador com número da via na base."""
+        CIRCULO_IDENTIFICADOR: NoTrajeto._TipoNo.ValueType  # 1
+        """Círculo identificador com rótulo textual definido pelo autor (começo, meio, fim, etc.)."""
         INICIO_AGACHADO: NoTrajeto._TipoNo.ValueType  # 2
         """Saída agachada/sentada para boulder ("SS" / Sit Start)."""
         PROTECAO_FIXA: NoTrajeto._TipoNo.ValueType  # 3
@@ -1437,8 +1437,8 @@ class NoTrajeto(_message.Message):
     class TipoNo(_TipoNo, metaclass=_TipoNoEnumTypeWrapper): ...
     PASSAGEM: NoTrajeto.TipoNo.ValueType  # 0
     """Ponto de curva invisível no croqui final (FEMEMG - apenas controle geométrico)."""
-    INICIO_BASE: NoTrajeto.TipoNo.ValueType  # 1
-    """Círculo identificador com número da via na base."""
+    CIRCULO_IDENTIFICADOR: NoTrajeto.TipoNo.ValueType  # 1
+    """Círculo identificador com rótulo textual definido pelo autor (começo, meio, fim, etc.)."""
     INICIO_AGACHADO: NoTrajeto.TipoNo.ValueType  # 2
     """Saída agachada/sentada para boulder ("SS" / Sit Start)."""
     PROTECAO_FIXA: NoTrajeto.TipoNo.ValueType  # 3

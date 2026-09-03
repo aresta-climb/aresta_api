@@ -241,9 +241,9 @@ class NoTrajeto_TipoNo extends $pb.ProtobufEnum {
   static const NoTrajeto_TipoNo PASSAGEM =
       NoTrajeto_TipoNo._(0, _omitEnumNames ? '' : 'PASSAGEM');
 
-  /// Círculo identificador com número da via na base.
-  static const NoTrajeto_TipoNo INICIO_BASE =
-      NoTrajeto_TipoNo._(1, _omitEnumNames ? '' : 'INICIO_BASE');
+  /// Círculo identificador com rótulo textual definido pelo autor (começo, meio, fim, etc.).
+  static const NoTrajeto_TipoNo CIRCULO_IDENTIFICADOR =
+      NoTrajeto_TipoNo._(1, _omitEnumNames ? '' : 'CIRCULO_IDENTIFICADOR');
 
   /// Saída agachada/sentada para boulder ("SS" / Sit Start).
   static const NoTrajeto_TipoNo INICIO_AGACHADO =
@@ -287,7 +287,7 @@ class NoTrajeto_TipoNo extends $pb.ProtobufEnum {
 
   static const $core.List<NoTrajeto_TipoNo> values = <NoTrajeto_TipoNo>[
     PASSAGEM,
-    INICIO_BASE,
+    CIRCULO_IDENTIFICADOR,
     INICIO_AGACHADO,
     PROTECAO_FIXA,
     PARADA_INTERMEDIARIA,
