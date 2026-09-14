@@ -23,21 +23,21 @@ export 'croqui.pbenum.dart';
 
 /// Especifica onde o conteúdo de campos do tipo string ou bytes está localizado.
 class TipoConteudo extends $pb.GeneratedMessage {
-  factory TipoConteudo() => create();
+  factory TipoConteudo() => TipoConteudo._();
 
   TipoConteudo._();
 
   factory TipoConteudo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      TipoConteudo()..mergeFromBuffer(data, registry);
   factory TipoConteudo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      TipoConteudo()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'TipoConteudo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: TipoConteudo.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -51,32 +51,35 @@ class TipoConteudo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use TipoConteudo() / TipoConteudo.new instead')
   static TipoConteudo create() => TipoConteudo._();
+  static $pb.GeneratedMessage $_createMessage() => TipoConteudo._();
   @$core.override
-  TipoConteudo createEmptyInstance() => create();
+  TipoConteudo createEmptyInstance() => TipoConteudo._();
   @$core.pragma('dart2js:noInline')
-  static TipoConteudo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TipoConteudo>(create);
+  static TipoConteudo getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TipoConteudo>(
+          TipoConteudo.$_createMessage);
   static TipoConteudo? _defaultInstance;
 }
 
 /// Representa a forma de organização de um campo no editor de formulário.
 class CampoFormatoUi extends $pb.GeneratedMessage {
-  factory CampoFormatoUi() => create();
+  factory CampoFormatoUi() => CampoFormatoUi._();
 
   CampoFormatoUi._();
 
   factory CampoFormatoUi.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      CampoFormatoUi()..mergeFromBuffer(data, registry);
   factory CampoFormatoUi.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      CampoFormatoUi()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'CampoFormatoUi',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: CampoFormatoUi.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -90,32 +93,35 @@ class CampoFormatoUi extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use CampoFormatoUi() / CampoFormatoUi.new instead')
   static CampoFormatoUi create() => CampoFormatoUi._();
+  static $pb.GeneratedMessage $_createMessage() => CampoFormatoUi._();
   @$core.override
-  CampoFormatoUi createEmptyInstance() => create();
+  CampoFormatoUi createEmptyInstance() => CampoFormatoUi._();
   @$core.pragma('dart2js:noInline')
-  static CampoFormatoUi getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CampoFormatoUi>(create);
+  static CampoFormatoUi getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CampoFormatoUi>(
+          CampoFormatoUi.$_createMessage);
   static CampoFormatoUi? _defaultInstance;
 }
 
 /// Representa a forma de exibição/organização de uma mensagem no editor de formulário.
 class MensagemFormatoUi extends $pb.GeneratedMessage {
-  factory MensagemFormatoUi() => create();
+  factory MensagemFormatoUi() => MensagemFormatoUi._();
 
   MensagemFormatoUi._();
 
   factory MensagemFormatoUi.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      MensagemFormatoUi()..mergeFromBuffer(data, registry);
   factory MensagemFormatoUi.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      MensagemFormatoUi()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MensagemFormatoUi',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: MensagemFormatoUi.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -129,12 +135,15 @@ class MensagemFormatoUi extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use MensagemFormatoUi() / MensagemFormatoUi.new instead')
   static MensagemFormatoUi create() => MensagemFormatoUi._();
+  static $pb.GeneratedMessage $_createMessage() => MensagemFormatoUi._();
   @$core.override
-  MensagemFormatoUi createEmptyInstance() => create();
+  MensagemFormatoUi createEmptyInstance() => MensagemFormatoUi._();
   @$core.pragma('dart2js:noInline')
-  static MensagemFormatoUi getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<MensagemFormatoUi>(create);
+  static MensagemFormatoUi getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MensagemFormatoUi>(
+          MensagemFormatoUi.$_createMessage);
   static MensagemFormatoUi? _defaultInstance;
 }
 
@@ -142,21 +151,21 @@ class MensagemFormatoUi extends $pb.GeneratedMessage {
 /// Isso indica se as linhas do croqui podem ser extraídas do PDF como desenho vetorial, o que resulta
 /// em extrações de PDF de mais alta qualidade.
 class Croqui_StatusDesenhoExtraivel extends $pb.GeneratedMessage {
-  factory Croqui_StatusDesenhoExtraivel() => create();
+  factory Croqui_StatusDesenhoExtraivel() => Croqui_StatusDesenhoExtraivel._();
 
   Croqui_StatusDesenhoExtraivel._();
 
   factory Croqui_StatusDesenhoExtraivel.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Croqui_StatusDesenhoExtraivel()..mergeFromBuffer(data, registry);
   factory Croqui_StatusDesenhoExtraivel.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Croqui_StatusDesenhoExtraivel()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Croqui.StatusDesenhoExtraivel',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Croqui_StatusDesenhoExtraivel.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -172,13 +181,19 @@ class Croqui_StatusDesenhoExtraivel extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use Croqui_StatusDesenhoExtraivel() / Croqui_StatusDesenhoExtraivel.new instead')
   static Croqui_StatusDesenhoExtraivel create() =>
       Croqui_StatusDesenhoExtraivel._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      Croqui_StatusDesenhoExtraivel._();
   @$core.override
-  Croqui_StatusDesenhoExtraivel createEmptyInstance() => create();
+  Croqui_StatusDesenhoExtraivel createEmptyInstance() =>
+      Croqui_StatusDesenhoExtraivel._();
   @$core.pragma('dart2js:noInline')
   static Croqui_StatusDesenhoExtraivel getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Croqui_StatusDesenhoExtraivel>(create);
+      $pb.GeneratedMessage.$_defaultFor<Croqui_StatusDesenhoExtraivel>(
+          Croqui_StatusDesenhoExtraivel.$_createMessage);
   static Croqui_StatusDesenhoExtraivel? _defaultInstance;
 }
 
@@ -200,7 +215,7 @@ class Croqui extends $pb.GeneratedMessage {
     $core.int? ultimaMigracao,
     $core.bool? publicarCroqui,
   }) {
-    final result = create();
+    final result = Croqui._();
     if (id != null) result.id = id;
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
@@ -225,29 +240,31 @@ class Croqui extends $pb.GeneratedMessage {
 
   factory Croqui.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Croqui()..mergeFromBuffer(data, registry);
   factory Croqui.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Croqui()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Croqui',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Croqui.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'nome')
     ..aOS(3, _omitFieldNames ? '' : 'descricao')
     ..pPS(4, _omitFieldNames ? '' : 'creditos')
-    ..pPM<Pico>(6, _omitFieldNames ? '' : 'picos', subBuilder: Pico.create)
+    ..pPM<Pico>(6, _omitFieldNames ? '' : 'picos',
+        subBuilder: Pico.$_createMessage)
     ..pPM<ArquivoExterno>(7, _omitFieldNames ? '' : 'arquivosExternos',
-        subBuilder: ArquivoExterno.create)
+        subBuilder: ArquivoExterno.$_createMessage)
     ..aOS(8, _omitFieldNames ? '' : 'caminhoThumbnail')
     ..aOB(9, _omitFieldNames ? '' : 'revisadoManualmente')
     ..aOB(11, _omitFieldNames ? '' : 'revisadoBoundingCircle')
     ..aE<Croqui_StatusDesenhoExtraivel_Enum>(
         13, _omitFieldNames ? '' : 'statusDesenhoExtraivel',
         enumValues: Croqui_StatusDesenhoExtraivel_Enum.values)
-    ..pPM<Botao>(14, _omitFieldNames ? '' : 'botoes', subBuilder: Botao.create)
+    ..pPM<Botao>(14, _omitFieldNames ? '' : 'botoes',
+        subBuilder: Botao.$_createMessage)
     ..aI(15, _omitFieldNames ? '' : 'ultimaMigracao')
     ..aOB(16, _omitFieldNames ? '' : 'publicarCroqui')
     ..hasExtensions = true;
@@ -257,7 +274,7 @@ class Croqui extends $pb.GeneratedMessage {
       1000,
       $pb.PbFieldType.OM,
       defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
-      subBuilder: MetadadosArquivoNoEditor.create);
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Croqui clone() => deepCopy();
@@ -269,12 +286,14 @@ class Croqui extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Croqui() / Croqui.new instead')
   static Croqui create() => Croqui._();
+  static $pb.GeneratedMessage $_createMessage() => Croqui._();
   @$core.override
-  Croqui createEmptyInstance() => create();
+  Croqui createEmptyInstance() => Croqui._();
   @$core.pragma('dart2js:noInline')
-  static Croqui getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Croqui>(create);
+  static Croqui getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Croqui>(Croqui.$_createMessage);
   static Croqui? _defaultInstance;
 
   /// Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande".
@@ -393,7 +412,7 @@ class Botao extends $pb.GeneratedMessage {
     $core.String? texto,
     DestinoBotao? destino,
   }) {
-    final result = create();
+    final result = Botao._();
     if (texto != null) result.texto = texto;
     if (destino != null) result.destino = destino;
     return result;
@@ -403,18 +422,18 @@ class Botao extends $pb.GeneratedMessage {
 
   factory Botao.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Botao()..mergeFromBuffer(data, registry);
   factory Botao.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Botao()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Botao',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Botao.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'texto')
     ..aOM<DestinoBotao>(2, _omitFieldNames ? '' : 'destino',
-        subBuilder: DestinoBotao.create);
+        subBuilder: DestinoBotao.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Botao clone() => deepCopy();
@@ -426,12 +445,14 @@ class Botao extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Botao() / Botao.new instead')
   static Botao create() => Botao._();
+  static $pb.GeneratedMessage $_createMessage() => Botao._();
   @$core.override
-  Botao createEmptyInstance() => create();
+  Botao createEmptyInstance() => Botao._();
   @$core.pragma('dart2js:noInline')
-  static Botao getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Botao>(create);
+  static Botao getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Botao>(Botao.$_createMessage);
   static Botao? _defaultInstance;
 
   /// Texto que aparecerá no botão.
@@ -464,7 +485,7 @@ class DestinoBotao extends $pb.GeneratedMessage {
   factory DestinoBotao({
     ArquivoMarkdown? secaoTextual,
   }) {
-    final result = create();
+    final result = DestinoBotao._();
     if (secaoTextual != null) result.secaoTextual = secaoTextual;
     return result;
   }
@@ -473,10 +494,10 @@ class DestinoBotao extends $pb.GeneratedMessage {
 
   factory DestinoBotao.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      DestinoBotao()..mergeFromBuffer(data, registry);
   factory DestinoBotao.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      DestinoBotao()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, DestinoBotao_Destino>
       _DestinoBotao_DestinoByTag = {
@@ -486,10 +507,10 @@ class DestinoBotao extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'DestinoBotao',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: DestinoBotao.$_createMessage)
     ..oo(0, [1])
     ..aOM<ArquivoMarkdown>(1, _omitFieldNames ? '' : 'secaoTextual',
-        subBuilder: ArquivoMarkdown.create);
+        subBuilder: ArquivoMarkdown.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DestinoBotao clone() => deepCopy();
@@ -502,12 +523,15 @@ class DestinoBotao extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use DestinoBotao() / DestinoBotao.new instead')
   static DestinoBotao create() => DestinoBotao._();
+  static $pb.GeneratedMessage $_createMessage() => DestinoBotao._();
   @$core.override
-  DestinoBotao createEmptyInstance() => create();
+  DestinoBotao createEmptyInstance() => DestinoBotao._();
   @$core.pragma('dart2js:noInline')
-  static DestinoBotao getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DestinoBotao>(create);
+  static DestinoBotao getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DestinoBotao>(
+          DestinoBotao.$_createMessage);
   static DestinoBotao? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -535,7 +559,7 @@ class ArquivoExterno extends $pb.GeneratedMessage {
     $core.String? caminho,
     $core.String? checksumSha256,
   }) {
-    final result = create();
+    final result = ArquivoExterno._();
     if (caminho != null) result.caminho = caminho;
     if (checksumSha256 != null) result.checksumSha256 = checksumSha256;
     return result;
@@ -545,15 +569,15 @@ class ArquivoExterno extends $pb.GeneratedMessage {
 
   factory ArquivoExterno.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ArquivoExterno()..mergeFromBuffer(data, registry);
   factory ArquivoExterno.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ArquivoExterno()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivoExterno',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ArquivoExterno.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'caminho')
     ..aOS(2, _omitFieldNames ? '' : 'checksumSha256')
     ..hasRequiredFields = false;
@@ -569,12 +593,15 @@ class ArquivoExterno extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ArquivoExterno() / ArquivoExterno.new instead')
   static ArquivoExterno create() => ArquivoExterno._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoExterno._();
   @$core.override
-  ArquivoExterno createEmptyInstance() => create();
+  ArquivoExterno createEmptyInstance() => ArquivoExterno._();
   @$core.pragma('dart2js:noInline')
-  static ArquivoExterno getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivoExterno>(create);
+  static ArquivoExterno getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivoExterno>(
+          ArquivoExterno.$_createMessage);
   static ArquivoExterno? _defaultInstance;
 
   /// Caminho do arquivo, relativo à localização do .binarypb.
@@ -607,7 +634,7 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
     $core.String? caminhoNovo,
     $core.String? dadosJsonOriginais,
   }) {
-    final result = create();
+    final result = MetadadosArquivoNoEditor._();
     if (caminhoOriginal != null) result.caminhoOriginal = caminhoOriginal;
     if (caminhoNovo != null) result.caminhoNovo = caminhoNovo;
     if (dadosJsonOriginais != null)
@@ -619,15 +646,15 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
 
   factory MetadadosArquivoNoEditor.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      MetadadosArquivoNoEditor()..mergeFromBuffer(data, registry);
   factory MetadadosArquivoNoEditor.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      MetadadosArquivoNoEditor()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MetadadosArquivoNoEditor',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: MetadadosArquivoNoEditor.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoOriginal')
     ..aOS(2, _omitFieldNames ? '' : 'caminhoNovo')
     ..aOS(4, _omitFieldNames ? '' : 'dadosJsonOriginais')
@@ -645,12 +672,17 @@ class MetadadosArquivoNoEditor extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use MetadadosArquivoNoEditor() / MetadadosArquivoNoEditor.new instead')
   static MetadadosArquivoNoEditor create() => MetadadosArquivoNoEditor._();
+  static $pb.GeneratedMessage $_createMessage() => MetadadosArquivoNoEditor._();
   @$core.override
-  MetadadosArquivoNoEditor createEmptyInstance() => create();
+  MetadadosArquivoNoEditor createEmptyInstance() =>
+      MetadadosArquivoNoEditor._();
   @$core.pragma('dart2js:noInline')
   static MetadadosArquivoNoEditor getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<MetadadosArquivoNoEditor>(create);
+      $pb.GeneratedMessage.$_defaultFor<MetadadosArquivoNoEditor>(
+          MetadadosArquivoNoEditor.$_createMessage);
   static MetadadosArquivoNoEditor? _defaultInstance;
 
   /// Caminho original do arquivo em disco (se ele já existia antes da edição atual).
@@ -694,7 +726,7 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
     $core.String? caminho,
     $core.String? conteudo,
   }) {
-    final result = create();
+    final result = ArquivoMarkdown._();
     if (caminho != null) result.caminho = caminho;
     if (conteudo != null) result.conteudo = conteudo;
     return result;
@@ -704,10 +736,10 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
 
   factory ArquivoMarkdown.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ArquivoMarkdown()..mergeFromBuffer(data, registry);
   factory ArquivoMarkdown.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ArquivoMarkdown()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ArquivoMarkdown_Arquivo>
       _ArquivoMarkdown_ArquivoByTag = {
@@ -718,7 +750,7 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivoMarkdown',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ArquivoMarkdown.$_createMessage)
     ..oo(0, [2, 3])
     ..aOS(2, _omitFieldNames ? '' : 'caminho')
     ..aOS(3, _omitFieldNames ? '' : 'conteudo')
@@ -729,7 +761,7 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
       1000,
       $pb.PbFieldType.OM,
       defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
-      subBuilder: MetadadosArquivoNoEditor.create);
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ArquivoMarkdown clone() => deepCopy();
@@ -742,12 +774,15 @@ class ArquivoMarkdown extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ArquivoMarkdown() / ArquivoMarkdown.new instead')
   static ArquivoMarkdown create() => ArquivoMarkdown._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoMarkdown._();
   @$core.override
-  ArquivoMarkdown createEmptyInstance() => create();
+  ArquivoMarkdown createEmptyInstance() => ArquivoMarkdown._();
   @$core.pragma('dart2js:noInline')
-  static ArquivoMarkdown getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivoMarkdown>(create);
+  static ArquivoMarkdown getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivoMarkdown>(
+          ArquivoMarkdown.$_createMessage);
   static ArquivoMarkdown? _defaultInstance;
 
   @$pb.TagNumber(2)
@@ -787,7 +822,7 @@ class PrecomputadosSetor extends $pb.GeneratedMessage {
     $core.int? totalMultiplasEnfiadas,
     $core.int? totalHighlines,
   }) {
-    final result = create();
+    final result = PrecomputadosSetor._();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
     if (totalEsportivas != null) result.totalEsportivas = totalEsportivas;
     if (totalMoveis != null) result.totalMoveis = totalMoveis;
@@ -802,15 +837,15 @@ class PrecomputadosSetor extends $pb.GeneratedMessage {
 
   factory PrecomputadosSetor.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      PrecomputadosSetor()..mergeFromBuffer(data, registry);
   factory PrecomputadosSetor.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      PrecomputadosSetor()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PrecomputadosSetor',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: PrecomputadosSetor.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
     ..aI(4, _omitFieldNames ? '' : 'totalEsportivas')
     ..aI(5, _omitFieldNames ? '' : 'totalMoveis')
@@ -830,12 +865,15 @@ class PrecomputadosSetor extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use PrecomputadosSetor() / PrecomputadosSetor.new instead')
   static PrecomputadosSetor create() => PrecomputadosSetor._();
+  static $pb.GeneratedMessage $_createMessage() => PrecomputadosSetor._();
   @$core.override
-  PrecomputadosSetor createEmptyInstance() => create();
+  PrecomputadosSetor createEmptyInstance() => PrecomputadosSetor._();
   @$core.pragma('dart2js:noInline')
   static PrecomputadosSetor getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PrecomputadosSetor>(create);
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosSetor>(
+          PrecomputadosSetor.$_createMessage);
   static PrecomputadosSetor? _defaultInstance;
 
   /// Soma total de todas as escaladas neste setor.
@@ -904,7 +942,7 @@ class PrecomputadosGrupo extends $pb.GeneratedMessage {
     $core.int? totalMultiplasEnfiadas,
     $core.int? totalHighlines,
   }) {
-    final result = create();
+    final result = PrecomputadosGrupo._();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
     if (totalEsportivas != null) result.totalEsportivas = totalEsportivas;
     if (totalMoveis != null) result.totalMoveis = totalMoveis;
@@ -919,15 +957,15 @@ class PrecomputadosGrupo extends $pb.GeneratedMessage {
 
   factory PrecomputadosGrupo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      PrecomputadosGrupo()..mergeFromBuffer(data, registry);
   factory PrecomputadosGrupo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      PrecomputadosGrupo()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PrecomputadosGrupo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: PrecomputadosGrupo.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
     ..aI(4, _omitFieldNames ? '' : 'totalEsportivas')
     ..aI(5, _omitFieldNames ? '' : 'totalMoveis')
@@ -947,12 +985,15 @@ class PrecomputadosGrupo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use PrecomputadosGrupo() / PrecomputadosGrupo.new instead')
   static PrecomputadosGrupo create() => PrecomputadosGrupo._();
+  static $pb.GeneratedMessage $_createMessage() => PrecomputadosGrupo._();
   @$core.override
-  PrecomputadosGrupo createEmptyInstance() => create();
+  PrecomputadosGrupo createEmptyInstance() => PrecomputadosGrupo._();
   @$core.pragma('dart2js:noInline')
   static PrecomputadosGrupo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PrecomputadosGrupo>(create);
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosGrupo>(
+          PrecomputadosGrupo.$_createMessage);
   static PrecomputadosGrupo? _defaultInstance;
 
   /// Soma total de todas as escaladas em todos os setores deste grupo.
@@ -1023,7 +1064,7 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
     $core.int? totalMultiplasEnfiadas,
     $core.int? totalHighlines,
   }) {
-    final result = create();
+    final result = PrecomputadosPico._();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
     if (totalSetores != null) result.totalSetores = totalSetores;
     if (totalGrupos != null) result.totalGrupos = totalGrupos;
@@ -1040,15 +1081,15 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
 
   factory PrecomputadosPico.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      PrecomputadosPico()..mergeFromBuffer(data, registry);
   factory PrecomputadosPico.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      PrecomputadosPico()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PrecomputadosPico',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: PrecomputadosPico.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
     ..aI(2, _omitFieldNames ? '' : 'totalSetores')
     ..aI(3, _omitFieldNames ? '' : 'totalGrupos')
@@ -1070,12 +1111,15 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use PrecomputadosPico() / PrecomputadosPico.new instead')
   static PrecomputadosPico create() => PrecomputadosPico._();
+  static $pb.GeneratedMessage $_createMessage() => PrecomputadosPico._();
   @$core.override
-  PrecomputadosPico createEmptyInstance() => create();
+  PrecomputadosPico createEmptyInstance() => PrecomputadosPico._();
   @$core.pragma('dart2js:noInline')
-  static PrecomputadosPico getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PrecomputadosPico>(create);
+  static PrecomputadosPico getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PrecomputadosPico>(
+          PrecomputadosPico.$_createMessage);
   static PrecomputadosPico? _defaultInstance;
 
   /// Soma total de todas as escaladas de todos os setores e grupos do pico.
@@ -1170,7 +1214,7 @@ class Pico extends $pb.GeneratedMessage {
     ArquivoMapas? mapasGerais,
     PrecomputadosPico? precomputados,
   }) {
-    final result = create();
+    final result = Pico._();
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
     if (estado != null) result.estado = estado;
@@ -1192,32 +1236,32 @@ class Pico extends $pb.GeneratedMessage {
 
   factory Pico.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Pico()..mergeFromBuffer(data, registry);
   factory Pico.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Pico()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Pico',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Pico.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOS(2, _omitFieldNames ? '' : 'descricao')
     ..aOS(3, _omitFieldNames ? '' : 'estado')
     ..aOM<Coordenada>(4, _omitFieldNames ? '' : 'localizacao',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..aOS(5, _omitFieldNames ? '' : 'urlGoogleMaps')
     ..aOS(6, _omitFieldNames ? '' : 'nomeAssociacao')
     ..aOS(7, _omitFieldNames ? '' : 'urlFiliacaoAssociacao')
     ..aOS(8, _omitFieldNames ? '' : 'chavePixManutencao')
     ..pPM<Patrocinador>(9, _omitFieldNames ? '' : 'patrocinadores',
-        subBuilder: Patrocinador.create)
+        subBuilder: Patrocinador.$_createMessage)
     ..pPM<SetorOuGrupo>(11, _omitFieldNames ? '' : 'setoresOuGrupos',
-        subBuilder: SetorOuGrupo.create)
+        subBuilder: SetorOuGrupo.$_createMessage)
     ..aOM<ArquivoMapas>(12, _omitFieldNames ? '' : 'mapasGerais',
-        subBuilder: ArquivoMapas.create)
+        subBuilder: ArquivoMapas.$_createMessage)
     ..aOM<PrecomputadosPico>(13, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosPico.create);
+        subBuilder: PrecomputadosPico.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -1229,12 +1273,14 @@ class Pico extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Pico() / Pico.new instead')
   static Pico create() => Pico._();
+  static $pb.GeneratedMessage $_createMessage() => Pico._();
   @$core.override
-  Pico createEmptyInstance() => create();
+  Pico createEmptyInstance() => Pico._();
   @$core.pragma('dart2js:noInline')
-  static Pico getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Pico>(create);
+  static Pico getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Pico>(Pico.$_createMessage);
   static Pico? _defaultInstance;
 
   /// Nome oficial do pico de escalada.
@@ -1357,7 +1403,7 @@ class ColecaoDeMapas extends $pb.GeneratedMessage {
   factory ColecaoDeMapas({
     $core.Iterable<Mapa>? mapas,
   }) {
-    final result = create();
+    final result = ColecaoDeMapas._();
     if (mapas != null) result.mapas.addAll(mapas);
     return result;
   }
@@ -1366,16 +1412,17 @@ class ColecaoDeMapas extends $pb.GeneratedMessage {
 
   factory ColecaoDeMapas.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ColecaoDeMapas()..mergeFromBuffer(data, registry);
   factory ColecaoDeMapas.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ColecaoDeMapas()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ColecaoDeMapas',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
-    ..pPM<Mapa>(1, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+      createEmptyInstance: ColecaoDeMapas.$_createMessage)
+    ..pPM<Mapa>(1, _omitFieldNames ? '' : 'mapas',
+        subBuilder: Mapa.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1389,12 +1436,15 @@ class ColecaoDeMapas extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ColecaoDeMapas() / ColecaoDeMapas.new instead')
   static ColecaoDeMapas create() => ColecaoDeMapas._();
+  static $pb.GeneratedMessage $_createMessage() => ColecaoDeMapas._();
   @$core.override
-  ColecaoDeMapas createEmptyInstance() => create();
+  ColecaoDeMapas createEmptyInstance() => ColecaoDeMapas._();
   @$core.pragma('dart2js:noInline')
-  static ColecaoDeMapas getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ColecaoDeMapas>(create);
+  static ColecaoDeMapas getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColecaoDeMapas>(
+          ColecaoDeMapas.$_createMessage);
   static ColecaoDeMapas? _defaultInstance;
 
   /// Mapas da coleção.
@@ -1410,7 +1460,7 @@ class ArquivoMapas extends $pb.GeneratedMessage {
     $core.String? caminho,
     ColecaoDeMapas? conteudo,
   }) {
-    final result = create();
+    final result = ArquivoMapas._();
     if (caminho != null) result.caminho = caminho;
     if (conteudo != null) result.conteudo = conteudo;
     return result;
@@ -1420,10 +1470,10 @@ class ArquivoMapas extends $pb.GeneratedMessage {
 
   factory ArquivoMapas.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ArquivoMapas()..mergeFromBuffer(data, registry);
   factory ArquivoMapas.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ArquivoMapas()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ArquivoMapas_Arquivo>
       _ArquivoMapas_ArquivoByTag = {
@@ -1434,11 +1484,11 @@ class ArquivoMapas extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivoMapas',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ArquivoMapas.$_createMessage)
     ..oo(0, [1, 2])
     ..aOS(1, _omitFieldNames ? '' : 'caminho')
     ..aOM<ColecaoDeMapas>(2, _omitFieldNames ? '' : 'conteudo',
-        subBuilder: ColecaoDeMapas.create)
+        subBuilder: ColecaoDeMapas.$_createMessage)
     ..hasExtensions = true;
   static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
       _omitMessageNames ? '' : 'aresta.ArquivoMapas',
@@ -1446,7 +1496,7 @@ class ArquivoMapas extends $pb.GeneratedMessage {
       1000,
       $pb.PbFieldType.OM,
       defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
-      subBuilder: MetadadosArquivoNoEditor.create);
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ArquivoMapas clone() => deepCopy();
@@ -1459,12 +1509,15 @@ class ArquivoMapas extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ArquivoMapas() / ArquivoMapas.new instead')
   static ArquivoMapas create() => ArquivoMapas._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoMapas._();
   @$core.override
-  ArquivoMapas createEmptyInstance() => create();
+  ArquivoMapas createEmptyInstance() => ArquivoMapas._();
   @$core.pragma('dart2js:noInline')
-  static ArquivoMapas getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivoMapas>(create);
+  static ArquivoMapas getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivoMapas>(
+          ArquivoMapas.$_createMessage);
   static ArquivoMapas? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1504,7 +1557,7 @@ class SetorOuGrupo extends $pb.GeneratedMessage {
     ArquivoSetor? setor,
     ArquivoGrupo? grupo,
   }) {
-    final result = create();
+    final result = SetorOuGrupo._();
     if (setor != null) result.setor = setor;
     if (grupo != null) result.grupo = grupo;
     return result;
@@ -1514,10 +1567,10 @@ class SetorOuGrupo extends $pb.GeneratedMessage {
 
   factory SetorOuGrupo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      SetorOuGrupo()..mergeFromBuffer(data, registry);
   factory SetorOuGrupo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      SetorOuGrupo()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, SetorOuGrupo_Tipo> _SetorOuGrupo_TipoByTag =
       {
@@ -1528,12 +1581,12 @@ class SetorOuGrupo extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'SetorOuGrupo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: SetorOuGrupo.$_createMessage)
     ..oo(0, [1, 2])
     ..aOM<ArquivoSetor>(1, _omitFieldNames ? '' : 'setor',
-        subBuilder: ArquivoSetor.create)
+        subBuilder: ArquivoSetor.$_createMessage)
     ..aOM<ArquivoGrupo>(2, _omitFieldNames ? '' : 'grupo',
-        subBuilder: ArquivoGrupo.create);
+        subBuilder: ArquivoGrupo.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SetorOuGrupo clone() => deepCopy();
@@ -1546,12 +1599,15 @@ class SetorOuGrupo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use SetorOuGrupo() / SetorOuGrupo.new instead')
   static SetorOuGrupo create() => SetorOuGrupo._();
+  static $pb.GeneratedMessage $_createMessage() => SetorOuGrupo._();
   @$core.override
-  SetorOuGrupo createEmptyInstance() => create();
+  SetorOuGrupo createEmptyInstance() => SetorOuGrupo._();
   @$core.pragma('dart2js:noInline')
-  static SetorOuGrupo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SetorOuGrupo>(create);
+  static SetorOuGrupo getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetorOuGrupo>(
+          SetorOuGrupo.$_createMessage);
   static SetorOuGrupo? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1592,7 +1648,7 @@ class ArquivoSetor extends $pb.GeneratedMessage {
     $core.String? caminho,
     Setor? conteudo,
   }) {
-    final result = create();
+    final result = ArquivoSetor._();
     if (caminho != null) result.caminho = caminho;
     if (conteudo != null) result.conteudo = conteudo;
     return result;
@@ -1602,10 +1658,10 @@ class ArquivoSetor extends $pb.GeneratedMessage {
 
   factory ArquivoSetor.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ArquivoSetor()..mergeFromBuffer(data, registry);
   factory ArquivoSetor.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ArquivoSetor()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ArquivoSetor_Arquivo>
       _ArquivoSetor_ArquivoByTag = {
@@ -1616,10 +1672,11 @@ class ArquivoSetor extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivoSetor',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ArquivoSetor.$_createMessage)
     ..oo(0, [1, 2])
     ..aOS(1, _omitFieldNames ? '' : 'caminho')
-    ..aOM<Setor>(2, _omitFieldNames ? '' : 'conteudo', subBuilder: Setor.create)
+    ..aOM<Setor>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: Setor.$_createMessage)
     ..hasExtensions = true;
   static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
       _omitMessageNames ? '' : 'aresta.ArquivoSetor',
@@ -1627,7 +1684,7 @@ class ArquivoSetor extends $pb.GeneratedMessage {
       1000,
       $pb.PbFieldType.OM,
       defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
-      subBuilder: MetadadosArquivoNoEditor.create);
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ArquivoSetor clone() => deepCopy();
@@ -1640,12 +1697,15 @@ class ArquivoSetor extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ArquivoSetor() / ArquivoSetor.new instead')
   static ArquivoSetor create() => ArquivoSetor._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoSetor._();
   @$core.override
-  ArquivoSetor createEmptyInstance() => create();
+  ArquivoSetor createEmptyInstance() => ArquivoSetor._();
   @$core.pragma('dart2js:noInline')
-  static ArquivoSetor getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivoSetor>(create);
+  static ArquivoSetor getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivoSetor>(
+          ArquivoSetor.$_createMessage);
   static ArquivoSetor? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1685,7 +1745,7 @@ class ArquivoGrupo extends $pb.GeneratedMessage {
     $core.String? caminho,
     Grupo? conteudo,
   }) {
-    final result = create();
+    final result = ArquivoGrupo._();
     if (caminho != null) result.caminho = caminho;
     if (conteudo != null) result.conteudo = conteudo;
     return result;
@@ -1695,10 +1755,10 @@ class ArquivoGrupo extends $pb.GeneratedMessage {
 
   factory ArquivoGrupo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ArquivoGrupo()..mergeFromBuffer(data, registry);
   factory ArquivoGrupo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ArquivoGrupo()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, ArquivoGrupo_Arquivo>
       _ArquivoGrupo_ArquivoByTag = {
@@ -1709,10 +1769,11 @@ class ArquivoGrupo extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivoGrupo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ArquivoGrupo.$_createMessage)
     ..oo(0, [1, 2])
     ..aOS(1, _omitFieldNames ? '' : 'caminho')
-    ..aOM<Grupo>(2, _omitFieldNames ? '' : 'conteudo', subBuilder: Grupo.create)
+    ..aOM<Grupo>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: Grupo.$_createMessage)
     ..hasExtensions = true;
   static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
       _omitMessageNames ? '' : 'aresta.ArquivoGrupo',
@@ -1720,7 +1781,7 @@ class ArquivoGrupo extends $pb.GeneratedMessage {
       1000,
       $pb.PbFieldType.OM,
       defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
-      subBuilder: MetadadosArquivoNoEditor.create);
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ArquivoGrupo clone() => deepCopy();
@@ -1733,12 +1794,15 @@ class ArquivoGrupo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ArquivoGrupo() / ArquivoGrupo.new instead')
   static ArquivoGrupo create() => ArquivoGrupo._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoGrupo._();
   @$core.override
-  ArquivoGrupo createEmptyInstance() => create();
+  ArquivoGrupo createEmptyInstance() => ArquivoGrupo._();
   @$core.pragma('dart2js:noInline')
-  static ArquivoGrupo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivoGrupo>(create);
+  static ArquivoGrupo getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivoGrupo>(
+          ArquivoGrupo.$_createMessage);
   static ArquivoGrupo? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1782,7 +1846,7 @@ class Grupo extends $pb.GeneratedMessage {
     $core.int? indiceMapaPadrao,
     PrecomputadosGrupo? precomputados,
   }) {
-    final result = create();
+    final result = Grupo._();
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
     if (mapas != null) result.mapas.addAll(mapas);
@@ -1800,27 +1864,28 @@ class Grupo extends $pb.GeneratedMessage {
 
   factory Grupo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Grupo()..mergeFromBuffer(data, registry);
   factory Grupo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Grupo()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Grupo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Grupo.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOS(2, _omitFieldNames ? '' : 'descricao')
-    ..pPM<Mapa>(3, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+    ..pPM<Mapa>(3, _omitFieldNames ? '' : 'mapas',
+        subBuilder: Mapa.$_createMessage)
     ..pPM<ArquivoSetor>(4, _omitFieldNames ? '' : 'setores',
-        subBuilder: ArquivoSetor.create)
+        subBuilder: ArquivoSetor.$_createMessage)
     ..aOM<Coordenada>(6, _omitFieldNames ? '' : 'localizacaoEstacionamento',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..aI(8, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..aOM<PrecomputadosGrupo>(9, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosGrupo.create);
+        subBuilder: PrecomputadosGrupo.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Grupo clone() => deepCopy();
@@ -1832,12 +1897,14 @@ class Grupo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Grupo() / Grupo.new instead')
   static Grupo create() => Grupo._();
+  static $pb.GeneratedMessage $_createMessage() => Grupo._();
   @$core.override
-  Grupo createEmptyInstance() => create();
+  Grupo createEmptyInstance() => Grupo._();
   @$core.pragma('dart2js:noInline')
-  static Grupo getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Grupo>(create);
+  static Grupo getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Grupo>(Grupo.$_createMessage);
   static Grupo? _defaultInstance;
 
   /// Nome do grupo (ex: Vale Oculto).
@@ -1933,7 +2000,7 @@ class Setor extends $pb.GeneratedMessage {
     $core.int? indiceMapaPadrao,
     PrecomputadosSetor? precomputados,
   }) {
-    final result = create();
+    final result = Setor._();
     if (nome != null) result.nome = nome;
     if (localizacaoEstacionamento != null)
       result.localizacaoEstacionamento = localizacaoEstacionamento;
@@ -1955,32 +2022,33 @@ class Setor extends $pb.GeneratedMessage {
 
   factory Setor.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Setor()..mergeFromBuffer(data, registry);
   factory Setor.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Setor()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Setor',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Setor.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOM<Coordenada>(2, _omitFieldNames ? '' : 'localizacaoEstacionamento',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..aOM<Coordenada>(3, _omitFieldNames ? '' : 'localizacaoEscalada',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..pPM<Trilha>(4, _omitFieldNames ? '' : 'trilhas',
-        subBuilder: Trilha.create)
+        subBuilder: Trilha.$_createMessage)
     ..aOB(6, _omitFieldNames ? '' : 'sinalDeCelular')
     ..aOB(7, _omitFieldNames ? '' : 'amigavelACriancas')
     ..aOB(8, _omitFieldNames ? '' : 'amigavelABebes')
     ..aOS(9, _omitFieldNames ? '' : 'descricao')
     ..pPM<Escalada>(11, _omitFieldNames ? '' : 'escaladas',
-        subBuilder: Escalada.create)
-    ..pPM<Mapa>(13, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+        subBuilder: Escalada.$_createMessage)
+    ..pPM<Mapa>(13, _omitFieldNames ? '' : 'mapas',
+        subBuilder: Mapa.$_createMessage)
     ..aI(14, _omitFieldNames ? '' : 'indiceMapaPadrao')
     ..aOM<PrecomputadosSetor>(15, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosSetor.create)
+        subBuilder: PrecomputadosSetor.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1993,12 +2061,14 @@ class Setor extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Setor() / Setor.new instead')
   static Setor create() => Setor._();
+  static $pb.GeneratedMessage $_createMessage() => Setor._();
   @$core.override
-  Setor createEmptyInstance() => create();
+  Setor createEmptyInstance() => Setor._();
   @$core.pragma('dart2js:noInline')
-  static Setor getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Setor>(create);
+  static Setor getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Setor>(Setor.$_createMessage);
   static Setor? _defaultInstance;
 
   /// Nome do setor (ex: Savassinha).
@@ -2132,7 +2202,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     $core.String? cor,
     $core.String? textoVisivel,
   }) {
-    final result = create();
+    final result = Mapa_PontoDeInteresse._();
     if (id != null) result.id = id;
     if (label != null) result.label = label;
     if (retangulo != null) result.retangulo = retangulo;
@@ -2149,10 +2219,10 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
 
   factory Mapa_PontoDeInteresse.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Mapa_PontoDeInteresse()..mergeFromBuffer(data, registry);
   factory Mapa_PontoDeInteresse.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Mapa_PontoDeInteresse()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, Mapa_PontoDeInteresse_TipoArea>
       _Mapa_PontoDeInteresse_TipoAreaByTag = {
@@ -2166,20 +2236,20 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa.PontoDeInteresse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Mapa_PontoDeInteresse.$_createMessage)
     ..oo(0, [3, 6, 7, 8, 9])
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'label')
     ..aOM<BoundingRetangulo>(3, _omitFieldNames ? '' : 'retangulo',
-        subBuilder: BoundingRetangulo.create)
+        subBuilder: BoundingRetangulo.$_createMessage)
     ..aOM<BoundingCirculo>(6, _omitFieldNames ? '' : 'circulo',
-        subBuilder: BoundingCirculo.create)
+        subBuilder: BoundingCirculo.$_createMessage)
     ..aOM<BoundingPoligono>(7, _omitFieldNames ? '' : 'poligono',
-        subBuilder: BoundingPoligono.create)
+        subBuilder: BoundingPoligono.$_createMessage)
     ..aOM<BoundingQuadrado>(8, _omitFieldNames ? '' : 'quadrado',
-        subBuilder: BoundingQuadrado.create)
+        subBuilder: BoundingQuadrado.$_createMessage)
     ..aOM<LinhaTrajeto>(9, _omitFieldNames ? '' : 'linha',
-        subBuilder: LinhaTrajeto.create)
+        subBuilder: LinhaTrajeto.$_createMessage)
     ..aOS(10, _omitFieldNames ? '' : 'cor')
     ..aOS(11, _omitFieldNames ? '' : 'textoVisivel')
     ..hasRequiredFields = false;
@@ -2196,12 +2266,16 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use Mapa_PontoDeInteresse() / Mapa_PontoDeInteresse.new instead')
   static Mapa_PontoDeInteresse create() => Mapa_PontoDeInteresse._();
+  static $pb.GeneratedMessage $_createMessage() => Mapa_PontoDeInteresse._();
   @$core.override
-  Mapa_PontoDeInteresse createEmptyInstance() => create();
+  Mapa_PontoDeInteresse createEmptyInstance() => Mapa_PontoDeInteresse._();
   @$core.pragma('dart2js:noInline')
   static Mapa_PontoDeInteresse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Mapa_PontoDeInteresse>(create);
+      $pb.GeneratedMessage.$_defaultFor<Mapa_PontoDeInteresse>(
+          Mapa_PontoDeInteresse.$_createMessage);
   static Mapa_PontoDeInteresse? _defaultInstance;
 
   @$pb.TagNumber(3)
@@ -2329,7 +2403,7 @@ class Mapa_AjusteDeCamera extends $pb.GeneratedMessage {
     $core.int? posicaoHorizontal,
     $core.double? zoom,
   }) {
-    final result = create();
+    final result = Mapa_AjusteDeCamera._();
     if (focoIdIndice != null) result.focoIdIndice = focoIdIndice;
     if (posicaoVertical != null) result.posicaoVertical = posicaoVertical;
     if (posicaoHorizontal != null) result.posicaoHorizontal = posicaoHorizontal;
@@ -2341,15 +2415,15 @@ class Mapa_AjusteDeCamera extends $pb.GeneratedMessage {
 
   factory Mapa_AjusteDeCamera.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Mapa_AjusteDeCamera()..mergeFromBuffer(data, registry);
   factory Mapa_AjusteDeCamera.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Mapa_AjusteDeCamera()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa.AjusteDeCamera',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Mapa_AjusteDeCamera.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'focoIdIndice')
     ..aI(2, _omitFieldNames ? '' : 'posicaoVertical')
     ..aI(3, _omitFieldNames ? '' : 'posicaoHorizontal')
@@ -2367,12 +2441,16 @@ class Mapa_AjusteDeCamera extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core
+      .Deprecated('Use Mapa_AjusteDeCamera() / Mapa_AjusteDeCamera.new instead')
   static Mapa_AjusteDeCamera create() => Mapa_AjusteDeCamera._();
+  static $pb.GeneratedMessage $_createMessage() => Mapa_AjusteDeCamera._();
   @$core.override
-  Mapa_AjusteDeCamera createEmptyInstance() => create();
+  Mapa_AjusteDeCamera createEmptyInstance() => Mapa_AjusteDeCamera._();
   @$core.pragma('dart2js:noInline')
   static Mapa_AjusteDeCamera getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Mapa_AjusteDeCamera>(create);
+      $pb.GeneratedMessage.$_defaultFor<Mapa_AjusteDeCamera>(
+          Mapa_AjusteDeCamera.$_createMessage);
   static Mapa_AjusteDeCamera? _defaultInstance;
 
   /// Índice dentro da lista 'ids' da Referência que servirá de ponto focal principal.
@@ -2430,7 +2508,7 @@ class Mapa_Referencia extends $pb.GeneratedMessage {
     $core.int? indiceMapaAlvo,
     Mapa_AjusteDeCamera? ajusteDeCamera,
   }) {
-    final result = create();
+    final result = Mapa_Referencia._();
     if (ids != null) result.ids.addAll(ids);
     if (grupo != null) result.grupo = grupo;
     if (setor != null) result.setor = setor;
@@ -2444,22 +2522,22 @@ class Mapa_Referencia extends $pb.GeneratedMessage {
 
   factory Mapa_Referencia.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Mapa_Referencia()..mergeFromBuffer(data, registry);
   factory Mapa_Referencia.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Mapa_Referencia()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa.Referencia',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Mapa_Referencia.$_createMessage)
     ..pPS(1, _omitFieldNames ? '' : 'ids')
     ..aOS(2, _omitFieldNames ? '' : 'grupo')
     ..aOS(3, _omitFieldNames ? '' : 'setor')
     ..aOS(4, _omitFieldNames ? '' : 'escalada')
     ..aI(5, _omitFieldNames ? '' : 'indiceMapaAlvo')
     ..aOM<Mapa_AjusteDeCamera>(6, _omitFieldNames ? '' : 'ajusteDeCamera',
-        subBuilder: Mapa_AjusteDeCamera.create)
+        subBuilder: Mapa_AjusteDeCamera.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2473,12 +2551,15 @@ class Mapa_Referencia extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Mapa_Referencia() / Mapa_Referencia.new instead')
   static Mapa_Referencia create() => Mapa_Referencia._();
+  static $pb.GeneratedMessage $_createMessage() => Mapa_Referencia._();
   @$core.override
-  Mapa_Referencia createEmptyInstance() => create();
+  Mapa_Referencia createEmptyInstance() => Mapa_Referencia._();
   @$core.pragma('dart2js:noInline')
-  static Mapa_Referencia getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Mapa_Referencia>(create);
+  static Mapa_Referencia getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Mapa_Referencia>(
+          Mapa_Referencia.$_createMessage);
   static Mapa_Referencia? _defaultInstance;
 
   /// IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
@@ -2556,7 +2637,7 @@ class Mapa extends $pb.GeneratedMessage {
     $core.Iterable<Mapa_PontoDeInteresse>? pontosDeInteresse,
     $core.Iterable<Mapa_Referencia>? referencias,
   }) {
-    final result = create();
+    final result = Mapa._();
     if (caminhoImagemMapa != null) result.caminhoImagemMapa = caminhoImagemMapa;
     if (larguraMapa != null) result.larguraMapa = larguraMapa;
     if (alturaMapa != null) result.alturaMapa = alturaMapa;
@@ -2570,22 +2651,22 @@ class Mapa extends $pb.GeneratedMessage {
 
   factory Mapa.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Mapa()..mergeFromBuffer(data, registry);
   factory Mapa.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Mapa()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Mapa',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Mapa.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoImagemMapa')
     ..aI(2, _omitFieldNames ? '' : 'larguraMapa')
     ..aI(3, _omitFieldNames ? '' : 'alturaMapa')
     ..pPM<Mapa_PontoDeInteresse>(4, _omitFieldNames ? '' : 'pontosDeInteresse',
-        subBuilder: Mapa_PontoDeInteresse.create)
+        subBuilder: Mapa_PontoDeInteresse.$_createMessage)
     ..pPM<Mapa_Referencia>(6, _omitFieldNames ? '' : 'referencias',
-        subBuilder: Mapa_Referencia.create)
+        subBuilder: Mapa_Referencia.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2598,12 +2679,14 @@ class Mapa extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Mapa() / Mapa.new instead')
   static Mapa create() => Mapa._();
+  static $pb.GeneratedMessage $_createMessage() => Mapa._();
   @$core.override
-  Mapa createEmptyInstance() => create();
+  Mapa createEmptyInstance() => Mapa._();
   @$core.pragma('dart2js:noInline')
-  static Mapa getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Mapa>(create);
+  static Mapa getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Mapa>(Mapa.$_createMessage);
   static Mapa? _defaultInstance;
 
   /// Caminho do arquivo (geralmente em .webp) contendo a foto desenhada da parede.
@@ -2653,7 +2736,7 @@ class BoundingCirculo extends $pb.GeneratedMessage {
     $core.int? y,
     $core.int? raio,
   }) {
-    final result = create();
+    final result = BoundingCirculo._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     if (raio != null) result.raio = raio;
@@ -2664,15 +2747,15 @@ class BoundingCirculo extends $pb.GeneratedMessage {
 
   factory BoundingCirculo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      BoundingCirculo()..mergeFromBuffer(data, registry);
   factory BoundingCirculo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      BoundingCirculo()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BoundingCirculo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: BoundingCirculo.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'x')
     ..aI(2, _omitFieldNames ? '' : 'y')
     ..aI(3, _omitFieldNames ? '' : 'raio')
@@ -2689,12 +2772,15 @@ class BoundingCirculo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use BoundingCirculo() / BoundingCirculo.new instead')
   static BoundingCirculo create() => BoundingCirculo._();
+  static $pb.GeneratedMessage $_createMessage() => BoundingCirculo._();
   @$core.override
-  BoundingCirculo createEmptyInstance() => create();
+  BoundingCirculo createEmptyInstance() => BoundingCirculo._();
   @$core.pragma('dart2js:noInline')
-  static BoundingCirculo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingCirculo>(create);
+  static BoundingCirculo getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoundingCirculo>(
+          BoundingCirculo.$_createMessage);
   static BoundingCirculo? _defaultInstance;
 
   /// Coordenadas (x, y) do centro do círculo em pixels.
@@ -2735,7 +2821,7 @@ class BoundingQuadrado extends $pb.GeneratedMessage {
     $core.int? y,
     $core.int? lado,
   }) {
-    final result = create();
+    final result = BoundingQuadrado._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     if (lado != null) result.lado = lado;
@@ -2746,15 +2832,15 @@ class BoundingQuadrado extends $pb.GeneratedMessage {
 
   factory BoundingQuadrado.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      BoundingQuadrado()..mergeFromBuffer(data, registry);
   factory BoundingQuadrado.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      BoundingQuadrado()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BoundingQuadrado',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: BoundingQuadrado.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'x')
     ..aI(2, _omitFieldNames ? '' : 'y')
     ..aI(3, _omitFieldNames ? '' : 'lado')
@@ -2771,12 +2857,15 @@ class BoundingQuadrado extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use BoundingQuadrado() / BoundingQuadrado.new instead')
   static BoundingQuadrado create() => BoundingQuadrado._();
+  static $pb.GeneratedMessage $_createMessage() => BoundingQuadrado._();
   @$core.override
-  BoundingQuadrado createEmptyInstance() => create();
+  BoundingQuadrado createEmptyInstance() => BoundingQuadrado._();
   @$core.pragma('dart2js:noInline')
-  static BoundingQuadrado getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingQuadrado>(create);
+  static BoundingQuadrado getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoundingQuadrado>(
+          BoundingQuadrado.$_createMessage);
   static BoundingQuadrado? _defaultInstance;
 
   /// Coordenadas (x, y) do centro do quadrado em pixels.
@@ -2820,7 +2909,7 @@ class BoundingRetangulo extends $pb.GeneratedMessage {
     $core.int? largura,
     $core.int? anguloGrausX100,
   }) {
-    final result = create();
+    final result = BoundingRetangulo._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     if (comprimento != null) result.comprimento = comprimento;
@@ -2833,15 +2922,15 @@ class BoundingRetangulo extends $pb.GeneratedMessage {
 
   factory BoundingRetangulo.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      BoundingRetangulo()..mergeFromBuffer(data, registry);
   factory BoundingRetangulo.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      BoundingRetangulo()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BoundingRetangulo',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: BoundingRetangulo.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'x')
     ..aI(2, _omitFieldNames ? '' : 'y')
     ..aI(5, _omitFieldNames ? '' : 'comprimento')
@@ -2861,12 +2950,15 @@ class BoundingRetangulo extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use BoundingRetangulo() / BoundingRetangulo.new instead')
   static BoundingRetangulo create() => BoundingRetangulo._();
+  static $pb.GeneratedMessage $_createMessage() => BoundingRetangulo._();
   @$core.override
-  BoundingRetangulo createEmptyInstance() => create();
+  BoundingRetangulo createEmptyInstance() => BoundingRetangulo._();
   @$core.pragma('dart2js:noInline')
-  static BoundingRetangulo getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingRetangulo>(create);
+  static BoundingRetangulo getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoundingRetangulo>(
+          BoundingRetangulo.$_createMessage);
   static BoundingRetangulo? _defaultInstance;
 
   /// Coordenadas (x, y) do centro da caixa em pixels.
@@ -2923,7 +3015,7 @@ class BoundingPoligono extends $pb.GeneratedMessage {
   factory BoundingPoligono({
     $core.Iterable<$core.int>? coordenadas,
   }) {
-    final result = create();
+    final result = BoundingPoligono._();
     if (coordenadas != null) result.coordenadas.addAll(coordenadas);
     return result;
   }
@@ -2932,15 +3024,15 @@ class BoundingPoligono extends $pb.GeneratedMessage {
 
   factory BoundingPoligono.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      BoundingPoligono()..mergeFromBuffer(data, registry);
   factory BoundingPoligono.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      BoundingPoligono()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BoundingPoligono',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: BoundingPoligono.$_createMessage)
     ..p<$core.int>(1, _omitFieldNames ? '' : 'coordenadas', $pb.PbFieldType.K3)
     ..hasRequiredFields = false;
 
@@ -2955,12 +3047,15 @@ class BoundingPoligono extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use BoundingPoligono() / BoundingPoligono.new instead')
   static BoundingPoligono create() => BoundingPoligono._();
+  static $pb.GeneratedMessage $_createMessage() => BoundingPoligono._();
   @$core.override
-  BoundingPoligono createEmptyInstance() => create();
+  BoundingPoligono createEmptyInstance() => BoundingPoligono._();
   @$core.pragma('dart2js:noInline')
-  static BoundingPoligono getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BoundingPoligono>(create);
+  static BoundingPoligono getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoundingPoligono>(
+          BoundingPoligono.$_createMessage);
   static BoundingPoligono? _defaultInstance;
 
   /// Coordenadas dos pontos que formam a área, na ordem.
@@ -2979,7 +3074,7 @@ class LinhaTrajeto extends $pb.GeneratedMessage {
     DadosCompiladosLinha? compilado,
     $core.int? espessura,
   }) {
-    final result = create();
+    final result = LinhaTrajeto._();
     if (estilo != null) result.estilo = estilo;
     if (conteudo != null) result.conteudo = conteudo;
     if (compilado != null) result.compilado = compilado;
@@ -2991,10 +3086,10 @@ class LinhaTrajeto extends $pb.GeneratedMessage {
 
   factory LinhaTrajeto.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      LinhaTrajeto()..mergeFromBuffer(data, registry);
   factory LinhaTrajeto.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      LinhaTrajeto()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, LinhaTrajeto_Representacao>
       _LinhaTrajeto_RepresentacaoByTag = {
@@ -3005,14 +3100,14 @@ class LinhaTrajeto extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'LinhaTrajeto',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: LinhaTrajeto.$_createMessage)
     ..oo(0, [2, 3])
     ..aE<LinhaTrajeto_EstiloTraco>(1, _omitFieldNames ? '' : 'estilo',
         enumValues: LinhaTrajeto_EstiloTraco.values)
     ..aOM<DadosConteudoLinha>(2, _omitFieldNames ? '' : 'conteudo',
-        subBuilder: DadosConteudoLinha.create)
+        subBuilder: DadosConteudoLinha.$_createMessage)
     ..aOM<DadosCompiladosLinha>(3, _omitFieldNames ? '' : 'compilado',
-        subBuilder: DadosCompiladosLinha.create)
+        subBuilder: DadosCompiladosLinha.$_createMessage)
     ..aI(4, _omitFieldNames ? '' : 'espessura')
     ..hasRequiredFields = false;
 
@@ -3027,12 +3122,15 @@ class LinhaTrajeto extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use LinhaTrajeto() / LinhaTrajeto.new instead')
   static LinhaTrajeto create() => LinhaTrajeto._();
+  static $pb.GeneratedMessage $_createMessage() => LinhaTrajeto._();
   @$core.override
-  LinhaTrajeto createEmptyInstance() => create();
+  LinhaTrajeto createEmptyInstance() => LinhaTrajeto._();
   @$core.pragma('dart2js:noInline')
-  static LinhaTrajeto getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<LinhaTrajeto>(create);
+  static LinhaTrajeto getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LinhaTrajeto>(
+          LinhaTrajeto.$_createMessage);
   static LinhaTrajeto? _defaultInstance;
 
   @$pb.TagNumber(2)
@@ -3093,7 +3191,7 @@ class DadosConteudoLinha extends $pb.GeneratedMessage {
   factory DadosConteudoLinha({
     $core.Iterable<NoTrajeto>? nos,
   }) {
-    final result = create();
+    final result = DadosConteudoLinha._();
     if (nos != null) result.nos.addAll(nos);
     return result;
   }
@@ -3102,17 +3200,17 @@ class DadosConteudoLinha extends $pb.GeneratedMessage {
 
   factory DadosConteudoLinha.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      DadosConteudoLinha()..mergeFromBuffer(data, registry);
   factory DadosConteudoLinha.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      DadosConteudoLinha()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'DadosConteudoLinha',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: DadosConteudoLinha.$_createMessage)
     ..pPM<NoTrajeto>(1, _omitFieldNames ? '' : 'nos',
-        subBuilder: NoTrajeto.create)
+        subBuilder: NoTrajeto.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3126,12 +3224,15 @@ class DadosConteudoLinha extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use DadosConteudoLinha() / DadosConteudoLinha.new instead')
   static DadosConteudoLinha create() => DadosConteudoLinha._();
+  static $pb.GeneratedMessage $_createMessage() => DadosConteudoLinha._();
   @$core.override
-  DadosConteudoLinha createEmptyInstance() => create();
+  DadosConteudoLinha createEmptyInstance() => DadosConteudoLinha._();
   @$core.pragma('dart2js:noInline')
   static DadosConteudoLinha getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DadosConteudoLinha>(create);
+      $pb.GeneratedMessage.$_defaultFor<DadosConteudoLinha>(
+          DadosConteudoLinha.$_createMessage);
   static DadosConteudoLinha? _defaultInstance;
 
   /// Lista ordenada de nós que compõem o traçado da via.
@@ -3149,7 +3250,7 @@ class NoTrajeto extends $pb.GeneratedMessage {
     $core.int? raio,
     $core.int? tamanhoFonte,
   }) {
-    final result = create();
+    final result = NoTrajeto._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     if (tipo != null) result.tipo = tipo;
@@ -3163,15 +3264,15 @@ class NoTrajeto extends $pb.GeneratedMessage {
 
   factory NoTrajeto.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      NoTrajeto()..mergeFromBuffer(data, registry);
   factory NoTrajeto.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      NoTrajeto()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'NoTrajeto',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: NoTrajeto.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'x')
     ..aI(2, _omitFieldNames ? '' : 'y')
     ..aE<NoTrajeto_TipoNo>(3, _omitFieldNames ? '' : 'tipo',
@@ -3191,12 +3292,14 @@ class NoTrajeto extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use NoTrajeto() / NoTrajeto.new instead')
   static NoTrajeto create() => NoTrajeto._();
+  static $pb.GeneratedMessage $_createMessage() => NoTrajeto._();
   @$core.override
-  NoTrajeto createEmptyInstance() => create();
+  NoTrajeto createEmptyInstance() => NoTrajeto._();
   @$core.pragma('dart2js:noInline')
-  static NoTrajeto getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NoTrajeto>(create);
+  static NoTrajeto getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<NoTrajeto>(NoTrajeto.$_createMessage);
   static NoTrajeto? _defaultInstance;
 
   /// Coordenada X do nó em pixels na imagem.
@@ -3267,7 +3370,7 @@ class DadosCompiladosLinha extends $pb.GeneratedMessage {
     BoundingRetangulo? caixaDelimitadora,
     $core.Iterable<MarcadorCompilado>? marcadores,
   }) {
-    final result = create();
+    final result = DadosCompiladosLinha._();
     if (caminhoSvg != null) result.caminhoSvg = caminhoSvg;
     if (caixaDelimitadora != null) result.caixaDelimitadora = caixaDelimitadora;
     if (marcadores != null) result.marcadores.addAll(marcadores);
@@ -3278,20 +3381,20 @@ class DadosCompiladosLinha extends $pb.GeneratedMessage {
 
   factory DadosCompiladosLinha.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      DadosCompiladosLinha()..mergeFromBuffer(data, registry);
   factory DadosCompiladosLinha.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      DadosCompiladosLinha()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'DadosCompiladosLinha',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: DadosCompiladosLinha.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoSvg')
     ..aOM<BoundingRetangulo>(2, _omitFieldNames ? '' : 'caixaDelimitadora',
-        subBuilder: BoundingRetangulo.create)
+        subBuilder: BoundingRetangulo.$_createMessage)
     ..pPM<MarcadorCompilado>(3, _omitFieldNames ? '' : 'marcadores',
-        subBuilder: MarcadorCompilado.create)
+        subBuilder: MarcadorCompilado.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3305,12 +3408,16 @@ class DadosCompiladosLinha extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use DadosCompiladosLinha() / DadosCompiladosLinha.new instead')
   static DadosCompiladosLinha create() => DadosCompiladosLinha._();
+  static $pb.GeneratedMessage $_createMessage() => DadosCompiladosLinha._();
   @$core.override
-  DadosCompiladosLinha createEmptyInstance() => create();
+  DadosCompiladosLinha createEmptyInstance() => DadosCompiladosLinha._();
   @$core.pragma('dart2js:noInline')
   static DadosCompiladosLinha getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DadosCompiladosLinha>(create);
+      $pb.GeneratedMessage.$_defaultFor<DadosCompiladosLinha>(
+          DadosCompiladosLinha.$_createMessage);
   static DadosCompiladosLinha? _defaultInstance;
 
   /// Caminho SVG padrão contendo comandos de Bézier Cúbica ("M ... C ...").
@@ -3351,7 +3458,7 @@ class MarcadorCompilado extends $pb.GeneratedMessage {
     $core.int? raio,
     $core.int? tamanhoFonte,
   }) {
-    final result = create();
+    final result = MarcadorCompilado._();
     if (x != null) result.x = x;
     if (y != null) result.y = y;
     if (anguloGrausX100 != null) result.anguloGrausX100 = anguloGrausX100;
@@ -3366,15 +3473,15 @@ class MarcadorCompilado extends $pb.GeneratedMessage {
 
   factory MarcadorCompilado.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      MarcadorCompilado()..mergeFromBuffer(data, registry);
   factory MarcadorCompilado.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      MarcadorCompilado()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MarcadorCompilado',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: MarcadorCompilado.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'x')
     ..aI(2, _omitFieldNames ? '' : 'y')
     ..aI(3, _omitFieldNames ? '' : 'anguloGrausX100',
@@ -3397,12 +3504,15 @@ class MarcadorCompilado extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use MarcadorCompilado() / MarcadorCompilado.new instead')
   static MarcadorCompilado create() => MarcadorCompilado._();
+  static $pb.GeneratedMessage $_createMessage() => MarcadorCompilado._();
   @$core.override
-  MarcadorCompilado createEmptyInstance() => create();
+  MarcadorCompilado createEmptyInstance() => MarcadorCompilado._();
   @$core.pragma('dart2js:noInline')
-  static MarcadorCompilado getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<MarcadorCompilado>(create);
+  static MarcadorCompilado getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MarcadorCompilado>(
+          MarcadorCompilado.$_createMessage);
   static MarcadorCompilado? _defaultInstance;
 
   /// Coordenadas (x, y) do marcador em pixels.
@@ -3494,7 +3604,7 @@ class Escalada extends $pb.GeneratedMessage {
     Highline? highline,
     $core.Iterable<$0.MidiaBeta>? betas,
   }) {
-    final result = create();
+    final result = Escalada._();
     if (viaEsportiva != null) result.viaEsportiva = viaEsportiva;
     if (viaMovel != null) result.viaMovel = viaMovel;
     if (boulder != null) result.boulder = boulder;
@@ -3509,10 +3619,10 @@ class Escalada extends $pb.GeneratedMessage {
 
   factory Escalada.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Escalada()..mergeFromBuffer(data, registry);
   factory Escalada.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Escalada()..mergeFromJson(json, registry);
 
   static const $core.Map<$core.int, Escalada_Tipo> _Escalada_TipoByTag = {
     1: Escalada_Tipo.viaEsportiva,
@@ -3525,21 +3635,21 @@ class Escalada extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Escalada',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Escalada.$_createMessage)
     ..oo(0, [1, 2, 3, 4, 5])
     ..aOM<ViaEsportiva>(1, _omitFieldNames ? '' : 'viaEsportiva',
-        subBuilder: ViaEsportiva.create)
+        subBuilder: ViaEsportiva.$_createMessage)
     ..aOM<ViaMovel>(2, _omitFieldNames ? '' : 'viaMovel',
-        subBuilder: ViaMovel.create)
+        subBuilder: ViaMovel.$_createMessage)
     ..aOM<Boulder>(3, _omitFieldNames ? '' : 'boulder',
-        subBuilder: Boulder.create)
+        subBuilder: Boulder.$_createMessage)
     ..aOM<ViaMultiplasEnfiadas>(
         4, _omitFieldNames ? '' : 'viaMultiplasEnfiadas',
-        subBuilder: ViaMultiplasEnfiadas.create)
+        subBuilder: ViaMultiplasEnfiadas.$_createMessage)
     ..aOM<Highline>(5, _omitFieldNames ? '' : 'highline',
-        subBuilder: Highline.create)
+        subBuilder: Highline.$_createMessage)
     ..pPM<$0.MidiaBeta>(6, _omitFieldNames ? '' : 'betas',
-        subBuilder: $0.MidiaBeta.create)
+        subBuilder: $0.MidiaBeta.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3552,12 +3662,14 @@ class Escalada extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Escalada() / Escalada.new instead')
   static Escalada create() => Escalada._();
+  static $pb.GeneratedMessage $_createMessage() => Escalada._();
   @$core.override
-  Escalada createEmptyInstance() => create();
+  Escalada createEmptyInstance() => Escalada._();
   @$core.pragma('dart2js:noInline')
-  static Escalada getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Escalada>(create);
+  static Escalada getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Escalada>(Escalada.$_createMessage);
   static Escalada? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -3655,7 +3767,7 @@ class ViaEsportiva extends $pb.GeneratedMessage {
     $core.int? indiceMapaPadrao,
     $core.bool? destaque,
   }) {
-    final result = create();
+    final result = ViaEsportiva._();
     if (nome != null) result.nome = nome;
     if (dificuldade != null) result.dificuldade = dificuldade;
     if (dificuldadeArtificial != null)
@@ -3685,15 +3797,15 @@ class ViaEsportiva extends $pb.GeneratedMessage {
 
   factory ViaEsportiva.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ViaEsportiva()..mergeFromBuffer(data, registry);
   factory ViaEsportiva.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ViaEsportiva()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ViaEsportiva',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ViaEsportiva.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aE<GrauVia_GrauVia>(2, _omitFieldNames ? '' : 'dificuldade',
         enumValues: GrauVia_GrauVia.values)
@@ -3729,12 +3841,15 @@ class ViaEsportiva extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ViaEsportiva() / ViaEsportiva.new instead')
   static ViaEsportiva create() => ViaEsportiva._();
+  static $pb.GeneratedMessage $_createMessage() => ViaEsportiva._();
   @$core.override
-  ViaEsportiva createEmptyInstance() => create();
+  ViaEsportiva createEmptyInstance() => ViaEsportiva._();
   @$core.pragma('dart2js:noInline')
-  static ViaEsportiva getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ViaEsportiva>(create);
+  static ViaEsportiva getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ViaEsportiva>(
+          ViaEsportiva.$_createMessage);
   static ViaEsportiva? _defaultInstance;
 
   /// Nome da via.
@@ -3929,7 +4044,7 @@ class ViaMovel extends $pb.GeneratedMessage {
     $core.bool? destaque,
     $core.int? indiceMapaPadrao,
   }) {
-    final result = create();
+    final result = ViaMovel._();
     if (nome != null) result.nome = nome;
     if (dificuldade != null) result.dificuldade = dificuldade;
     if (exposicao != null) result.exposicao = exposicao;
@@ -3962,15 +4077,15 @@ class ViaMovel extends $pb.GeneratedMessage {
 
   factory ViaMovel.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ViaMovel()..mergeFromBuffer(data, registry);
   factory ViaMovel.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ViaMovel()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ViaMovel',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ViaMovel.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aE<GrauVia_GrauVia>(2, _omitFieldNames ? '' : 'dificuldade',
         enumValues: GrauVia_GrauVia.values)
@@ -4009,12 +4124,14 @@ class ViaMovel extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ViaMovel() / ViaMovel.new instead')
   static ViaMovel create() => ViaMovel._();
+  static $pb.GeneratedMessage $_createMessage() => ViaMovel._();
   @$core.override
-  ViaMovel createEmptyInstance() => create();
+  ViaMovel createEmptyInstance() => ViaMovel._();
   @$core.pragma('dart2js:noInline')
-  static ViaMovel getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ViaMovel>(create);
+  static ViaMovel getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ViaMovel>(ViaMovel.$_createMessage);
   static ViaMovel? _defaultInstance;
 
   /// Nome da via.
@@ -4220,7 +4337,7 @@ class Boulder extends $pb.GeneratedMessage {
     $core.bool? destaque,
     $core.int? indiceMapaPadrao,
   }) {
-    final result = create();
+    final result = Boulder._();
     if (nome != null) result.nome = nome;
     if (dificuldade != null) result.dificuldade = dificuldade;
     if (tipoParede != null) result.tipoParede = tipoParede;
@@ -4239,15 +4356,15 @@ class Boulder extends $pb.GeneratedMessage {
 
   factory Boulder.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Boulder()..mergeFromBuffer(data, registry);
   factory Boulder.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Boulder()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Boulder',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Boulder.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aE<GrauBoulder_GrauBoulder>(2, _omitFieldNames ? '' : 'dificuldade',
         enumValues: GrauBoulder_GrauBoulder.values)
@@ -4272,12 +4389,14 @@ class Boulder extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Boulder() / Boulder.new instead')
   static Boulder create() => Boulder._();
+  static $pb.GeneratedMessage $_createMessage() => Boulder._();
   @$core.override
-  Boulder createEmptyInstance() => create();
+  Boulder createEmptyInstance() => Boulder._();
   @$core.pragma('dart2js:noInline')
-  static Boulder getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Boulder>(create);
+  static Boulder getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Boulder>(Boulder.$_createMessage);
   static Boulder? _defaultInstance;
 
   /// Nome do boulder.
@@ -4404,7 +4523,7 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     $core.bool? destaque,
     $core.int? indiceMapaPadrao,
   }) {
-    final result = create();
+    final result = ViaMultiplasEnfiadas._();
     if (nome != null) result.nome = nome;
     if (dificuldadeMedia != null) result.dificuldadeMedia = dificuldadeMedia;
     if (dificuldadeMaxima != null) result.dificuldadeMaxima = dificuldadeMaxima;
@@ -4445,15 +4564,15 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
 
   factory ViaMultiplasEnfiadas.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ViaMultiplasEnfiadas()..mergeFromBuffer(data, registry);
   factory ViaMultiplasEnfiadas.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ViaMultiplasEnfiadas()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ViaMultiplasEnfiadas',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: ViaMultiplasEnfiadas.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aE<GrauVia_GrauVia>(2, _omitFieldNames ? '' : 'dificuldadeMedia',
         enumValues: GrauVia_GrauVia.values)
@@ -4477,14 +4596,15 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
         enumValues: ViaMultiplasEnfiadas_TipoViaMultiplasEnfiadas.values)
     ..aOS(12, _omitFieldNames ? '' : 'equipamentoRecomendado')
     ..pPM<Escalada>(13, _omitFieldNames ? '' : 'enfiadas',
-        subBuilder: Escalada.create)
+        subBuilder: Escalada.$_createMessage)
     ..aOS(14, _omitFieldNames ? '' : 'descricao')
     ..pPS(15, _omitFieldNames ? '' : 'conquistadores')
     ..aOS(16, _omitFieldNames ? '' : 'dataAbertura')
     ..aOS(17, _omitFieldNames ? '' : 'dataManutencao')
     ..aOS(18, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(19, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..pPM<Mapa>(21, _omitFieldNames ? '' : 'mapas', subBuilder: Mapa.create)
+    ..pPM<Mapa>(21, _omitFieldNames ? '' : 'mapas',
+        subBuilder: Mapa.$_createMessage)
     ..aI(22, _omitFieldNames ? '' : 'quantidadeCosturasIntermediarias')
     ..aI(23, _omitFieldNames ? '' : 'quantidadeEquipamentosParada')
     ..aOB(25, _omitFieldNames ? '' : 'destaque')
@@ -4502,12 +4622,16 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ViaMultiplasEnfiadas() / ViaMultiplasEnfiadas.new instead')
   static ViaMultiplasEnfiadas create() => ViaMultiplasEnfiadas._();
+  static $pb.GeneratedMessage $_createMessage() => ViaMultiplasEnfiadas._();
   @$core.override
-  ViaMultiplasEnfiadas createEmptyInstance() => create();
+  ViaMultiplasEnfiadas createEmptyInstance() => ViaMultiplasEnfiadas._();
   @$core.pragma('dart2js:noInline')
   static ViaMultiplasEnfiadas getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ViaMultiplasEnfiadas>(create);
+      $pb.GeneratedMessage.$_defaultFor<ViaMultiplasEnfiadas>(
+          ViaMultiplasEnfiadas.$_createMessage);
   static ViaMultiplasEnfiadas? _defaultInstance;
 
   /// Nome da via.
@@ -4758,7 +4882,7 @@ class Highline extends $pb.GeneratedMessage {
     $core.bool? destaque,
     $core.int? indiceMapaPadrao,
   }) {
-    final result = create();
+    final result = Highline._();
     if (nome != null) result.nome = nome;
     if (distancia != null) result.distancia = distancia;
     if (altura != null) result.altura = altura;
@@ -4782,15 +4906,15 @@ class Highline extends $pb.GeneratedMessage {
 
   factory Highline.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Highline()..mergeFromBuffer(data, registry);
   factory Highline.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Highline()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Highline',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Highline.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aI(2, _omitFieldNames ? '' : 'distancia')
     ..aI(3, _omitFieldNames ? '' : 'altura')
@@ -4817,12 +4941,14 @@ class Highline extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Highline() / Highline.new instead')
   static Highline create() => Highline._();
+  static $pb.GeneratedMessage $_createMessage() => Highline._();
   @$core.override
-  Highline createEmptyInstance() => create();
+  Highline createEmptyInstance() => Highline._();
   @$core.pragma('dart2js:noInline')
-  static Highline getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Highline>(create);
+  static Highline getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Highline>(Highline.$_createMessage);
   static Highline? _defaultInstance;
 
   /// Nome do highline.
@@ -4968,7 +5094,7 @@ class Patrocinador extends $pb.GeneratedMessage {
     $core.String? urlLogo,
     $core.String? urlLink,
   }) {
-    final result = create();
+    final result = Patrocinador._();
     if (nome != null) result.nome = nome;
     if (mensagem != null) result.mensagem = mensagem;
     if (urlLogo != null) result.urlLogo = urlLogo;
@@ -4980,15 +5106,15 @@ class Patrocinador extends $pb.GeneratedMessage {
 
   factory Patrocinador.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Patrocinador()..mergeFromBuffer(data, registry);
   factory Patrocinador.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Patrocinador()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Patrocinador',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Patrocinador.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOS(2, _omitFieldNames ? '' : 'mensagem')
     ..aOS(3, _omitFieldNames ? '' : 'urlLogo')
@@ -5006,12 +5132,15 @@ class Patrocinador extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Patrocinador() / Patrocinador.new instead')
   static Patrocinador create() => Patrocinador._();
+  static $pb.GeneratedMessage $_createMessage() => Patrocinador._();
   @$core.override
-  Patrocinador createEmptyInstance() => create();
+  Patrocinador createEmptyInstance() => Patrocinador._();
   @$core.pragma('dart2js:noInline')
-  static Patrocinador getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Patrocinador>(create);
+  static Patrocinador getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Patrocinador>(
+          Patrocinador.$_createMessage);
   static Patrocinador? _defaultInstance;
 
   /// Nome da empresa ou entidade apoiadora.
@@ -5063,7 +5192,7 @@ class Trilha extends $pb.GeneratedMessage {
     $core.String? tempoAproximacao,
     $core.Iterable<PontoDeInteresse>? pontos,
   }) {
-    final result = create();
+    final result = Trilha._();
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
     if (tempoAproximacao != null) result.tempoAproximacao = tempoAproximacao;
@@ -5075,20 +5204,20 @@ class Trilha extends $pb.GeneratedMessage {
 
   factory Trilha.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Trilha()..mergeFromBuffer(data, registry);
   factory Trilha.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Trilha()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Trilha',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Trilha.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOS(2, _omitFieldNames ? '' : 'descricao')
     ..aOS(3, _omitFieldNames ? '' : 'tempoAproximacao')
     ..pPM<PontoDeInteresse>(4, _omitFieldNames ? '' : 'pontos',
-        subBuilder: PontoDeInteresse.create)
+        subBuilder: PontoDeInteresse.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5101,12 +5230,14 @@ class Trilha extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Trilha() / Trilha.new instead')
   static Trilha create() => Trilha._();
+  static $pb.GeneratedMessage $_createMessage() => Trilha._();
   @$core.override
-  Trilha createEmptyInstance() => create();
+  Trilha createEmptyInstance() => Trilha._();
   @$core.pragma('dart2js:noInline')
-  static Trilha getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Trilha>(create);
+  static Trilha getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<Trilha>(Trilha.$_createMessage);
   static Trilha? _defaultInstance;
 
   /// Nome dessa trilha.
@@ -5151,7 +5282,7 @@ class PontoDeInteresse extends $pb.GeneratedMessage {
     $core.String? descricao,
     Coordenada? localizacao,
   }) {
-    final result = create();
+    final result = PontoDeInteresse._();
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
     if (localizacao != null) result.localizacao = localizacao;
@@ -5162,19 +5293,19 @@ class PontoDeInteresse extends $pb.GeneratedMessage {
 
   factory PontoDeInteresse.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      PontoDeInteresse()..mergeFromBuffer(data, registry);
   factory PontoDeInteresse.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      PontoDeInteresse()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PontoDeInteresse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: PontoDeInteresse.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'nome')
     ..aOS(2, _omitFieldNames ? '' : 'descricao')
     ..aOM<Coordenada>(3, _omitFieldNames ? '' : 'localizacao',
-        subBuilder: Coordenada.create)
+        subBuilder: Coordenada.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5188,12 +5319,15 @@ class PontoDeInteresse extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use PontoDeInteresse() / PontoDeInteresse.new instead')
   static PontoDeInteresse create() => PontoDeInteresse._();
+  static $pb.GeneratedMessage $_createMessage() => PontoDeInteresse._();
   @$core.override
-  PontoDeInteresse createEmptyInstance() => create();
+  PontoDeInteresse createEmptyInstance() => PontoDeInteresse._();
   @$core.pragma('dart2js:noInline')
-  static PontoDeInteresse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PontoDeInteresse>(create);
+  static PontoDeInteresse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PontoDeInteresse>(
+          PontoDeInteresse.$_createMessage);
   static PontoDeInteresse? _defaultInstance;
 
   /// Nome do ponto de interesse.
@@ -5246,7 +5380,7 @@ class Coordenada extends $pb.GeneratedMessage {
     $core.int? latitude,
     $core.int? longitude,
   }) {
-    final result = create();
+    final result = Coordenada._();
     if (latitude != null) result.latitude = latitude;
     if (longitude != null) result.longitude = longitude;
     return result;
@@ -5256,15 +5390,15 @@ class Coordenada extends $pb.GeneratedMessage {
 
   factory Coordenada.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      Coordenada()..mergeFromBuffer(data, registry);
   factory Coordenada.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      Coordenada()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Coordenada',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: Coordenada.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'latitude', fieldType: $pb.PbFieldType.OS3)
     ..aI(2, _omitFieldNames ? '' : 'longitude', fieldType: $pb.PbFieldType.OS3)
     ..hasRequiredFields = false;
@@ -5279,12 +5413,14 @@ class Coordenada extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use Coordenada() / Coordenada.new instead')
   static Coordenada create() => Coordenada._();
+  static $pb.GeneratedMessage $_createMessage() => Coordenada._();
   @$core.override
-  Coordenada createEmptyInstance() => create();
+  Coordenada createEmptyInstance() => Coordenada._();
   @$core.pragma('dart2js:noInline')
   static Coordenada getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Coordenada>(create);
+      $pb.GeneratedMessage.$_defaultFor<Coordenada>(Coordenada.$_createMessage);
   static Coordenada? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -5308,21 +5444,21 @@ class Coordenada extends $pb.GeneratedMessage {
 
 /// Tipo de uma parede.
 class TipoParede extends $pb.GeneratedMessage {
-  factory TipoParede() => create();
+  factory TipoParede() => TipoParede._();
 
   TipoParede._();
 
   factory TipoParede.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      TipoParede()..mergeFromBuffer(data, registry);
   factory TipoParede.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      TipoParede()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'TipoParede',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: TipoParede.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5335,12 +5471,14 @@ class TipoParede extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use TipoParede() / TipoParede.new instead')
   static TipoParede create() => TipoParede._();
+  static $pb.GeneratedMessage $_createMessage() => TipoParede._();
   @$core.override
-  TipoParede createEmptyInstance() => create();
+  TipoParede createEmptyInstance() => TipoParede._();
   @$core.pragma('dart2js:noInline')
   static TipoParede getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TipoParede>(create);
+      $pb.GeneratedMessage.$_defaultFor<TipoParede>(TipoParede.$_createMessage);
   static TipoParede? _defaultInstance;
 }
 
@@ -5348,21 +5486,21 @@ class TipoParede extends $pb.GeneratedMessage {
 /// diferentes.
 /// Referência: https://www.thecrag.com/en/article/grades
 class GrauVia extends $pb.GeneratedMessage {
-  factory GrauVia() => create();
+  factory GrauVia() => GrauVia._();
 
   GrauVia._();
 
   factory GrauVia.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      GrauVia()..mergeFromBuffer(data, registry);
   factory GrauVia.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      GrauVia()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GrauVia',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: GrauVia.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5375,12 +5513,14 @@ class GrauVia extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use GrauVia() / GrauVia.new instead')
   static GrauVia create() => GrauVia._();
+  static $pb.GeneratedMessage $_createMessage() => GrauVia._();
   @$core.override
-  GrauVia createEmptyInstance() => create();
+  GrauVia createEmptyInstance() => GrauVia._();
   @$core.pragma('dart2js:noInline')
-  static GrauVia getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GrauVia>(create);
+  static GrauVia getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GrauVia>(GrauVia.$_createMessage);
   static GrauVia? _defaultInstance;
 }
 
@@ -5388,21 +5528,21 @@ class GrauVia extends $pb.GeneratedMessage {
 /// diferentes.
 /// Referência: https://www.thecrag.com/en/article/grades
 class GrauBoulder extends $pb.GeneratedMessage {
-  factory GrauBoulder() => create();
+  factory GrauBoulder() => GrauBoulder._();
 
   GrauBoulder._();
 
   factory GrauBoulder.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      GrauBoulder()..mergeFromBuffer(data, registry);
   factory GrauBoulder.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      GrauBoulder()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GrauBoulder',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: GrauBoulder.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5416,33 +5556,36 @@ class GrauBoulder extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use GrauBoulder() / GrauBoulder.new instead')
   static GrauBoulder create() => GrauBoulder._();
+  static $pb.GeneratedMessage $_createMessage() => GrauBoulder._();
   @$core.override
-  GrauBoulder createEmptyInstance() => create();
+  GrauBoulder createEmptyInstance() => GrauBoulder._();
   @$core.pragma('dart2js:noInline')
-  static GrauBoulder getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GrauBoulder>(create);
+  static GrauBoulder getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GrauBoulder>(
+          GrauBoulder.$_createMessage);
   static GrauBoulder? _defaultInstance;
 }
 
 /// Representa grau de dificuldade de escalada em artificial.
 /// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
 class GrauArtificial extends $pb.GeneratedMessage {
-  factory GrauArtificial() => create();
+  factory GrauArtificial() => GrauArtificial._();
 
   GrauArtificial._();
 
   factory GrauArtificial.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      GrauArtificial()..mergeFromBuffer(data, registry);
   factory GrauArtificial.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      GrauArtificial()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GrauArtificial',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: GrauArtificial.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5456,33 +5599,36 @@ class GrauArtificial extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use GrauArtificial() / GrauArtificial.new instead')
   static GrauArtificial create() => GrauArtificial._();
+  static $pb.GeneratedMessage $_createMessage() => GrauArtificial._();
   @$core.override
-  GrauArtificial createEmptyInstance() => create();
+  GrauArtificial createEmptyInstance() => GrauArtificial._();
   @$core.pragma('dart2js:noInline')
-  static GrauArtificial getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GrauArtificial>(create);
+  static GrauArtificial getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GrauArtificial>(
+          GrauArtificial.$_createMessage);
   static GrauArtificial? _defaultInstance;
 }
 
 /// Representa grau de duração de uma via tradicional.
 /// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
 class GrauDuracao extends $pb.GeneratedMessage {
-  factory GrauDuracao() => create();
+  factory GrauDuracao() => GrauDuracao._();
 
   GrauDuracao._();
 
   factory GrauDuracao.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      GrauDuracao()..mergeFromBuffer(data, registry);
   factory GrauDuracao.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      GrauDuracao()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GrauDuracao',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: GrauDuracao.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5496,33 +5642,36 @@ class GrauDuracao extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use GrauDuracao() / GrauDuracao.new instead')
   static GrauDuracao create() => GrauDuracao._();
+  static $pb.GeneratedMessage $_createMessage() => GrauDuracao._();
   @$core.override
-  GrauDuracao createEmptyInstance() => create();
+  GrauDuracao createEmptyInstance() => GrauDuracao._();
   @$core.pragma('dart2js:noInline')
-  static GrauDuracao getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GrauDuracao>(create);
+  static GrauDuracao getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GrauDuracao>(
+          GrauDuracao.$_createMessage);
   static GrauDuracao? _defaultInstance;
 }
 
 /// Representa grau de exposição de uma via tradicional.
 /// Referência: https://agmontanhismo.org/conheca-sobre-graduacao-de-vias/
 class GrauExposicao extends $pb.GeneratedMessage {
-  factory GrauExposicao() => create();
+  factory GrauExposicao() => GrauExposicao._();
 
   GrauExposicao._();
 
   factory GrauExposicao.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      GrauExposicao()..mergeFromBuffer(data, registry);
   factory GrauExposicao.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      GrauExposicao()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GrauExposicao',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: GrauExposicao.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -5536,12 +5685,15 @@ class GrauExposicao extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use GrauExposicao() / GrauExposicao.new instead')
   static GrauExposicao create() => GrauExposicao._();
+  static $pb.GeneratedMessage $_createMessage() => GrauExposicao._();
   @$core.override
-  GrauExposicao createEmptyInstance() => create();
+  GrauExposicao createEmptyInstance() => GrauExposicao._();
   @$core.pragma('dart2js:noInline')
-  static GrauExposicao getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GrauExposicao>(create);
+  static GrauExposicao getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GrauExposicao>(
+          GrauExposicao.$_createMessage);
   static GrauExposicao? _defaultInstance;
 }
 
