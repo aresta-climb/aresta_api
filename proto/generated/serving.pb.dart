@@ -22,7 +22,7 @@ class ArquivosServing_ArquivoServido extends $pb.GeneratedMessage {
     $core.String? caminhoRelativo,
     $core.String? checksumSha256,
   }) {
-    final result = ArquivosServing_ArquivoServido._();
+    final result = create();
     if (caminhoRelativo != null) result.caminhoRelativo = caminhoRelativo;
     if (checksumSha256 != null) result.checksumSha256 = checksumSha256;
     return result;
@@ -32,15 +32,15 @@ class ArquivosServing_ArquivoServido extends $pb.GeneratedMessage {
 
   factory ArquivosServing_ArquivoServido.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ArquivosServing_ArquivoServido()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory ArquivosServing_ArquivoServido.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ArquivosServing_ArquivoServido()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivosServing.ArquivoServido',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: ArquivosServing_ArquivoServido.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'caminhoRelativo')
     ..aOS(2, _omitFieldNames ? '' : 'checksumSha256')
     ..hasRequiredFields = false;
@@ -58,19 +58,13 @@ class ArquivosServing_ArquivoServido extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated(
-      'Use ArquivosServing_ArquivoServido() / ArquivosServing_ArquivoServido.new instead')
   static ArquivosServing_ArquivoServido create() =>
       ArquivosServing_ArquivoServido._();
-  static $pb.GeneratedMessage $_createMessage() =>
-      ArquivosServing_ArquivoServido._();
   @$core.override
-  ArquivosServing_ArquivoServido createEmptyInstance() =>
-      ArquivosServing_ArquivoServido._();
+  ArquivosServing_ArquivoServido createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
   static ArquivosServing_ArquivoServido getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArquivosServing_ArquivoServido>(
-          ArquivosServing_ArquivoServido.$_createMessage);
+      $pb.GeneratedMessage.$_defaultFor<ArquivosServing_ArquivoServido>(create);
   static ArquivosServing_ArquivoServido? _defaultInstance;
 
   /// Caminho relativo ao bucket
@@ -100,7 +94,7 @@ class ArquivosServing extends $pb.GeneratedMessage {
   factory ArquivosServing({
     $core.Iterable<ArquivosServing_ArquivoServido>? arquivos,
   }) {
-    final result = ArquivosServing._();
+    final result = create();
     if (arquivos != null) result.arquivos.addAll(arquivos);
     return result;
   }
@@ -109,17 +103,17 @@ class ArquivosServing extends $pb.GeneratedMessage {
 
   factory ArquivosServing.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ArquivosServing()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory ArquivosServing.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ArquivosServing()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ArquivosServing',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: ArquivosServing.$_createMessage)
+      createEmptyInstance: create)
     ..pPM<ArquivosServing_ArquivoServido>(1, _omitFieldNames ? '' : 'arquivos',
-        subBuilder: ArquivosServing_ArquivoServido.$_createMessage)
+        subBuilder: ArquivosServing_ArquivoServido.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -133,15 +127,12 @@ class ArquivosServing extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use ArquivosServing() / ArquivosServing.new instead')
   static ArquivosServing create() => ArquivosServing._();
-  static $pb.GeneratedMessage $_createMessage() => ArquivosServing._();
   @$core.override
-  ArquivosServing createEmptyInstance() => ArquivosServing._();
+  ArquivosServing createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ArquivosServing getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArquivosServing>(
-          ArquivosServing.$_createMessage);
+  static ArquivosServing getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ArquivosServing>(create);
   static ArquivosServing? _defaultInstance;
 
   /// Lista de todos os arquivos no R2

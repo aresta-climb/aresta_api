@@ -22,21 +22,21 @@ export 'beta.pbenum.dart';
 
 /// Identifica a plataforma de origem da mídia de beta.
 class FonteMidia extends $pb.GeneratedMessage {
-  factory FonteMidia() => FonteMidia._();
+  factory FonteMidia() => create();
 
   FonteMidia._();
 
   factory FonteMidia.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      FonteMidia()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory FonteMidia.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      FonteMidia()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'FonteMidia',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: FonteMidia.$_createMessage)
+      createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -49,14 +49,12 @@ class FonteMidia extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use FonteMidia() / FonteMidia.new instead')
   static FonteMidia create() => FonteMidia._();
-  static $pb.GeneratedMessage $_createMessage() => FonteMidia._();
   @$core.override
-  FonteMidia createEmptyInstance() => FonteMidia._();
+  FonteMidia createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
   static FonteMidia getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<FonteMidia>(FonteMidia.$_createMessage);
+      $pb.GeneratedMessage.$_defaultFor<FonteMidia>(create);
   static FonteMidia? _defaultInstance;
 }
 
@@ -66,7 +64,7 @@ class ResultadoLLMBeta extends $pb.GeneratedMessage {
     $core.int? llmConfidenceScore,
     $core.String? llmReasoning,
   }) {
-    final result = ResultadoLLMBeta._();
+    final result = create();
     if (llmConfidenceScore != null)
       result.llmConfidenceScore = llmConfidenceScore;
     if (llmReasoning != null) result.llmReasoning = llmReasoning;
@@ -77,15 +75,15 @@ class ResultadoLLMBeta extends $pb.GeneratedMessage {
 
   factory ResultadoLLMBeta.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ResultadoLLMBeta()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory ResultadoLLMBeta.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ResultadoLLMBeta()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ResultadoLLMBeta',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: ResultadoLLMBeta.$_createMessage)
+      createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'llmConfidenceScore')
     ..aOS(2, _omitFieldNames ? '' : 'llmReasoning')
     ..hasRequiredFields = false;
@@ -101,15 +99,12 @@ class ResultadoLLMBeta extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use ResultadoLLMBeta() / ResultadoLLMBeta.new instead')
   static ResultadoLLMBeta create() => ResultadoLLMBeta._();
-  static $pb.GeneratedMessage $_createMessage() => ResultadoLLMBeta._();
   @$core.override
-  ResultadoLLMBeta createEmptyInstance() => ResultadoLLMBeta._();
+  ResultadoLLMBeta createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ResultadoLLMBeta getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ResultadoLLMBeta>(
-          ResultadoLLMBeta.$_createMessage);
+  static ResultadoLLMBeta getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ResultadoLLMBeta>(create);
   static ResultadoLLMBeta? _defaultInstance;
 
   /// Grau de confiança estimado pelo modelo de IA (0 a 100).
@@ -145,7 +140,7 @@ class MidiaBeta extends $pb.GeneratedMessage {
     $core.bool? matchNomeNoSnippet,
     $core.Iterable<$core.String>? snippets,
   }) {
-    final result = MidiaBeta._();
+    final result = create();
     if (url != null) result.url = url;
     if (titulo != null) result.titulo = titulo;
     if (thumbnailUrl != null) result.thumbnailUrl = thumbnailUrl;
@@ -163,22 +158,22 @@ class MidiaBeta extends $pb.GeneratedMessage {
 
   factory MidiaBeta.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      MidiaBeta()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory MidiaBeta.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      MidiaBeta()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MidiaBeta',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: MidiaBeta.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'url')
     ..aOS(2, _omitFieldNames ? '' : 'titulo')
     ..aOS(3, _omitFieldNames ? '' : 'thumbnailUrl')
     ..aE<FonteMidia_Enum>(4, _omitFieldNames ? '' : 'fonte',
         enumValues: FonteMidia_Enum.values)
     ..aOM<ResultadoLLMBeta>(5, _omitFieldNames ? '' : 'resultadoLlm',
-        subBuilder: ResultadoLLMBeta.$_createMessage)
+        subBuilder: ResultadoLLMBeta.create)
     ..aOB(6, _omitFieldNames ? '' : 'matchMultiplasFontes')
     ..aOB(7, _omitFieldNames ? '' : 'matchNomeNoSnippet')
     ..pPS(8, _omitFieldNames ? '' : 'snippets')
@@ -194,14 +189,12 @@ class MidiaBeta extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use MidiaBeta() / MidiaBeta.new instead')
   static MidiaBeta create() => MidiaBeta._();
-  static $pb.GeneratedMessage $_createMessage() => MidiaBeta._();
   @$core.override
-  MidiaBeta createEmptyInstance() => MidiaBeta._();
+  MidiaBeta createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static MidiaBeta getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<MidiaBeta>(MidiaBeta.$_createMessage);
+  static MidiaBeta getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MidiaBeta>(create);
   static MidiaBeta? _defaultInstance;
 
   /// URL pública de acesso ao vídeo ou postagem.
@@ -295,7 +288,7 @@ class EscaladaAlvoBusca extends $pb.GeneratedMessage {
     $core.String? estado,
     $core.String? arquivoOrigem,
   }) {
-    final result = EscaladaAlvoBusca._();
+    final result = create();
     if (idEscalada != null) result.idEscalada = idEscalada;
     if (nome != null) result.nome = nome;
     if (grau != null) result.grau = grau;
@@ -313,15 +306,15 @@ class EscaladaAlvoBusca extends $pb.GeneratedMessage {
 
   factory EscaladaAlvoBusca.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      EscaladaAlvoBusca()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory EscaladaAlvoBusca.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      EscaladaAlvoBusca()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EscaladaAlvoBusca',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: EscaladaAlvoBusca.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'idEscalada')
     ..aOS(2, _omitFieldNames ? '' : 'nome')
     ..aOS(3, _omitFieldNames ? '' : 'grau')
@@ -345,15 +338,12 @@ class EscaladaAlvoBusca extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use EscaladaAlvoBusca() / EscaladaAlvoBusca.new instead')
   static EscaladaAlvoBusca create() => EscaladaAlvoBusca._();
-  static $pb.GeneratedMessage $_createMessage() => EscaladaAlvoBusca._();
   @$core.override
-  EscaladaAlvoBusca createEmptyInstance() => EscaladaAlvoBusca._();
+  EscaladaAlvoBusca createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static EscaladaAlvoBusca getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EscaladaAlvoBusca>(
-          EscaladaAlvoBusca.$_createMessage);
+  static EscaladaAlvoBusca getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<EscaladaAlvoBusca>(create);
   static EscaladaAlvoBusca? _defaultInstance;
 
   /// Identificador da escalada (ex: número sequencial ou slug).
@@ -467,7 +457,7 @@ class ViasExtraidasCroqui extends $pb.GeneratedMessage {
     $core.String? pais,
     $core.Iterable<EscaladaAlvoBusca>? escaladas,
   }) {
-    final result = ViasExtraidasCroqui._();
+    final result = create();
     if (idCroqui != null) result.idCroqui = idCroqui;
     if (nomeCroqui != null) result.nomeCroqui = nomeCroqui;
     if (cidade != null) result.cidade = cidade;
@@ -481,22 +471,22 @@ class ViasExtraidasCroqui extends $pb.GeneratedMessage {
 
   factory ViasExtraidasCroqui.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ViasExtraidasCroqui()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory ViasExtraidasCroqui.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ViasExtraidasCroqui()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ViasExtraidasCroqui',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: ViasExtraidasCroqui.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'idCroqui')
     ..aOS(2, _omitFieldNames ? '' : 'nomeCroqui')
     ..aOS(3, _omitFieldNames ? '' : 'cidade')
     ..aOS(4, _omitFieldNames ? '' : 'estado')
     ..aOS(5, _omitFieldNames ? '' : 'pais')
     ..pPM<EscaladaAlvoBusca>(6, _omitFieldNames ? '' : 'escaladas',
-        subBuilder: EscaladaAlvoBusca.$_createMessage)
+        subBuilder: EscaladaAlvoBusca.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -510,16 +500,12 @@ class ViasExtraidasCroqui extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core
-      .Deprecated('Use ViasExtraidasCroqui() / ViasExtraidasCroqui.new instead')
   static ViasExtraidasCroqui create() => ViasExtraidasCroqui._();
-  static $pb.GeneratedMessage $_createMessage() => ViasExtraidasCroqui._();
   @$core.override
-  ViasExtraidasCroqui createEmptyInstance() => ViasExtraidasCroqui._();
+  ViasExtraidasCroqui createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
   static ViasExtraidasCroqui getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ViasExtraidasCroqui>(
-          ViasExtraidasCroqui.$_createMessage);
+      $pb.GeneratedMessage.$_defaultFor<ViasExtraidasCroqui>(create);
   static ViasExtraidasCroqui? _defaultInstance;
 
   /// Identificador do croqui (slug da pasta).
@@ -589,7 +575,7 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
     $core.String? estado,
     $core.Iterable<MidiaBeta>? candidatos,
   }) {
-    final result = CandidatosBetaPorEscalada._();
+    final result = create();
     if (nomeEscalada != null) result.nomeEscalada = nomeEscalada;
     if (grau != null) result.grau = grau;
     if (nomeSetor != null) result.nomeSetor = nomeSetor;
@@ -605,15 +591,15 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
 
   factory CandidatosBetaPorEscalada.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      CandidatosBetaPorEscalada()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory CandidatosBetaPorEscalada.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      CandidatosBetaPorEscalada()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'CandidatosBetaPorEscalada',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: CandidatosBetaPorEscalada.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'nomeEscalada')
     ..aOS(2, _omitFieldNames ? '' : 'grau')
     ..aOS(3, _omitFieldNames ? '' : 'nomeSetor')
@@ -622,7 +608,7 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'cidade')
     ..aOS(7, _omitFieldNames ? '' : 'estado')
     ..pPM<MidiaBeta>(8, _omitFieldNames ? '' : 'candidatos',
-        subBuilder: MidiaBeta.$_createMessage)
+        subBuilder: MidiaBeta.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -637,18 +623,12 @@ class CandidatosBetaPorEscalada extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated(
-      'Use CandidatosBetaPorEscalada() / CandidatosBetaPorEscalada.new instead')
   static CandidatosBetaPorEscalada create() => CandidatosBetaPorEscalada._();
-  static $pb.GeneratedMessage $_createMessage() =>
-      CandidatosBetaPorEscalada._();
   @$core.override
-  CandidatosBetaPorEscalada createEmptyInstance() =>
-      CandidatosBetaPorEscalada._();
+  CandidatosBetaPorEscalada createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
   static CandidatosBetaPorEscalada getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CandidatosBetaPorEscalada>(
-          CandidatosBetaPorEscalada.$_createMessage);
+      $pb.GeneratedMessage.$_defaultFor<CandidatosBetaPorEscalada>(create);
   static CandidatosBetaPorEscalada? _defaultInstance;
 
   /// Identificador ou nome da escalada associada.
@@ -732,7 +712,7 @@ class BetasPendentes extends $pb.GeneratedMessage {
     $core.String? idCroqui,
     $core.Iterable<CandidatosBetaPorEscalada>? candidatosPorEscalada,
   }) {
-    final result = BetasPendentes._();
+    final result = create();
     if (idCroqui != null) result.idCroqui = idCroqui;
     if (candidatosPorEscalada != null)
       result.candidatosPorEscalada.addAll(candidatosPorEscalada);
@@ -743,19 +723,19 @@ class BetasPendentes extends $pb.GeneratedMessage {
 
   factory BetasPendentes.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      BetasPendentes()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory BetasPendentes.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      BetasPendentes()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BetasPendentes',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: BetasPendentes.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'idCroqui')
     ..pPM<CandidatosBetaPorEscalada>(
         2, _omitFieldNames ? '' : 'candidatosPorEscalada',
-        subBuilder: CandidatosBetaPorEscalada.$_createMessage)
+        subBuilder: CandidatosBetaPorEscalada.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -769,15 +749,12 @@ class BetasPendentes extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use BetasPendentes() / BetasPendentes.new instead')
   static BetasPendentes create() => BetasPendentes._();
-  static $pb.GeneratedMessage $_createMessage() => BetasPendentes._();
   @$core.override
-  BetasPendentes createEmptyInstance() => BetasPendentes._();
+  BetasPendentes createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static BetasPendentes getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BetasPendentes>(
-          BetasPendentes.$_createMessage);
+  static BetasPendentes getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BetasPendentes>(create);
   static BetasPendentes? _defaultInstance;
 
   /// Identificador único ou nome do croqui associado.

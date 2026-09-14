@@ -27,7 +27,7 @@ class Indice extends $pb.GeneratedMessage {
   factory Indice({
     $core.Iterable<ResumoCroqui>? croquis,
   }) {
-    final result = Indice._();
+    final result = create();
     if (croquis != null) result.croquis.addAll(croquis);
     return result;
   }
@@ -36,17 +36,17 @@ class Indice extends $pb.GeneratedMessage {
 
   factory Indice.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      Indice()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory Indice.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      Indice()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Indice',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: Indice.$_createMessage)
+      createEmptyInstance: create)
     ..pPM<ResumoCroqui>(2, _omitFieldNames ? '' : 'croquis',
-        subBuilder: ResumoCroqui.$_createMessage)
+        subBuilder: ResumoCroqui.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -59,14 +59,12 @@ class Indice extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use Indice() / Indice.new instead')
   static Indice create() => Indice._();
-  static $pb.GeneratedMessage $_createMessage() => Indice._();
   @$core.override
-  Indice createEmptyInstance() => Indice._();
+  Indice createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static Indice getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Indice>(Indice.$_createMessage);
+  static Indice getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Indice>(create);
   static Indice? _defaultInstance;
 
   /// Lista de croquis disponíveis.
@@ -87,7 +85,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     $core.int? totalHighlines,
     $fixnum.Int64? tamanhoDownloadBytes,
   }) {
-    final result = PrecomputadosResumoCroqui._();
+    final result = create();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
     if (totalSetores != null) result.totalSetores = totalSetores;
     if (totalGrupos != null) result.totalGrupos = totalGrupos;
@@ -106,15 +104,15 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
 
   factory PrecomputadosResumoCroqui.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      PrecomputadosResumoCroqui()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory PrecomputadosResumoCroqui.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      PrecomputadosResumoCroqui()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PrecomputadosResumoCroqui',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: PrecomputadosResumoCroqui.$_createMessage)
+      createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'totalEscaladas')
     ..aI(2, _omitFieldNames ? '' : 'totalSetores')
     ..aI(3, _omitFieldNames ? '' : 'totalGrupos')
@@ -138,18 +136,12 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated(
-      'Use PrecomputadosResumoCroqui() / PrecomputadosResumoCroqui.new instead')
   static PrecomputadosResumoCroqui create() => PrecomputadosResumoCroqui._();
-  static $pb.GeneratedMessage $_createMessage() =>
-      PrecomputadosResumoCroqui._();
   @$core.override
-  PrecomputadosResumoCroqui createEmptyInstance() =>
-      PrecomputadosResumoCroqui._();
+  PrecomputadosResumoCroqui createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
   static PrecomputadosResumoCroqui getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PrecomputadosResumoCroqui>(
-          PrecomputadosResumoCroqui.$_createMessage);
+      $pb.GeneratedMessage.$_defaultFor<PrecomputadosResumoCroqui>(create);
   static PrecomputadosResumoCroqui? _defaultInstance;
 
   /// Soma total de escaladas em todos os picos do croqui.
@@ -251,7 +243,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     $1.Coordenada? localizacao,
     PrecomputadosResumoCroqui? precomputados,
   }) {
-    final result = ResumoCroqui._();
+    final result = create();
     if (id != null) result.id = id;
     if (nome != null) result.nome = nome;
     if (descricao != null) result.descricao = descricao;
@@ -270,15 +262,15 @@ class ResumoCroqui extends $pb.GeneratedMessage {
 
   factory ResumoCroqui.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ResumoCroqui()..mergeFromBuffer(data, registry);
+      create()..mergeFromBuffer(data, registry);
   factory ResumoCroqui.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      ResumoCroqui()..mergeFromJson(json, registry);
+      create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ResumoCroqui',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: ResumoCroqui.$_createMessage)
+      createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'nome')
     ..aOS(3, _omitFieldNames ? '' : 'descricao')
@@ -286,11 +278,11 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'checksumSha256Croqui')
     ..aOS(8, _omitFieldNames ? '' : 'checksumSha256Thumbnail')
     ..aOM<$0.Timestamp>(9, _omitFieldNames ? '' : 'timestampUpdate',
-        subBuilder: $0.Timestamp.$_createMessage)
+        subBuilder: $0.Timestamp.create)
     ..aOM<$1.Coordenada>(10, _omitFieldNames ? '' : 'localizacao',
-        subBuilder: $1.Coordenada.$_createMessage)
+        subBuilder: $1.Coordenada.create)
     ..aOM<PrecomputadosResumoCroqui>(11, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosResumoCroqui.$_createMessage)
+        subBuilder: PrecomputadosResumoCroqui.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -304,15 +296,12 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  @$core.Deprecated('Use ResumoCroqui() / ResumoCroqui.new instead')
   static ResumoCroqui create() => ResumoCroqui._();
-  static $pb.GeneratedMessage $_createMessage() => ResumoCroqui._();
   @$core.override
-  ResumoCroqui createEmptyInstance() => ResumoCroqui._();
+  ResumoCroqui createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ResumoCroqui getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ResumoCroqui>(
-          ResumoCroqui.$_createMessage);
+  static ResumoCroqui getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ResumoCroqui>(create);
   static ResumoCroqui? _defaultInstance;
 
   /// Identificador único do croqui.
