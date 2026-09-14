@@ -285,6 +285,10 @@ class NoTrajeto_TipoNo extends $pb.ProtobufEnum {
   static const NoTrajeto_TipoNo FIM_TOP =
       NoTrajeto_TipoNo._(11, _omitEnumNames ? '' : 'FIM_TOP');
 
+  /// Seta direcional ao longo da linha (indicação de bote, dinâmico ou sentido de travessia).
+  static const NoTrajeto_TipoNo SETA_DIRECIONAL =
+      NoTrajeto_TipoNo._(12, _omitEnumNames ? '' : 'SETA_DIRECIONAL');
+
   static const $core.List<NoTrajeto_TipoNo> values = <NoTrajeto_TipoNo>[
     PASSAGEM,
     CIRCULO_IDENTIFICADOR,
@@ -298,10 +302,11 @@ class NoTrajeto_TipoNo extends $pb.ProtobufEnum {
     PROTECAO_FITA,
     BURACO_CLIFF,
     FIM_TOP,
+    SETA_DIRECIONAL,
   ];
 
   static final $core.List<NoTrajeto_TipoNo?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 11);
+      $pb.ProtobufEnum.$_initByValueList(values, 12);
   static NoTrajeto_TipoNo? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

@@ -1433,6 +1433,8 @@ class NoTrajeto(_message.Message):
         """Buraco de cliff - furo pequeno sólido (FEMEMG B3-f)."""
         FIM_TOP: NoTrajeto._TipoNo.ValueType  # 11
         """Círculo identificador de fim ou top da via/boulder ("T" / "TOP")."""
+        SETA_DIRECIONAL: NoTrajeto._TipoNo.ValueType  # 12
+        """Seta direcional ao longo da linha (indicação de bote, dinâmico ou sentido de travessia)."""
 
     class TipoNo(_TipoNo, metaclass=_TipoNoEnumTypeWrapper): ...
     PASSAGEM: NoTrajeto.TipoNo.ValueType  # 0
@@ -1459,6 +1461,8 @@ class NoTrajeto(_message.Message):
     """Buraco de cliff - furo pequeno sólido (FEMEMG B3-f)."""
     FIM_TOP: NoTrajeto.TipoNo.ValueType  # 11
     """Círculo identificador de fim ou top da via/boulder ("T" / "TOP")."""
+    SETA_DIRECIONAL: NoTrajeto.TipoNo.ValueType  # 12
+    """Seta direcional ao longo da linha (indicação de bote, dinâmico ou sentido de travessia)."""
 
     X_FIELD_NUMBER: _builtins.int
     Y_FIELD_NUMBER: _builtins.int

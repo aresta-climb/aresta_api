@@ -815,6 +815,9 @@ message NoTrajeto {
 
     // Círculo identificador de fim ou top da via/boulder ("T" / "TOP").
     FIM_TOP = 11 [(aresta.enum_texto_na_ui) = "Círculo Identificador (Fim/Top)"];
+
+    // Seta direcional ao longo da linha (indicação de bote, dinâmico ou sentido de travessia).
+    SETA_DIRECIONAL = 12 [(aresta.enum_texto_na_ui) = "Seta Direcional (Movimento / Dinâmico)"];
   }
 
   // Tipo semântico deste nó.

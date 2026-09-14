@@ -1304,6 +1304,7 @@ const NoTrajeto_TipoNo$json = {
     {'1': 'PROTECAO_FITA', '2': 9, '3': {}},
     {'1': 'BURACO_CLIFF', '2': 10, '3': {}},
     {'1': 'FIM_TOP', '2': 11, '3': {}},
+    {'1': 'SETA_DIRECIONAL', '2': 12, '3': {}},
   ],
 };
 
@@ -1313,7 +1314,7 @@ final $typed_data.Uint8List noTrajetoDescriptor = $convert.base64Decode(
     '5hcmVzdGEuTm9UcmFqZXRvLlRpcG9Ob0IPkrUYC1RpcG8gZG8gTsOzUgR0aXBvEiMKBnJvdHVs'
     'bxgEIAEoCUILkrUYB1LDs3R1bG9SBnJvdHVsbxIoCgRyYWlvGAUgASgFQhSStRgQUmFpbyBkby'
     'BDw61yY3Vsb1IEcmFpbxI5Cg10YW1hbmhvX2ZvbnRlGAYgASgFQhSStRgQVGFtYW5obyBkYSBG'
-    'b250ZVIMdGFtYW5ob0ZvbnRlIpkECgZUaXBvTm8SJAoIUEFTU0FHRU0QABoWirUYEkludmlzw6'
+    'b250ZVIMdGFtYW5ob0ZvbnRlItsECgZUaXBvTm8SJAoIUEFTU0FHRU0QABoWirUYEkludmlzw6'
     '12ZWwgKEN1cnZhKRI1ChVDSVJDVUxPX0lERU5USUZJQ0FET1IQARoairUYFkPDrXJjdWxvIElk'
     'ZW50aWZpY2Fkb3ISOwoPSU5JQ0lPX0FHQUNIQURPEAIaJoq1GCJDw61yY3VsbyBJZGVudGlmaW'
     'NhZG9yIChTaXQgU3RhcnQpEioKDVBST1RFQ0FPX0ZJWEEQAxoXirUYE1Byb3Rlw6fDo28gRml4'
@@ -1323,7 +1324,8 @@ final $typed_data.Uint8List noTrajetoDescriptor = $convert.base64Decode(
     'XDp8OjbyBNw7N2ZWwgKOKWsykSHgoOUFJPVEVDQU9fUElUT04QCBoKirUYBlDDrXRvbhIbCg1Q'
     'Uk9URUNBT19GSVRBEAkaCIq1GARGaXRhEiUKDEJVUkFDT19DTElGRhAKGhOKtRgPQnVyYWNvIG'
     'RlIENsaWZmEjEKB0ZJTV9UT1AQCxokirUYIEPDrXJjdWxvIElkZW50aWZpY2Fkb3IgKEZpbS9U'
-    'b3ApOgSQtRgC');
+    'b3ApEkAKD1NFVEFfRElSRUNJT05BTBAMGiuKtRgnU2V0YSBEaXJlY2lvbmFsIChNb3ZpbWVudG'
+    '8gLyBEaW7Dom1pY28pOgSQtRgC');
 
 @$core.Deprecated('Use dadosCompiladosLinhaDescriptor instead')
 const DadosCompiladosLinha$json = {

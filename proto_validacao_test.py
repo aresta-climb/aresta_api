@@ -28,3 +28,16 @@ def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
             f"A mensagem '{nome_mensagem}' possui múltiplos campos marcados como "
             f"conteudo_markdown: {campos_markdown}. Apenas um é permitido."
         )
+
+
+def test_tipo_no_seta_direcional():
+    """Valida que o enum SETA_DIRECIONAL existe em NoTrajeto e é serializável."""
+    assert croqui_pb2.NoTrajeto.TipoNo.SETA_DIRECIONAL == 12
+    no = croqui_pb2.NoTrajeto(x=100, y=200, tipo=croqui_pb2.NoTrajeto.TipoNo.SETA_DIRECIONAL)
+    dados = no.SerializeToString()
+    recuperado = croqui_pb2.NoTrajeto()
+    recuperado.ParseFromString(dados)
+    assert recuperado.tipo == croqui_pb2.NoTrajeto.TipoNo.SETA_DIRECIONAL
+    assert recuperado.x == 100
+    assert recuperado.y == 200
+
