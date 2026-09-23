@@ -31,7 +31,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $core.String? pullRequestForkOwner,
     $core.String? commitBaseSha,
   }) {
-    final result = create();
+    final result = CroquiExperimental._();
     if (autores != null) result.autores.addAll(autores);
     if (dataCriacao != null) result.dataCriacao = dataCriacao;
     if (ultimaEdicao != null) result.ultimaEdicao = ultimaEdicao;
@@ -49,20 +49,20 @@ class CroquiExperimental extends $pb.GeneratedMessage {
 
   factory CroquiExperimental.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      CroquiExperimental()..mergeFromBuffer(data, registry);
   factory CroquiExperimental.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      CroquiExperimental()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'CroquiExperimental',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
-      createEmptyInstance: create)
+      createEmptyInstance: CroquiExperimental.$_createMessage)
     ..pPS(1, _omitFieldNames ? '' : 'autores')
     ..aOM<$0.Timestamp>(2, _omitFieldNames ? '' : 'dataCriacao',
-        subBuilder: $0.Timestamp.create)
+        subBuilder: $0.Timestamp.$_createMessage)
     ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'ultimaEdicao',
-        subBuilder: $0.Timestamp.create)
+        subBuilder: $0.Timestamp.$_createMessage)
     ..aOS(4, _omitFieldNames ? '' : 'resumoEdicao')
     ..aOS(5, _omitFieldNames ? '' : 'idOriginal')
     ..aOS(6, _omitFieldNames ? '' : 'pullRequestUrl')
@@ -82,12 +82,15 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use CroquiExperimental() / CroquiExperimental.new instead')
   static CroquiExperimental create() => CroquiExperimental._();
+  static $pb.GeneratedMessage $_createMessage() => CroquiExperimental._();
   @$core.override
-  CroquiExperimental createEmptyInstance() => create();
+  CroquiExperimental createEmptyInstance() => CroquiExperimental._();
   @$core.pragma('dart2js:noInline')
   static CroquiExperimental getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CroquiExperimental>(create);
+      $pb.GeneratedMessage.$_defaultFor<CroquiExperimental>(
+          CroquiExperimental.$_createMessage);
   static CroquiExperimental? _defaultInstance;
 
   /// Autores ou editores trabalhando neste croqui experimental.

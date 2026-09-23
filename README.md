@@ -5,7 +5,7 @@
 
 ## Principais arquivos
 - **`proto/croqui.proto`** – Define a mensagem principal `Croqui` com campos como `via`, `grau`, `proteção`, `acesso`, `coordenadas` e `metadata`.
-- **`proto/croqui_experimental.proto`** – Mensagem para empacotamento de croquis em arquivos `.croqui`.
+- **`proto/croqui_experimental.proto`** – Metadados de controle de versão e autoria de croquis experimentais locais.
 - **`proto/indice.proto`** – Estrutura de índices que centraliza todos os croquis.
 - **`proto/serving.proto`** – Mensagens de request/response usadas pelos serviços gRPC que servem os dados.
 - **`proto/generated/`** – Diretório onde os arquivos Python gerados a partir dos `.proto` são armazenados (gerados via `protoc`).

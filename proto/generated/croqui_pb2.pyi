@@ -845,14 +845,11 @@ class Grupo(_message.Message):
     LOCALIZACAO_ESCALADA_FIELD_NUMBER: _builtins.int
     MAPAS_FIELD_NUMBER: _builtins.int
     SETORES_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome do grupo (ex: Vale Oculto)."""
     descricao: _builtins.str
     """Características do grupo, acesso, etc."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar este grupo no mapa."""
     @_builtins.property
     def localizacao_estacionamento(self) -> Global___Coordenada:
         """Coordenada do estacionamento."""
@@ -882,12 +879,11 @@ class Grupo(_message.Message):
         localizacao_escalada: Global___Coordenada | None = ...,
         mapas: _abc.Iterable[Global___Mapa] | None = ...,
         setores: _abc.Iterable[Global___ArquivoSetor] | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
         precomputados: Global___PrecomputadosGrupo | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "indice_mapa_padrao", b"indice_mapa_padrao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "indice_mapa_padrao", b"indice_mapa_padrao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -912,7 +908,6 @@ class Setor(_message.Message):
     DESCRICAO_FIELD_NUMBER: _builtins.int
     MAPAS_FIELD_NUMBER: _builtins.int
     ESCALADAS_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome do setor (ex: Savassinha)."""
@@ -924,8 +919,6 @@ class Setor(_message.Message):
     """Setor e acesso favorável a bebês."""
     descricao: _builtins.str
     """Características da escalada no setor, insolação, qualidade da rocha, etc."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar este setor no mapa."""
     @_builtins.property
     def localizacao_estacionamento(self) -> Global___Coordenada:
         """Coordenada do estacionamento."""
@@ -963,12 +956,11 @@ class Setor(_message.Message):
         descricao: _builtins.str | None = ...,
         mapas: _abc.Iterable[Global___Mapa] | None = ...,
         escaladas: _abc.Iterable[Global___Escalada] | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
         precomputados: Global___PrecomputadosSetor | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "indice_mapa_padrao", b"indice_mapa_padrao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "indice_mapa_padrao", b"indice_mapa_padrao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -1649,7 +1641,6 @@ class ViaEsportiva(_message.Message):
     DESCRICAO_FIELD_NUMBER: _builtins.int
     URL_VIDEO_BETA_FIELD_NUMBER: _builtins.int
     CHAVE_PIX_MANUTENCAO_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome da via."""
     destaque: _builtins.bool
@@ -1682,8 +1673,6 @@ class ViaEsportiva(_message.Message):
     """URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi)."""
     chave_pix_manutencao: _builtins.str
     """Chave Pix do mantenedor ou conquistador específico desta via."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa."""
     @_builtins.property
     def conquistadores(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Nomes dos conquistadores."""
@@ -1707,11 +1696,10 @@ class ViaEsportiva(_message.Message):
         descricao: _builtins.str | None = ...,
         url_video_beta: _builtins.str | None = ...,
         chave_pix_manutencao: _builtins.str | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "exposicao", b"exposicao", "extensao", b"extensao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "exposicao", b"exposicao", "extensao", b"extensao", "nome", b"nome", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "exposicao", b"exposicao", "extensao", b"extensao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "exposicao", b"exposicao", "extensao", b"extensao", "nome", b"nome", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -1743,7 +1731,6 @@ class ViaMovel(_message.Message):
     DESCRICAO_FIELD_NUMBER: _builtins.int
     URL_VIDEO_BETA_FIELD_NUMBER: _builtins.int
     CHAVE_PIX_MANUTENCAO_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome da via."""
     destaque: _builtins.bool
@@ -1778,8 +1765,6 @@ class ViaMovel(_message.Message):
     """URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi)."""
     chave_pix_manutencao: _builtins.str
     """Chave Pix do mantenedor ou conquistador específico desta via."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa."""
     @_builtins.property
     def conquistadores(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Nomes dos conquistadores."""
@@ -1805,11 +1790,10 @@ class ViaMovel(_message.Message):
         descricao: _builtins.str | None = ...,
         url_video_beta: _builtins.str | None = ...,
         chave_pix_manutencao: _builtins.str | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "exposicao", b"exposicao", "extensao", b"extensao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "protecoes_moveis", b"protecoes_moveis", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "exposicao", b"exposicao", "extensao", b"extensao", "nome", b"nome", "protecoes_moveis", b"protecoes_moveis", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "exposicao", b"exposicao", "extensao", b"extensao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "protecoes_moveis", b"protecoes_moveis", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "exposicao", b"exposicao", "extensao", b"extensao", "nome", b"nome", "protecoes_moveis", b"protecoes_moveis", "quantidade_protecoes_intermediarias", b"quantidade_protecoes_intermediarias", "quantidade_protecoes_parada", b"quantidade_protecoes_parada", "tipo_ancoragem", b"tipo_ancoragem", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -1832,7 +1816,6 @@ class Boulder(_message.Message):
     DESCRICAO_FIELD_NUMBER: _builtins.int
     URL_VIDEO_BETA_FIELD_NUMBER: _builtins.int
     CHAVE_PIX_MANUTENCAO_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome do boulder."""
     destaque: _builtins.bool
@@ -1849,8 +1832,6 @@ class Boulder(_message.Message):
     """URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi)."""
     chave_pix_manutencao: _builtins.str
     """Chave Pix do mantenedor ou conquistador específico deste boulder."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa."""
     @_builtins.property
     def conquistadores(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Nomes dos conquistadores ou primeira ascensão."""
@@ -1867,11 +1848,10 @@ class Boulder(_message.Message):
         descricao: _builtins.str | None = ...,
         url_video_beta: _builtins.str | None = ...,
         chave_pix_manutencao: _builtins.str | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "nome", b"nome", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "descricao", b"descricao", "destaque", b"destaque", "dificuldade", b"dificuldade", "nome", b"nome", "tipo_parede", b"tipo_parede", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -1927,7 +1907,6 @@ class ViaMultiplasEnfiadas(_message.Message):
     DATA_MANUTENCAO_FIELD_NUMBER: _builtins.int
     URL_VIDEO_BETA_FIELD_NUMBER: _builtins.int
     CHAVE_PIX_MANUTENCAO_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome da via."""
     destaque: _builtins.bool
@@ -1967,8 +1946,6 @@ class ViaMultiplasEnfiadas(_message.Message):
     """URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi)."""
     chave_pix_manutencao: _builtins.str
     """Chave Pix do mantenedor ou conquistador específico desta via."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa."""
     @_builtins.property
     def mapas(self) -> _containers.RepeatedCompositeFieldContainer[Global___Mapa]:
         """Mapas da via de múltiplas enfiadas, se houver."""
@@ -2007,11 +1984,10 @@ class ViaMultiplasEnfiadas(_message.Message):
         data_manutencao: _builtins.str | None = ...,
         url_video_beta: _builtins.str | None = ...,
         chave_pix_manutencao: _builtins.str | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "comprimento_maior_enfiada", b"comprimento_maior_enfiada", "comprimento_total", b"comprimento_total", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "dificuldade_maxima", b"dificuldade_maxima", "dificuldade_media", b"dificuldade_media", "duracao", b"duracao", "enfiadas", b"enfiadas", "equipamento_recomendado", b"equipamento_recomendado", "exposicao", b"exposicao", "indice_mapa_padrao", b"indice_mapa_padrao", "mapas", b"mapas", "nome", b"nome", "numero_enfiadas", b"numero_enfiadas", "quantidade_costuras_intermediarias", b"quantidade_costuras_intermediarias", "quantidade_equipamentos_parada", b"quantidade_equipamentos_parada", "tipo_via_multiplas_enfiadas", b"tipo_via_multiplas_enfiadas", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "comprimento_maior_enfiada", b"comprimento_maior_enfiada", "comprimento_total", b"comprimento_total", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "dificuldade_maxima", b"dificuldade_maxima", "dificuldade_media", b"dificuldade_media", "duracao", b"duracao", "enfiadas", b"enfiadas", "equipamento_recomendado", b"equipamento_recomendado", "exposicao", b"exposicao", "mapas", b"mapas", "nome", b"nome", "numero_enfiadas", b"numero_enfiadas", "quantidade_costuras_intermediarias", b"quantidade_costuras_intermediarias", "quantidade_equipamentos_parada", b"quantidade_equipamentos_parada", "tipo_via_multiplas_enfiadas", b"tipo_via_multiplas_enfiadas", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "comprimento_maior_enfiada", b"comprimento_maior_enfiada", "comprimento_total", b"comprimento_total", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "dificuldade_maxima", b"dificuldade_maxima", "dificuldade_media", b"dificuldade_media", "duracao", b"duracao", "enfiadas", b"enfiadas", "equipamento_recomendado", b"equipamento_recomendado", "exposicao", b"exposicao", "indice_mapa_padrao", b"indice_mapa_padrao", "mapas", b"mapas", "nome", b"nome", "numero_enfiadas", b"numero_enfiadas", "quantidade_costuras_intermediarias", b"quantidade_costuras_intermediarias", "quantidade_equipamentos_parada", b"quantidade_equipamentos_parada", "tipo_via_multiplas_enfiadas", b"tipo_via_multiplas_enfiadas", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "comprimento_maior_enfiada", b"comprimento_maior_enfiada", "comprimento_total", b"comprimento_total", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "destaque", b"destaque", "dificuldade_artificial", b"dificuldade_artificial", "dificuldade_artificial_em_livre", b"dificuldade_artificial_em_livre", "dificuldade_maxima", b"dificuldade_maxima", "dificuldade_media", b"dificuldade_media", "duracao", b"duracao", "enfiadas", b"enfiadas", "equipamento_recomendado", b"equipamento_recomendado", "exposicao", b"exposicao", "mapas", b"mapas", "nome", b"nome", "numero_enfiadas", b"numero_enfiadas", "quantidade_costuras_intermediarias", b"quantidade_costuras_intermediarias", "quantidade_equipamentos_parada", b"quantidade_equipamentos_parada", "tipo_via_multiplas_enfiadas", b"tipo_via_multiplas_enfiadas", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -2038,7 +2014,6 @@ class Highline(_message.Message):
     DESCRICAO_FIELD_NUMBER: _builtins.int
     URL_VIDEO_BETA_FIELD_NUMBER: _builtins.int
     CHAVE_PIX_MANUTENCAO_FIELD_NUMBER: _builtins.int
-    INDICE_MAPA_PADRAO_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome do highline."""
     destaque: _builtins.bool
@@ -2063,8 +2038,6 @@ class Highline(_message.Message):
     """URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi)."""
     chave_pix_manutencao: _builtins.str
     """Chave Pix do mantenedor ou conquistador específico deste highline."""
-    indice_mapa_padrao: _builtins.int
-    """Índice do mapa a ser aberto por padrão ao pedir para visualizar esta escalada no mapa."""
     @_builtins.property
     def conquistadores(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Nome dos conquistadores."""
@@ -2085,11 +2058,10 @@ class Highline(_message.Message):
         descricao: _builtins.str | None = ...,
         url_video_beta: _builtins.str | None = ...,
         chave_pix_manutencao: _builtins.str | None = ...,
-        indice_mapa_padrao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["altura", b"altura", "chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "descricao_acesso", b"descricao_acesso", "descricao_ancoragem", b"descricao_ancoragem", "destaque", b"destaque", "distancia", b"distancia", "exposicao", b"exposicao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["altura", b"altura", "chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "descricao_acesso", b"descricao_acesso", "descricao_ancoragem", b"descricao_ancoragem", "destaque", b"destaque", "distancia", b"distancia", "exposicao", b"exposicao", "nome", b"nome", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["altura", b"altura", "chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "descricao_acesso", b"descricao_acesso", "descricao_ancoragem", b"descricao_ancoragem", "destaque", b"destaque", "distancia", b"distancia", "exposicao", b"exposicao", "indice_mapa_padrao", b"indice_mapa_padrao", "nome", b"nome", "url_video_beta", b"url_video_beta"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["altura", b"altura", "chave_pix_manutencao", b"chave_pix_manutencao", "conquistadores", b"conquistadores", "data_abertura", b"data_abertura", "data_manutencao", b"data_manutencao", "descricao", b"descricao", "descricao_acesso", b"descricao_acesso", "descricao_ancoragem", b"descricao_ancoragem", "destaque", b"destaque", "distancia", b"distancia", "exposicao", b"exposicao", "nome", b"nome", "url_video_beta", b"url_video_beta"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

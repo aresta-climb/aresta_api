@@ -769,14 +769,6 @@ const Grupo$json = {
       '10': 'setores'
     },
     {
-      '1': 'indice_mapa_padrao',
-      '3': 8,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
-    {
       '1': 'precomputados',
       '3': 9,
       '4': 1,
@@ -787,6 +779,9 @@ const Grupo$json = {
     },
   ],
   '7': {},
+  '9': [
+    {'1': 8, '2': 9},
+  ],
 };
 
 /// Descriptor for `Grupo`. Decode as a `google.protobuf.DescriptorProto`.
@@ -797,10 +792,9 @@ final $typed_data.Uint8List grupoDescriptor = $convert.base64Decode(
     '9uYW1lbnRvUhlsb2NhbGl6YWNhb0VzdGFjaW9uYW1lbnRvEmEKFGxvY2FsaXphY2FvX2VzY2Fs'
     'YWRhGAcgASgLMhIuYXJlc3RhLkNvb3JkZW5hZGFCGpK1GBZMb2NhbGl6YcOnw6NvIEVzY2FsYW'
     'RhUhNsb2NhbGl6YWNhb0VzY2FsYWRhEiIKBW1hcGFzGAMgAygLMgwuYXJlc3RhLk1hcGFSBW1h'
-    'cGFzEi4KB3NldG9yZXMYBCADKAsyFC5hcmVzdGEuQXJxdWl2b1NldG9yUgdzZXRvcmVzEkkKEm'
-    'luZGljZV9tYXBhX3BhZHJhbxgIIAEoBUIbkrUYF8ONbmRpY2UgZG8gTWFwYSBQYWRyw6NvUhBp'
-    'bmRpY2VNYXBhUGFkcmFvEkYKDXByZWNvbXB1dGFkb3MYCSABKAsyGi5hcmVzdGEuUHJlY29tcH'
-    'V0YWRvc0dydXBvQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgB');
+    'cGFzEi4KB3NldG9yZXMYBCADKAsyFC5hcmVzdGEuQXJxdWl2b1NldG9yUgdzZXRvcmVzEkYKDX'
+    'ByZWNvbXB1dGFkb3MYCSABKAsyGi5hcmVzdGEuUHJlY29tcHV0YWRvc0dydXBvQgSwtRgCUg1w'
+    'cmVjb21wdXRhZG9zOgSQtRgBSgQICBAJ');
 
 @$core.Deprecated('Use setorDescriptor instead')
 const Setor$json = {
@@ -875,14 +869,6 @@ const Setor$json = {
       '10': 'escaladas'
     },
     {
-      '1': 'indice_mapa_padrao',
-      '3': 14,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
-    {
       '1': 'precomputados',
       '3': 15,
       '4': 1,
@@ -895,6 +881,7 @@ const Setor$json = {
   '7': {},
   '9': [
     {'1': 12, '2': 13},
+    {'1': 14, '2': 15},
   ],
 };
 
@@ -915,9 +902,8 @@ final $typed_data.Uint8List setorDescriptor = $convert.base64Decode(
     'bmRhZG8gcGFyYSBiZWLDqnNSDmFtaWdhdmVsQUJlYmVzEjEKCWRlc2NyaWNhbxgJIAEoCUITkr'
     'UYC0Rlc2NyacOnw6NvqLUYAVIJZGVzY3JpY2FvEiIKBW1hcGFzGA0gAygLMgwuYXJlc3RhLk1h'
     'cGFSBW1hcGFzEi4KCWVzY2FsYWRhcxgLIAMoCzIQLmFyZXN0YS5Fc2NhbGFkYVIJZXNjYWxhZG'
-    'FzEkkKEmluZGljZV9tYXBhX3BhZHJhbxgOIAEoBUIbkrUYF8ONbmRpY2UgZG8gTWFwYSBQYWRy'
-    'w6NvUhBpbmRpY2VNYXBhUGFkcmFvEkYKDXByZWNvbXB1dGFkb3MYDyABKAsyGi5hcmVzdGEuUH'
-    'JlY29tcHV0YWRvc1NldG9yQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIDBAN');
+    'FzEkYKDXByZWNvbXB1dGFkb3MYDyABKAsyGi5hcmVzdGEuUHJlY29tcHV0YWRvc1NldG9yQgSw'
+    'tRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIDBANSgQIDhAP');
 
 @$core.Deprecated('Use mapaDescriptor instead')
 const Mapa$json = {
@@ -1572,14 +1558,9 @@ const ViaEsportiva$json = {
       '8': {},
       '10': 'chavePixManutencao'
     },
-    {
-      '1': 'indice_mapa_padrao',
-      '3': 16,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
+  ],
+  '9': [
+    {'1': 16, '2': 17},
   ],
 };
 
@@ -1606,8 +1587,7 @@ final $typed_data.Uint8List viaEsportivaDescriptor = $convert.base64Decode(
     'qLUYAVIJZGVzY3JpY2FvEkMKDnVybF92aWRlb19iZXRhGA4gASgJQh2StRgVVVJMIGRvIFbDrW'
     'RlbyBkbyBCZXRhmLUYAlIMdXJsVmlkZW9CZXRhElEKFGNoYXZlX3BpeF9tYW51dGVuY2FvGA8g'
     'ASgJQh+StRgbQ2hhdmUgUGl4IHBhcmEgTWFudXRlbsOnw6NvUhJjaGF2ZVBpeE1hbnV0ZW5jYW'
-    '8SSQoSaW5kaWNlX21hcGFfcGFkcmFvGBAgASgFQhuStRgXw41uZGljZSBkbyBNYXBhIFBhZHLD'
-    'o29SEGluZGljZU1hcGFQYWRyYW8=');
+    '9KBAgQEBE=');
 
 @$core.Deprecated('Use viaMovelDescriptor instead')
 const ViaMovel$json = {
@@ -1725,14 +1705,9 @@ const ViaMovel$json = {
       '8': {},
       '10': 'chavePixManutencao'
     },
-    {
-      '1': 'indice_mapa_padrao',
-      '3': 21,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
+  ],
+  '9': [
+    {'1': 21, '2': 22},
   ],
 };
 
@@ -1762,9 +1737,8 @@ final $typed_data.Uint8List viaMovelDescriptor = $convert.base64Decode(
     'F0YU1hbnV0ZW5jYW8SMQoJZGVzY3JpY2FvGA0gASgJQhOStRgLRGVzY3Jpw6fDo2+otRgBUglk'
     'ZXNjcmljYW8SQwoOdXJsX3ZpZGVvX2JldGEYDiABKAlCHZK1GBVVUkwgZG8gVsOtZGVvIGRvIE'
     'JldGGYtRgCUgx1cmxWaWRlb0JldGESUQoUY2hhdmVfcGl4X21hbnV0ZW5jYW8YDyABKAlCH5K1'
-    'GBtDaGF2ZSBQaXggcGFyYSBNYW51dGVuw6fDo29SEmNoYXZlUGl4TWFudXRlbmNhbxJJChJpbm'
-    'RpY2VfbWFwYV9wYWRyYW8YFSABKAVCG5K1GBfDjW5kaWNlIGRvIE1hcGEgUGFkcsOjb1IQaW5k'
-    'aWNlTWFwYVBhZHJhbw==');
+    'GBtDaGF2ZSBQaXggcGFyYSBNYW51dGVuw6fDo29SEmNoYXZlUGl4TWFudXRlbmNhb0oECBUQFg'
+    '==');
 
 @$core.Deprecated('Use boulderDescriptor instead')
 const Boulder$json = {
@@ -1815,14 +1789,9 @@ const Boulder$json = {
       '8': {},
       '10': 'chavePixManutencao'
     },
-    {
-      '1': 'indice_mapa_padrao',
-      '3': 12,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
+  ],
+  '9': [
+    {'1': 12, '2': 13},
   ],
 };
 
@@ -1838,8 +1807,7 @@ final $typed_data.Uint8List boulderDescriptor = $convert.base64Decode(
     'OStRgLRGVzY3Jpw6fDo2+otRgBUglkZXNjcmljYW8SQwoOdXJsX3ZpZGVvX2JldGEYByABKAlC'
     'HZK1GBVVUkwgZG8gVsOtZGVvIGRvIEJldGGYtRgCUgx1cmxWaWRlb0JldGESUQoUY2hhdmVfcG'
     'l4X21hbnV0ZW5jYW8YCCABKAlCH5K1GBtDaGF2ZSBQaXggcGFyYSBNYW51dGVuw6fDo29SEmNo'
-    'YXZlUGl4TWFudXRlbmNhbxJJChJpbmRpY2VfbWFwYV9wYWRyYW8YDCABKAVCG5K1GBfDjW5kaW'
-    'NlIGRvIE1hcGEgUGFkcsOjb1IQaW5kaWNlTWFwYVBhZHJhbw==');
+    'YXZlUGl4TWFudXRlbmNhb0oECAwQDQ==');
 
 @$core.Deprecated('Use viaMultiplasEnfiadasDescriptor instead')
 const ViaMultiplasEnfiadas$json = {
@@ -2004,16 +1972,11 @@ const ViaMultiplasEnfiadas$json = {
       '8': {},
       '10': 'chavePixManutencao'
     },
-    {
-      '1': 'indice_mapa_padrao',
-      '3': 26,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
   ],
   '4': [ViaMultiplasEnfiadas_TipoViaMultiplasEnfiadas$json],
+  '9': [
+    {'1': 26, '2': 27},
+  ],
 };
 
 @$core.Deprecated('Use viaMultiplasEnfiadasDescriptor instead')
@@ -2061,10 +2024,8 @@ final $typed_data.Uint8List viaMultiplasEnfiadasDescriptor = $convert.base64Deco
     'RlbsOnw6NvUg5kYXRhTWFudXRlbmNhbxJDCg51cmxfdmlkZW9fYmV0YRgSIAEoCUIdkrUYFVVS'
     'TCBkbyBWw61kZW8gZG8gQmV0YZi1GAJSDHVybFZpZGVvQmV0YRJRChRjaGF2ZV9waXhfbWFudX'
     'RlbmNhbxgTIAEoCUIfkrUYG0NoYXZlIFBpeCBwYXJhIE1hbnV0ZW7Dp8Ojb1ISY2hhdmVQaXhN'
-    'YW51dGVuY2FvEkkKEmluZGljZV9tYXBhX3BhZHJhbxgaIAEoBUIbkrUYF8ONbmRpY2UgZG8gTW'
-    'FwYSBQYWRyw6NvUhBpbmRpY2VNYXBhUGFkcmFvIlQKGFRpcG9WaWFNdWx0aXBsYXNFbmZpYWRh'
-    'cxIOCgpJTkRFRklOSURPEAASDQoJVE9EQV9GSVhBEAESCQoFTUlTVEEQAhIOCgpUT0RBX01PVk'
-    'VMEAM=');
+    'YW51dGVuY2FvIlQKGFRpcG9WaWFNdWx0aXBsYXNFbmZpYWRhcxIOCgpJTkRFRklOSURPEAASDQ'
+    'oJVE9EQV9GSVhBEAESCQoFTUlTVEEQAhIOCgpUT0RBX01PVkVMEANKBAgaEBs=');
 
 @$core.Deprecated('Use highlineDescriptor instead')
 const Highline$json = {
@@ -2125,14 +2086,9 @@ const Highline$json = {
       '8': {},
       '10': 'chavePixManutencao'
     },
-    {
-      '1': 'indice_mapa_padrao',
-      '3': 16,
-      '4': 1,
-      '5': 5,
-      '8': {},
-      '10': 'indiceMapaPadrao'
-    },
+  ],
+  '9': [
+    {'1': 16, '2': 17},
   ],
 };
 
@@ -2151,9 +2107,7 @@ final $typed_data.Uint8List highlineDescriptor = $convert.base64Decode(
     'YWdlbRIxCglkZXNjcmljYW8YCiABKAlCE5K1GAtEZXNjcmnDp8Ojb6i1GAFSCWRlc2NyaWNhbx'
     'JDCg51cmxfdmlkZW9fYmV0YRgLIAEoCUIdkrUYFVVSTCBkbyBWw61kZW8gZG8gQmV0YZi1GAJS'
     'DHVybFZpZGVvQmV0YRJRChRjaGF2ZV9waXhfbWFudXRlbmNhbxgMIAEoCUIfkrUYG0NoYXZlIF'
-    'BpeCBwYXJhIE1hbnV0ZW7Dp8Ojb1ISY2hhdmVQaXhNYW51dGVuY2FvEkkKEmluZGljZV9tYXBh'
-    'X3BhZHJhbxgQIAEoBUIbkrUYF8ONbmRpY2UgZG8gTWFwYSBQYWRyw6NvUhBpbmRpY2VNYXBhUG'
-    'FkcmFv');
+    'BpeCBwYXJhIE1hbnV0ZW7Dp8Ojb1ISY2hhdmVQaXhNYW51dGVuY2FvSgQIEBAR');
 
 @$core.Deprecated('Use patrocinadorDescriptor instead')
 const Patrocinador$json = {
