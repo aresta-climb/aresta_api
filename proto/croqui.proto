@@ -887,6 +887,9 @@ message Escalada {
 
   // Lista de vídeos e postagens de mídia demonstrando o beta desta escalada.
   repeated MidiaBeta betas = 6 [(aresta.texto_na_ui) = "Betas da Escalada"];
+
+  // Mapas específicos desta escalada (ex: saída de boulder, detalhes de enfiadas, etc).
+  repeated Mapa mapas = 7 [(aresta.texto_na_ui) = "Mapas"];
 }
 
 // Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.
@@ -1070,8 +1073,6 @@ message ViaMultiplasEnfiadas {
     (aresta.booleano_texto_indefinido) = "Não informado"
   ];
 
-  // Mapas da via de múltiplas enfiadas, se houver.
-  repeated Mapa mapas = 21;
 
   // Grau de dificuldade médio da via (ex: "5sup", "7a").
   GrauVia.GrauVia dificuldade_media = 2 [(aresta.texto_na_ui) = "Dificuldade Média"];
@@ -1140,7 +1141,7 @@ message ViaMultiplasEnfiadas {
   // Chave Pix do mantenedor ou conquistador específico desta via.
   string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
-  reserved 26;
+  reserved 21, 26;
 }
 
 // Um highline montado na rocha.

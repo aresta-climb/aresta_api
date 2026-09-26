@@ -3577,6 +3577,7 @@ class Escalada extends $pb.GeneratedMessage {
     ViaMultiplasEnfiadas? viaMultiplasEnfiadas,
     Highline? highline,
     $core.Iterable<$0.MidiaBeta>? betas,
+    $core.Iterable<Mapa>? mapas,
   }) {
     final result = Escalada._();
     if (viaEsportiva != null) result.viaEsportiva = viaEsportiva;
@@ -3586,6 +3587,7 @@ class Escalada extends $pb.GeneratedMessage {
       result.viaMultiplasEnfiadas = viaMultiplasEnfiadas;
     if (highline != null) result.highline = highline;
     if (betas != null) result.betas.addAll(betas);
+    if (mapas != null) result.mapas.addAll(mapas);
     return result;
   }
 
@@ -3624,6 +3626,8 @@ class Escalada extends $pb.GeneratedMessage {
         subBuilder: Highline.$_createMessage)
     ..pPM<$0.MidiaBeta>(6, _omitFieldNames ? '' : 'betas',
         subBuilder: $0.MidiaBeta.$_createMessage)
+    ..pPM<Mapa>(7, _omitFieldNames ? '' : 'mapas',
+        subBuilder: Mapa.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3717,6 +3721,10 @@ class Escalada extends $pb.GeneratedMessage {
   /// Lista de vídeos e postagens de mídia demonstrando o beta desta escalada.
   @$pb.TagNumber(6)
   $pb.PbList<$0.MidiaBeta> get betas => $_getList(5);
+
+  /// Mapas específicos desta escalada (ex: saída de boulder, detalhes de enfiadas, etc).
+  @$pb.TagNumber(7)
+  $pb.PbList<Mapa> get mapas => $_getList(6);
 }
 
 /// Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.
@@ -4452,7 +4460,6 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     $core.String? dataManutencao,
     $core.String? urlVideoBeta,
     $core.String? chavePixManutencao,
-    $core.Iterable<Mapa>? mapas,
     $core.int? quantidadeCosturasIntermediarias,
     $core.int? quantidadeEquipamentosParada,
     $core.bool? destaque,
@@ -4483,7 +4490,6 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     if (urlVideoBeta != null) result.urlVideoBeta = urlVideoBeta;
     if (chavePixManutencao != null)
       result.chavePixManutencao = chavePixManutencao;
-    if (mapas != null) result.mapas.addAll(mapas);
     if (quantidadeCosturasIntermediarias != null)
       result.quantidadeCosturasIntermediarias =
           quantidadeCosturasIntermediarias;
@@ -4536,8 +4542,6 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
     ..aOS(17, _omitFieldNames ? '' : 'dataManutencao')
     ..aOS(18, _omitFieldNames ? '' : 'urlVideoBeta')
     ..aOS(19, _omitFieldNames ? '' : 'chavePixManutencao')
-    ..pPM<Mapa>(21, _omitFieldNames ? '' : 'mapas',
-        subBuilder: Mapa.$_createMessage)
     ..aI(22, _omitFieldNames ? '' : 'quantidadeCosturasIntermediarias')
     ..aI(23, _omitFieldNames ? '' : 'quantidadeEquipamentosParada')
     ..aOB(25, _omitFieldNames ? '' : 'destaque')
@@ -4748,39 +4752,35 @@ class ViaMultiplasEnfiadas extends $pb.GeneratedMessage {
   @$pb.TagNumber(19)
   void clearChavePixManutencao() => $_clearField(19);
 
-  /// Mapas da via de múltiplas enfiadas, se houver.
-  @$pb.TagNumber(21)
-  $pb.PbList<Mapa> get mapas => $_getList(19);
-
   /// Número de costuras a levar para proteções intermediárias por enfiada.
   @$pb.TagNumber(22)
-  $core.int get quantidadeCosturasIntermediarias => $_getIZ(20);
+  $core.int get quantidadeCosturasIntermediarias => $_getIZ(19);
   @$pb.TagNumber(22)
   set quantidadeCosturasIntermediarias($core.int value) =>
-      $_setSignedInt32(20, value);
+      $_setSignedInt32(19, value);
   @$pb.TagNumber(22)
-  $core.bool hasQuantidadeCosturasIntermediarias() => $_has(20);
+  $core.bool hasQuantidadeCosturasIntermediarias() => $_has(19);
   @$pb.TagNumber(22)
   void clearQuantidadeCosturasIntermediarias() => $_clearField(22);
 
   /// Número de equipamentos a levar para proteções nas paradas da via.
   @$pb.TagNumber(23)
-  $core.int get quantidadeEquipamentosParada => $_getIZ(21);
+  $core.int get quantidadeEquipamentosParada => $_getIZ(20);
   @$pb.TagNumber(23)
   set quantidadeEquipamentosParada($core.int value) =>
-      $_setSignedInt32(21, value);
+      $_setSignedInt32(20, value);
   @$pb.TagNumber(23)
-  $core.bool hasQuantidadeEquipamentosParada() => $_has(21);
+  $core.bool hasQuantidadeEquipamentosParada() => $_has(20);
   @$pb.TagNumber(23)
   void clearQuantidadeEquipamentosParada() => $_clearField(23);
 
   /// Se é um destaque para o setor.
   @$pb.TagNumber(25)
-  $core.bool get destaque => $_getBF(22);
+  $core.bool get destaque => $_getBF(21);
   @$pb.TagNumber(25)
-  set destaque($core.bool value) => $_setBool(22, value);
+  set destaque($core.bool value) => $_setBool(21, value);
   @$pb.TagNumber(25)
-  $core.bool hasDestaque() => $_has(22);
+  $core.bool hasDestaque() => $_has(21);
   @$pb.TagNumber(25)
   void clearDestaque() => $_clearField(25);
 }
