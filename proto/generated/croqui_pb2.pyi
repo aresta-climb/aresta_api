@@ -2935,6 +2935,7 @@ BOOLEANO_TEXTO_INDEFINIDO_FIELD_NUMBER: _builtins.int
 BOOLEANO_TEXTO_SIM_FIELD_NUMBER: _builtins.int
 BOOLEANO_TEXTO_NAO_FIELD_NUMBER: _builtins.int
 NOME_ARQUIVO_IMAGEM_FIELD_NUMBER: _builtins.int
+AVANCADO_FIELD_NUMBER: _builtins.int
 MENSAGEM_TEXTO_NA_UI_FIELD_NUMBER: _builtins.int
 MENSAGEM_FORMATO_NA_UI_FIELD_NUMBER: _builtins.int
 ENUM_TEXTO_NA_UI_FIELD_NUMBER: _builtins.int
@@ -2966,6 +2967,8 @@ booleano_texto_nao: _extension_dict._ExtensionFieldDescriptor[_descriptor_pb2.Fi
 """Define o rótulo do estado falso (False) de campos booleanos na UI."""
 nome_arquivo_imagem: _extension_dict._ExtensionFieldDescriptor[_descriptor_pb2.FieldOptions, _builtins.str]
 """Define o nome de arquivo fixo de destino para campos de imagem (ex: "thumbnail.webp")."""
+avancado: _extension_dict._ExtensionFieldDescriptor[_descriptor_pb2.FieldOptions, _builtins.bool]
+"""Indica se o campo é considerado de uso avançado e deve ser recolhido por padrão no editor."""
 mensagem_texto_na_ui: _extension_dict._ExtensionFieldDescriptor[_descriptor_pb2.MessageOptions, _builtins.str]
 """Rótulo padrão da mensagem para exibição na interface do usuário (UI).
 Caso não disponível, usa o nome da mensagem.

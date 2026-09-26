@@ -97,6 +97,9 @@ extend google.protobuf.FieldOptions {
 
   // Define o nome de arquivo fixo de destino para campos de imagem (ex: "thumbnail.webp").
   string nome_arquivo_imagem = 50012;
+
+  // Indica se o campo é considerado de uso avançado e deve ser recolhido por padrão no editor.
+  bool avancado = 50013;
 }
 
 // Representa a forma de exibição/organização de uma mensagem no editor de formulário.
@@ -157,7 +160,7 @@ extend google.protobuf.EnumValueOptions {
 // NEXT_ID: 17
 message Croqui {
   // Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande".
-  string id = 1;
+  string id = 1 [(aresta.avancado) = true];
 
   // Nome oficial do croqui.
   string nome = 2 [(aresta.titulo_na_ui) = true];
@@ -193,7 +196,8 @@ message Croqui {
     (aresta.texto_na_ui) = "Revisado Manualmente",
     (aresta.booleano_texto_sim) = "Revisado",
     (aresta.booleano_texto_nao) = "Não revisado",
-    (aresta.booleano_texto_indefinido) = "Não informado"
+    (aresta.booleano_texto_indefinido) = "Não informado",
+    (aresta.avancado) = true
   ];
 
   // Representa se o croqui já foi revisado para ter bounding circles apropriados.
@@ -201,7 +205,8 @@ message Croqui {
     (aresta.texto_na_ui) = "Revisado Bounding Circle",
     (aresta.booleano_texto_sim) = "Revisado",
     (aresta.booleano_texto_nao) = "Não revisado",
-    (aresta.booleano_texto_indefinido) = "Não informado"
+    (aresta.booleano_texto_indefinido) = "Não informado",
+    (aresta.avancado) = true
   ];
 
   // Representa se o croqui tem desenhos extraíveis do PDF.
@@ -222,7 +227,7 @@ message Croqui {
         DESENHO_EXTRAIDO = 3 [(aresta.enum_texto_na_ui) = "Desenho extraído"];
       }
   }
-  StatusDesenhoExtraivel.Enum status_desenho_extraivel = 13;
+  StatusDesenhoExtraivel.Enum status_desenho_extraivel = 13 [(aresta.avancado) = true];
 
   // Identificador da última migração aplicada a este croqui (prefixo numérico sequencial).
   int32 ultima_migracao = 15 [(aresta.formato_na_ui) = INVISIVEL];
@@ -379,16 +384,16 @@ message Pico {
   string url_google_maps = 5 [(aresta.texto_na_ui) = "URL Google Maps"];
   
   // Nome da associação local responsável (ex: ARESTA).
-  string nome_associacao = 6;
+  string nome_associacao = 6 [(aresta.avancado) = true];
   
   // Link para a página onde o escalador pode se afiliar.
-  string url_filiacao_associacao = 7 [(aresta.texto_na_ui) = "URL de Filiação"];
+  string url_filiacao_associacao = 7 [(aresta.texto_na_ui) = "URL de Filiação", (aresta.avancado) = true];
   
   // Chave Pix para contribuições diretas ao fundo de manutenção local.
-  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
   
   // Patrocinadores atuais do croqui deste local.
-  repeated Patrocinador patrocinadores = 9;
+  repeated Patrocinador patrocinadores = 9 [(aresta.avancado) = true];
   
   // Elementos de escalada contidos neste pico (setores ou grupos).
   repeated SetorOuGrupo setores_ou_grupos = 11;
@@ -510,14 +515,15 @@ message Setor {
   Coordenada localizacao_escalada = 3 [(aresta.texto_na_ui) = "Localização Escalada"];
   
   // Trilhas que vão do estacionamento ao setor.
-  repeated Trilha trilhas = 4; 
+  repeated Trilha trilhas = 4 [(aresta.avancado) = true]; 
 
   // Possível sinal de celular no setor.
   bool sinal_de_celular = 6 [
     (aresta.texto_na_ui) = "Sinal de Celular",
     (aresta.booleano_texto_sim) = "Possui sinal",
     (aresta.booleano_texto_nao) = "Sem sinal",
-    (aresta.booleano_texto_indefinido) = "Não informado"
+    (aresta.booleano_texto_indefinido) = "Não informado",
+    (aresta.avancado) = true
   ];
 
   // Setor e acesso favorável a crianças.
@@ -525,7 +531,8 @@ message Setor {
     (aresta.texto_na_ui) = "Amigável a Crianças",
     (aresta.booleano_texto_sim) = "Adequado para crianças",
     (aresta.booleano_texto_nao) = "Não recomendado para crianças",
-    (aresta.booleano_texto_indefinido) = "Não informado"
+    (aresta.booleano_texto_indefinido) = "Não informado",
+    (aresta.avancado) = true
   ];
 
   // Setor e acesso favorável a bebês.
@@ -533,7 +540,8 @@ message Setor {
     (aresta.texto_na_ui) = "Amigável a Bebês",
     (aresta.booleano_texto_sim) = "Adequado para bebês",
     (aresta.booleano_texto_nao) = "Não recomendado para bebês",
-    (aresta.booleano_texto_indefinido) = "Não informado"
+    (aresta.booleano_texto_indefinido) = "Não informado",
+    (aresta.avancado) = true
   ];
 
   // Características da escalada no setor, insolação, qualidade da rocha, etc.
@@ -900,14 +908,14 @@ message ViaEsportiva {
   GrauVia.GrauVia dificuldade = 2;
 
   // Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
-  GrauArtificial.GrauArtificial dificuldade_artificial = 3;
+  GrauArtificial.GrauArtificial dificuldade_artificial = 3 [(aresta.avancado) = true];
 
   // Grau de exposição da via. Normalmente não preenchido em vias esportivas, que
   // costumam ser "E1".
-  GrauExposicao.GrauExposicao exposicao = 4 [(aresta.texto_na_ui) = "Grau de Exposição"];
+  GrauExposicao.GrauExposicao exposicao = 4 [(aresta.texto_na_ui) = "Grau de Exposição", (aresta.avancado) = true];
 
   // Tipo de parede predominante (negativo, vertical, positivo).
-  TipoParede.TipoParede tipo_parede = 5 [(aresta.texto_na_ui) = "Tipo de Parede"];
+  TipoParede.TipoParede tipo_parede = 5 [(aresta.texto_na_ui) = "Tipo de Parede", (aresta.avancado) = true];
 
   // Extensão da via, em metros.
   int32 extensao = 6 [(aresta.texto_na_ui) = "Extensão"];
@@ -919,7 +927,7 @@ message ViaEsportiva {
   int32 quantidade_protecoes_parada = 8 [(aresta.texto_na_ui) = "Quantidade de Proteções na Parada"];
   
   // TODO: Tipo da parada (ex: "Corrente", "Pinus", "Parabolt Duplo").
-  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem"];
+  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem", (aresta.avancado) = true];
   
   // Nomes dos conquistadores.
   repeated string conquistadores = 10;
@@ -928,16 +936,16 @@ message ViaEsportiva {
   string data_abertura = 11 [(aresta.texto_na_ui) = "Data de Abertura"];
 
   // Data da última manutenção da via (ex: "1997" ou "1997-06" ou "1997-06-30").
-  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção", (aresta.avancado) = true];
   
   // Dicas de segurança, movimentação chave (beta) e equipamentos recomendados.
   string descricao = 13 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
   
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO, (aresta.avancado) = true];
   
   // Chave Pix do mantenedor ou conquistador específico desta via.
-  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
   reserved 16;
 }
@@ -961,31 +969,31 @@ message ViaMovel {
   GrauVia.GrauVia dificuldade = 2;
 
   // Grau de escalada em artificial, se houver trechos de artificial (ex: "A1", "A2").
-  GrauArtificial.GrauArtificial dificuldade_artificial = 17;
+  GrauArtificial.GrauArtificial dificuldade_artificial = 17 [(aresta.avancado) = true];
 
   // Grau do lance em artificial se escalado em livre.
-  GrauVia.GrauVia dificuldade_artificial_em_livre = 18 [(aresta.texto_na_ui) = "Dificuldade do lance artificial em livre"];
+  GrauVia.GrauVia dificuldade_artificial_em_livre = 18 [(aresta.texto_na_ui) = "Dificuldade do lance artificial em livre", (aresta.avancado) = true];
 
   // Grau de exposição da via.
-  GrauExposicao.GrauExposicao exposicao = 3 [(aresta.texto_na_ui) = "Grau de Exposição"];
+  GrauExposicao.GrauExposicao exposicao = 3 [(aresta.texto_na_ui) = "Grau de Exposição", (aresta.avancado) = true];
 
   // Tipo de parede predominante (negativo, vertical, positivo).
-  TipoParede.TipoParede tipo_parede = 4 [(aresta.texto_na_ui) = "Tipo de Parede"];
+  TipoParede.TipoParede tipo_parede = 4 [(aresta.texto_na_ui) = "Tipo de Parede", (aresta.avancado) = true];
 
   // Extensão da via, em metros.
   int32 extensao = 5 [(aresta.texto_na_ui) = "Extensão"];
   
   // Número de proteções fixas intermediárias (chapeletas) na via.
-  int32 quantidade_protecoes_intermediarias = 6 [(aresta.texto_na_ui) = "Quantidade de Proteções Intermediárias"];
+  int32 quantidade_protecoes_intermediarias = 6 [(aresta.texto_na_ui) = "Quantidade de Proteções Intermediárias", (aresta.avancado) = true];
 
   // Número de proteções fixas na parada da via.
-  int32 quantidade_protecoes_parada = 7 [(aresta.texto_na_ui) = "Quantidade de Proteções na Parada"];
+  int32 quantidade_protecoes_parada = 7 [(aresta.texto_na_ui) = "Quantidade de Proteções na Parada", (aresta.avancado) = true];
 
   // Tipo de proteções móveis a serem usadas na via. Descrição textual.
   string protecoes_moveis = 8 [(aresta.texto_na_ui) = "Tipo de Proteções Móveis"];
   
   // TODO: Tipo da parada (ex: "Corrente", "Pinus", "Parabolt Duplo").
-  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem"];
+  string tipo_ancoragem = 9 [(aresta.texto_na_ui) = "Tipo de Ancoragem", (aresta.avancado) = true];
   
   // Nomes dos conquistadores.
   repeated string conquistadores = 10;
@@ -994,16 +1002,16 @@ message ViaMovel {
   string data_abertura = 11 [(aresta.texto_na_ui) = "Data de Abertura"];
 
   // Data da última manutenção da via (ex: "1997" ou "1997-06" ou "1997-06-30").
-  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  string data_manutencao = 12 [(aresta.texto_na_ui) = "Data da Última Manutenção", (aresta.avancado) = true];
   
   // Dicas de segurança, movimentação chave (beta) e equipamentos recomendados.
   string descricao = 13 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
   
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  string url_video_beta = 14 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO, (aresta.avancado) = true];
   
   // Chave Pix do mantenedor ou conquistador específico desta via.
-  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 15 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
   reserved 21;
 }
@@ -1039,10 +1047,10 @@ message Boulder {
   string descricao = 6 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 7 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta"];
+  string url_video_beta = 7 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.avancado) = true];
 
   // Chave Pix do mantenedor ou conquistador específico deste boulder.
-  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 8 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
   reserved 12;
 }
@@ -1090,13 +1098,13 @@ message ViaMultiplasEnfiadas {
   int32 comprimento_total = 9;
 
   // Comprimento da maior enfiada da via.
-  int32 comprimento_maior_enfiada = 10;
+  int32 comprimento_maior_enfiada = 10 [(aresta.avancado) = true];
 
   // Número de costuras a levar para proteções intermediárias por enfiada.
-  int32 quantidade_costuras_intermediarias = 22 [(aresta.texto_na_ui) = "Quantidade de Costuras Intermediárias"];
+  int32 quantidade_costuras_intermediarias = 22 [(aresta.texto_na_ui) = "Quantidade de Costuras Intermediárias", (aresta.avancado) = true];
 
   // Número de equipamentos a levar para proteções nas paradas da via.
-  int32 quantidade_equipamentos_parada = 23 [(aresta.texto_na_ui) = "Quantidade de Equipamentos para Parada"];
+  int32 quantidade_equipamentos_parada = 23 [(aresta.texto_na_ui) = "Quantidade de Equipamentos para Parada", (aresta.avancado) = true];
   
 
   // Se a via é toda fixa, mista ou toda em móvel.
@@ -1109,7 +1117,7 @@ message ViaMultiplasEnfiadas {
   TipoViaMultiplasEnfiadas tipo_via_multiplas_enfiadas = 11;
 
   // Descrição do rack/equipamentos móveis recomendados (ex: "Camalots duplos #0.3-3, 1 jogo stoppers").
-  string equipamento_recomendado = 12;
+  string equipamento_recomendado = 12 [(aresta.avancado) = true];
 
   // Detalhamento de cada enfiada da via, se houver.
   repeated Escalada enfiadas = 13;
@@ -1124,13 +1132,13 @@ message ViaMultiplasEnfiadas {
   string data_abertura = 16 [(aresta.texto_na_ui) = "Data de Abertura"];
 
   // Data da última manutenção da via.
-  string data_manutencao = 17 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  string data_manutencao = 17 [(aresta.texto_na_ui) = "Data da Última Manutenção", (aresta.avancado) = true];
 
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 18 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta"];
+  string url_video_beta = 18 [(aresta.tipo_conteudo) = CAMINHO, (aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.avancado) = true];
 
   // Chave Pix do mantenedor ou conquistador específico desta via.
-  string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 19 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
   reserved 26;
 }
@@ -1157,7 +1165,7 @@ message Highline {
   int32 altura = 3;
 
   // Exposição do highline.
-  int32 exposicao = 4 [(aresta.texto_na_ui) = "Exposição"];
+  int32 exposicao = 4 [(aresta.texto_na_ui) = "Exposição", (aresta.avancado) = true];
 
   // Nome dos conquistadores.
   repeated string conquistadores = 5;
@@ -1166,22 +1174,22 @@ message Highline {
   string data_abertura = 6 [(aresta.texto_na_ui) = "Data de Abertura"];
 
   // Data da última manutenção do highline.
-  string data_manutencao = 7 [(aresta.texto_na_ui) = "Data da Última Manutenção"];
+  string data_manutencao = 7 [(aresta.texto_na_ui) = "Data da Última Manutenção", (aresta.avancado) = true];
 
   // Descrição do acesso do highline.
-  string descricao_acesso = 8 [(aresta.texto_na_ui) = "Descrição do Acesso"];
+  string descricao_acesso = 8 [(aresta.texto_na_ui) = "Descrição do Acesso", (aresta.avancado) = true];
 
   // Descrição da ancoragem do highline.
-  string descricao_ancoragem = 9 [(aresta.texto_na_ui) = "Descrição da Ancoragem"];
+  string descricao_ancoragem = 9 [(aresta.texto_na_ui) = "Descrição da Ancoragem", (aresta.avancado) = true];
 
   // Outras descrições do highline.
   string descricao = 10 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
   // URL local do arquivo .mp4 para o vídeo demonstrativo do beta (se baixado via Wi-Fi).
-  string url_video_beta = 11 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO];
+  string url_video_beta = 11 [(aresta.texto_na_ui) = "URL do Vídeo do Beta", (aresta.tipo_conteudo) = CAMINHO, (aresta.avancado) = true];
 
   // Chave Pix do mantenedor ou conquistador específico deste highline.
-  string chave_pix_manutencao = 12 [(aresta.texto_na_ui) = "Chave Pix para Manutenção"];
+  string chave_pix_manutencao = 12 [(aresta.texto_na_ui) = "Chave Pix para Manutenção", (aresta.avancado) = true];
 
   reserved 16;
 }
