@@ -474,6 +474,14 @@ message ArquivoGrupo {
 message Grupo {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
 
+  // Foto de capa do grupo.
+  string caminho_imagem_capa = 5 [
+    (aresta.tipo_conteudo) = CAMINHO,
+    (aresta.mime_type) = "image/webp",
+    (aresta.formato_na_ui) = IMAGEM,
+    (aresta.texto_na_ui) = "Foto de Capa"
+  ];
+
   // Nome do grupo (ex: Vale Oculto).
   string nome = 1 [(aresta.titulo_na_ui) = true];
 
@@ -504,6 +512,14 @@ message Grupo {
 // NEXT_ID: 16
 message Setor {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Foto de capa do setor.
+  string caminho_imagem_capa = 5 [
+    (aresta.tipo_conteudo) = CAMINHO,
+    (aresta.mime_type) = "image/webp",
+    (aresta.formato_na_ui) = IMAGEM,
+    (aresta.texto_na_ui) = "Foto de Capa"
+  ];
 
   // Nome do setor (ex: Savassinha).
   string nome = 1 [(aresta.titulo_na_ui) = true];

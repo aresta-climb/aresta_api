@@ -118,3 +118,27 @@ def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto():
     assert "mapas" not in nomes_campos
 
 
+def test_setor_e_grupo_possuem_campo_caminho_imagem_capa():
+    """Valida que Setor e Grupo possuem o campo caminho_imagem_capa com opções de UI e serialização."""
+    for desc_msg, nome in [(croqui_pb2.Setor.DESCRIPTOR, "Setor"), (croqui_pb2.Grupo.DESCRIPTOR, "Grupo")]:
+        assert "caminho_imagem_capa" in desc_msg.fields_by_name, f"O campo caminho_imagem_capa não existe em {nome}"
+        campo = desc_msg.fields_by_name["caminho_imagem_capa"]
+        opcoes = campo.GetOptions()
+        assert opcoes.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.IMAGEM
+        assert opcoes.Extensions[croqui_pb2.tipo_conteudo] == croqui_pb2.TipoConteudo.CAMINHO
+        assert opcoes.Extensions[croqui_pb2.mime_type] == "image/webp"
+        assert opcoes.Extensions[croqui_pb2.texto_na_ui] == "Foto de Capa"
+
+    setor = croqui_pb2.Setor(nome="Setor Teste", caminho_imagem_capa="imagens/capa_setor.webp")
+    dados_setor = setor.SerializeToString()
+    recuperado_setor = croqui_pb2.Setor()
+    recuperado_setor.ParseFromString(dados_setor)
+    assert recuperado_setor.caminho_imagem_capa == "imagens/capa_setor.webp"
+
+    grupo = croqui_pb2.Grupo(nome="Grupo Teste", caminho_imagem_capa="imagens/capa_grupo.webp")
+    dados_grupo = grupo.SerializeToString()
+    recuperado_grupo = croqui_pb2.Grupo()
+    recuperado_grupo.ParseFromString(dados_grupo)
+    assert recuperado_grupo.caminho_imagem_capa == "imagens/capa_grupo.webp"
+
+

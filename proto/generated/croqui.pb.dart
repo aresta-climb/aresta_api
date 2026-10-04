@@ -1841,6 +1841,7 @@ class Grupo extends $pb.GeneratedMessage {
     $core.String? descricao,
     $core.Iterable<Mapa>? mapas,
     $core.Iterable<ArquivoSetor>? setores,
+    $core.String? caminhoImagemCapa,
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
     PrecomputadosGrupo? precomputados,
@@ -1850,6 +1851,7 @@ class Grupo extends $pb.GeneratedMessage {
     if (descricao != null) result.descricao = descricao;
     if (mapas != null) result.mapas.addAll(mapas);
     if (setores != null) result.setores.addAll(setores);
+    if (caminhoImagemCapa != null) result.caminhoImagemCapa = caminhoImagemCapa;
     if (localizacaoEstacionamento != null)
       result.localizacaoEstacionamento = localizacaoEstacionamento;
     if (localizacaoEscalada != null)
@@ -1877,6 +1879,7 @@ class Grupo extends $pb.GeneratedMessage {
         subBuilder: Mapa.$_createMessage)
     ..pPM<ArquivoSetor>(4, _omitFieldNames ? '' : 'setores',
         subBuilder: ArquivoSetor.$_createMessage)
+    ..aOS(5, _omitFieldNames ? '' : 'caminhoImagemCapa')
     ..aOM<Coordenada>(6, _omitFieldNames ? '' : 'localizacaoEstacionamento',
         subBuilder: Coordenada.$_createMessage)
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
@@ -1932,41 +1935,51 @@ class Grupo extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $pb.PbList<ArquivoSetor> get setores => $_getList(3);
 
+  /// Foto de capa do grupo.
+  @$pb.TagNumber(5)
+  $core.String get caminhoImagemCapa => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set caminhoImagemCapa($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCaminhoImagemCapa() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCaminhoImagemCapa() => $_clearField(5);
+
   /// Coordenada do estacionamento.
   @$pb.TagNumber(6)
-  Coordenada get localizacaoEstacionamento => $_getN(4);
+  Coordenada get localizacaoEstacionamento => $_getN(5);
   @$pb.TagNumber(6)
   set localizacaoEstacionamento(Coordenada value) => $_setField(6, value);
   @$pb.TagNumber(6)
-  $core.bool hasLocalizacaoEstacionamento() => $_has(4);
+  $core.bool hasLocalizacaoEstacionamento() => $_has(5);
   @$pb.TagNumber(6)
   void clearLocalizacaoEstacionamento() => $_clearField(6);
   @$pb.TagNumber(6)
-  Coordenada ensureLocalizacaoEstacionamento() => $_ensure(4);
+  Coordenada ensureLocalizacaoEstacionamento() => $_ensure(5);
 
   /// Coordenada da escalada do setor.
   @$pb.TagNumber(7)
-  Coordenada get localizacaoEscalada => $_getN(5);
+  Coordenada get localizacaoEscalada => $_getN(6);
   @$pb.TagNumber(7)
   set localizacaoEscalada(Coordenada value) => $_setField(7, value);
   @$pb.TagNumber(7)
-  $core.bool hasLocalizacaoEscalada() => $_has(5);
+  $core.bool hasLocalizacaoEscalada() => $_has(6);
   @$pb.TagNumber(7)
   void clearLocalizacaoEscalada() => $_clearField(7);
   @$pb.TagNumber(7)
-  Coordenada ensureLocalizacaoEscalada() => $_ensure(5);
+  Coordenada ensureLocalizacaoEscalada() => $_ensure(6);
 
   /// Estatísticas pré-computadas do grupo, geradas na compilação.
   @$pb.TagNumber(9)
-  PrecomputadosGrupo get precomputados => $_getN(6);
+  PrecomputadosGrupo get precomputados => $_getN(7);
   @$pb.TagNumber(9)
   set precomputados(PrecomputadosGrupo value) => $_setField(9, value);
   @$pb.TagNumber(9)
-  $core.bool hasPrecomputados() => $_has(6);
+  $core.bool hasPrecomputados() => $_has(7);
   @$pb.TagNumber(9)
   void clearPrecomputados() => $_clearField(9);
   @$pb.TagNumber(9)
-  PrecomputadosGrupo ensurePrecomputados() => $_ensure(6);
+  PrecomputadosGrupo ensurePrecomputados() => $_ensure(7);
 }
 
 /// Representa uma parede ou setor específico dentro de um Pico.
@@ -1978,6 +1991,7 @@ class Setor extends $pb.GeneratedMessage {
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
     $core.Iterable<Trilha>? trilhas,
+    $core.String? caminhoImagemCapa,
     $core.bool? sinalDeCelular,
     $core.bool? amigavelACriancas,
     $core.bool? amigavelABebes,
@@ -1993,6 +2007,7 @@ class Setor extends $pb.GeneratedMessage {
     if (localizacaoEscalada != null)
       result.localizacaoEscalada = localizacaoEscalada;
     if (trilhas != null) result.trilhas.addAll(trilhas);
+    if (caminhoImagemCapa != null) result.caminhoImagemCapa = caminhoImagemCapa;
     if (sinalDeCelular != null) result.sinalDeCelular = sinalDeCelular;
     if (amigavelACriancas != null) result.amigavelACriancas = amigavelACriancas;
     if (amigavelABebes != null) result.amigavelABebes = amigavelABebes;
@@ -2023,6 +2038,7 @@ class Setor extends $pb.GeneratedMessage {
         subBuilder: Coordenada.$_createMessage)
     ..pPM<Trilha>(4, _omitFieldNames ? '' : 'trilhas',
         subBuilder: Trilha.$_createMessage)
+    ..aOS(5, _omitFieldNames ? '' : 'caminhoImagemCapa')
     ..aOB(6, _omitFieldNames ? '' : 'sinalDeCelular')
     ..aOB(7, _omitFieldNames ? '' : 'amigavelACriancas')
     ..aOB(8, _omitFieldNames ? '' : 'amigavelABebes')
@@ -2093,65 +2109,75 @@ class Setor extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $pb.PbList<Trilha> get trilhas => $_getList(3);
 
+  /// Foto de capa do setor.
+  @$pb.TagNumber(5)
+  $core.String get caminhoImagemCapa => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set caminhoImagemCapa($core.String value) => $_setString(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCaminhoImagemCapa() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCaminhoImagemCapa() => $_clearField(5);
+
   /// Possível sinal de celular no setor.
   @$pb.TagNumber(6)
-  $core.bool get sinalDeCelular => $_getBF(4);
+  $core.bool get sinalDeCelular => $_getBF(5);
   @$pb.TagNumber(6)
-  set sinalDeCelular($core.bool value) => $_setBool(4, value);
+  set sinalDeCelular($core.bool value) => $_setBool(5, value);
   @$pb.TagNumber(6)
-  $core.bool hasSinalDeCelular() => $_has(4);
+  $core.bool hasSinalDeCelular() => $_has(5);
   @$pb.TagNumber(6)
   void clearSinalDeCelular() => $_clearField(6);
 
   /// Setor e acesso favorável a crianças.
   @$pb.TagNumber(7)
-  $core.bool get amigavelACriancas => $_getBF(5);
+  $core.bool get amigavelACriancas => $_getBF(6);
   @$pb.TagNumber(7)
-  set amigavelACriancas($core.bool value) => $_setBool(5, value);
+  set amigavelACriancas($core.bool value) => $_setBool(6, value);
   @$pb.TagNumber(7)
-  $core.bool hasAmigavelACriancas() => $_has(5);
+  $core.bool hasAmigavelACriancas() => $_has(6);
   @$pb.TagNumber(7)
   void clearAmigavelACriancas() => $_clearField(7);
 
   /// Setor e acesso favorável a bebês.
   @$pb.TagNumber(8)
-  $core.bool get amigavelABebes => $_getBF(6);
+  $core.bool get amigavelABebes => $_getBF(7);
   @$pb.TagNumber(8)
-  set amigavelABebes($core.bool value) => $_setBool(6, value);
+  set amigavelABebes($core.bool value) => $_setBool(7, value);
   @$pb.TagNumber(8)
-  $core.bool hasAmigavelABebes() => $_has(6);
+  $core.bool hasAmigavelABebes() => $_has(7);
   @$pb.TagNumber(8)
   void clearAmigavelABebes() => $_clearField(8);
 
   /// Características da escalada no setor, insolação, qualidade da rocha, etc.
   @$pb.TagNumber(9)
-  $core.String get descricao => $_getSZ(7);
+  $core.String get descricao => $_getSZ(8);
   @$pb.TagNumber(9)
-  set descricao($core.String value) => $_setString(7, value);
+  set descricao($core.String value) => $_setString(8, value);
   @$pb.TagNumber(9)
-  $core.bool hasDescricao() => $_has(7);
+  $core.bool hasDescricao() => $_has(8);
   @$pb.TagNumber(9)
   void clearDescricao() => $_clearField(9);
 
   /// Todas as escaladas deste setor.
   @$pb.TagNumber(11)
-  $pb.PbList<Escalada> get escaladas => $_getList(8);
+  $pb.PbList<Escalada> get escaladas => $_getList(9);
 
   /// Mapas do setor.
   @$pb.TagNumber(13)
-  $pb.PbList<Mapa> get mapas => $_getList(9);
+  $pb.PbList<Mapa> get mapas => $_getList(10);
 
   /// Estatísticas pré-computadas do setor, geradas na compilação.
   @$pb.TagNumber(15)
-  PrecomputadosSetor get precomputados => $_getN(10);
+  PrecomputadosSetor get precomputados => $_getN(11);
   @$pb.TagNumber(15)
   set precomputados(PrecomputadosSetor value) => $_setField(15, value);
   @$pb.TagNumber(15)
-  $core.bool hasPrecomputados() => $_has(10);
+  $core.bool hasPrecomputados() => $_has(11);
   @$pb.TagNumber(15)
   void clearPrecomputados() => $_clearField(15);
   @$pb.TagNumber(15)
-  PrecomputadosSetor ensurePrecomputados() => $_ensure(10);
+  PrecomputadosSetor ensurePrecomputados() => $_ensure(11);
 }
 
 enum Mapa_PontoDeInteresse_TipoArea {

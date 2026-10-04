@@ -839,6 +839,7 @@ class Grupo(_message.Message):
 
     DESCRIPTOR: _descriptor.Descriptor
 
+    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
     DESCRICAO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESTACIONAMENTO_FIELD_NUMBER: _builtins.int
@@ -846,6 +847,8 @@ class Grupo(_message.Message):
     MAPAS_FIELD_NUMBER: _builtins.int
     SETORES_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
+    caminho_imagem_capa: _builtins.str
+    """Foto de capa do grupo."""
     nome: _builtins.str
     """Nome do grupo (ex: Vale Oculto)."""
     descricao: _builtins.str
@@ -873,6 +876,7 @@ class Grupo(_message.Message):
     def __init__(
         self,
         *,
+        caminho_imagem_capa: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
         descricao: _builtins.str | None = ...,
         localizacao_estacionamento: Global___Coordenada | None = ...,
@@ -881,9 +885,9 @@ class Grupo(_message.Message):
         setores: _abc.Iterable[Global___ArquivoSetor] | None = ...,
         precomputados: Global___PrecomputadosGrupo | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -898,6 +902,7 @@ class Setor(_message.Message):
 
     DESCRIPTOR: _descriptor.Descriptor
 
+    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESTACIONAMENTO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESCALADA_FIELD_NUMBER: _builtins.int
@@ -909,6 +914,8 @@ class Setor(_message.Message):
     MAPAS_FIELD_NUMBER: _builtins.int
     ESCALADAS_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
+    caminho_imagem_capa: _builtins.str
+    """Foto de capa do setor."""
     nome: _builtins.str
     """Nome do setor (ex: Savassinha)."""
     sinal_de_celular: _builtins.bool
@@ -946,6 +953,7 @@ class Setor(_message.Message):
     def __init__(
         self,
         *,
+        caminho_imagem_capa: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
         localizacao_estacionamento: Global___Coordenada | None = ...,
         localizacao_escalada: Global___Coordenada | None = ...,
@@ -958,9 +966,9 @@ class Setor(_message.Message):
         escaladas: _abc.Iterable[Global___Escalada] | None = ...,
         precomputados: Global___PrecomputadosSetor | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
