@@ -157,10 +157,13 @@ extend google.protobuf.EnumValueOptions {
 }
 
 // Representa um croqui de escalada, que pode incluir um ou mais picos.
-// NEXT_ID: 17
+// NEXT_ID: 18
 message Croqui {
   // Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande".
   string id = 1 [(aresta.avancado) = true];
+
+  // Identificador único descentralizado permanente (NanoID 14c) do croqui.
+  string uid = 17 [(aresta.formato_na_ui) = INVISIVEL];
 
   // Nome oficial do croqui.
   string nome = 2 [(aresta.titulo_na_ui) = true];
@@ -251,6 +254,9 @@ message Croqui {
 // Representa um botão que leva a alguma outra parte do croqui.
 message Botao {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Identificador único descentralizado permanente (NanoID 14c) do botão.
+  string uid = 3 [(aresta.formato_na_ui) = INVISIVEL];
 
   // Texto que aparecerá no botão.
   string texto = 1;
@@ -474,6 +480,12 @@ message ArquivoGrupo {
 message Grupo {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
 
+  // Identificador único descentralizado permanente (NanoID 14c) do grupo.
+  string uid = 10 [(aresta.formato_na_ui) = INVISIVEL];
+
+  // Nome do grupo (ex: Vale Oculto).
+  string nome = 1 [(aresta.titulo_na_ui) = true];
+
   // Foto de capa do grupo.
   string caminho_imagem_capa = 5 [
     (aresta.tipo_conteudo) = CAMINHO,
@@ -482,12 +494,8 @@ message Grupo {
     (aresta.texto_na_ui) = "Foto de Capa"
   ];
 
-  // Nome do grupo (ex: Vale Oculto).
-  string nome = 1 [(aresta.titulo_na_ui) = true];
-
   // Características do grupo, acesso, etc.
   string descricao = 2 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
-
 
   // Coordenada do estacionamento.
   Coordenada localizacao_estacionamento = 6 [(aresta.texto_na_ui) = "Localização Estacionamento"];
@@ -509,9 +517,15 @@ message Grupo {
 
 // Representa uma parede ou setor específico dentro de um Pico.
 // Para boulders, isso costuma ser o bloco.
-// NEXT_ID: 16
+// NEXT_ID: 17
 message Setor {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Identificador único descentralizado permanente (NanoID 14c) do setor.
+  string uid = 16 [(aresta.formato_na_ui) = INVISIVEL];
+
+  // Nome do setor (ex: Savassinha).
+  string nome = 1 [(aresta.titulo_na_ui) = true];
 
   // Foto de capa do setor.
   string caminho_imagem_capa = 5 [
@@ -521,8 +535,8 @@ message Setor {
     (aresta.texto_na_ui) = "Foto de Capa"
   ];
 
-  // Nome do setor (ex: Savassinha).
-  string nome = 1 [(aresta.titulo_na_ui) = true];
+  // Características da escalada no setor, insolação, qualidade da rocha, etc.
+  string descricao = 9 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
 
   // Coordenada do estacionamento.
   Coordenada localizacao_estacionamento = 2 [(aresta.texto_na_ui) = "Localização Estacionamento"];
@@ -559,10 +573,6 @@ message Setor {
     (aresta.booleano_texto_indefinido) = "Não informado",
     (aresta.avancado) = true
   ];
-
-  // Características da escalada no setor, insolação, qualidade da rocha, etc.
-  string descricao = 9 [(aresta.texto_na_ui) = "Descrição", (aresta.conteudo_markdown) = true];
-
   
   // Mapas do setor.
   repeated Mapa mapas = 13;
@@ -594,11 +604,17 @@ message Mapa {
   message PontoDeInteresse {
     option (aresta.mensagem_formato_na_ui) = INLINE;
 
-    // ID do ponto de interesse no mapa.
-    string id = 1;
+    // Identificador único descentralizado permanente (NanoID 14c) do ponto de interesse.
+    string uid = 13 [(aresta.formato_na_ui) = INVISIVEL];
 
-    // Label do ponto de interesse que estava escrita no mapa.
-    string label = 2;
+    // ID do ponto de interesse no mapa. Deprecado em favor de uid.
+    string id = 1 [deprecated = true];
+
+    // Label do ponto de interesse que estava escrita no mapa. Deprecado em favor de rotulo.
+    string label = 2 [deprecated = true];
+
+    // Rótulo visual do ponto de interesse desenhado na rocha (ex: "11", "E1").
+    string rotulo = 12 [(aresta.texto_na_ui) = "Rótulo na Imagem"];
 
     // Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
     // Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
@@ -657,32 +673,31 @@ message Mapa {
   message Referencia {
     option (aresta.mensagem_formato_na_ui) = INLINE;
 
+    // UID da entidade alvo referenciada (Escalada, Setor ou Grupo).
+    string alvo_uid = 7 [(aresta.texto_na_ui) = "UID do Alvo", (aresta.formato_na_ui) = INVISIVEL];
+
+    // Lista ordenada de UIDs dos pontos de interesse que compõem o traçado da escalada no mapa.
+    repeated string pontos_uids = 8 [(aresta.texto_na_ui) = "UIDs dos Pontos", (aresta.formato_na_ui) = INVISIVEL];
+
     // IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
     // A ordem importa: o primeiro ID é o início, os intermediários desenham o trajeto, e o último é o
-    // fim.
-    // Remove a limitação legada de apenas inicio, meio e fim.
-    repeated string ids = 1;
+    // fim. Deprecado em favor de pontos_uids.
+    repeated string ids = 1 [deprecated = true];
 
-    // Identificação do Grupo alvo. Se preenchido, um clique neste desenho deverá referenciar/abrir o
-    // grupo especificado.
-    // Caso seja uma referência de setor no mesmo grupo, não precisa mencionar.
-    string grupo = 2;
+    // Identificação do Grupo alvo. Deprecado em favor de alvo_uid.
+    string grupo = 2 [deprecated = true];
 
-    // Identificação do Setor alvo. Útil para desenhar escaladas pertencentes a um setor vizinho, 
-    // ou para desenhar um botão/área de clique que abra outro Setor.
-    // Caso for uma escalada no mesmo setor, não precisa mencionar.
-    string setor = 3;
+    // Identificação do Setor alvo. Deprecado em favor de alvo_uid.
+    string setor = 3 [deprecated = true];
 
-    // Identificação da Escalada (via, boulder, highline) alvo. 
-    // Escopo implícito: se `setor` não for provido, assume-se que a escalada pertence ao mesmo Setor 
-    // onde o Mapa atual está aninhado.
-    string escalada = 4;
+    // Identificação da Escalada (via, boulder, highline) alvo. Deprecado em favor de alvo_uid.
+    string escalada = 4 [deprecated = true];
     
-    // Opcional: Se o Grupo ou Setor alvo possuir múltiplos mapas, define o índice do mapa a ser focado.
-    int32 indice_mapa_alvo = 5;
-
     // Ajustes finos opcionais de visualização ao focar nesta referência.
     AjusteDeCamera ajuste_de_camera = 6;
+
+    reserved 5;
+    reserved indice_mapa_alvo;
   }
 
   // Lista de referências visuais que conectam os pontos de interesse no mapa às entidades lógicas do
@@ -893,6 +908,10 @@ message MarcadorCompilado {
 // Representa uma escalada de qualquer tipo.
 message Escalada {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
+
+  // Identificador único descentralizado permanente (NanoID 14c) da escalada.
+  string uid = 8 [(aresta.formato_na_ui) = INVISIVEL];
+
   oneof tipo {
     ViaEsportiva via_esportiva = 1;
     ViaMovel via_movel = 2 [(aresta.texto_na_ui) = "Via Móvel"];
@@ -913,7 +932,6 @@ message Escalada {
 message ViaEsportiva {
   // Nome da via.
   string nome = 1;
-
 
   // Se é um destaque para o setor.
   bool destaque = 18 [

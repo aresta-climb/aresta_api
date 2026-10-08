@@ -44,6 +44,9 @@ message ResumoCroqui {
     // Identificador único do croqui.
     string id = 1;
 
+    // Identificador único descentralizado permanente (NanoID 14c) do croqui.
+    string croqui_uid = 12;
+
     // Nome do local do croqui.
     string nome = 2;
 

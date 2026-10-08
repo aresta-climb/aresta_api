@@ -23,6 +23,9 @@ message CroquiExperimental {
   // Breve resumo ou objetivo desta edição (ex: "Corrigindo graduação do Setor 1").
   string resumo_edicao = 4;
 
+  // Identificador único descentralizado permanente (NanoID 14c) do croqui.
+  string croqui_uid = 10;
+
   // ID original do croqui antes de qualquer renomeação.
   // Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
   string id_original = 5;

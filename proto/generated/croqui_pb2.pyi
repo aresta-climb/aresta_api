@@ -22,6 +22,11 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import TypeAlias as _TypeAlias, Never as _Never
 
+if sys.version_info >= (3, 13):
+    from warnings import deprecated as _deprecated
+else:
+    from typing_extensions import deprecated as _deprecated
+
 DESCRIPTOR: _descriptor.FileDescriptor
 
 @_typing.final
@@ -227,7 +232,7 @@ Global___MensagemFormatoUi: _TypeAlias = MensagemFormatoUi  # noqa: Y015
 @_typing.final
 class Croqui(_message.Message):
     """Representa um croqui de escalada, que pode incluir um ou mais picos.
-    NEXT_ID: 17
+    NEXT_ID: 18
     """
 
     DESCRIPTOR: _descriptor.Descriptor
@@ -276,6 +281,7 @@ class Croqui(_message.Message):
         def WhichOneof(self, oneof_group: _Never) -> None: ...
 
     ID_FIELD_NUMBER: _builtins.int
+    UID_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
     DESCRICAO_FIELD_NUMBER: _builtins.int
     CREDITOS_FIELD_NUMBER: _builtins.int
@@ -290,6 +296,8 @@ class Croqui(_message.Message):
     PUBLICAR_CROQUI_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     """Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande"."""
+    uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do croqui."""
     nome: _builtins.str
     """Nome oficial do croqui."""
     descricao: _builtins.str
@@ -333,6 +341,7 @@ class Croqui(_message.Message):
         self,
         *,
         id: _builtins.str | None = ...,
+        uid: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
         descricao: _builtins.str | None = ...,
         creditos: _abc.Iterable[_builtins.str] | None = ...,
@@ -346,9 +355,9 @@ class Croqui(_message.Message):
         ultima_migracao: _builtins.int | None = ...,
         publicar_croqui: _builtins.bool | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -360,8 +369,11 @@ class Botao(_message.Message):
 
     DESCRIPTOR: _descriptor.Descriptor
 
+    UID_FIELD_NUMBER: _builtins.int
     TEXTO_FIELD_NUMBER: _builtins.int
     DESTINO_FIELD_NUMBER: _builtins.int
+    uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do botão."""
     texto: _builtins.str
     """Texto que aparecerá no botão."""
     @_builtins.property
@@ -371,12 +383,13 @@ class Botao(_message.Message):
     def __init__(
         self,
         *,
+        uid: _builtins.str | None = ...,
         texto: _builtins.str | None = ...,
         destino: Global___DestinoBotao | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["destino", b"destino", "texto", b"texto"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["destino", b"destino", "texto", b"texto", "uid", b"uid"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["destino", b"destino", "texto", b"texto"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["destino", b"destino", "texto", b"texto", "uid", b"uid"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -839,18 +852,21 @@ class Grupo(_message.Message):
 
     DESCRIPTOR: _descriptor.Descriptor
 
-    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
+    UID_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
+    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
     DESCRICAO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESTACIONAMENTO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESCALADA_FIELD_NUMBER: _builtins.int
     MAPAS_FIELD_NUMBER: _builtins.int
     SETORES_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
-    caminho_imagem_capa: _builtins.str
-    """Foto de capa do grupo."""
+    uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do grupo."""
     nome: _builtins.str
     """Nome do grupo (ex: Vale Oculto)."""
+    caminho_imagem_capa: _builtins.str
+    """Foto de capa do grupo."""
     descricao: _builtins.str
     """Características do grupo, acesso, etc."""
     @_builtins.property
@@ -876,8 +892,9 @@ class Grupo(_message.Message):
     def __init__(
         self,
         *,
-        caminho_imagem_capa: _builtins.str | None = ...,
+        uid: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
+        caminho_imagem_capa: _builtins.str | None = ...,
         descricao: _builtins.str | None = ...,
         localizacao_estacionamento: Global___Coordenada | None = ...,
         localizacao_escalada: Global___Coordenada | None = ...,
@@ -885,9 +902,9 @@ class Grupo(_message.Message):
         setores: _abc.Iterable[Global___ArquivoSetor] | None = ...,
         precomputados: Global___PrecomputadosGrupo | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores", "uid", b"uid"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "setores", b"setores", "uid", b"uid"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -897,35 +914,38 @@ Global___Grupo: _TypeAlias = Grupo  # noqa: Y015
 class Setor(_message.Message):
     """Representa uma parede ou setor específico dentro de um Pico.
     Para boulders, isso costuma ser o bloco.
-    NEXT_ID: 16
+    NEXT_ID: 17
     """
 
     DESCRIPTOR: _descriptor.Descriptor
 
-    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
+    UID_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
+    CAMINHO_IMAGEM_CAPA_FIELD_NUMBER: _builtins.int
+    DESCRICAO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESTACIONAMENTO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_ESCALADA_FIELD_NUMBER: _builtins.int
     TRILHAS_FIELD_NUMBER: _builtins.int
     SINAL_DE_CELULAR_FIELD_NUMBER: _builtins.int
     AMIGAVEL_A_CRIANCAS_FIELD_NUMBER: _builtins.int
     AMIGAVEL_A_BEBES_FIELD_NUMBER: _builtins.int
-    DESCRICAO_FIELD_NUMBER: _builtins.int
     MAPAS_FIELD_NUMBER: _builtins.int
     ESCALADAS_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
-    caminho_imagem_capa: _builtins.str
-    """Foto de capa do setor."""
+    uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do setor."""
     nome: _builtins.str
     """Nome do setor (ex: Savassinha)."""
+    caminho_imagem_capa: _builtins.str
+    """Foto de capa do setor."""
+    descricao: _builtins.str
+    """Características da escalada no setor, insolação, qualidade da rocha, etc."""
     sinal_de_celular: _builtins.bool
     """Possível sinal de celular no setor."""
     amigavel_a_criancas: _builtins.bool
     """Setor e acesso favorável a crianças."""
     amigavel_a_bebes: _builtins.bool
     """Setor e acesso favorável a bebês."""
-    descricao: _builtins.str
-    """Características da escalada no setor, insolação, qualidade da rocha, etc."""
     @_builtins.property
     def localizacao_estacionamento(self) -> Global___Coordenada:
         """Coordenada do estacionamento."""
@@ -953,22 +973,23 @@ class Setor(_message.Message):
     def __init__(
         self,
         *,
-        caminho_imagem_capa: _builtins.str | None = ...,
+        uid: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
+        caminho_imagem_capa: _builtins.str | None = ...,
+        descricao: _builtins.str | None = ...,
         localizacao_estacionamento: Global___Coordenada | None = ...,
         localizacao_escalada: Global___Coordenada | None = ...,
         trilhas: _abc.Iterable[Global___Trilha] | None = ...,
         sinal_de_celular: _builtins.bool | None = ...,
         amigavel_a_criancas: _builtins.bool | None = ...,
         amigavel_a_bebes: _builtins.bool | None = ...,
-        descricao: _builtins.str | None = ...,
         mapas: _abc.Iterable[Global___Mapa] | None = ...,
         escaladas: _abc.Iterable[Global___Escalada] | None = ...,
         precomputados: Global___PrecomputadosSetor | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas", "uid", b"uid"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["amigavel_a_bebes", b"amigavel_a_bebes", "amigavel_a_criancas", b"amigavel_a_criancas", "caminho_imagem_capa", b"caminho_imagem_capa", "descricao", b"descricao", "escaladas", b"escaladas", "localizacao_escalada", b"localizacao_escalada", "localizacao_estacionamento", b"localizacao_estacionamento", "mapas", b"mapas", "nome", b"nome", "precomputados", b"precomputados", "sinal_de_celular", b"sinal_de_celular", "trilhas", b"trilhas", "uid", b"uid"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -986,8 +1007,10 @@ class Mapa(_message.Message):
 
         DESCRIPTOR: _descriptor.Descriptor
 
+        UID_FIELD_NUMBER: _builtins.int
         ID_FIELD_NUMBER: _builtins.int
         LABEL_FIELD_NUMBER: _builtins.int
+        ROTULO_FIELD_NUMBER: _builtins.int
         TEXTO_VISIVEL_FIELD_NUMBER: _builtins.int
         COR_FIELD_NUMBER: _builtins.int
         CIRCULO_FIELD_NUMBER: _builtins.int
@@ -995,10 +1018,30 @@ class Mapa(_message.Message):
         RETANGULO_FIELD_NUMBER: _builtins.int
         POLIGONO_FIELD_NUMBER: _builtins.int
         LINHA_FIELD_NUMBER: _builtins.int
-        id: _builtins.str
-        """ID do ponto de interesse no mapa."""
-        label: _builtins.str
-        """Label do ponto de interesse que estava escrita no mapa."""
+        uid: _builtins.str
+        """Identificador único descentralizado permanente (NanoID 14c) do ponto de interesse."""
+        @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def id(self) -> _builtins.str:
+            """ID do ponto de interesse no mapa. Deprecado em favor de uid."""
+
+        @id.setter
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def id(self, value: _builtins.str) -> None:
+            """ID do ponto de interesse no mapa. Deprecado em favor de uid."""
+
+        @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def label(self) -> _builtins.str:
+            """Label do ponto de interesse que estava escrita no mapa. Deprecado em favor de rotulo."""
+
+        @label.setter
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def label(self, value: _builtins.str) -> None:
+            """Label do ponto de interesse que estava escrita no mapa. Deprecado em favor de rotulo."""
+
+        rotulo: _builtins.str
+        """Rótulo visual do ponto de interesse desenhado na rocha (ex: "11", "E1")."""
         texto_visivel: _builtins.str
         """Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
         Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
@@ -1030,8 +1073,10 @@ class Mapa(_message.Message):
         def __init__(
             self,
             *,
+            uid: _builtins.str | None = ...,
             id: _builtins.str | None = ...,
             label: _builtins.str | None = ...,
+            rotulo: _builtins.str | None = ...,
             texto_visivel: _builtins.str | None = ...,
             cor: _builtins.str | None = ...,
             circulo: Global___BoundingCirculo | None = ...,
@@ -1040,9 +1085,9 @@ class Mapa(_message.Message):
             poligono: Global___BoundingPoligono | None = ...,
             linha: Global___LinhaTrajeto | None = ...,
         ) -> None: ...
-        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area"]  # noqa: Y015
+        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
         def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area"]  # noqa: Y015
+        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
         def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
         _WhichOneofReturnType_tipo_area: _TypeAlias = _typing.Literal["circulo", "quadrado", "retangulo", "poligono", "linha"]  # noqa: Y015
         _WhichOneofArgType_tipo_area: _TypeAlias = _typing.Literal["tipo_area", b"tipo_area"]  # noqa: Y015
@@ -1094,35 +1139,55 @@ class Mapa(_message.Message):
 
         DESCRIPTOR: _descriptor.Descriptor
 
+        ALVO_UID_FIELD_NUMBER: _builtins.int
+        PONTOS_UIDS_FIELD_NUMBER: _builtins.int
         IDS_FIELD_NUMBER: _builtins.int
         GRUPO_FIELD_NUMBER: _builtins.int
         SETOR_FIELD_NUMBER: _builtins.int
         ESCALADA_FIELD_NUMBER: _builtins.int
-        INDICE_MAPA_ALVO_FIELD_NUMBER: _builtins.int
         AJUSTE_DE_CAMERA_FIELD_NUMBER: _builtins.int
-        grupo: _builtins.str
-        """Identificação do Grupo alvo. Se preenchido, um clique neste desenho deverá referenciar/abrir o
-        grupo especificado.
-        Caso seja uma referência de setor no mesmo grupo, não precisa mencionar.
-        """
-        setor: _builtins.str
-        """Identificação do Setor alvo. Útil para desenhar escaladas pertencentes a um setor vizinho, 
-        ou para desenhar um botão/área de clique que abra outro Setor.
-        Caso for uma escalada no mesmo setor, não precisa mencionar.
-        """
-        escalada: _builtins.str
-        """Identificação da Escalada (via, boulder, highline) alvo. 
-        Escopo implícito: se `setor` não for provido, assume-se que a escalada pertence ao mesmo Setor 
-        onde o Mapa atual está aninhado.
-        """
-        indice_mapa_alvo: _builtins.int
-        """Opcional: Se o Grupo ou Setor alvo possuir múltiplos mapas, define o índice do mapa a ser focado."""
+        alvo_uid: _builtins.str
+        """UID da entidade alvo referenciada (Escalada, Setor ou Grupo)."""
         @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def grupo(self) -> _builtins.str:
+            """Identificação do Grupo alvo. Deprecado em favor de alvo_uid."""
+
+        @grupo.setter
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def grupo(self, value: _builtins.str) -> None:
+            """Identificação do Grupo alvo. Deprecado em favor de alvo_uid."""
+
+        @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def setor(self) -> _builtins.str:
+            """Identificação do Setor alvo. Deprecado em favor de alvo_uid."""
+
+        @setor.setter
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def setor(self, value: _builtins.str) -> None:
+            """Identificação do Setor alvo. Deprecado em favor de alvo_uid."""
+
+        @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def escalada(self) -> _builtins.str:
+            """Identificação da Escalada (via, boulder, highline) alvo. Deprecado em favor de alvo_uid."""
+
+        @escalada.setter
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
+        def escalada(self, value: _builtins.str) -> None:
+            """Identificação da Escalada (via, boulder, highline) alvo. Deprecado em favor de alvo_uid."""
+
+        @_builtins.property
+        def pontos_uids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+            """Lista ordenada de UIDs dos pontos de interesse que compõem o traçado da escalada no mapa."""
+
+        @_builtins.property
+        @_deprecated("""This field has been marked as deprecated using proto field options.""")
         def ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
             """IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
             A ordem importa: o primeiro ID é o início, os intermediários desenham o trajeto, e o último é o
-            fim.
-            Remove a limitação legada de apenas inicio, meio e fim.
+            fim. Deprecado em favor de pontos_uids.
             """
 
         @_builtins.property
@@ -1132,16 +1197,17 @@ class Mapa(_message.Message):
         def __init__(
             self,
             *,
+            alvo_uid: _builtins.str | None = ...,
+            pontos_uids: _abc.Iterable[_builtins.str] | None = ...,
             ids: _abc.Iterable[_builtins.str] | None = ...,
             grupo: _builtins.str | None = ...,
             setor: _builtins.str | None = ...,
             escalada: _builtins.str | None = ...,
-            indice_mapa_alvo: _builtins.int | None = ...,
             ajuste_de_camera: Global___Mapa.AjusteDeCamera | None = ...,
         ) -> None: ...
-        _HasFieldArgType: _TypeAlias = _typing.Literal["ajuste_de_camera", b"ajuste_de_camera", "escalada", b"escalada", "grupo", b"grupo", "ids", b"ids", "indice_mapa_alvo", b"indice_mapa_alvo", "setor", b"setor"]  # noqa: Y015
+        _HasFieldArgType: _TypeAlias = _typing.Literal["ajuste_de_camera", b"ajuste_de_camera", "alvo_uid", b"alvo_uid", "escalada", b"escalada", "grupo", b"grupo", "ids", b"ids", "pontos_uids", b"pontos_uids", "setor", b"setor"]  # noqa: Y015
         def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-        _ClearFieldArgType: _TypeAlias = _typing.Literal["ajuste_de_camera", b"ajuste_de_camera", "escalada", b"escalada", "grupo", b"grupo", "ids", b"ids", "indice_mapa_alvo", b"indice_mapa_alvo", "setor", b"setor"]  # noqa: Y015
+        _ClearFieldArgType: _TypeAlias = _typing.Literal["ajuste_de_camera", b"ajuste_de_camera", "alvo_uid", b"alvo_uid", "escalada", b"escalada", "grupo", b"grupo", "ids", b"ids", "pontos_uids", b"pontos_uids", "setor", b"setor"]  # noqa: Y015
         def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
         def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -1585,6 +1651,7 @@ class Escalada(_message.Message):
 
     DESCRIPTOR: _descriptor.Descriptor
 
+    UID_FIELD_NUMBER: _builtins.int
     VIA_ESPORTIVA_FIELD_NUMBER: _builtins.int
     VIA_MOVEL_FIELD_NUMBER: _builtins.int
     BOULDER_FIELD_NUMBER: _builtins.int
@@ -1592,6 +1659,8 @@ class Escalada(_message.Message):
     HIGHLINE_FIELD_NUMBER: _builtins.int
     BETAS_FIELD_NUMBER: _builtins.int
     MAPAS_FIELD_NUMBER: _builtins.int
+    uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) da escalada."""
     @_builtins.property
     def via_esportiva(self) -> Global___ViaEsportiva: ...
     @_builtins.property
@@ -1613,6 +1682,7 @@ class Escalada(_message.Message):
     def __init__(
         self,
         *,
+        uid: _builtins.str | None = ...,
         via_esportiva: Global___ViaEsportiva | None = ...,
         via_movel: Global___ViaMovel | None = ...,
         boulder: Global___Boulder | None = ...,
@@ -1621,9 +1691,9 @@ class Escalada(_message.Message):
         betas: _abc.Iterable[_beta_pb2.MidiaBeta] | None = ...,
         mapas: _abc.Iterable[Global___Mapa] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["betas", b"betas", "boulder", b"boulder", "highline", b"highline", "mapas", b"mapas", "tipo", b"tipo", "via_esportiva", b"via_esportiva", "via_movel", b"via_movel", "via_multiplas_enfiadas", b"via_multiplas_enfiadas"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["betas", b"betas", "boulder", b"boulder", "highline", b"highline", "mapas", b"mapas", "tipo", b"tipo", "uid", b"uid", "via_esportiva", b"via_esportiva", "via_movel", b"via_movel", "via_multiplas_enfiadas", b"via_multiplas_enfiadas"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["betas", b"betas", "boulder", b"boulder", "highline", b"highline", "mapas", b"mapas", "tipo", b"tipo", "via_esportiva", b"via_esportiva", "via_movel", b"via_movel", "via_multiplas_enfiadas", b"via_multiplas_enfiadas"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["betas", b"betas", "boulder", b"boulder", "highline", b"highline", "mapas", b"mapas", "tipo", b"tipo", "uid", b"uid", "via_esportiva", b"via_esportiva", "via_movel", b"via_movel", "via_multiplas_enfiadas", b"via_multiplas_enfiadas"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     _WhichOneofReturnType_tipo: _TypeAlias = _typing.Literal["via_esportiva", "via_movel", "boulder", "via_multiplas_enfiadas", "highline"]  # noqa: Y015
     _WhichOneofArgType_tipo: _TypeAlias = _typing.Literal["tipo", b"tipo"]  # noqa: Y015

@@ -83,6 +83,7 @@ const ResumoCroqui$json = {
   '1': 'ResumoCroqui',
   '2': [
     {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'croqui_uid', '3': 12, '4': 1, '5': 9, '10': 'croquiUid'},
     {'1': 'nome', '3': 2, '4': 1, '5': 9, '10': 'nome'},
     {'1': 'descricao', '3': 3, '4': 1, '5': 9, '10': 'descricao'},
     {'1': 'caminho_relativo', '3': 5, '4': 1, '5': 9, '10': 'caminhoRelativo'},
@@ -134,12 +135,13 @@ const ResumoCroqui$json = {
 
 /// Descriptor for `ResumoCroqui`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List resumoCroquiDescriptor = $convert.base64Decode(
-    'CgxSZXN1bW9Dcm9xdWkSDgoCaWQYASABKAlSAmlkEhIKBG5vbWUYAiABKAlSBG5vbWUSHAoJZG'
-    'VzY3JpY2FvGAMgASgJUglkZXNjcmljYW8SKQoQY2FtaW5ob19yZWxhdGl2bxgFIAEoCVIPY2Ft'
-    'aW5ob1JlbGF0aXZvEjQKFmNoZWNrc3VtX3NoYTI1Nl9jcm9xdWkYBiABKAlSFGNoZWNrc3VtU2'
-    'hhMjU2Q3JvcXVpEjoKGWNoZWNrc3VtX3NoYTI1Nl90aHVtYm5haWwYCCABKAlSF2NoZWNrc3Vt'
-    'U2hhMjU2VGh1bWJuYWlsEkUKEHRpbWVzdGFtcF91cGRhdGUYCSABKAsyGi5nb29nbGUucHJvdG'
-    '9idWYuVGltZXN0YW1wUg90aW1lc3RhbXBVcGRhdGUSNAoLbG9jYWxpemFjYW8YCiABKAsyEi5h'
-    'cmVzdGEuQ29vcmRlbmFkYVILbG9jYWxpemFjYW8SRwoNcHJlY29tcHV0YWRvcxgLIAEoCzIhLm'
-    'FyZXN0YS5QcmVjb21wdXRhZG9zUmVzdW1vQ3JvcXVpUg1wcmVjb21wdXRhZG9zSgQIBBAFSgQI'
-    'BxAIUgtkYXRhX3VwZGF0ZVIMbm9tZV9hcnF1aXZv');
+    'CgxSZXN1bW9Dcm9xdWkSDgoCaWQYASABKAlSAmlkEh0KCmNyb3F1aV91aWQYDCABKAlSCWNyb3'
+    'F1aVVpZBISCgRub21lGAIgASgJUgRub21lEhwKCWRlc2NyaWNhbxgDIAEoCVIJZGVzY3JpY2Fv'
+    'EikKEGNhbWluaG9fcmVsYXRpdm8YBSABKAlSD2NhbWluaG9SZWxhdGl2bxI0ChZjaGVja3N1bV'
+    '9zaGEyNTZfY3JvcXVpGAYgASgJUhRjaGVja3N1bVNoYTI1NkNyb3F1aRI6ChljaGVja3N1bV9z'
+    'aGEyNTZfdGh1bWJuYWlsGAggASgJUhdjaGVja3N1bVNoYTI1NlRodW1ibmFpbBJFChB0aW1lc3'
+    'RhbXBfdXBkYXRlGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIPdGltZXN0YW1w'
+    'VXBkYXRlEjQKC2xvY2FsaXphY2FvGAogASgLMhIuYXJlc3RhLkNvb3JkZW5hZGFSC2xvY2FsaX'
+    'phY2FvEkcKDXByZWNvbXB1dGFkb3MYCyABKAsyIS5hcmVzdGEuUHJlY29tcHV0YWRvc1Jlc3Vt'
+    'b0Nyb3F1aVINcHJlY29tcHV0YWRvc0oECAQQBUoECAcQCFILZGF0YV91cGRhdGVSDG5vbWVfYX'
+    'JxdWl2bw==');

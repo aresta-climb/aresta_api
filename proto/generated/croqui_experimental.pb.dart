@@ -30,6 +30,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $core.String? pullRequestBranch,
     $core.String? pullRequestForkOwner,
     $core.String? commitBaseSha,
+    $core.String? croquiUid,
   }) {
     final result = CroquiExperimental._();
     if (autores != null) result.autores.addAll(autores);
@@ -42,6 +43,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     if (pullRequestForkOwner != null)
       result.pullRequestForkOwner = pullRequestForkOwner;
     if (commitBaseSha != null) result.commitBaseSha = commitBaseSha;
+    if (croquiUid != null) result.croquiUid = croquiUid;
     return result;
   }
 
@@ -69,6 +71,7 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     ..aOS(7, _omitFieldNames ? '' : 'pullRequestBranch')
     ..aOS(8, _omitFieldNames ? '' : 'pullRequestForkOwner')
     ..aOS(9, _omitFieldNames ? '' : 'commitBaseSha')
+    ..aOS(10, _omitFieldNames ? '' : 'croquiUid')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -183,6 +186,16 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   $core.bool hasCommitBaseSha() => $_has(8);
   @$pb.TagNumber(9)
   void clearCommitBaseSha() => $_clearField(9);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do croqui.
+  @$pb.TagNumber(10)
+  $core.String get croquiUid => $_getSZ(9);
+  @$pb.TagNumber(10)
+  set croquiUid($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasCroquiUid() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearCroquiUid() => $_clearField(10);
 }
 
 const $core.bool _omitFieldNames =

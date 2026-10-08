@@ -31,6 +31,7 @@ class CroquiExperimental(_message.Message):
     DATA_CRIACAO_FIELD_NUMBER: _builtins.int
     ULTIMA_EDICAO_FIELD_NUMBER: _builtins.int
     RESUMO_EDICAO_FIELD_NUMBER: _builtins.int
+    CROQUI_UID_FIELD_NUMBER: _builtins.int
     ID_ORIGINAL_FIELD_NUMBER: _builtins.int
     PULL_REQUEST_URL_FIELD_NUMBER: _builtins.int
     PULL_REQUEST_BRANCH_FIELD_NUMBER: _builtins.int
@@ -38,6 +39,8 @@ class CroquiExperimental(_message.Message):
     COMMIT_BASE_SHA_FIELD_NUMBER: _builtins.int
     resumo_edicao: _builtins.str
     """Breve resumo ou objetivo desta edição (ex: "Corrigindo graduação do Setor 1")."""
+    croqui_uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do croqui."""
     id_original: _builtins.str
     """ID original do croqui antes de qualquer renomeação.
     Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
@@ -72,15 +75,16 @@ class CroquiExperimental(_message.Message):
         data_criacao: _timestamp_pb2.Timestamp | None = ...,
         ultima_edicao: _timestamp_pb2.Timestamp | None = ...,
         resumo_edicao: _builtins.str | None = ...,
+        croqui_uid: _builtins.str | None = ...,
         id_original: _builtins.str | None = ...,
         pull_request_url: _builtins.str | None = ...,
         pull_request_branch: _builtins.str | None = ...,
         pull_request_fork_owner: _builtins.str | None = ...,
         commit_base_sha: _builtins.str | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["autores", b"autores", "commit_base_sha", b"commit_base_sha", "data_criacao", b"data_criacao", "id_original", b"id_original", "pull_request_branch", b"pull_request_branch", "pull_request_fork_owner", b"pull_request_fork_owner", "pull_request_url", b"pull_request_url", "resumo_edicao", b"resumo_edicao", "ultima_edicao", b"ultima_edicao"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["autores", b"autores", "commit_base_sha", b"commit_base_sha", "croqui_uid", b"croqui_uid", "data_criacao", b"data_criacao", "id_original", b"id_original", "pull_request_branch", b"pull_request_branch", "pull_request_fork_owner", b"pull_request_fork_owner", "pull_request_url", b"pull_request_url", "resumo_edicao", b"resumo_edicao", "ultima_edicao", b"ultima_edicao"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["autores", b"autores", "commit_base_sha", b"commit_base_sha", "data_criacao", b"data_criacao", "id_original", b"id_original", "pull_request_branch", b"pull_request_branch", "pull_request_fork_owner", b"pull_request_fork_owner", "pull_request_url", b"pull_request_url", "resumo_edicao", b"resumo_edicao", "ultima_edicao", b"ultima_edicao"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["autores", b"autores", "commit_base_sha", b"commit_base_sha", "croqui_uid", b"croqui_uid", "data_criacao", b"data_criacao", "id_original", b"id_original", "pull_request_branch", b"pull_request_branch", "pull_request_fork_owner", b"pull_request_fork_owner", "pull_request_url", b"pull_request_url", "resumo_edicao", b"resumo_edicao", "ultima_edicao", b"ultima_edicao"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

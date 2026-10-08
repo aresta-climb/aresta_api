@@ -250,6 +250,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     $0.Timestamp? timestampUpdate,
     $1.Coordenada? localizacao,
     PrecomputadosResumoCroqui? precomputados,
+    $core.String? croquiUid,
   }) {
     final result = ResumoCroqui._();
     if (id != null) result.id = id;
@@ -263,6 +264,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
     if (timestampUpdate != null) result.timestampUpdate = timestampUpdate;
     if (localizacao != null) result.localizacao = localizacao;
     if (precomputados != null) result.precomputados = precomputados;
+    if (croquiUid != null) result.croquiUid = croquiUid;
     return result;
   }
 
@@ -291,6 +293,7 @@ class ResumoCroqui extends $pb.GeneratedMessage {
         subBuilder: $1.Coordenada.$_createMessage)
     ..aOM<PrecomputadosResumoCroqui>(11, _omitFieldNames ? '' : 'precomputados',
         subBuilder: PrecomputadosResumoCroqui.$_createMessage)
+    ..aOS(12, _omitFieldNames ? '' : 'croquiUid')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -415,6 +418,16 @@ class ResumoCroqui extends $pb.GeneratedMessage {
   void clearPrecomputados() => $_clearField(11);
   @$pb.TagNumber(11)
   PrecomputadosResumoCroqui ensurePrecomputados() => $_ensure(8);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do croqui.
+  @$pb.TagNumber(12)
+  $core.String get croquiUid => $_getSZ(9);
+  @$pb.TagNumber(12)
+  set croquiUid($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(12)
+  $core.bool hasCroquiUid() => $_has(9);
+  @$pb.TagNumber(12)
+  void clearCroquiUid() => $_clearField(12);
 }
 
 const $core.bool _omitFieldNames =

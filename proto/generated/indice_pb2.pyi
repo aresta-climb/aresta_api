@@ -104,6 +104,7 @@ class ResumoCroqui(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     ID_FIELD_NUMBER: _builtins.int
+    CROQUI_UID_FIELD_NUMBER: _builtins.int
     NOME_FIELD_NUMBER: _builtins.int
     DESCRICAO_FIELD_NUMBER: _builtins.int
     CAMINHO_RELATIVO_FIELD_NUMBER: _builtins.int
@@ -114,6 +115,8 @@ class ResumoCroqui(_message.Message):
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     """Identificador único do croqui."""
+    croqui_uid: _builtins.str
+    """Identificador único descentralizado permanente (NanoID 14c) do croqui."""
     nome: _builtins.str
     """Nome do local do croqui."""
     descricao: _builtins.str
@@ -148,6 +151,7 @@ class ResumoCroqui(_message.Message):
         self,
         *,
         id: _builtins.str | None = ...,
+        croqui_uid: _builtins.str | None = ...,
         nome: _builtins.str | None = ...,
         descricao: _builtins.str | None = ...,
         caminho_relativo: _builtins.str | None = ...,
@@ -157,9 +161,9 @@ class ResumoCroqui(_message.Message):
         localizacao: _croqui_pb2.Coordenada | None = ...,
         precomputados: Global___PrecomputadosResumoCroqui | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["caminho_relativo", b"caminho_relativo", "checksum_sha256_croqui", b"checksum_sha256_croqui", "checksum_sha256_thumbnail", b"checksum_sha256_thumbnail", "descricao", b"descricao", "id", b"id", "localizacao", b"localizacao", "nome", b"nome", "precomputados", b"precomputados", "timestamp_update", b"timestamp_update"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["caminho_relativo", b"caminho_relativo", "checksum_sha256_croqui", b"checksum_sha256_croqui", "checksum_sha256_thumbnail", b"checksum_sha256_thumbnail", "croqui_uid", b"croqui_uid", "descricao", b"descricao", "id", b"id", "localizacao", b"localizacao", "nome", b"nome", "precomputados", b"precomputados", "timestamp_update", b"timestamp_update"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["caminho_relativo", b"caminho_relativo", "checksum_sha256_croqui", b"checksum_sha256_croqui", "checksum_sha256_thumbnail", b"checksum_sha256_thumbnail", "descricao", b"descricao", "id", b"id", "localizacao", b"localizacao", "nome", b"nome", "precomputados", b"precomputados", "timestamp_update", b"timestamp_update"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["caminho_relativo", b"caminho_relativo", "checksum_sha256_croqui", b"checksum_sha256_croqui", "checksum_sha256_thumbnail", b"checksum_sha256_thumbnail", "croqui_uid", b"croqui_uid", "descricao", b"descricao", "id", b"id", "localizacao", b"localizacao", "nome", b"nome", "precomputados", b"precomputados", "timestamp_update", b"timestamp_update"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

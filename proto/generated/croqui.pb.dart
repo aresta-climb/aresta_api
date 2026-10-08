@@ -198,7 +198,7 @@ class Croqui_StatusDesenhoExtraivel extends $pb.GeneratedMessage {
 }
 
 /// Representa um croqui de escalada, que pode incluir um ou mais picos.
-/// NEXT_ID: 17
+/// NEXT_ID: 18
 class Croqui extends $pb.GeneratedMessage {
   factory Croqui({
     $core.String? id,
@@ -214,6 +214,7 @@ class Croqui extends $pb.GeneratedMessage {
     $core.Iterable<Botao>? botoes,
     $core.int? ultimaMigracao,
     $core.bool? publicarCroqui,
+    $core.String? uid,
   }) {
     final result = Croqui._();
     if (id != null) result.id = id;
@@ -233,6 +234,7 @@ class Croqui extends $pb.GeneratedMessage {
     if (botoes != null) result.botoes.addAll(botoes);
     if (ultimaMigracao != null) result.ultimaMigracao = ultimaMigracao;
     if (publicarCroqui != null) result.publicarCroqui = publicarCroqui;
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -267,6 +269,7 @@ class Croqui extends $pb.GeneratedMessage {
         subBuilder: Botao.$_createMessage)
     ..aI(15, _omitFieldNames ? '' : 'ultimaMigracao')
     ..aOB(16, _omitFieldNames ? '' : 'publicarCroqui')
+    ..aOS(17, _omitFieldNames ? '' : 'uid')
     ..hasExtensions = true;
   static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
       _omitMessageNames ? '' : 'aresta.Croqui',
@@ -404,6 +407,16 @@ class Croqui extends $pb.GeneratedMessage {
   $core.bool hasPublicarCroqui() => $_has(12);
   @$pb.TagNumber(16)
   void clearPublicarCroqui() => $_clearField(16);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do croqui.
+  @$pb.TagNumber(17)
+  $core.String get uid => $_getSZ(13);
+  @$pb.TagNumber(17)
+  set uid($core.String value) => $_setString(13, value);
+  @$pb.TagNumber(17)
+  $core.bool hasUid() => $_has(13);
+  @$pb.TagNumber(17)
+  void clearUid() => $_clearField(17);
 }
 
 /// Representa um botão que leva a alguma outra parte do croqui.
@@ -411,10 +424,12 @@ class Botao extends $pb.GeneratedMessage {
   factory Botao({
     $core.String? texto,
     DestinoBotao? destino,
+    $core.String? uid,
   }) {
     final result = Botao._();
     if (texto != null) result.texto = texto;
     if (destino != null) result.destino = destino;
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -433,7 +448,8 @@ class Botao extends $pb.GeneratedMessage {
       createEmptyInstance: Botao.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'texto')
     ..aOM<DestinoBotao>(2, _omitFieldNames ? '' : 'destino',
-        subBuilder: DestinoBotao.$_createMessage);
+        subBuilder: DestinoBotao.$_createMessage)
+    ..aOS(3, _omitFieldNames ? '' : 'uid');
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Botao clone() => deepCopy();
@@ -476,6 +492,16 @@ class Botao extends $pb.GeneratedMessage {
   void clearDestino() => $_clearField(2);
   @$pb.TagNumber(2)
   DestinoBotao ensureDestino() => $_ensure(1);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do botão.
+  @$pb.TagNumber(3)
+  $core.String get uid => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set uid($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasUid() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUid() => $_clearField(3);
 }
 
 enum DestinoBotao_Destino { secaoTextual, notSet }
@@ -1845,6 +1871,7 @@ class Grupo extends $pb.GeneratedMessage {
     Coordenada? localizacaoEstacionamento,
     Coordenada? localizacaoEscalada,
     PrecomputadosGrupo? precomputados,
+    $core.String? uid,
   }) {
     final result = Grupo._();
     if (nome != null) result.nome = nome;
@@ -1857,6 +1884,7 @@ class Grupo extends $pb.GeneratedMessage {
     if (localizacaoEscalada != null)
       result.localizacaoEscalada = localizacaoEscalada;
     if (precomputados != null) result.precomputados = precomputados;
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -1885,7 +1913,8 @@ class Grupo extends $pb.GeneratedMessage {
     ..aOM<Coordenada>(7, _omitFieldNames ? '' : 'localizacaoEscalada',
         subBuilder: Coordenada.$_createMessage)
     ..aOM<PrecomputadosGrupo>(9, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosGrupo.$_createMessage);
+        subBuilder: PrecomputadosGrupo.$_createMessage)
+    ..aOS(10, _omitFieldNames ? '' : 'uid');
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Grupo clone() => deepCopy();
@@ -1980,11 +2009,21 @@ class Grupo extends $pb.GeneratedMessage {
   void clearPrecomputados() => $_clearField(9);
   @$pb.TagNumber(9)
   PrecomputadosGrupo ensurePrecomputados() => $_ensure(7);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do grupo.
+  @$pb.TagNumber(10)
+  $core.String get uid => $_getSZ(8);
+  @$pb.TagNumber(10)
+  set uid($core.String value) => $_setString(8, value);
+  @$pb.TagNumber(10)
+  $core.bool hasUid() => $_has(8);
+  @$pb.TagNumber(10)
+  void clearUid() => $_clearField(10);
 }
 
 /// Representa uma parede ou setor específico dentro de um Pico.
 /// Para boulders, isso costuma ser o bloco.
-/// NEXT_ID: 16
+/// NEXT_ID: 17
 class Setor extends $pb.GeneratedMessage {
   factory Setor({
     $core.String? nome,
@@ -1999,6 +2038,7 @@ class Setor extends $pb.GeneratedMessage {
     $core.Iterable<Escalada>? escaladas,
     $core.Iterable<Mapa>? mapas,
     PrecomputadosSetor? precomputados,
+    $core.String? uid,
   }) {
     final result = Setor._();
     if (nome != null) result.nome = nome;
@@ -2015,6 +2055,7 @@ class Setor extends $pb.GeneratedMessage {
     if (escaladas != null) result.escaladas.addAll(escaladas);
     if (mapas != null) result.mapas.addAll(mapas);
     if (precomputados != null) result.precomputados = precomputados;
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -2049,6 +2090,7 @@ class Setor extends $pb.GeneratedMessage {
         subBuilder: Mapa.$_createMessage)
     ..aOM<PrecomputadosSetor>(15, _omitFieldNames ? '' : 'precomputados',
         subBuilder: PrecomputadosSetor.$_createMessage)
+    ..aOS(16, _omitFieldNames ? '' : 'uid')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2178,6 +2220,16 @@ class Setor extends $pb.GeneratedMessage {
   void clearPrecomputados() => $_clearField(15);
   @$pb.TagNumber(15)
   PrecomputadosSetor ensurePrecomputados() => $_ensure(11);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do setor.
+  @$pb.TagNumber(16)
+  $core.String get uid => $_getSZ(12);
+  @$pb.TagNumber(16)
+  set uid($core.String value) => $_setString(12, value);
+  @$pb.TagNumber(16)
+  $core.bool hasUid() => $_has(12);
+  @$pb.TagNumber(16)
+  void clearUid() => $_clearField(16);
 }
 
 enum Mapa_PontoDeInteresse_TipoArea {
@@ -2192,8 +2244,8 @@ enum Mapa_PontoDeInteresse_TipoArea {
 /// Representa um ponto de interesse no mapa.
 class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   factory Mapa_PontoDeInteresse({
-    $core.String? id,
-    $core.String? label,
+    @$core.Deprecated('This field is deprecated.') $core.String? id,
+    @$core.Deprecated('This field is deprecated.') $core.String? label,
     BoundingRetangulo? retangulo,
     BoundingCirculo? circulo,
     BoundingPoligono? poligono,
@@ -2201,6 +2253,8 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     LinhaTrajeto? linha,
     $core.String? cor,
     $core.String? textoVisivel,
+    $core.String? rotulo,
+    $core.String? uid,
   }) {
     final result = Mapa_PontoDeInteresse._();
     if (id != null) result.id = id;
@@ -2212,6 +2266,8 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     if (linha != null) result.linha = linha;
     if (cor != null) result.cor = cor;
     if (textoVisivel != null) result.textoVisivel = textoVisivel;
+    if (rotulo != null) result.rotulo = rotulo;
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -2252,6 +2308,8 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
         subBuilder: LinhaTrajeto.$_createMessage)
     ..aOS(10, _omitFieldNames ? '' : 'cor')
     ..aOS(11, _omitFieldNames ? '' : 'textoVisivel')
+    ..aOS(12, _omitFieldNames ? '' : 'rotulo')
+    ..aOS(13, _omitFieldNames ? '' : 'uid')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2292,23 +2350,31 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   void clearTipoArea() => $_clearField($_whichOneof(0));
 
-  /// ID do ponto de interesse no mapa.
+  /// ID do ponto de interesse no mapa. Deprecado em favor de uid.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.String get id => $_getSZ(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   set id($core.String value) => $_setString(0, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   void clearId() => $_clearField(1);
 
-  /// Label do ponto de interesse que estava escrita no mapa.
+  /// Label do ponto de interesse que estava escrita no mapa. Deprecado em favor de rotulo.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.String get label => $_getSZ(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   set label($core.String value) => $_setString(1, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.bool hasLabel() => $_has(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   void clearLabel() => $_clearField(2);
 
@@ -2393,6 +2459,26 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   $core.bool hasTextoVisivel() => $_has(8);
   @$pb.TagNumber(11)
   void clearTextoVisivel() => $_clearField(11);
+
+  /// Rótulo visual do ponto de interesse desenhado na rocha (ex: "11", "E1").
+  @$pb.TagNumber(12)
+  $core.String get rotulo => $_getSZ(9);
+  @$pb.TagNumber(12)
+  set rotulo($core.String value) => $_setString(9, value);
+  @$pb.TagNumber(12)
+  $core.bool hasRotulo() => $_has(9);
+  @$pb.TagNumber(12)
+  void clearRotulo() => $_clearField(12);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) do ponto de interesse.
+  @$pb.TagNumber(13)
+  $core.String get uid => $_getSZ(10);
+  @$pb.TagNumber(13)
+  set uid($core.String value) => $_setString(10, value);
+  @$pb.TagNumber(13)
+  $core.bool hasUid() => $_has(10);
+  @$pb.TagNumber(13)
+  void clearUid() => $_clearField(13);
 }
 
 /// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
@@ -2501,20 +2587,23 @@ class Mapa_AjusteDeCamera extends $pb.GeneratedMessage {
 /// de interesse a seu destino.
 class Mapa_Referencia extends $pb.GeneratedMessage {
   factory Mapa_Referencia({
+    @$core.Deprecated('This field is deprecated.')
     $core.Iterable<$core.String>? ids,
-    $core.String? grupo,
-    $core.String? setor,
-    $core.String? escalada,
-    $core.int? indiceMapaAlvo,
+    @$core.Deprecated('This field is deprecated.') $core.String? grupo,
+    @$core.Deprecated('This field is deprecated.') $core.String? setor,
+    @$core.Deprecated('This field is deprecated.') $core.String? escalada,
     Mapa_AjusteDeCamera? ajusteDeCamera,
+    $core.String? alvoUid,
+    $core.Iterable<$core.String>? pontosUids,
   }) {
     final result = Mapa_Referencia._();
     if (ids != null) result.ids.addAll(ids);
     if (grupo != null) result.grupo = grupo;
     if (setor != null) result.setor = setor;
     if (escalada != null) result.escalada = escalada;
-    if (indiceMapaAlvo != null) result.indiceMapaAlvo = indiceMapaAlvo;
     if (ajusteDeCamera != null) result.ajusteDeCamera = ajusteDeCamera;
+    if (alvoUid != null) result.alvoUid = alvoUid;
+    if (pontosUids != null) result.pontosUids.addAll(pontosUids);
     return result;
   }
 
@@ -2535,9 +2624,10 @@ class Mapa_Referencia extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'grupo')
     ..aOS(3, _omitFieldNames ? '' : 'setor')
     ..aOS(4, _omitFieldNames ? '' : 'escalada')
-    ..aI(5, _omitFieldNames ? '' : 'indiceMapaAlvo')
     ..aOM<Mapa_AjusteDeCamera>(6, _omitFieldNames ? '' : 'ajusteDeCamera',
         subBuilder: Mapa_AjusteDeCamera.$_createMessage)
+    ..aOS(7, _omitFieldNames ? '' : 'alvoUid')
+    ..pPS(8, _omitFieldNames ? '' : 'pontosUids')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2564,68 +2654,78 @@ class Mapa_Referencia extends $pb.GeneratedMessage {
 
   /// IDs dos pontos de interesse no mapa atual que compõem a representação dessa entidade.
   /// A ordem importa: o primeiro ID é o início, os intermediários desenham o trajeto, e o último é o
-  /// fim.
-  /// Remove a limitação legada de apenas inicio, meio e fim.
+  /// fim. Deprecado em favor de pontos_uids.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(1)
   $pb.PbList<$core.String> get ids => $_getList(0);
 
-  /// Identificação do Grupo alvo. Se preenchido, um clique neste desenho deverá referenciar/abrir o
-  /// grupo especificado.
-  /// Caso seja uma referência de setor no mesmo grupo, não precisa mencionar.
+  /// Identificação do Grupo alvo. Deprecado em favor de alvo_uid.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.String get grupo => $_getSZ(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   set grupo($core.String value) => $_setString(1, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   $core.bool hasGrupo() => $_has(1);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(2)
   void clearGrupo() => $_clearField(2);
 
-  /// Identificação do Setor alvo. Útil para desenhar escaladas pertencentes a um setor vizinho,
-  /// ou para desenhar um botão/área de clique que abra outro Setor.
-  /// Caso for uma escalada no mesmo setor, não precisa mencionar.
+  /// Identificação do Setor alvo. Deprecado em favor de alvo_uid.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(3)
   $core.String get setor => $_getSZ(2);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(3)
   set setor($core.String value) => $_setString(2, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(3)
   $core.bool hasSetor() => $_has(2);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(3)
   void clearSetor() => $_clearField(3);
 
-  /// Identificação da Escalada (via, boulder, highline) alvo.
-  /// Escopo implícito: se `setor` não for provido, assume-se que a escalada pertence ao mesmo Setor
-  /// onde o Mapa atual está aninhado.
+  /// Identificação da Escalada (via, boulder, highline) alvo. Deprecado em favor de alvo_uid.
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(4)
   $core.String get escalada => $_getSZ(3);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(4)
   set escalada($core.String value) => $_setString(3, value);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(4)
   $core.bool hasEscalada() => $_has(3);
+  @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(4)
   void clearEscalada() => $_clearField(4);
 
-  /// Opcional: Se o Grupo ou Setor alvo possuir múltiplos mapas, define o índice do mapa a ser focado.
-  @$pb.TagNumber(5)
-  $core.int get indiceMapaAlvo => $_getIZ(4);
-  @$pb.TagNumber(5)
-  set indiceMapaAlvo($core.int value) => $_setSignedInt32(4, value);
-  @$pb.TagNumber(5)
-  $core.bool hasIndiceMapaAlvo() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearIndiceMapaAlvo() => $_clearField(5);
-
   /// Ajustes finos opcionais de visualização ao focar nesta referência.
   @$pb.TagNumber(6)
-  Mapa_AjusteDeCamera get ajusteDeCamera => $_getN(5);
+  Mapa_AjusteDeCamera get ajusteDeCamera => $_getN(4);
   @$pb.TagNumber(6)
   set ajusteDeCamera(Mapa_AjusteDeCamera value) => $_setField(6, value);
   @$pb.TagNumber(6)
-  $core.bool hasAjusteDeCamera() => $_has(5);
+  $core.bool hasAjusteDeCamera() => $_has(4);
   @$pb.TagNumber(6)
   void clearAjusteDeCamera() => $_clearField(6);
   @$pb.TagNumber(6)
-  Mapa_AjusteDeCamera ensureAjusteDeCamera() => $_ensure(5);
+  Mapa_AjusteDeCamera ensureAjusteDeCamera() => $_ensure(4);
+
+  /// UID da entidade alvo referenciada (Escalada, Setor ou Grupo).
+  @$pb.TagNumber(7)
+  $core.String get alvoUid => $_getSZ(5);
+  @$pb.TagNumber(7)
+  set alvoUid($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(7)
+  $core.bool hasAlvoUid() => $_has(5);
+  @$pb.TagNumber(7)
+  void clearAlvoUid() => $_clearField(7);
+
+  /// Lista ordenada de UIDs dos pontos de interesse que compõem o traçado da escalada no mapa.
+  @$pb.TagNumber(8)
+  $pb.PbList<$core.String> get pontosUids => $_getList(6);
 }
 
 /// Representa um mapa do setor.
@@ -3604,6 +3704,7 @@ class Escalada extends $pb.GeneratedMessage {
     Highline? highline,
     $core.Iterable<$0.MidiaBeta>? betas,
     $core.Iterable<Mapa>? mapas,
+    $core.String? uid,
   }) {
     final result = Escalada._();
     if (viaEsportiva != null) result.viaEsportiva = viaEsportiva;
@@ -3614,6 +3715,7 @@ class Escalada extends $pb.GeneratedMessage {
     if (highline != null) result.highline = highline;
     if (betas != null) result.betas.addAll(betas);
     if (mapas != null) result.mapas.addAll(mapas);
+    if (uid != null) result.uid = uid;
     return result;
   }
 
@@ -3654,6 +3756,7 @@ class Escalada extends $pb.GeneratedMessage {
         subBuilder: $0.MidiaBeta.$_createMessage)
     ..pPM<Mapa>(7, _omitFieldNames ? '' : 'mapas',
         subBuilder: Mapa.$_createMessage)
+    ..aOS(8, _omitFieldNames ? '' : 'uid')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -3751,6 +3854,16 @@ class Escalada extends $pb.GeneratedMessage {
   /// Mapas específicos desta escalada (ex: saída de boulder, detalhes de enfiadas, etc).
   @$pb.TagNumber(7)
   $pb.PbList<Mapa> get mapas => $_getList(6);
+
+  /// Identificador único descentralizado permanente (NanoID 14c) da escalada.
+  @$pb.TagNumber(8)
+  $core.String get uid => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set uid($core.String value) => $_setString(7, value);
+  @$pb.TagNumber(8)
+  $core.bool hasUid() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearUid() => $_clearField(8);
 }
 
 /// Representa uma linha de escalada esportiva (via) individual de uma enfiada e somente com proteções fixas.
