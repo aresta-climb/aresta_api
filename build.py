@@ -1,21 +1,24 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
 # SPDX-License-Identifier: MPL-2.0
 
-import os
-import sys
+import argparse
 import glob
 import hashlib
-import argparse
+import os
+import sys
+
 from grpc_tools import protoc
+
 
 def get_protos_hash(proto_files: list[str]) -> str:
     """Calcula um hash único de todos os arquivos .proto para detectar mudanças."""
     hasher = hashlib.sha256()
     # Ordena para garantir que a ordem dos arquivos não afete o hash
     for f in sorted(proto_files):
-        with open(f, 'rb') as fp:
+        with open(f, "rb") as fp:
             hasher.update(fp.read())
     return hasher.hexdigest()
+
 
 def generate_protos(argv: list[str] | None = None) -> None:
     """
@@ -23,17 +26,22 @@ def generate_protos(argv: list[str] | None = None) -> None:
     argv: Lista de argumentos (ex: ['-f']). Se None, usa sys.argv[1:].
     """
     parser = argparse.ArgumentParser(description="Gera arquivos do Protobuf para Python e Dart.")
-    parser.add_argument("-f", "--force", action="store_true", help="Força a re-geração dos arquivos, ignorando o cache de hash.")
+    parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="Força a re-geração dos arquivos, ignorando o cache de hash.",
+    )
     args = parser.parse_args(argv)
 
     root_dir = os.path.dirname(os.path.abspath(__file__))
     proto_dir = os.path.join(root_dir, "proto")
     generated_dir = os.path.join(proto_dir, "generated")
     hash_file = os.path.join(generated_dir, ".protos_hash")
-    
+
     # Garante que o diretório gerado ("generated") exista
     os.makedirs(generated_dir, exist_ok=True)
-    
+
     # Encontra todos os arquivos .proto
     proto_files = glob.glob(os.path.join(proto_dir, "*.proto"))
     if not proto_files:
@@ -45,12 +53,16 @@ def generate_protos(argv: list[str] | None = None) -> None:
 
     # Verifica se precisa refazer o build (se não for forçado)
     if not args.force and os.path.exists(hash_file):
-        with open(hash_file, "r") as f:
+        with open(hash_file) as f:
             saved_hash = f.read().strip()
-        
+
         # Além de bater o hash, vamos garantir que existe pelo menos algum arquivo gerado além do __init__.py e .protos_hash
-        gerados = [f for f in os.listdir(generated_dir) if f.endswith('_pb2.py') or f.endswith('_pb2.pyi') or f.endswith('.pb.dart')]
-        
+        gerados = [
+            f
+            for f in os.listdir(generated_dir)
+            if f.endswith("_pb2.py") or f.endswith("_pb2.pyi") or f.endswith(".pb.dart")
+        ]
+
         if current_hash == saved_hash and gerados:
             print("Nenhuma alteração nos arquivos .proto. Compilação pulada.")
             # Garante o __init__.py se tiver sido removido acidentalmente
@@ -69,7 +81,8 @@ def generate_protos(argv: list[str] | None = None) -> None:
     print(f"Foram encontrados {len(proto_files)} arquivos .proto. Gerando os arquivos...")
 
     from importlib.resources import files
-    well_known_types_dir = str(files('grpc_tools').joinpath('_proto'))
+
+    well_known_types_dir = str(files("grpc_tools").joinpath("_proto"))
 
     # Geração dos arquivos Python, Stubs MyPy e Dart em uma única chamada usando grpc_tools.protoc
     protoc_args = [
@@ -78,8 +91,9 @@ def generate_protos(argv: list[str] | None = None) -> None:
         f"-I{well_known_types_dir}",
         f"--python_out={generated_dir}",
         f"--mypy_out={generated_dir}",
-        f"--dart_out={generated_dir}"
-    ] + proto_files
+        f"--dart_out={generated_dir}",
+        *proto_files,
+    ]
 
     print("Executando o protoc para Python e Dart...")
     exit_code = protoc.main(protoc_args)
@@ -92,9 +106,10 @@ def generate_protos(argv: list[str] | None = None) -> None:
         with open(hash_file, "w") as f:
             f.write(current_hash)
 
+
 def main() -> None:
     generate_protos()
 
+
 if __name__ == "__main__":
     main()
-

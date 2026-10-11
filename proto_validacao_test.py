@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
 # SPDX-License-Identifier: MPL-2.0
 
-import pytest
 from aresta_api.proto.generated import croqui_pb2
+
 
 def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
     """
-    Garante que no máximo um campo em cada mensagem do croqui.proto 
+    Garante que no máximo um campo em cada mensagem do croqui.proto
     possua a opção de campo conteudo_markdown definida como verdadeira.
     """
     # Varre todos os tipos de mensagens registrados no descriptor do croqui
@@ -19,10 +19,10 @@ def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
                 possui_markdown = opcoes.Extensions[croqui_pb2.conteudo_markdown]
             except KeyError:
                 pass
-            
+
             if possui_markdown:
                 campos_markdown.append(campo.name)
-        
+
         # Garante que no máximo um campo foi marcado
         assert len(campos_markdown) <= 1, (
             f"A mensagem '{nome_mensagem}' possui múltiplos campos marcados como "
@@ -107,7 +107,9 @@ def test_escalada_aceita_e_serializa_mapas():
 
     assert recuperado_multi.via_multiplas_enfiadas.nome == "Paredão Central"
     assert len(recuperado_multi.mapas) == 1
-    assert recuperado_multi.mapas[0].caminho_imagem_mapa == "imagens/paredao_central_visao_geral.webp"
+    assert (
+        recuperado_multi.mapas[0].caminho_imagem_mapa == "imagens/paredao_central_visao_geral.webp"
+    )
 
 
 def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto():
@@ -120,8 +122,13 @@ def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto():
 
 def test_setor_e_grupo_possuem_campo_caminho_imagem_capa():
     """Valida que Setor e Grupo possuem o campo caminho_imagem_capa com opções de UI e serialização."""
-    for desc_msg, nome in [(croqui_pb2.Setor.DESCRIPTOR, "Setor"), (croqui_pb2.Grupo.DESCRIPTOR, "Grupo")]:
-        assert "caminho_imagem_capa" in desc_msg.fields_by_name, f"O campo caminho_imagem_capa não existe em {nome}"
+    for desc_msg, nome in [
+        (croqui_pb2.Setor.DESCRIPTOR, "Setor"),
+        (croqui_pb2.Grupo.DESCRIPTOR, "Grupo"),
+    ]:
+        assert "caminho_imagem_capa" in desc_msg.fields_by_name, (
+            f"O campo caminho_imagem_capa não existe em {nome}"
+        )
         campo = desc_msg.fields_by_name["caminho_imagem_capa"]
         opcoes = campo.GetOptions()
         assert opcoes.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.IMAGEM
@@ -140,5 +147,3 @@ def test_setor_e_grupo_possuem_campo_caminho_imagem_capa():
     recuperado_grupo = croqui_pb2.Grupo()
     recuperado_grupo.ParseFromString(dados_grupo)
     assert recuperado_grupo.caminho_imagem_capa == "imagens/capa_grupo.webp"
-
-
