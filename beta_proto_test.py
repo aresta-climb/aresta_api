@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
 # SPDX-License-Identifier: MPL-2.0
 
-import pytest
 
 def test_beta_proto_messages_exist():
     """
@@ -27,7 +26,7 @@ def test_beta_proto_messages_exist():
     assert hasattr(midia, "fonte")
     assert hasattr(midia, "resultado_llm")
     assert hasattr(midia, "snippets")
-    
+
     # Adiciona snippets
     midia.snippets.append("Snippet 1")
     midia.snippets.append("Snippet 2")
@@ -93,12 +92,11 @@ def test_escalada_has_repeated_betas_field():
     Garante que a mensagem Escalada em croqui.proto importa beta.proto
     e possui o campo repetido 'betas' do tipo MidiaBeta.
     """
-    from aresta_api.proto.generated import croqui_pb2
-    from aresta_api.proto.generated import beta_pb2
+    from aresta_api.proto.generated import beta_pb2, croqui_pb2
 
     escalada = croqui_pb2.Escalada()
     assert hasattr(escalada, "betas")
-    
+
     # Testa inserção de um MidiaBeta na lista de betas
     midia = escalada.betas.add()
     midia.url = "https://youtube.com/watch?v=123"
