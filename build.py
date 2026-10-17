@@ -1,19 +1,38 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
 # SPDX-License-Identifier: MPL-2.0
 
+from __future__ import annotations
+
 import argparse
 import glob
 import hashlib
 import os
 import sys
+from pathlib import Path
 
 from grpc_tools import protoc
+
+_ESTE_DIRETORIO = os.path.dirname(os.path.abspath(__file__))
+if _ESTE_DIRETORIO not in sys.path:
+    sys.path.insert(0, _ESTE_DIRETORIO)
+
+from src.gerador_openapi import (  # noqa: E402
+    compilar_arquivos_openapi,
+    inspecionar_especificacao_openapi,
+)
+from src.gerador_sql import (  # noqa: E402
+    compilar_arquivos_sql,
+    inspecionar_esquema_sql,
+)
+from src.validador_paridade import (  # noqa: E402
+    MAPEAMENTO_PARIDADE_CATALOGO,
+    validar_paridade_esquemas,
+)
 
 
 def get_protos_hash(proto_files: list[str]) -> str:
     """Calcula um hash único de todos os arquivos .proto para detectar mudanças."""
     hasher = hashlib.sha256()
-    # Ordena para garantir que a ordem dos arquivos não afete o hash
     for f in sorted(proto_files):
         with open(f, "rb") as fp:
             hasher.update(fp.read())
@@ -39,24 +58,19 @@ def generate_protos(argv: list[str] | None = None) -> None:
     generated_dir = os.path.join(proto_dir, "generated")
     hash_file = os.path.join(generated_dir, ".protos_hash")
 
-    # Garante que o diretório gerado ("generated") exista
     os.makedirs(generated_dir, exist_ok=True)
 
-    # Encontra todos os arquivos .proto
     proto_files = glob.glob(os.path.join(proto_dir, "*.proto"))
     if not proto_files:
         print("Nenhum arquivo .proto encontrado em", proto_dir)
         sys.exit(1)
 
-    # Computa o hash atual dos protos
     current_hash = get_protos_hash(proto_files)
 
-    # Verifica se precisa refazer o build (se não for forçado)
     if not args.force and os.path.exists(hash_file):
         with open(hash_file) as f:
             saved_hash = f.read().strip()
 
-        # Além de bater o hash, vamos garantir que existe pelo menos algum arquivo gerado além do __init__.py e .protos_hash
         gerados = [
             f
             for f in os.listdir(generated_dir)
@@ -65,14 +79,12 @@ def generate_protos(argv: list[str] | None = None) -> None:
 
         if current_hash == saved_hash and gerados:
             print("Nenhuma alteração nos arquivos .proto. Compilação pulada.")
-            # Garante o __init__.py se tiver sido removido acidentalmente
             init_path = os.path.join(generated_dir, "__init__.py")
             if not os.path.exists(init_path):
                 with open(init_path, "w") as f:
                     f.write("")
             return
 
-    # Cria o arquivo __init__.py para que o Python trate a pasta "generated" como um módulo
     init_path = os.path.join(generated_dir, "__init__.py")
     if not os.path.exists(init_path) or os.path.getsize(init_path) == 0:
         with open(init_path, "w") as f:
@@ -84,7 +96,6 @@ def generate_protos(argv: list[str] | None = None) -> None:
 
     well_known_types_dir = str(files("grpc_tools").joinpath("_proto"))
 
-    # Geração dos arquivos Python, Stubs MyPy e Dart em uma única chamada usando grpc_tools.protoc
     protoc_args = [
         "grpc_tools.protoc",
         f"-I{proto_dir}",
@@ -102,13 +113,72 @@ def generate_protos(argv: list[str] | None = None) -> None:
         sys.exit(exit_code)
     else:
         print("Arquivos do Python e Dart gerados com sucesso.")
-        # Salva o arquivo de hash
         with open(hash_file, "w") as f:
             f.write(current_hash)
 
 
-def main() -> None:
-    generate_protos()
+def compilar_contratos_sql_e_openapi(
+    diretorio_raiz: Path | str | None = None,
+    forcar: bool = False,
+) -> None:
+    """
+    Valida paridade SQL ↔ OpenAPI e compila os contratos `sql/*.sql` e `openapi/*.yaml`
+    para Python, Dart e TypeScript.
+    """
+    raiz = Path(diretorio_raiz) if diretorio_raiz is not None else Path(os.path.dirname(os.path.abspath(__file__)))
+    dir_sql = raiz / "sql"
+    dir_openapi = raiz / "openapi"
+
+    if not dir_sql.exists() or not dir_openapi.exists():
+        return
+
+    arquivos_sql = sorted(dir_sql.glob("*.sql"))
+    arquivos_yaml = sorted(dir_openapi.glob("*.yaml"))
+
+    # Valida paridade entre catalogo.sql e catalogo.yaml quando presentes
+    arq_catalogo_sql = dir_sql / "catalogo.sql"
+    arq_catalogo_yaml = dir_openapi / "catalogo.yaml"
+    if arq_catalogo_sql.exists() and arq_catalogo_yaml.exists():
+        esquema_cat = inspecionar_esquema_sql(
+            arq_catalogo_sql.read_text(encoding="utf-8"), nome_modulo="catalogo"
+        )
+        spec_cat = inspecionar_especificacao_openapi(
+            arq_catalogo_yaml.read_text(encoding="utf-8"), nome_modulo="catalogo"
+        )
+        validar_paridade_esquemas(esquema_cat, spec_cat, MAPEAMENTO_PARIDADE_CATALOGO)
+
+    # Compilação SQL com cache de hash
+    dir_sql_gerados = dir_sql / "generated"
+    dir_sql_gerados.mkdir(parents=True, exist_ok=True)
+    arq_hash_sql = dir_sql_gerados / ".sql_hash"
+    hash_sql_atual = get_protos_hash([str(p) for p in arquivos_sql])
+
+    precisa_sql = forcar or not arq_hash_sql.exists() or arq_hash_sql.read_text(encoding="utf-8").strip() != hash_sql_atual
+    if precisa_sql:
+        compilar_arquivos_sql(dir_sql, dir_sql_gerados)
+        arq_hash_sql.write_text(hash_sql_atual, encoding="utf-8")
+
+    # Compilação OpenAPI com cache de hash
+    dir_openapi_gerados = dir_openapi / "generated"
+    dir_openapi_gerados.mkdir(parents=True, exist_ok=True)
+    arq_hash_openapi = dir_openapi_gerados / ".openapi_hash"
+    hash_openapi_atual = get_protos_hash([str(p) for p in arquivos_yaml])
+
+    precisa_openapi = (
+        forcar
+        or not arq_hash_openapi.exists()
+        or arq_hash_openapi.read_text(encoding="utf-8").strip() != hash_openapi_atual
+    )
+    if precisa_openapi:
+        compilar_arquivos_openapi(dir_openapi, dir_openapi_gerados)
+        arq_hash_openapi.write_text(hash_openapi_atual, encoding="utf-8")
+
+
+def main(argv: list[str] | None = None) -> None:
+    argumentos = argv if argv is not None else sys.argv[1:]
+    forcar = "-f" in argumentos or "--force" in argumentos
+    generate_protos(argumentos)
+    compilar_contratos_sql_e_openapi(forcar=forcar)
 
 
 if __name__ == "__main__":

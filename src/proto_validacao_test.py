@@ -4,7 +4,7 @@
 from aresta_api.proto.generated import croqui_pb2
 
 
-def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
+def test_no_maximo_um_campo_conteudo_markdown_por_mensagem() -> None:
     """
     Garante que no máximo um campo em cada mensagem do croqui.proto
     possua a opção de campo conteudo_markdown definida como verdadeira.
@@ -14,11 +14,7 @@ def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
         campos_markdown = []
         for campo in desc_mensagem.fields:
             opcoes = campo.GetOptions()
-            possui_markdown = False
-            try:
-                possui_markdown = opcoes.Extensions[croqui_pb2.conteudo_markdown]
-            except KeyError:
-                pass
+            possui_markdown = bool(opcoes.Extensions[croqui_pb2.conteudo_markdown])
 
             if possui_markdown:
                 campos_markdown.append(campo.name)
@@ -30,7 +26,7 @@ def test_no_maximo_um_campo_conteudo_markdown_por_mensagem():
         )
 
 
-def test_tipo_no_seta_direcional():
+def test_tipo_no_seta_direcional() -> None:
     """Valida que o enum SETA_DIRECIONAL existe em NoTrajeto e é serializável."""
     assert croqui_pb2.NoTrajeto.TipoNo.SETA_DIRECIONAL == 12
     no = croqui_pb2.NoTrajeto(x=100, y=200, tipo=croqui_pb2.NoTrajeto.TipoNo.SETA_DIRECIONAL)
@@ -42,7 +38,7 @@ def test_tipo_no_seta_direcional():
     assert recuperado.y == 200
 
 
-def test_escalada_aceita_e_serializa_mapas():
+def test_escalada_aceita_e_serializa_mapas() -> None:
     """Valida que instâncias de Escalada aceitam e serializam mapas para diferentes tipos de escalada."""
     # Teste 1: Boulder com mapa de detalhe/saída
     escalada_boulder = croqui_pb2.Escalada()
@@ -112,7 +108,7 @@ def test_escalada_aceita_e_serializa_mapas():
     )
 
 
-def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto():
+def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto() -> None:
     """Garante que ViaMultiplasEnfiadas não possui campo 'mapas' diretamente nela."""
     via_multi = croqui_pb2.ViaMultiplasEnfiadas()
     assert not hasattr(via_multi, "mapas")
@@ -120,7 +116,7 @@ def test_via_multiplas_enfiadas_nao_possui_campo_mapas_direto():
     assert "mapas" not in nomes_campos
 
 
-def test_setor_e_grupo_possuem_campo_caminho_imagem_capa():
+def test_setor_e_grupo_possuem_campo_caminho_imagem_capa() -> None:
     """Valida que Setor e Grupo possuem o campo caminho_imagem_capa com opções de UI e serialização."""
     for desc_msg, nome in [
         (croqui_pb2.Setor.DESCRIPTOR, "Setor"),

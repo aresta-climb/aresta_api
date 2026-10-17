@@ -1,0 +1,231 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
+# SPDX-License-Identifier: MPL-2.0
+
+openapi: 3.1.0
+info:
+  title: API do Retransmissor de Prévia Remota Aresta
+  version: 1.0.0
+  description: |
+    Serviço Cloudflare Worker + Durable Objects (`https://previa.arestaclimb.com`) para prévia ao vivo
+    (Live Preview) de croquis em edição entre o **Aresta Editor Desktop** e o aplicativo móvel **Aresta**.
+
+    ### Propósito Arquitetural
+    Durante a criação ou revisão de um croqui no Aresta Editor Desktop, o autor precisa inspecionar como
+    as fotos, traçados de vias e descrições serão renderizados no celular real:
+    1. O Editor Desktop autentica-se com o JWT do Supabase e solicita uma sessão em `POST /sessoes`,
+       recebendo um código curto de pareamento (ex. `ABCD-1234`) e uma URL de QR Code (`https://previa.arestaclimb.com/ABCD-1234`).
+    2. O Editor Desktop abre um túnel reverso persistente via WebSocket em `GET /ws?sessao={codigo}&token={jwt}`
+       conectado à instância do Durable Object daquela sessão.
+    3. O aplicativo móvel escaneia o QR Code, consulta `GET /{codigo}/meta` para descobrir o IP/porta na
+       rede local (LAN) do computador e tenta conexão direta de baixa latência; caso o celular esteja em
+       outra rede (4G/5G ou Wi-Fi isolado), todo o tráfego HTTP e eventos de live-reload (`/{codigo}/*` e
+       `/{codigo}/events`) são roteados de forma transparente pelo túnel WebSocket do Durable Object.
+servers:
+  - url: https://previa.arestaclimb.com
+    description: Retransmissor global de sessões de prévia remota (Cloudflare Workers + Durable Objects).
+paths:
+  /health:
+    get:
+      operationId: verificar_saude_previa
+      summary: Verifica a disponibilidade operacional e o total de sessões ativas do retransmissor.
+      description: |
+        Retorna o status operacional do serviço de prévia e a contagem agregada de sessões de edição
+        ativas no momento (consultando o registro global do Durable Object ou a tabela de auditoria no Supabase).
+      responses:
+        "200":
+          description: Serviço operacional.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaSaudePrevia"
+  /sessoes:
+    post:
+      operationId: criar_sessao_previa
+      summary: Cria uma nova sessão autenticada de prévia remota para o Aresta Editor Desktop.
+      description: |
+        Valida o token JWT do Supabase enviado no cabeçalho `Authorization: Bearer <jwt>`, gera ou reserva
+        um código alfanumérico único de pareamento, registra o início da sessão para auditoria e inicializa
+        o estado no Durable Object correspondente.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequisicaoCriarSessaoPrevia"
+      responses:
+        "201":
+          description: Sessão criada e registrada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaSessaoPrevia"
+        "401":
+          description: Token JWT ausente, inválido ou expirado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroPrevia"
+  /{codigo}/meta:
+    get:
+      operationId: obter_meta_sessao_previa
+      summary: Retorna os metadados de descoberta LAN e estado da sessão ativa.
+      description: |
+        Consultado pelo aplicativo móvel ao escanear o QR Code ou digitar o código de pareamento para
+        descobrir o endereço IP local (`ipLocal`) e a porta (`portaLocal`) do servidor HTTP embutido no
+        Aresta Editor Desktop, permitindo tentativa de conexão direta em rede local antes do fallback via proxy.
+      parameters:
+        - name: codigo
+          in: path
+          required: true
+          description: Código de pareamento da sessão (com ou sem hífen, ex. `ABCD-1234` ou `abcd1234`).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Metadados da sessão ativa.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetadadosSessaoPrevia"
+        "404":
+          description: Sessão não encontrada ou expirada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroPrevia"
+  /ws:
+    get:
+      operationId: conectar_websocket_previa
+      summary: Endpoint de upgrade WebSocket para o túnel reverso do Editor Desktop.
+      description: |
+        Estabelece o canal WebSocket bidirecional entre o Aresta Editor Desktop e o Durable Object da
+        sessão. Pelo túnel trafegam mensagens JSON de controle (`registro`, `ping`/`pong`), notificações
+        de atualização de arquivos (`evento`) e requisições HTTP encapsuladas (`requisicao_proxy` / `resposta_proxy`).
+      parameters:
+        - name: sessao
+          in: query
+          required: true
+          description: Código identificador da sessão de prévia.
+          schema:
+            type: string
+        - name: token
+          in: query
+          required: false
+          description: Token JWT do Supabase do autor (alternativa ao cabeçalho `Authorization`).
+          schema:
+            type: string
+      responses:
+        "101":
+          description: Conexão WebSocket estabelecida (Switching Protocols).
+        "401":
+          description: Token JWT ausente ou inválido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroPrevia"
+        "403":
+          description: A sessão informada pertence a outro usuário autenticado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroPrevia"
+components:
+  schemas:
+    RespostaSaudePrevia:
+      type: object
+      description: Estado operacional do Worker de prévia remota e quantidade de sessões ativas.
+      required:
+        - servico
+        - status
+        - sessoesAtivas
+      properties:
+        servico:
+          type: string
+          description: Nome identificador do serviço (`Aresta Previa Relay`).
+        status:
+          type: string
+          description: Estado operacional (`operacional`).
+        sessoesAtivas:
+          type: integer
+          description: Número total de sessões de prévia abertas nos últimos 30 minutos.
+    RequisicaoCriarSessaoPrevia:
+      type: object
+      description: Metadados opcionais de rede local enviados pelo Editor Desktop no momento da criação da sessão.
+      properties:
+        ipLocal:
+          type: string
+          description: Endereço IPv4 na rede local (LAN) da máquina que executa o Editor Desktop (ex. `192.168.1.42`).
+        portaLocal:
+          type: integer
+          description: Porta TCP onde o servidor HTTP local do Editor Desktop está escutando (ex. `8765`).
+        nomeCroqui:
+          type: string
+          description: Nome do croqui atualmente aberto em edição para exibição amigável.
+    RespostaSessaoPrevia:
+      type: object
+      description: Dados de conexão da sessão de prévia recém-criada retornados ao Editor Desktop.
+      required:
+        - codigo
+        - codigo_formatado
+        - url_previa
+        - ws_url
+      properties:
+        codigo:
+          type: string
+          description: Código alfanumérico normalizado de 8 caracteres em minúsculas (ex. `k9x2p83a`).
+        codigo_formatado:
+          type: string
+          description: Código formatado em maiúsculas com hífen central para leitura humana (ex. `K9X2-P83A`).
+        url_previa:
+          type: string
+          description: URL pública completa para geração do QR Code e deep link (ex. `https://previa.arestaclimb.com/K9X2-P83A`).
+        ws_url:
+          type: string
+          description: URL `wss://` completa já contendo o parâmetro `sessao` e o `token` para conexão do túnel WebSocket.
+        expira_em:
+          type: integer
+          description: Tempo de vida (TTL) inicial da sessão em segundos em caso de inatividade (padrão `1800`).
+    MetadadosSessaoPrevia:
+      type: object
+      description: Metadados retornados por `GET /{codigo}/meta` para descoberta de rede local e diagnóstico da sessão.
+      required:
+        - codigo
+      properties:
+        codigo:
+          type: string
+          description: Código normalizado da sessão.
+        criadoEm:
+          type: integer
+          description: Timestamp Unix Epoch em milissegundos de criação da sessão.
+        ultimoAcessoEm:
+          type: integer
+          description: Timestamp Unix Epoch em milissegundos da última atividade registrada na sessão.
+        metadados:
+          $ref: "#/components/schemas/RequisicaoCriarSessaoPrevia"
+        ipLocal:
+          type:
+            - string
+            - "null"
+          description: Endereço IP local (LAN) do Editor Desktop, quando informado diretamente.
+        portaLocal:
+          type:
+            - integer
+            - "null"
+          description: Porta TCP local do Editor Desktop, quando informada diretamente.
+        urlLocal:
+          type:
+            - string
+            - "null"
+          description: URL HTTP completa na rede local (`http://{ipLocal}:{portaLocal}`), quando disponível.
+        editorConectado:
+          type: boolean
+          description: Indica se o túnel WebSocket do Editor Desktop está ativo no momento da consulta.
+    ErroPrevia:
+      type: object
+      description: Estrutura padrão de erro JSON retornada pelo Worker de prévia remota.
+      required:
+        - erro
+      properties:
+        erro:
+          type: string
+          description: Descrição legível do motivo da falha ou rejeição.

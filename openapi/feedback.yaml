@@ -1,0 +1,306 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
+# SPDX-License-Identifier: MPL-2.0
+
+openapi: 3.1.0
+info:
+  title: API de Feedback e Diagnósticos Aresta
+  version: 1.0.0
+  description: |
+    Especificação dos serviços de recebimento de feedbacks de usuários do aplicativo móvel **Aresta**
+    e do gateway público de resolução de anexos e diagnósticos técnicos.
+
+    ### Propósito Arquitetural e Separação de Servidores
+    O subsistema de feedback opera em duas camadas complementares:
+    1. **Recebimento de Feedbacks no Supabase Edge Functions (`https://yzkhiaoqtxvvcyyuwmqg.supabase.co`)**:
+       - O aplicativo móvel envia relatos de bugs/sugestões (sobre o aplicativo geral ou sobre um croqui
+         específico) via `multipart/form-data` para `POST /functions/v1/app-feedback` (e opcionalmente
+         `POST /functions/v1/discord-feedback`).
+       - A função valida o token de integridade de hardware **Firebase App Check** (`X-Firebase-AppCheck`),
+         aplica rate-limiting por IP, garante idempotência via `feedbackId` na tabela `processed_feedbacks`,
+         faz upload de capturas de tela e binários Protobuf (`indice.binarypb` e `compilado.binarypb`) no
+         bucket `feedback_anexos` do Supabase Storage, abre uma **GitHub Issue** pública no repositório
+         `aresta-climb/aresta_db` e grava os dados sensíveis do aparelho de forma segregada na tabela
+         restrita `feedback_diagnosticos` protegida por RLS.
+    2. **Gateway Público de Anexos e Diagnósticos (`https://feedback.arestaclimb.com`)**:
+       - Cloudflare Worker leve usado nos links inseridos dentro do corpo das GitHub Issues geradas.
+       - Na rota `GET /anexos/{caminho}`, atua como proxy reverso com cache imutável de 1 ano na CDN da
+         Cloudflare (`Cache-Control: public, max-age=31536000, immutable`) para os arquivos do bucket
+         `feedback_anexos` do Supabase Storage.
+       - Na rota `GET /diagnostico/{id}`, redireciona (HTTP 307) membros autenticados da equipe Aresta
+         para a linha correspondente na tabela `feedback_diagnosticos` do painel do Supabase.
+servers:
+  - url: https://yzkhiaoqtxvvcyyuwmqg.supabase.co
+    description: Servidor principal (Supabase Edge Functions) consumido pelo aplicativo móvel para envio de feedbacks (`app-feedback` e `discord-feedback`).
+  - url: https://feedback.arestaclimb.com
+    description: Gateway Cloudflare Worker público usado nas GitHub Issues para cache de anexos (`/anexos/*`) e redirecionamento de diagnóstico (`/diagnostico/*`).
+paths:
+  /functions/v1/app-feedback:
+    post:
+      operationId: enviar_feedback_app
+      summary: Registra um novo feedback do aplicativo criando uma GitHub Issue e salvando diagnóstico restrito no Supabase.
+      description: |
+        Endpoint principal consumido pelo aplicativo móvel Aresta em `https://yzkhiaoqtxvvcyyuwmqg.supabase.co/functions/v1/app-feedback`.
+        Exige o cabeçalho `X-Firebase-AppCheck` contendo um JWT válido emitido pelo Firebase App Check.
+        Recebe um formulário `multipart/form-data` contendo a descrição textual (`description`), uma string
+        JSON de metadados (`metadata` seguindo o schema `MetadadosFeedbackApp`) e arquivos opcionais de
+        auditoria (`screenshot`, `indice_file`, `croqui_file`).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RequisicaoMultipartFeedbackApp"
+      responses:
+        "200":
+          description: Feedback processado (ou reconhecido como duplicata idempotente) e GitHub Issue criada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaFeedback"
+        "403":
+          description: Token de atestação `X-Firebase-AppCheck` ausente ou inválido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+        "429":
+          description: Limite de requisições por minuto excedido para o IP de origem (inclui cabeçalho `Retry-After`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+        "500":
+          description: Erro interno de configuração ou falha inesperada na Edge Function.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+        "503":
+          description: Falha temporária ao entregar a Issue para a API do GitHub.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+  /functions/v1/discord-feedback:
+    post:
+      operationId: enviar_feedback_discord
+      summary: Encaminha feedback de usuário e captura de tela para o canal de suporte no Discord.
+      description: |
+        Endpoint auxiliar no Supabase (`https://yzkhiaoqtxvvcyyuwmqg.supabase.co/functions/v1/discord-feedback`)
+        que recebe o mesmo formato `multipart/form-data`, verifica idempotência na tabela `processed_feedbacks`
+        e publica um tópico/embed formatado no webhook do Discord da equipe Aresta.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RequisicaoMultipartFeedbackApp"
+      responses:
+        "200":
+          description: Feedback encaminhado ao Discord com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaFeedback"
+        "401":
+          description: Cabeçalho `x-api-key` inválido quando exigido pelo ambiente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+        "500":
+          description: Erro ao enviar payload para o webhook do Discord.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroFeedback"
+  /health:
+    get:
+      operationId: verificar_saude_feedback
+      summary: Verifica a disponibilidade operacional do Gateway Cloudflare Worker de anexos/diagnósticos.
+      description: |
+        Servido por `https://feedback.arestaclimb.com/health`. Responde com texto puro confirmando que o
+        gateway público de anexos e redirecionamento de diagnósticos está operacional.
+      servers:
+        - url: https://feedback.arestaclimb.com
+      responses:
+        "200":
+          description: Gateway operacional (`Aresta Feedback Gateway operacional`).
+          content:
+            text/plain:
+              schema:
+                type: string
+  /diagnostico/{id}:
+    get:
+      operationId: obter_diagnostico_feedback
+      summary: Redireciona para o registro de diagnóstico técnico restrito no painel do Supabase.
+      description: |
+        Servido por `https://feedback.arestaclimb.com/diagnostico/{id}` (também aceita `/diagnosticos/{id}`).
+        Emite um redirecionamento HTTP 307 (`Temporary Redirect`) para o editor de tabelas do Supabase
+        Dashboard filtrado pela coluna `id = {id}` na tabela `feedback_diagnosticos`.
+      servers:
+        - url: https://feedback.arestaclimb.com
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUIDv4 identificador do feedback (`feedbackId`).
+          schema:
+            type: string
+      responses:
+        "307":
+          description: Redirecionamento temporário para a linha correspondente no Supabase Dashboard.
+  /anexos/{caminho}:
+    get:
+      operationId: obter_anexo_feedback
+      summary: Proxy com cache imutável na CDN para anexos de feedback armazenados no Supabase Storage.
+      description: |
+        Servido por `https://feedback.arestaclimb.com/anexos/{caminho}` (ex. `/anexos/{feedbackId}/screenshot.webp`,
+        `/anexos/{feedbackId}/indice.binarypb` ou `/anexos/{feedbackId}/compilado.binarypb`).
+        Busca o objeto no bucket público `feedback_anexos` do Supabase Storage e aplica cache de 1 ano
+        na borda da Cloudflare e no navegador.
+      servers:
+        - url: https://feedback.arestaclimb.com
+      parameters:
+        - name: caminho
+          in: path
+          required: true
+          description: Caminho relativo do arquivo dentro do bucket `feedback_anexos` (`{feedbackId}/{arquivo}`).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Conteúdo binário do anexo (`image/webp`, `image/png` ou `application/octet-stream`).
+        "502":
+          description: Erro ao buscar anexo no Supabase Storage de origem.
+components:
+  schemas:
+    MetadadosFeedbackApp:
+      type: object
+      description: |
+        Estrutura do objeto JSON serializado dentro do campo `metadata` do `multipart/form-data` enviado
+        pelo aplicativo móvel nas rotas `/functions/v1/app-feedback` e `/functions/v1/discord-feedback`.
+      required:
+        - feedbackId
+        - tipo_feedback
+      properties:
+        feedbackId:
+          type: string
+          description: Identificador único UUIDv4 gerado no cliente para garantia de idempotência.
+        tipo_feedback:
+          type: string
+          description: Categoria do relato (`app` para problemas/sugestões gerais do aplicativo, `croqui` para relatos sobre um croqui específico).
+          enum:
+            - app
+            - croqui
+        croqui_id:
+          type:
+            - string
+            - "null"
+          description: Slug identificador do croqui (ex. `br_mg_igarape_pedra_grande`) quando `tipo_feedback == "croqui"`.
+        modo_acesso_croqui:
+          type:
+            - string
+            - "null"
+          description: Modo como o croqui estava sendo acessado no momento do relato (`online` sob demanda ou `offline` baixado).
+          enum:
+            - online
+            - offline
+            - null
+        appVersion:
+          type: string
+          description: Versão do aplicativo instalada no dispositivo (ex. `1.4.2+45`).
+        os:
+          type: string
+          description: Nome do sistema operacional do dispositivo (`android`, `ios`, etc.).
+        osVersion:
+          type: string
+          description: Versão do sistema operacional do dispositivo.
+        deviceModel:
+          type: string
+          description: Modelo físico do aparelho (persistido exclusivamente na tabela restrita `feedback_diagnosticos`).
+        screenSize:
+          type: string
+          description: Resolução ou dimensões lógicas da tela no momento do envio.
+        deviceOrientation:
+          type: string
+          description: Orientação da tela (`portrait` ou `landscape`).
+        isDarkMode:
+          type: boolean
+          description: Indica se o modo escuro estava ativo na interface.
+        connectivity:
+          type: string
+          description: Tipo de conexão de rede ativa no momento do relato (`wifi`, `mobile`, `none`).
+        appInstanceId:
+          type: string
+          description: Identificador anônimo da instância do aplicativo (persistido apenas em `feedback_diagnosticos`).
+        submittedAt:
+          type: string
+          description: Data e hora formatada do momento em que o usuário submeteu o feedback.
+        submittedAtTimestamp:
+          type: string
+          description: Timestamp ISO-8601 exato do momento da submissão no dispositivo.
+        breadcrumbs:
+          type: array
+          description: Lista cronológica dos últimos eventos de navegação e interação registrados antes do envio.
+          items:
+            type: string
+        navigationTree:
+          type: string
+          description: Representação textual da pilha/árvore de rotas ativa no aplicativo.
+        indice_sha256:
+          type: string
+          description: Hash SHA-256 do arquivo `indice.binarypb` presente no dispositivo para auditoria de sincronização.
+        croqui_status:
+          type: string
+          description: Estado de sincronização/cache do croqui atual no dispositivo.
+        thumbnail_status:
+          type: string
+          description: Estado de cache da imagem de miniatura do croqui.
+    RequisicaoMultipartFeedbackApp:
+      type: object
+      description: Campos do formulário `multipart/form-data` enviado para `/functions/v1/app-feedback` e `/functions/v1/discord-feedback`.
+      required:
+        - description
+        - metadata
+      properties:
+        description:
+          type: string
+          description: Relato textual livre escrito pelo usuário descrevendo o problema ou sugestão.
+        metadata:
+          type: string
+          description: String JSON contendo os metadados estruturados conforme o schema `MetadadosFeedbackApp`.
+        screenshot:
+          type: string
+          description: Arquivo binário opcional da captura de tela (`.webp` ou `.png`).
+        indice_file:
+          type: string
+          description: Arquivo binário opcional `indice.binarypb` local anexado para auditoria.
+        croqui_file:
+          type: string
+          description: Arquivo binário opcional `compilado.binarypb` do croqui aberto no momento do feedback.
+    RespostaFeedback:
+      type: object
+      description: Resposta JSON de sucesso retornada pelas Edge Functions `app-feedback` e `discord-feedback`.
+      required:
+        - success
+        - message
+      properties:
+        success:
+          type: boolean
+          description: Indica `true` quando o feedback foi processado com sucesso (ou já havia sido processado anteriormente).
+        message:
+          type: string
+          description: Mensagem informativa do resultado do processamento.
+        issue_url:
+          type: string
+          description: URL pública da GitHub Issue criada em `aresta-climb/aresta_db` (retornada por `app-feedback`).
+    ErroFeedback:
+      type: object
+      description: Resposta JSON de erro retornada pelas Edge Functions de feedback em caso de falha de autenticação, rate limit ou integração externa.
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Mensagem detalhando a causa do erro (`Acesso negado`, `Muitas requisições`, etc.).

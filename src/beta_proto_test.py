@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 
-def test_beta_proto_messages_exist():
+def test_beta_proto_messages_exist() -> None:
     """
     Garante que o módulo beta_pb2 exporta as mensagens
     MidiaBeta, ResultadoLLMBeta, EscaladaAlvoBusca, ViasExtraidasCroqui,
@@ -71,7 +71,7 @@ def test_beta_proto_messages_exist():
     assert hasattr(pendentes, "candidatos_por_escalada")
 
 
-def test_beta_proto_enum_encapsulation():
+def test_beta_proto_enum_encapsulation() -> None:
     """
     Garante que os enums de beta.proto seguem estritamente as regras de AGENTS.md:
     - O enum deve ser nomeado Enum e encapsulado em uma mensagem dedicada.
@@ -87,7 +87,7 @@ def test_beta_proto_enum_encapsulation():
     assert beta_pb2.FonteMidia.INSTAGRAM == 2
 
 
-def test_escalada_has_repeated_betas_field():
+def test_escalada_has_repeated_betas_field() -> None:
     """
     Garante que a mensagem Escalada em croqui.proto importa beta.proto
     e possui o campo repetido 'betas' do tipo MidiaBeta.

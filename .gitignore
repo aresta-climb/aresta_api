@@ -1,9 +1,12 @@
-# Proto hash files
+# Contract hash files
 **/.protos_hash
+**/.sql_hash
+**/.openapi_hash
 
 # Miscellaneous
 *.class
 *.lock
+!uv.lock
 *.log
 *.pyc
 *.swp
