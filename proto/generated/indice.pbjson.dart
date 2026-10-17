@@ -27,6 +27,7 @@ const Indice$json = {
       '6': '.aresta.ResumoCroqui',
       '10': 'croquis'
     },
+    {'1': 'versao_catalogo', '3': 3, '4': 1, '5': 9, '10': 'versaoCatalogo'},
   ],
   '9': [
     {'1': 1, '2': 2},
@@ -37,7 +38,8 @@ const Indice$json = {
 /// Descriptor for `Indice`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List indiceDescriptor = $convert.base64Decode(
     'CgZJbmRpY2USLgoHY3JvcXVpcxgCIAMoCzIULmFyZXN0YS5SZXN1bW9Dcm9xdWlSB2Nyb3F1aX'
-    'NKBAgBEAJSCHVybF9iYXNl');
+    'MSJwoPdmVyc2FvX2NhdGFsb2dvGAMgASgJUg52ZXJzYW9DYXRhbG9nb0oECAEQAlIIdXJsX2Jh'
+    'c2U=');
 
 @$core.Deprecated('Use precomputadosResumoCroquiDescriptor instead')
 const PrecomputadosResumoCroqui$json = {

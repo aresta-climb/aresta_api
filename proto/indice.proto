@@ -14,6 +14,9 @@ message Indice {
     // Lista de croquis disponíveis.
     repeated ResumoCroqui croquis = 2;
 
+    // Hash lógico determinístico (16 hex chars) da versão atual do catalogo.db.
+    string versao_catalogo = 3;
+
     reserved 1;
     reserved url_base;
 }

@@ -26,9 +26,11 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 class Indice extends $pb.GeneratedMessage {
   factory Indice({
     $core.Iterable<ResumoCroqui>? croquis,
+    $core.String? versaoCatalogo,
   }) {
     final result = Indice._();
     if (croquis != null) result.croquis.addAll(croquis);
+    if (versaoCatalogo != null) result.versaoCatalogo = versaoCatalogo;
     return result;
   }
 
@@ -47,6 +49,7 @@ class Indice extends $pb.GeneratedMessage {
       createEmptyInstance: Indice.$_createMessage)
     ..pPM<ResumoCroqui>(2, _omitFieldNames ? '' : 'croquis',
         subBuilder: ResumoCroqui.$_createMessage)
+    ..aOS(3, _omitFieldNames ? '' : 'versaoCatalogo')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -72,6 +75,16 @@ class Indice extends $pb.GeneratedMessage {
   /// Lista de croquis disponíveis.
   @$pb.TagNumber(2)
   $pb.PbList<ResumoCroqui> get croquis => $_getList(0);
+
+  /// Hash lógico determinístico (16 hex chars) da versão atual do catalogo.db.
+  @$pb.TagNumber(3)
+  $core.String get versaoCatalogo => $_getSZ(1);
+  @$pb.TagNumber(3)
+  set versaoCatalogo($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasVersaoCatalogo() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearVersaoCatalogo() => $_clearField(3);
 }
 
 /// Pré-computados para acesso rápido a estatísticas do croqui no índice.

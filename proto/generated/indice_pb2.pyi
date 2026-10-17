@@ -31,6 +31,9 @@ class Indice(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     CROQUIS_FIELD_NUMBER: _builtins.int
+    VERSAO_CATALOGO_FIELD_NUMBER: _builtins.int
+    versao_catalogo: _builtins.str
+    """Hash lógico determinístico (16 hex chars) da versão atual do catalogo.db."""
     @_builtins.property
     def croquis(self) -> _containers.RepeatedCompositeFieldContainer[Global___ResumoCroqui]:
         """Lista de croquis disponíveis."""
@@ -39,10 +42,11 @@ class Indice(_message.Message):
         self,
         *,
         croquis: _abc.Iterable[Global___ResumoCroqui] | None = ...,
+        versao_catalogo: _builtins.str | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["croquis", b"croquis"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["croquis", b"croquis", "versao_catalogo", b"versao_catalogo"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["croquis", b"croquis"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["croquis", b"croquis", "versao_catalogo", b"versao_catalogo"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
