@@ -73,7 +73,7 @@ def test_beta_proto_messages_exist():
 
 def test_beta_proto_enum_encapsulation():
     """
-    Garante que os enums de beta.proto seguem estritamente as regras de PRINCIPIOS.md:
+    Garante que os enums de beta.proto seguem estritamente as regras de AGENTS.md:
     - O enum deve ser nomeado Enum e encapsulado em uma mensagem dedicada.
     - O primeiro valor deve ser INDEFINIDO = 0.
     """

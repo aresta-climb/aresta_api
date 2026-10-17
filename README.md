@@ -34,7 +34,9 @@ python build.py
 - Os schemas protobuf descrevem **dados** que são licenciados sob **ODbL 1.0** – consulte o [Resumo de Licenças e Direitos Autorais](https://github.com/aresta-climb/aresta_db/blob/main/LICENCAS_RESUMO.md) para saber como usá‑los.
 
 ## Contribuindo
+Antes de propor alterações nos schemas `.proto` ou nas bibliotecas de validação, leia e siga rigorosamente os nossos [Princípios de Engenharia](AGENTS.md).
+
 1. Faça um **Fork** do repositório.
-2. Modifique ou adicione novos arquivos `.proto` conforme necessário.
+2. Modifique ou adicione novos arquivos `.proto` conforme necessário (respeitando as diretrizes de `AGENTS.md`).
 3. Rode `python build.py` para gerar os stubs atualizados.
 4. Abra um **Pull Request**.
