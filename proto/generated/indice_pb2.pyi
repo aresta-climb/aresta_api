@@ -132,8 +132,8 @@ class ResumoCroqui(_message.Message):
     checksum_sha256_thumbnail: _builtins.str
     """Checksum SHA256 da última versão da thumbnail.
     Se diferente do checksum da versão baixada, há atualizações.
-    A thumbnail *sempre* será localizada em "imagens/thumbnail.webp", relativa
-    à pasta onde está o croqui.binarypb.
+    A thumbnail do catálogo está localizada em "thumbnails/<id>.webp", relativa
+    à raiz onde está o indice.binarypb.
     """
     @_builtins.property
     def timestamp_update(self) -> _timestamp_pb2.Timestamp:

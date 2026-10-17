@@ -372,8 +372,8 @@ class ResumoCroqui extends $pb.GeneratedMessage {
 
   /// Checksum SHA256 da última versão da thumbnail.
   /// Se diferente do checksum da versão baixada, há atualizações.
-  /// A thumbnail *sempre* será localizada em "imagens/thumbnail.webp", relativa
-  /// à pasta onde está o croqui.binarypb.
+  /// A thumbnail do catálogo está localizada em "thumbnails/<id>.webp", relativa
+  /// à raiz onde está o indice.binarypb.
   @$pb.TagNumber(8)
   $core.String get checksumSha256Thumbnail => $_getSZ(5);
   @$pb.TagNumber(8)
