@@ -14,8 +14,6 @@ from unittest.mock import patch
 
 import pytest
 
-from src.validador_paridade import ErroParidadeContrato
-
 _build_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build.py")
 _spec = importlib.util.spec_from_file_location("aresta_api_build", _build_path)
 assert _spec is not None
@@ -23,6 +21,8 @@ assert _spec.loader is not None
 build = importlib.util.module_from_spec(_spec)
 sys.modules["build"] = build
 _spec.loader.exec_module(build)
+
+from src.validador_paridade import ErroParidadeContrato  # noqa: E402
 
 
 class TestBuild(unittest.TestCase):
