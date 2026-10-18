@@ -465,6 +465,7 @@ const Pico$json = {
   '2': [
     {'1': 'nome', '3': 1, '4': 1, '5': 9, '8': {}, '10': 'nome'},
     {'1': 'descricao', '3': 2, '4': 1, '5': 9, '8': {}, '10': 'descricao'},
+    {'1': 'cidade', '3': 14, '4': 1, '5': 9, '8': {}, '10': 'cidade'},
     {'1': 'estado', '3': 3, '4': 1, '5': 9, '10': 'estado'},
     {
       '1': 'localizacao',
@@ -552,19 +553,19 @@ const Pico$json = {
 /// Descriptor for `Pico`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'CgRQaWNvEhgKBG5vbWUYASABKAlCBMC1GAFSBG5vbWUSIgoJZGVzY3JpY2FvGAIgASgJQgSotR'
-    'gBUglkZXNjcmljYW8SFgoGZXN0YWRvGAMgASgJUgZlc3RhZG8SRwoLbG9jYWxpemFjYW8YBCAB'
-    'KAsyEi5hcmVzdGEuQ29vcmRlbmFkYUIRkrUYDUxvY2FsaXphw6fDo29SC2xvY2FsaXphY2FvEj'
-    'sKD3VybF9nb29nbGVfbWFwcxgFIAEoCUITkrUYD1VSTCBHb29nbGUgTWFwc1INdXJsR29vZ2xl'
-    'TWFwcxItCg9ub21lX2Fzc29jaWFjYW8YBiABKAlCBOi1GAFSDm5vbWVBc3NvY2lhY2FvElEKF3'
-    'VybF9maWxpYWNhb19hc3NvY2lhY2FvGAcgASgJQhmStRgRVVJMIGRlIEZpbGlhw6fDo2/otRgB'
-    'UhV1cmxGaWxpYWNhb0Fzc29jaWFjYW8SVQoUY2hhdmVfcGl4X21hbnV0ZW5jYW8YCCABKAlCI5'
-    'K1GBtDaGF2ZSBQaXggcGFyYSBNYW51dGVuw6fDo2/otRgBUhJjaGF2ZVBpeE1hbnV0ZW5jYW8S'
-    'QgoOcGF0cm9jaW5hZG9yZXMYCSADKAsyFC5hcmVzdGEuUGF0cm9jaW5hZG9yQgTotRgBUg5wYX'
-    'Ryb2NpbmFkb3JlcxJAChFzZXRvcmVzX291X2dydXBvcxgLIAMoCzIULmFyZXN0YS5TZXRvck91'
-    'R3J1cG9SD3NldG9yZXNPdUdydXBvcxJJCgxtYXBhc19nZXJhaXMYDCABKAsyFC5hcmVzdGEuQX'
-    'JxdWl2b01hcGFzQhCStRgMTWFwYXMgR2VyYWlzUgttYXBhc0dlcmFpcxJFCg1wcmVjb21wdXRh'
-    'ZG9zGA0gASgLMhkuYXJlc3RhLlByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG'
-    '9zOgSQtRgBSgQIChAL');
+    'gBUglkZXNjcmljYW8SIgoGY2lkYWRlGA4gASgJQgqStRgGQ2lkYWRlUgZjaWRhZGUSFgoGZXN0'
+    'YWRvGAMgASgJUgZlc3RhZG8SRwoLbG9jYWxpemFjYW8YBCABKAsyEi5hcmVzdGEuQ29vcmRlbm'
+    'FkYUIRkrUYDUxvY2FsaXphw6fDo29SC2xvY2FsaXphY2FvEjsKD3VybF9nb29nbGVfbWFwcxgF'
+    'IAEoCUITkrUYD1VSTCBHb29nbGUgTWFwc1INdXJsR29vZ2xlTWFwcxItCg9ub21lX2Fzc29jaW'
+    'FjYW8YBiABKAlCBOi1GAFSDm5vbWVBc3NvY2lhY2FvElEKF3VybF9maWxpYWNhb19hc3NvY2lh'
+    'Y2FvGAcgASgJQhmStRgRVVJMIGRlIEZpbGlhw6fDo2/otRgBUhV1cmxGaWxpYWNhb0Fzc29jaW'
+    'FjYW8SVQoUY2hhdmVfcGl4X21hbnV0ZW5jYW8YCCABKAlCI5K1GBtDaGF2ZSBQaXggcGFyYSBN'
+    'YW51dGVuw6fDo2/otRgBUhJjaGF2ZVBpeE1hbnV0ZW5jYW8SQgoOcGF0cm9jaW5hZG9yZXMYCS'
+    'ADKAsyFC5hcmVzdGEuUGF0cm9jaW5hZG9yQgTotRgBUg5wYXRyb2NpbmFkb3JlcxJAChFzZXRv'
+    'cmVzX291X2dydXBvcxgLIAMoCzIULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydX'
+    'BvcxJJCgxtYXBhc19nZXJhaXMYDCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFw'
+    'YXMgR2VyYWlzUgttYXBhc0dlcmFpcxJFCg1wcmVjb21wdXRhZG9zGA0gASgLMhkuYXJlc3RhLl'
+    'ByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIChAL');
 
 @$core.Deprecated('Use colecaoDeMapasDescriptor instead')
 const ColecaoDeMapas$json = {

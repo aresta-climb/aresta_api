@@ -372,6 +372,7 @@ message PrecomputadosPico {
 }
 
 // Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
+// NEXT_ID: 15
 message Pico {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
   // Nome oficial do pico de escalada.
@@ -379,6 +380,9 @@ message Pico {
   
   // Visão geral, história e informações gerais de acesso.
   string descricao = 2 [(aresta.conteudo_markdown) = true];
+
+  // Cidade (município) do local de escalada.
+  string cidade = 14 [(aresta.texto_na_ui) = "Cidade"];
 
   // Estado do local de escalada.
   string estado = 3;

@@ -1225,6 +1225,7 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
 }
 
 /// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
+/// NEXT_ID: 15
 class Pico extends $pb.GeneratedMessage {
   factory Pico({
     $core.String? nome,
@@ -1239,6 +1240,7 @@ class Pico extends $pb.GeneratedMessage {
     $core.Iterable<SetorOuGrupo>? setoresOuGrupos,
     ArquivoMapas? mapasGerais,
     PrecomputadosPico? precomputados,
+    $core.String? cidade,
   }) {
     final result = Pico._();
     if (nome != null) result.nome = nome;
@@ -1255,6 +1257,7 @@ class Pico extends $pb.GeneratedMessage {
     if (setoresOuGrupos != null) result.setoresOuGrupos.addAll(setoresOuGrupos);
     if (mapasGerais != null) result.mapasGerais = mapasGerais;
     if (precomputados != null) result.precomputados = precomputados;
+    if (cidade != null) result.cidade = cidade;
     return result;
   }
 
@@ -1287,7 +1290,8 @@ class Pico extends $pb.GeneratedMessage {
     ..aOM<ArquivoMapas>(12, _omitFieldNames ? '' : 'mapasGerais',
         subBuilder: ArquivoMapas.$_createMessage)
     ..aOM<PrecomputadosPico>(13, _omitFieldNames ? '' : 'precomputados',
-        subBuilder: PrecomputadosPico.$_createMessage);
+        subBuilder: PrecomputadosPico.$_createMessage)
+    ..aOS(14, _omitFieldNames ? '' : 'cidade');
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -1422,6 +1426,16 @@ class Pico extends $pb.GeneratedMessage {
   void clearPrecomputados() => $_clearField(13);
   @$pb.TagNumber(13)
   PrecomputadosPico ensurePrecomputados() => $_ensure(11);
+
+  /// Cidade (município) do local de escalada.
+  @$pb.TagNumber(14)
+  $core.String get cidade => $_getSZ(12);
+  @$pb.TagNumber(14)
+  set cidade($core.String value) => $_setString(12, value);
+  @$pb.TagNumber(14)
+  $core.bool hasCidade() => $_has(12);
+  @$pb.TagNumber(14)
+  void clearCidade() => $_clearField(14);
 }
 
 /// Coleção de mapas para uso externo.

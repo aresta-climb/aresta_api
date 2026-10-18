@@ -633,12 +633,15 @@ Global___PrecomputadosPico: _TypeAlias = PrecomputadosPico  # noqa: Y015
 
 @_typing.final
 class Pico(_message.Message):
-    """Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha)."""
+    """Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
+    NEXT_ID: 15
+    """
 
     DESCRIPTOR: _descriptor.Descriptor
 
     NOME_FIELD_NUMBER: _builtins.int
     DESCRICAO_FIELD_NUMBER: _builtins.int
+    CIDADE_FIELD_NUMBER: _builtins.int
     ESTADO_FIELD_NUMBER: _builtins.int
     LOCALIZACAO_FIELD_NUMBER: _builtins.int
     URL_GOOGLE_MAPS_FIELD_NUMBER: _builtins.int
@@ -653,6 +656,8 @@ class Pico(_message.Message):
     """Nome oficial do pico de escalada."""
     descricao: _builtins.str
     """Visão geral, história e informações gerais de acesso."""
+    cidade: _builtins.str
+    """Cidade (município) do local de escalada."""
     estado: _builtins.str
     """Estado do local de escalada."""
     url_google_maps: _builtins.str
@@ -688,6 +693,7 @@ class Pico(_message.Message):
         *,
         nome: _builtins.str | None = ...,
         descricao: _builtins.str | None = ...,
+        cidade: _builtins.str | None = ...,
         estado: _builtins.str | None = ...,
         localizacao: Global___Coordenada | None = ...,
         url_google_maps: _builtins.str | None = ...,
@@ -699,9 +705,9 @@ class Pico(_message.Message):
         mapas_gerais: Global___ArquivoMapas | None = ...,
         precomputados: Global___PrecomputadosPico | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
