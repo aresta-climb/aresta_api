@@ -6,6 +6,9 @@ export const URL_SERVIDOR_PADRAO = "https://aresta.cc";
 export const ROTA_VERIFICAR_SAUDE_APP_LINKS = "/health";
 export const ROTA_OBTER_ASSETLINKS_ANDROID = "/.well-known/assetlinks.json";
 export const ROTA_OBTER_ASSOCIACAO_IOS = "/.well-known/apple-app-site-association";
+export const ROTA_OBTER_ROBOTS_TXT = "/robots.txt";
+export const ROTA_OBTER_FAVICON_ICO = "/favicon.ico";
+export const ROTA_OBTER_FAVICON_SVG = "/favicon.svg";
 export const ROTA_RESOLVER_LINK_UID = "/{uid}";
 export const ROTA_RESOLVER_LINK_PREFIXADO_UID = "/{prefixo}/{uid}";
 

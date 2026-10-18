@@ -56,6 +56,31 @@ paths:
             application/json:
               schema:
                 type: string
+  /robots.txt:
+    get:
+      operationId: obter_robots_txt
+      summary: Retorna as diretivas de indexação para crawlers e bots com cache longo na borda.
+      responses:
+        "200":
+          description: Conteúdo do arquivo robots.txt.
+          content:
+            text/plain:
+              schema:
+                type: string
+  /favicon.ico:
+    get:
+      operationId: obter_favicon_ico
+      summary: Redireciona permanentemente para o ícone oficial do Aresta com cache imutável na borda.
+      responses:
+        "301":
+          description: Redirecionamento permanente para https://arestaclimb.com/favicon.svg.
+  /favicon.svg:
+    get:
+      operationId: obter_favicon_svg
+      summary: Redireciona permanentemente para o ícone vetorial oficial do Aresta com cache imutável na borda.
+      responses:
+        "301":
+          description: Redirecionamento permanente para https://arestaclimb.com/favicon.svg.
   /{uid}:
     get:
       operationId: resolver_link_uid

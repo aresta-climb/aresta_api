@@ -6,6 +6,9 @@ const String urlServidorPadraoAppLinks = 'https://aresta.cc';
 const String rotaVerificarSaudeAppLinks = '/health';
 const String rotaObterAssetlinksAndroid = '/.well-known/assetlinks.json';
 const String rotaObterAssociacaoIos = '/.well-known/apple-app-site-association';
+const String rotaObterRobotsTxt = '/robots.txt';
+const String rotaObterFaviconIco = '/favicon.ico';
+const String rotaObterFaviconSvg = '/favicon.svg';
 const String rotaResolverLinkUid = '/{uid}';
 const String rotaResolverLinkPrefixadoUid = '/{prefixo}/{uid}';
 
