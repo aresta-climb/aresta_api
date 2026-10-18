@@ -121,8 +121,7 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
     uid TEXT PRIMARY KEY,
@@ -158,7 +157,6 @@ components:
         nome: { type: string }
         cidade: { type: [string, "null"] }
         estado: { type: [string, "null"] }
-        atualizado_em: { type: integer }
     CatalogoEntidade:
       type: object
       required: [uid, tipo, croqui_uid, nome, escalada_grau, escalada_tipo, setor_uid, grupo_uid]

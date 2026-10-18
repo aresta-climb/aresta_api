@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import NotRequired, TypedDict
+from typing import TypedDict
 
 DDL_TABELA_CATALOGO_CROQUIS = """
 CREATE TABLE IF NOT EXISTS catalogo_croquis (
@@ -12,11 +12,10 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 """.strip()
-COLUNAS_CATALOGO_CROQUIS: tuple[str, ...] = ("croqui_uid", "id_slug", "nome", "cidade", "estado", "atualizado_em",)
+COLUNAS_CATALOGO_CROQUIS: tuple[str, ...] = ("croqui_uid", "id_slug", "nome", "cidade", "estado",)
 
 DDL_TABELA_CATALOGO_ARESTA = """
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -74,7 +73,6 @@ class LinhaCatalogoCroquis(TypedDict):
     nome: str
     cidade: str | None
     estado: str | None
-    atualizado_em: NotRequired[int]
 
 class LinhaCatalogoAresta(TypedDict):
     """Estrutura tipada de linha da tabela `catalogo_aresta`."""

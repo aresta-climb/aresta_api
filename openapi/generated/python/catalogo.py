@@ -19,7 +19,6 @@ class CatalogoCroqui(TypedDict):
     nome: str
     cidade: str | None
     estado: str | None
-    atualizado_em: NotRequired[int]
 
 
 class CatalogoEntidade(TypedDict):

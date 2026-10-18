@@ -12,7 +12,6 @@ class CatalogoCroqui {
   final String nome;
   final String? cidade;
   final String? estado;
-  final int? atualizadoEm;
 
   const CatalogoCroqui({
     required this.croquiUid,
@@ -20,7 +19,6 @@ class CatalogoCroqui {
     required this.nome,
     this.cidade,
     this.estado,
-    this.atualizadoEm,
   });
 
   factory CatalogoCroqui.fromJson(Map<String, dynamic> json) {
@@ -30,7 +28,6 @@ class CatalogoCroqui {
       nome: json['nome'] as String,
       cidade: json['cidade'] as String?,
       estado: json['estado'] as String?,
-      atualizadoEm: json['atualizado_em'] as int?,
     );
   }
 
@@ -41,7 +38,6 @@ class CatalogoCroqui {
       'nome': nome,
       'cidade': cidade,
       'estado': estado,
-      'atualizado_em': atualizadoEm,
     };
   }
 }

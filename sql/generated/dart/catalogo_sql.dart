@@ -8,8 +8,7 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 ''';
 
@@ -63,8 +62,7 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -99,7 +97,6 @@ class LinhaCatalogoCroquis {
   final String nome;
   final String? cidade;
   final String? estado;
-  final int atualizadoEm;
 
   const LinhaCatalogoCroquis({
     required this.croquiUid,
@@ -107,7 +104,6 @@ class LinhaCatalogoCroquis {
     required this.nome,
     this.cidade,
     this.estado,
-    this.atualizadoEm = 0,
   });
 
   factory LinhaCatalogoCroquis.fromMap(Map<String, dynamic> map) {
@@ -117,7 +113,6 @@ class LinhaCatalogoCroquis {
       nome: map['nome'] as String,
       cidade: map['cidade'] as String?,
       estado: map['estado'] as String?,
-      atualizadoEm: (map['atualizado_em'] as int?) ?? 0,
     );
   }
 
@@ -128,7 +123,6 @@ class LinhaCatalogoCroquis {
       'nome': nome,
       'cidade': cidade,
       'estado': estado,
-      'atualizado_em': atualizadoEm,
     };
   }
 }

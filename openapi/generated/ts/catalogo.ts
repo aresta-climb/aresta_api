@@ -12,7 +12,6 @@ export interface CatalogoCroqui {
   nome: string;
   cidade: string | null;
   estado: string | null;
-  atualizado_em?: number;
 }
 
 export interface CatalogoEntidade {

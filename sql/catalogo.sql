@@ -45,18 +45,13 @@
 --       Sigla da unidade federativa / estado / província em letras maiúsculas
 --       de 2 caracteres (ex: 'MG', 'RJ', 'SP', 'ES'). Pode ser string vazia ('')
 --       ou NULL quando não aplicável.
---   * atualizado_em (INTEGER NOT NULL DEFAULT 0):
---       Timestamp Unix Epoch em segundos (UTC) indicando o momento em que os
---       dados deste croqui foram compilados e inseridos no catálogo SQLite
---       (ex: 1760000000). Padrão 0 quando omitido em sincronizações delta.
 -- -----------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS catalogo_croquis (
     croqui_uid TEXT PRIMARY KEY,
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 
 -- -----------------------------------------------------------------------------

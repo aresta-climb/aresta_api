@@ -8,11 +8,10 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT,
-    atualizado_em INTEGER NOT NULL DEFAULT 0
+    estado TEXT
 );
 `.trim();
-export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = ["croqui_uid", "id_slug", "nome", "cidade", "estado", "atualizado_em"];
+export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = ["croqui_uid", "id_slug", "nome", "cidade", "estado"];
 
 export const DDL_TABELA_CATALOGO_ARESTA = `
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -67,7 +66,6 @@ export interface LinhaCatalogoCroquis {
   nome: string;
   cidade: string | null;
   estado: string | null;
-  atualizado_em?: number;
 }
 
 export interface LinhaCatalogoAresta {

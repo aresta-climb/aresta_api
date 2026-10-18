@@ -117,9 +117,6 @@ components:
             - string
             - "null"
           description: Sigla da unidade federativa / estado em 2 letras maiúsculas (ex. `MG`, `RJ`, `SP`) ou `null`.
-        atualizado_em:
-          type: integer
-          description: Timestamp Unix Epoch em segundos da última compilação do croqui (padrão `0` quando omitido no delta).
     CatalogoEntidade:
       type: object
       description: |
