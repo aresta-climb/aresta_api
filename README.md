@@ -6,7 +6,7 @@
 O repositório organiza os contratos em três pilares:
 1. **`proto/` (Protocol Buffers)** – Mensagens binárias (`.binarypb`) para croquis (`croqui.proto`), índice (`indice.proto`), betas (`beta.proto`), metadados experimentais (`croqui_experimental.proto`) e serving (`serving.proto`).
 2. **`sql/` (SQLite / Cloudflare D1)** – Esquemas relacionais canônicos em SQL puro (`catalogo.sql` para o banco local e borda, e `catalogo_d1.sql` para a tabela de deltas na borda).
-3. **`openapi/` (OpenAPI 3.1)** – Especificações formais das APIs HTTP REST do `aresta_backend` (`catalogo.yaml`, `previa.yaml`, `colaboracao.yaml` e `feedback.yaml`), incluindo URLs de servidores (`servers`), rotas (`paths`), parâmetros e schemas de payload (`components/schemas`).
+3. **`openapi/` (OpenAPI 3.1)** – Especificações formais das APIs HTTP REST do `aresta_backend` (`catalogo.yaml`, `app_links.yaml`, `previa.yaml`, `colaboracao.yaml` e `feedback.yaml`), incluindo URLs de servidores (`servers`), rotas (`paths`), parâmetros e schemas de payload (`components/schemas`).
 
 ## Estrutura de Diretórios
 - **`src/`** – Bibliotecas modulares e testadas (100% de cobertura comportamental) responsáveis pela validação e geração multi-linguagem:

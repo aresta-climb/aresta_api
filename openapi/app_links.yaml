@@ -1,0 +1,253 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
+# SPDX-License-Identifier: MPL-2.0
+
+openapi: 3.1.0
+info:
+  title: API de Links Curtos e Resolução SSR Aresta (aresta.cc)
+  version: 1.0.0
+  description: |
+    Serviço de borda executado no Cloudflare Workers + Cloudflare D1 (`https://aresta.cc`)
+    responsável pela verificação de domínios de deep links nativos (Android App Links e iOS Universal Links),
+    pré-visualização OpenGraph em redes sociais/mensageiros (WhatsApp, Telegram, Instagram) e página de
+    fallback SSR consultando o catálogo relacional no Cloudflare D1 (`aresta-catalogo`).
+
+    ### Formato Compacto de 35 Caracteres (QR Code Version 3-H)
+    Suporta links curtos com ou sem prefixo de contexto e modo de abertura:
+    - `https://aresta.cc/{uid}`: abre a página principal da entidade sem origem predefinida.
+    - `https://aresta.cc/m/{uid}`: abre diretamente o Mapa Interativo da entidade.
+    - `https://aresta.cc/s/{uid}`: marca origem como compartilhamento (`utm_source=compartilhamento`, `utm_medium=social`).
+    - `https://aresta.cc/sm/{uid}` ou `https://aresta.cc/ms/{uid}`: compartilhamento abrindo diretamente no mapa.
+    - `https://aresta.cc/q/{uid}`: marca origem como placa física QR Code (`utm_source=placa_rocha`, `utm_medium=qrcode`).
+    - `https://aresta.cc/qm/{uid}` ou `https://aresta.cc/mq/{uid}`: placa QR Code abrindo diretamente no mapa.
+servers:
+  - url: https://aresta.cc
+    description: Gateway de links curtos, verificação App/Universal Links e SSR OpenGraph na borda Cloudflare.
+paths:
+  /health:
+    get:
+      operationId: verificar_saude_app_links
+      summary: Verifica a disponibilidade operacional do Worker de App Links.
+      responses:
+        "200":
+          description: Worker de App Links operacional.
+          content:
+            text/plain:
+              schema:
+                type: string
+  /.well-known/assetlinks.json:
+    get:
+      operationId: obter_assetlinks_android
+      summary: Retorna o manifesto Digital Asset Links para validação automática de Android App Links.
+      responses:
+        "200":
+          description: Lista de declarações Digital Asset Links para `app.escalada.croquis`.
+          content:
+            application/json:
+              schema:
+                type: string
+  /.well-known/apple-app-site-association:
+    get:
+      operationId: obter_associacao_ios
+      summary: Retorna o manifesto Apple App Site Association (AASA) para validação de iOS Universal Links.
+      responses:
+        "200":
+          description: Manifesto AASA para `Z74K7R3WU7.app.escalada.croquis`.
+          content:
+            application/json:
+              schema:
+                type: string
+  /{uid}:
+    get:
+      operationId: resolver_link_uid
+      summary: Renderiza a página HTML SSR com metadados OpenGraph e links das lojas para o UID informado.
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Identificador único de 14 caracteres alfanuméricos do croqui, grupo, setor ou escalada.
+          schema:
+            type: string
+        - name: utm_source
+          in: query
+          required: false
+          description: Fonte explícita da campanha/link para rastreamento analítico.
+          schema:
+            type: string
+        - name: utm_medium
+          in: query
+          required: false
+          description: Meio explícito da campanha/link para rastreamento analítico.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Página HTML SSR com resumo da entidade, tags OpenGraph e script Umami.
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Entidade não encontrada no catálogo D1 ou formato de UID inválido.
+          content:
+            text/html:
+              schema:
+                type: string
+  /{prefixo}/{uid}:
+    get:
+      operationId: resolver_link_prefixado_uid
+      summary: Renderiza a página HTML SSR com prefixo compacto de modo mapa e/ou origem (`m`, `s`, `sm`, `ms`, `q`, `qm`, `mq`).
+      parameters:
+        - name: prefixo
+          in: path
+          required: true
+          description: Prefixo compacto combinando modo mapa (`m`) e origem (`s` para compartilhamento, `q` para QR Code).
+          schema:
+            type: string
+        - name: uid
+          in: path
+          required: true
+          description: Identificador único de 14 caracteres alfanuméricos do croqui, grupo, setor ou escalada.
+          schema:
+            type: string
+        - name: utm_source
+          in: query
+          required: false
+          description: Fonte explícita da campanha/link (sobrescreve a fonte inferida pelo prefixo).
+          schema:
+            type: string
+        - name: utm_medium
+          in: query
+          required: false
+          description: Meio explícito da campanha/link (sobrescreve o meio inferido pelo prefixo).
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Página HTML SSR com resumo da entidade, tags OpenGraph e script Umami.
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Prefixo inválido, formato de UID inválido ou entidade não encontrada no catálogo D1.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    ResumoEntidadeLink:
+      type: object
+      description: |
+        Dados consolidados de uma entidade do catálogo (`croqui`, `grupo`, `setor` ou `escalada`)
+        recuperados do Cloudflare D1 para renderização do cartão SSR e das meta tags OpenGraph.
+      required:
+        - uid
+        - tipo
+        - nome
+        - croqui_uid
+        - id_slug
+        - croqui_nome
+        - cidade
+        - estado
+        - escalada_grau
+        - escalada_tipo
+        - setor_nome
+        - grupo_nome
+      properties:
+        uid:
+          type: string
+          description: Identificador único de 14 caracteres alfanuméricos da entidade.
+        tipo:
+          type: string
+          description: Categoria da entidade resolvida.
+          enum:
+            - croqui
+            - grupo
+            - setor
+            - escalada
+        nome:
+          type: string
+          description: Nome principal da entidade (nome da via, setor, grupo ou croqui).
+        croqui_uid:
+          type: string
+          description: UID do croqui ao qual a entidade pertence (igual a `uid` quando `tipo == "croqui"`).
+        id_slug:
+          type: string
+          description: Slug identificador do croqui usado para construir a URL da thumbnail na CDN.
+        croqui_nome:
+          type: string
+          description: Nome legível do croqui/pico onde a entidade está localizada.
+        cidade:
+          type:
+            - string
+            - "null"
+          description: Município do croqui (ex. `Igarapé`) ou `null`.
+        estado:
+          type:
+            - string
+            - "null"
+          description: Sigla da unidade federativa do croqui (ex. `MG`) ou `null`.
+        escalada_grau:
+          type:
+            - string
+            - "null"
+          description: Graduação da escalada (ex. `6ºsup`, `V4`) quando `tipo == "escalada"`, ou `null`.
+        escalada_tipo:
+          type:
+            - string
+            - "null"
+          description: Modalidade da escalada (`esportiva`, `tradicional`, `boulder`, `multienfiada`, `highline`) ou `null`.
+        setor_nome:
+          type:
+            - string
+            - "null"
+          description: Nome do setor pai imediato (quando `tipo == "escalada"`), ou `null`.
+        grupo_nome:
+          type:
+            - string
+            - "null"
+          description: Nome do grupo pai (quando aplicável), ou `null`.
+    MetadadosRotaLink:
+      type: object
+      description: |
+        Resultado da análise sintática de um link curto `aresta.cc`, incluindo flags de abertura
+        em mapa e parâmetros analíticos de origem (`utm_source` e `utm_medium`).
+      required:
+        - uid
+        - prefixo
+        - abrir_mapa
+        - origem_link
+        - utm_source
+        - utm_medium
+      properties:
+        uid:
+          type: string
+          description: UID validado de 14 caracteres alfanuméricos.
+        prefixo:
+          type:
+            - string
+            - "null"
+          description: Prefixo de rota utilizado (`m`, `s`, `sm`, `ms`, `q`, `qm`, `mq`) ou `null` na rota direta `/{uid}`.
+        abrir_mapa:
+          type: boolean
+          description: Indica se o link solicita abertura direta no Mapa Interativo (`true` quando o prefixo contém `m`).
+        origem_link:
+          type:
+            - string
+            - "null"
+          description: Origem semântica inferida do link (`compartilhamento`, `qrcode` ou `null`).
+          enum:
+            - compartilhamento
+            - qrcode
+            - null
+        utm_source:
+          type:
+            - string
+            - "null"
+          description: Valor efetivo de `utm_source` (query parameter explícito ou inferido do prefixo).
+        utm_medium:
+          type:
+            - string
+            - "null"
+          description: Valor efetivo de `utm_medium` (query parameter explícito ou inferido do prefixo).
