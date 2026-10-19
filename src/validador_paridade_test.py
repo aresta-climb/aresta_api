@@ -151,7 +151,9 @@ components:
 
 
 def test_validar_paridade_rejeita_propriedade_lista_para_coluna_escalar() -> None:
-    esquema_sql = inspecionar_esquema_sql("CREATE TABLE t1 (id TEXT PRIMARY KEY, tags TEXT NOT NULL);")
+    esquema_sql = inspecionar_esquema_sql(
+        "CREATE TABLE t1 (id TEXT PRIMARY KEY, tags TEXT NOT NULL);"
+    )
     spec_lista = inspecionar_especificacao_openapi(
         """
 openapi: 3.1.0
@@ -179,7 +181,9 @@ components:
 
 
 def test_validar_paridade_rejeita_propriedade_ref_para_coluna_escalar() -> None:
-    esquema_sql = inspecionar_esquema_sql("CREATE TABLE t1 (id TEXT PRIMARY KEY, filho TEXT NOT NULL);")
+    esquema_sql = inspecionar_esquema_sql(
+        "CREATE TABLE t1 (id TEXT PRIMARY KEY, filho TEXT NOT NULL);"
+    )
     spec_ref = inspecionar_especificacao_openapi(
         """
 openapi: 3.1.0
@@ -268,7 +272,9 @@ components:
 
 
 def test_validar_paridade_rejeita_coluna_sql_not_null_com_null_no_openapi() -> None:
-    esquema_sql = inspecionar_esquema_sql("CREATE TABLE t1 (id TEXT PRIMARY KEY, obrigatorio TEXT NOT NULL);")
+    esquema_sql = inspecionar_esquema_sql(
+        "CREATE TABLE t1 (id TEXT PRIMARY KEY, obrigatorio TEXT NOT NULL);"
+    )
     spec_nulo_indevido = inspecionar_especificacao_openapi(
         """
 openapi: 3.1.0
@@ -292,7 +298,9 @@ components:
 
 
 def test_validar_paridade_rejeita_coluna_sql_not_null_sem_default_ausente_de_required() -> None:
-    esquema_sql = inspecionar_esquema_sql("CREATE TABLE t1 (id TEXT PRIMARY KEY, obrigatorio TEXT NOT NULL);")
+    esquema_sql = inspecionar_esquema_sql(
+        "CREATE TABLE t1 (id TEXT PRIMARY KEY, obrigatorio TEXT NOT NULL);"
+    )
     spec_faltando_required = inspecionar_especificacao_openapi(
         """
 openapi: 3.1.0

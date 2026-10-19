@@ -87,7 +87,9 @@ def test_inspecionar_esquema_sql_remove_comentarios_de_linha_e_inline_do_ddl_ext
     assert ddl_croquis.endswith(");")
 
 
-def test_inspecionar_esquema_sql_identifica_chave_primaria_text_como_obrigatoria_sem_padrao() -> None:
+def test_inspecionar_esquema_sql_identifica_chave_primaria_text_como_obrigatoria_sem_padrao() -> (
+    None
+):
     esquema = inspecionar_esquema_sql(
         "CREATE TABLE itens (uid TEXT PRIMARY KEY, nome TEXT NOT NULL);"
     )
@@ -113,7 +115,9 @@ def test_inspecionar_esquema_sql_identifica_integer_primary_key_autoincrement_co
     assert col_id.possui_padrao is True
 
 
-def test_inspecionar_esquema_sql_identifica_integer_primary_key_sem_autoincrement_sem_padrao() -> None:
+def test_inspecionar_esquema_sql_identifica_integer_primary_key_sem_autoincrement_sem_padrao() -> (
+    None
+):
     esquema = inspecionar_esquema_sql(
         "CREATE TABLE fixos (codigo INTEGER PRIMARY KEY, descricao TEXT NOT NULL);"
     )
@@ -161,7 +165,9 @@ def test_inspecionar_esquema_sql_rejeita_sintaxe_sql_invalida() -> None:
 
 
 def test_inspecionar_esquema_sql_rejeita_arquivo_sem_nenhuma_tabela() -> None:
-    with pytest.raises(ErroEsquemaSqlInvalido, match="Nenhuma tabela encontrada no esquema 'vazio'"):
+    with pytest.raises(
+        ErroEsquemaSqlInvalido, match="Nenhuma tabela encontrada no esquema 'vazio'"
+    ):
         inspecionar_esquema_sql("-- Arquivo apenas com comentários\n", nome_modulo="vazio")
 
 
@@ -177,9 +183,7 @@ def test_inspecionar_esquema_sql_rejeita_tipos_nao_canonicos_sqlite(tipo_invalid
 
 
 def test_gerar_codigo_python_sql_omite_not_required_quando_nenhuma_coluna_tem_padrao() -> None:
-    esquema = inspecionar_esquema_sql(
-        "CREATE TABLE simples (chave TEXT PRIMARY KEY, valor TEXT);"
-    )
+    esquema = inspecionar_esquema_sql("CREATE TABLE simples (chave TEXT PRIMARY KEY, valor TEXT);")
     codigo_py = gerar_codigo_python_sql(esquema)
 
     assert "from typing import TypedDict" in codigo_py
@@ -271,7 +275,7 @@ def test_gerar_codigo_ts_sql_emite_constantes_ddl_e_colunas_readonly() -> None:
 
     assert "export const DDL_TABELA_CATALOGO_CROQUIS = `" in codigo_ts
     assert (
-        'export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = '
+        "export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = "
         '["croqui_uid", "id_slug", "nome", "cidade", "estado", "atualizado_em"];'
     ) in codigo_ts
     assert "export const DDL_TABELA_TABELA_TODOS_OS_TIPOS = `" in codigo_ts
@@ -446,9 +450,7 @@ def test_gerar_codigo_dart_sql_emite_from_map_e_to_map_para_todas_combinacoes() 
 def test_compilar_arquivos_sql_gera_arvore_completa_python_dart_ts(tmp_path: Path) -> None:
     dir_sql = tmp_path / "sql"
     dir_sql.mkdir()
-    (dir_sql / "alfa.sql").write_text(
-        "CREATE TABLE alfa (id TEXT PRIMARY KEY);", encoding="utf-8"
-    )
+    (dir_sql / "alfa.sql").write_text("CREATE TABLE alfa (id TEXT PRIMARY KEY);", encoding="utf-8")
     (dir_sql / "beta.sql").write_text(
         "CREATE TABLE beta (id INTEGER PRIMARY KEY AUTOINCREMENT);", encoding="utf-8"
     )
@@ -647,4 +649,3 @@ void main() {
         check=False,
     )
     assert resultado.returncode == 0, f"Erro no Dart: {resultado.stderr}\n{resultado.stdout}"
-

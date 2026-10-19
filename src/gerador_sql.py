@@ -119,7 +119,9 @@ def inspecionar_esquema_sql(conteudo_sql: str, nome_modulo: str = "esquema") -> 
         try:
             conexao.executescript(conteudo_sql)
         except sqlite3.Error as erro:
-            raise ErroEsquemaSqlInvalido(f"Erro de sintaxe SQL em '{nome_modulo}': {erro}") from erro
+            raise ErroEsquemaSqlInvalido(
+                f"Erro de sintaxe SQL em '{nome_modulo}': {erro}"
+            ) from erro
 
         comandos_originais = _extrair_comandos_sql(conteudo_sql)
         cursor = conexao.cursor()
@@ -281,7 +283,9 @@ def gerar_codigo_dart_sql(esquema: EsquemaSql) -> str:
         linhas.append("")
 
     lista_comandos = ",\n  ".join(nomes_constantes)
-    linhas.append(f"const List<String> comandosDdl{modulo_pascal} = <String>[\n  {lista_comandos},\n];")
+    linhas.append(
+        f"const List<String> comandosDdl{modulo_pascal} = <String>[\n  {lista_comandos},\n];"
+    )
     linhas.append("")
     linhas.append(f"const String ddlCompleto{modulo_pascal} = r'''\n{esquema.ddl_completo}\n''';")
 
@@ -301,7 +305,11 @@ def gerar_codigo_dart_sql(esquema: EsquemaSql) -> str:
             nome_campo = _para_camel_case(col.nome)
             tipo_dart = TIPOS_SQL_SUPORTADOS[col.tipo_sql][1]
             prefixo = "required " if (col.obrigatoria and not col.possui_padrao) else ""
-            padrao = f" = {_valor_padrao_dart(tipo_dart)}" if (col.obrigatoria and col.possui_padrao) else ""
+            padrao = (
+                f" = {_valor_padrao_dart(tipo_dart)}"
+                if (col.obrigatoria and col.possui_padrao)
+                else ""
+            )
             linhas.append(f"    {prefixo}this.{nome_campo}{padrao},")
         linhas.append("  });")
 
@@ -382,7 +390,9 @@ def gerar_codigo_ts_sql(esquema: EsquemaSql) -> str:
         nomes_comandos.append(const_nome)
         linhas.append(f"export const {const_nome} = `\n{tabela.ddl}\n`.trim();")
         colunas_ts = ", ".join(f'"{c.nome}"' for c in tabela.colunas)
-        linhas.append(f"export const COLUNAS_{tabela.nome.upper()}: readonly string[] = [{colunas_ts}];")
+        linhas.append(
+            f"export const COLUNAS_{tabela.nome.upper()}: readonly string[] = [{colunas_ts}];"
+        )
         linhas.append("")
 
     for indice in esquema.indices:

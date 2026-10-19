@@ -742,4 +742,3 @@ void main() {
         check=False,
     )
     assert resultado.returncode == 0, f"Erro no Dart: {resultado.stderr}\n{resultado.stdout}"
-

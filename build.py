@@ -16,18 +16,32 @@ _ESTE_DIRETORIO = os.path.dirname(os.path.abspath(__file__))
 if _ESTE_DIRETORIO not in sys.path:
     sys.path.insert(0, _ESTE_DIRETORIO)
 
-from src.gerador_openapi import (  # noqa: E402
-    compilar_arquivos_openapi,
-    inspecionar_especificacao_openapi,
-)
-from src.gerador_sql import (  # noqa: E402
-    compilar_arquivos_sql,
-    inspecionar_esquema_sql,
-)
-from src.validador_paridade import (  # noqa: E402
-    MAPEAMENTO_PARIDADE_CATALOGO,
-    validar_paridade_esquemas,
-)
+try:
+    from aresta_api.src.gerador_openapi import (
+        compilar_arquivos_openapi,
+        inspecionar_especificacao_openapi,
+    )
+    from aresta_api.src.gerador_sql import (
+        compilar_arquivos_sql,
+        inspecionar_esquema_sql,
+    )
+    from aresta_api.src.validador_paridade import (
+        MAPEAMENTO_PARIDADE_CATALOGO,
+        validar_paridade_esquemas,
+    )
+except ImportError:  # pragma: no cover
+    from src.gerador_openapi import (  # type: ignore[import-not-found,no-redef]
+        compilar_arquivos_openapi,
+        inspecionar_especificacao_openapi,
+    )
+    from src.gerador_sql import (  # type: ignore[import-not-found,no-redef]
+        compilar_arquivos_sql,
+        inspecionar_esquema_sql,
+    )
+    from src.validador_paridade import (  # type: ignore[import-not-found,no-redef]
+        MAPEAMENTO_PARIDADE_CATALOGO,
+        validar_paridade_esquemas,
+    )
 
 
 def get_protos_hash(proto_files: list[str]) -> str:
@@ -125,7 +139,11 @@ def compilar_contratos_sql_e_openapi(
     Valida paridade SQL ↔ OpenAPI e compila os contratos `sql/*.sql` e `openapi/*.yaml`
     para Python, Dart e TypeScript.
     """
-    raiz = Path(diretorio_raiz) if diretorio_raiz is not None else Path(os.path.dirname(os.path.abspath(__file__)))
+    raiz = (
+        Path(diretorio_raiz)
+        if diretorio_raiz is not None
+        else Path(os.path.dirname(os.path.abspath(__file__)))
+    )
     dir_sql = raiz / "sql"
     dir_openapi = raiz / "openapi"
 
@@ -153,7 +171,11 @@ def compilar_contratos_sql_e_openapi(
     arq_hash_sql = dir_sql_gerados / ".sql_hash"
     hash_sql_atual = get_protos_hash([str(p) for p in arquivos_sql])
 
-    precisa_sql = forcar or not arq_hash_sql.exists() or arq_hash_sql.read_text(encoding="utf-8").strip() != hash_sql_atual
+    precisa_sql = (
+        forcar
+        or not arq_hash_sql.exists()
+        or arq_hash_sql.read_text(encoding="utf-8").strip() != hash_sql_atual
+    )
     if precisa_sql:
         compilar_arquivos_sql(dir_sql, dir_sql_gerados)
         arq_hash_sql.write_text(hash_sql_atual, encoding="utf-8")

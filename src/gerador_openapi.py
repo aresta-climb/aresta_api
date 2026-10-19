@@ -224,7 +224,9 @@ def inspecionar_especificacao_openapi(
 
 def _tipo_python_propriedade(prop: PropriedadeOpenApi) -> str:
     if prop.eh_lista:
-        item_py = prop.ref_schema if prop.ref_schema else TIPOS_PRIMITIVOS_OPENAPI[prop.tipo_base][0]
+        item_py = (
+            prop.ref_schema if prop.ref_schema else TIPOS_PRIMITIVOS_OPENAPI[prop.tipo_base][0]
+        )
         base_py = f"list[{item_py}]"
     elif prop.ref_schema:
         base_py = prop.ref_schema
@@ -409,7 +411,9 @@ def gerar_codigo_dart_openapi(spec: EspecificacaoOpenApi) -> str:
 
 def _tipo_ts_propriedade(prop: PropriedadeOpenApi) -> str:
     if prop.eh_lista:
-        item_ts = prop.ref_schema if prop.ref_schema else TIPOS_PRIMITIVOS_OPENAPI[prop.tipo_base][2]
+        item_ts = (
+            prop.ref_schema if prop.ref_schema else TIPOS_PRIMITIVOS_OPENAPI[prop.tipo_base][2]
+        )
         base_ts = f"{item_ts}[]"
     elif prop.ref_schema:
         base_ts = prop.ref_schema
