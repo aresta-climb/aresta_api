@@ -21,8 +21,10 @@ assert _spec.loader is not None
 build = importlib.util.module_from_spec(_spec)
 sys.modules["build"] = build
 _spec.loader.exec_module(build)
-
-from src.validador_paridade import ErroParidadeContrato  # noqa: E402
+try:
+    from aresta_api.src.validador_paridade import ErroParidadeContrato
+except ImportError:
+    from src.validador_paridade import ErroParidadeContrato
 
 
 class TestBuild(unittest.TestCase):

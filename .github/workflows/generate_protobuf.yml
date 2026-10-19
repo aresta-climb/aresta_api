@@ -1,4 +1,4 @@
-name: Generate Protobuf Bindings
+name: Gerar Contratos e Bindings (Protobuf, SQL, OpenAPI)
 
 on:
   push:
@@ -6,7 +6,12 @@ on:
       - main
     paths:
       - 'proto/*.proto'
+      - 'sql/*.sql'
+      - 'openapi/*.yaml'
+      - 'src/**'
       - 'build.py'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - '.github/workflows/generate_protobuf.yml'
   workflow_dispatch:
 
@@ -21,42 +26,46 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup uv e Python
+        uses: astral-sh/setup-uv@v10.3.0
         with:
-          python-version: '3.11'
-          
-      - name: Install Python requirements
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
+          version: "latest"
+          python-version: "3.13"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install Python dependencies
+        run: uv sync --frozen
+
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1
-        
+
       - name: Install Dart Protoc Plugin
         run: dart pub global activate protoc_plugin
-        
+
       - name: Add Dart Pub Cache to PATH
         run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
       - name: Run build.py
-        run: python build.py
-        
+        run: uv run python build.py -f
+
+      - name: Run validation and parity tests
+        run: uv run pytest
+
       - name: Commit and Push changes
         run: |
           # Configura o usuário padrão do git para a action
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
+
           # Adiciona eventuais arquivos gerados/modificados
-          git add proto/generated/
-          
+          git add proto/generated/ sql/generated/ openapi/generated/
+
           # Verifica se algum arquivo de fato mudou em relação ao commit anterior
           if git diff --staged --quiet; then
             echo "Nenhuma mudança na geração em relação à atual. O repositório já está sincronizado!"
           else
-            git commit -m "chore(proto): auto-generate protobuf bindings [skip ci]"
+            git commit -m "chore(contratos): gerar bindings automaticamente (proto, sql, openapi) [skip ci]"
             git push
-            echo "Arquivos protobuf gerados automaticamente foram commitados enviando para a branch!"
+            echo "Arquivos de contratos gerados automaticamente foram commitados e enviados para a branch!"
           fi

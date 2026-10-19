@@ -40,6 +40,7 @@ exclude = ["^proto[\\\\/]generated[\\\\/]"]
 
 [[tool.mypy.overrides]]
 module = [
+    "aresta_api.*",
     "proto.generated.*",
     "aresta_api.proto.generated.*",
     "grpc_tools",
