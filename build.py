@@ -30,15 +30,15 @@ try:
         validar_paridade_esquemas,
     )
 except ImportError:  # pragma: no cover
-    from src.gerador_openapi import (  # type: ignore[import-not-found,no-redef]
+    from src.gerador_openapi import (  # type: ignore[import-not-found,import-untyped,no-redef,unused-ignore]
         compilar_arquivos_openapi,
         inspecionar_especificacao_openapi,
     )
-    from src.gerador_sql import (  # type: ignore[import-not-found,no-redef]
+    from src.gerador_sql import (  # type: ignore[import-not-found,import-untyped,no-redef,unused-ignore]
         compilar_arquivos_sql,
         inspecionar_esquema_sql,
     )
-    from src.validador_paridade import (  # type: ignore[import-not-found,no-redef]
+    from src.validador_paridade import (  # type: ignore[import-not-found,import-untyped,no-redef,unused-ignore]
         MAPEAMENTO_PARIDADE_CATALOGO,
         validar_paridade_esquemas,
     )
