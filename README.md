@@ -1,12 +1,12 @@
 # 📡 aresta_api – Contratos Canônicos do Ecossistema Aresta (`proto`, `sql` e `openapi`)
 
 ## O que é?
-`aresta_api` é a **Fonte Única de Verdade (Single Source of Truth)** para todos os contratos de comunicação e persistência compartilhados entre os repositórios do Aresta (`aresta_db` em Python, `aresta_backend` em Deno/TypeScript e `aresta_app` em Flutter/Dart).
+`aresta_api` é a **Fonte Única de Verdade (Single Source of Truth)** para todos os contratos de comunicação e persistência compartilhados entre os repositórios do Aresta (`aresta_db` em Python, `aresta_backend` em Deno/TypeScript e `aresta_app` / `fixalog` em Flutter/Dart).
 
 O repositório organiza os contratos em três pilares:
 1. **`proto/` (Protocol Buffers)** – Mensagens binárias (`.binarypb`) para croquis (`croqui.proto`), índice (`indice.proto`), betas (`beta.proto`), metadados experimentais (`croqui_experimental.proto`) e serving (`serving.proto`).
-2. **`sql/` (SQLite / Cloudflare D1)** – Esquemas relacionais canônicos em SQL puro (`catalogo.sql` para o banco local e borda, e `catalogo_d1.sql` para a tabela de deltas na borda).
-3. **`openapi/` (OpenAPI 3.1)** – Especificações formais das APIs HTTP REST do `aresta_backend` (`catalogo.yaml`, `app_links.yaml`, `previa.yaml`, `colaboracao.yaml` e `feedback.yaml`), incluindo URLs de servidores (`servers`), rotas (`paths`), parâmetros e schemas de payload (`components/schemas`).
+2. **`sql/` (SQLite / Cloudflare D1)** – Esquemas relacionais canônicos em SQL puro (`catalogo.sql` para o banco local e borda, `catalogo_d1.sql` para a tabela de deltas na borda e `fixalog_d1.sql` para as tabelas de laudos periciais, versões e chaves do Fixalog no D1 compartilhado `aresta-catalogo`).
+3. **`openapi/` (OpenAPI 3.1)** – Especificações formais das APIs HTTP REST do `aresta_backend` (`catalogo.yaml`, `app_links.yaml`, `previa.yaml`, `colaboracao.yaml`, `feedback.yaml` e `fixalog.yaml`), incluindo URLs de servidores (`servers`), rotas (`paths`), parâmetros e schemas de payload (`components/schemas`).
 
 ## Estrutura de Diretórios
 - **`src/`** – Bibliotecas modulares e testadas (100% de cobertura comportamental) responsáveis pela validação e geração multi-linguagem:

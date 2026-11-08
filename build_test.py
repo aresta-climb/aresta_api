@@ -252,3 +252,26 @@ components:
 def test_compilar_contratos_sql_e_openapi_ignora_quando_diretorios_ausentes(tmp_path: Path) -> None:
     build.compilar_contratos_sql_e_openapi(diretorio_raiz=tmp_path, forcar=False)
     assert not (tmp_path / "sql").exists()
+
+
+def test_compilar_contratos_sql_e_openapi_com_fixalog_real(tmp_path: Path) -> None:
+    raiz_real = Path(__file__).resolve().parent
+    dir_sql = tmp_path / "sql"
+    dir_openapi = tmp_path / "openapi"
+    dir_sql.mkdir()
+    dir_openapi.mkdir()
+    (dir_sql / "fixalog_d1.sql").write_text(
+        (raiz_real / "sql" / "fixalog_d1.sql").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (dir_openapi / "fixalog.yaml").write_text(
+        (raiz_real / "openapi" / "fixalog.yaml").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    build.compilar_contratos_sql_e_openapi(diretorio_raiz=tmp_path, forcar=True)
+    assert (dir_sql / "generated" / "dart" / "fixalog_d1_sql.dart").exists()
+    assert (dir_sql / "generated" / "ts" / "fixalog_d1_sql.ts").exists()
+    assert (dir_sql / "generated" / "python" / "fixalog_d1_sql.py").exists()
+    assert (dir_openapi / "generated" / "dart" / "fixalog.dart").exists()
+    assert (dir_openapi / "generated" / "ts" / "fixalog.ts").exists()
+    assert (dir_openapi / "generated" / "python" / "fixalog.py").exists()

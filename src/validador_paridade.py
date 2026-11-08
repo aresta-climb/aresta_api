@@ -25,6 +25,12 @@ MAPEAMENTO_PARIDADE_CATALOGO: dict[str, str] = {
     "catalogo_distancias_estrada": "CatalogoDistanciaEstrada",
 }
 
+MAPEAMENTO_PARIDADE_FIXALOG: dict[str, str] = {
+    "chaves_usuario_fixalog": "ChaveUsuarioFixalog",
+    "laudos_fixalog": "LaudoFixalog",
+    "versoes_laudo_fixalog": "VersaoLaudoFixalog",
+}
+
 
 class ErroParidadeContrato(ValueError):
     """Exceção levantada quando uma tabela SQL e seu schema OpenAPI correspondente divergem."""
