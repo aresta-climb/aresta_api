@@ -25,14 +25,30 @@ export interface CatalogoEntidade {
   grupo_uid: string | null;
 }
 
+export interface CatalogoNoEstrada {
+  no_osm_id: number;
+  latitude_e7: number;
+  longitude_e7: number;
+}
+
+export interface CatalogoDistanciaEstrada {
+  croqui_uid: string;
+  no_osm_id: number;
+  distancia_metros: number;
+  e_portal_borda?: number;
+}
+
 export interface UpsertsSyncCatalogo {
   croquis: CatalogoCroqui[];
   entidades: CatalogoEntidade[];
+  nos_estrada?: CatalogoNoEstrada[];
+  distancias_estrada?: CatalogoDistanciaEstrada[];
 }
 
 export interface DeletesSyncCatalogo {
   croquis: string[];
   entidades: string[];
+  nos_estrada?: number[];
 }
 
 export interface RespostaSyncCatalogo {

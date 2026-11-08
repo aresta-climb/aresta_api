@@ -135,6 +135,18 @@ CREATE TABLE IF NOT EXISTS catalogo_aresta (
     setor_uid TEXT,
     grupo_uid TEXT
 );
+CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
+    no_osm_id INTEGER PRIMARY KEY,
+    latitude_e7 INTEGER NOT NULL,
+    longitude_e7 INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
+    croqui_uid TEXT NOT NULL,
+    no_osm_id INTEGER NOT NULL,
+    distancia_metros INTEGER NOT NULL,
+    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (croqui_uid, no_osm_id)
+);
 """,
         encoding="utf-8",
     )
@@ -171,6 +183,21 @@ components:
         escalada_tipo: { type: [string, "null"] }
         setor_uid: { type: [string, "null"] }
         grupo_uid: { type: [string, "null"] }
+    CatalogoNoEstrada:
+      type: object
+      required: [no_osm_id, latitude_e7, longitude_e7]
+      properties:
+        no_osm_id: { type: integer }
+        latitude_e7: { type: integer }
+        longitude_e7: { type: integer }
+    CatalogoDistanciaEstrada:
+      type: object
+      required: [croqui_uid, no_osm_id, distancia_metros]
+      properties:
+        croqui_uid: { type: string }
+        no_osm_id: { type: integer }
+        distancia_metros: { type: integer }
+        e_portal_borda: { type: integer }
 """,
         encoding="utf-8",
     )

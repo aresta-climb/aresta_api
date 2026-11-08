@@ -90,19 +90,85 @@ class CatalogoEntidade {
   }
 }
 
+class CatalogoNoEstrada {
+  final int noOsmId;
+  final int latitudeE7;
+  final int longitudeE7;
+
+  const CatalogoNoEstrada({
+    required this.noOsmId,
+    required this.latitudeE7,
+    required this.longitudeE7,
+  });
+
+  factory CatalogoNoEstrada.fromJson(Map<String, dynamic> json) {
+    return CatalogoNoEstrada(
+      noOsmId: json['no_osm_id'] as int,
+      latitudeE7: json['latitude_e7'] as int,
+      longitudeE7: json['longitude_e7'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'no_osm_id': noOsmId,
+      'latitude_e7': latitudeE7,
+      'longitude_e7': longitudeE7,
+    };
+  }
+}
+
+class CatalogoDistanciaEstrada {
+  final String croquiUid;
+  final int noOsmId;
+  final int distanciaMetros;
+  final int? ePortalBorda;
+
+  const CatalogoDistanciaEstrada({
+    required this.croquiUid,
+    required this.noOsmId,
+    required this.distanciaMetros,
+    this.ePortalBorda,
+  });
+
+  factory CatalogoDistanciaEstrada.fromJson(Map<String, dynamic> json) {
+    return CatalogoDistanciaEstrada(
+      croquiUid: json['croqui_uid'] as String,
+      noOsmId: json['no_osm_id'] as int,
+      distanciaMetros: json['distancia_metros'] as int,
+      ePortalBorda: json['e_portal_borda'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'croqui_uid': croquiUid,
+      'no_osm_id': noOsmId,
+      'distancia_metros': distanciaMetros,
+      'e_portal_borda': ePortalBorda,
+    };
+  }
+}
+
 class UpsertsSyncCatalogo {
   final List<CatalogoCroqui> croquis;
   final List<CatalogoEntidade> entidades;
+  final List<CatalogoNoEstrada>? nosEstrada;
+  final List<CatalogoDistanciaEstrada>? distanciasEstrada;
 
   const UpsertsSyncCatalogo({
     required this.croquis,
     required this.entidades,
+    this.nosEstrada,
+    this.distanciasEstrada,
   });
 
   factory UpsertsSyncCatalogo.fromJson(Map<String, dynamic> json) {
     return UpsertsSyncCatalogo(
       croquis: (json['croquis'] as List<dynamic>).map((e) => CatalogoCroqui.fromJson(e as Map<String, dynamic>)).toList(),
       entidades: (json['entidades'] as List<dynamic>).map((e) => CatalogoEntidade.fromJson(e as Map<String, dynamic>)).toList(),
+      nosEstrada: json['nos_estrada'] != null ? (json['nos_estrada'] as List<dynamic>).map((e) => CatalogoNoEstrada.fromJson(e as Map<String, dynamic>)).toList() : null,
+      distanciasEstrada: json['distancias_estrada'] != null ? (json['distancias_estrada'] as List<dynamic>).map((e) => CatalogoDistanciaEstrada.fromJson(e as Map<String, dynamic>)).toList() : null,
     );
   }
 
@@ -110,6 +176,8 @@ class UpsertsSyncCatalogo {
     return <String, dynamic>{
       'croquis': croquis.map((e) => e.toJson()).toList(),
       'entidades': entidades.map((e) => e.toJson()).toList(),
+      'nos_estrada': nosEstrada?.map((e) => e.toJson()).toList(),
+      'distancias_estrada': distanciasEstrada?.map((e) => e.toJson()).toList(),
     };
   }
 }
@@ -117,16 +185,19 @@ class UpsertsSyncCatalogo {
 class DeletesSyncCatalogo {
   final List<String> croquis;
   final List<String> entidades;
+  final List<int>? nosEstrada;
 
   const DeletesSyncCatalogo({
     required this.croquis,
     required this.entidades,
+    this.nosEstrada,
   });
 
   factory DeletesSyncCatalogo.fromJson(Map<String, dynamic> json) {
     return DeletesSyncCatalogo(
       croquis: (json['croquis'] as List<dynamic>).map((e) => e as String).toList(),
       entidades: (json['entidades'] as List<dynamic>).map((e) => e as String).toList(),
+      nosEstrada: json['nos_estrada'] != null ? (json['nos_estrada'] as List<dynamic>).map((e) => e as int).toList() : null,
     );
   }
 
@@ -134,6 +205,7 @@ class DeletesSyncCatalogo {
     return <String, dynamic>{
       'croquis': croquis,
       'entidades': entidades,
+      'nos_estrada': nosEstrada,
     };
   }
 }

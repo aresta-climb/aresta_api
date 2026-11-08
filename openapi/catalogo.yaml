@@ -164,6 +164,47 @@ components:
             - string
             - "null"
           description: UID do grupo de setores pai (aplicável a setores e escaladas dentro de um grupo), ou `null`.
+    CatalogoNoEstrada:
+      type: object
+      description: |
+        Representação JSON de uma linha da tabela `catalogo_nos_estrada` (paridade 1:1 com `sql/catalogo.sql`).
+        Define um nó compartilhado da malha viária do OpenStreetMap.
+      required:
+        - no_osm_id
+        - latitude_e7
+        - longitude_e7
+      properties:
+        no_osm_id:
+          type: integer
+          description: Identificador único do nó no OpenStreetMap.
+        latitude_e7:
+          type: integer
+          description: Latitude do nó multiplicada por 10^7 (micrograus E7).
+        longitude_e7:
+          type: integer
+          description: Longitude do nó multiplicada por 10^7 (micrograus E7).
+    CatalogoDistanciaEstrada:
+      type: object
+      description: |
+        Representação JSON de uma linha da tabela `catalogo_distancias_estrada` (paridade 1:1 com `sql/catalogo.sql`).
+        Associa um nó rodoviário à distância de estrada até um croqui.
+      required:
+        - croqui_uid
+        - no_osm_id
+        - distancia_metros
+      properties:
+        croqui_uid:
+          type: string
+          description: Identificador único imutável do croqui de destino.
+        no_osm_id:
+          type: integer
+          description: Identificador do nó rodoviário de origem em `catalogo_nos_estrada`.
+        distancia_metros:
+          type: integer
+          description: Distância rodoviária pré-computada em metros do nó até o estacionamento do croqui.
+        e_portal_borda:
+          type: integer
+          description: Indicador booleano inteiro (1 ou 0) se o nó é um portal de borda da malha do croqui.
     UpsertsSyncCatalogo:
       type: object
       description: Lote de registros inseridos ou atualizados que devem ser aplicados via `INSERT OR REPLACE` no SQLite local.
@@ -181,9 +222,19 @@ components:
           description: Lista de entidades novas ou modificadas para `INSERT OR REPLACE INTO catalogo_aresta`.
           items:
             $ref: "#/components/schemas/CatalogoEntidade"
+        nos_estrada:
+          type: array
+          description: Lista opcional de nós rodoviários novos ou atualizados para `INSERT OR REPLACE INTO catalogo_nos_estrada`.
+          items:
+            $ref: "#/components/schemas/CatalogoNoEstrada"
+        distancias_estrada:
+          type: array
+          description: Lista opcional de distâncias rodoviárias novas ou atualizadas para `INSERT OR REPLACE INTO catalogo_distancias_estrada`.
+          items:
+            $ref: "#/components/schemas/CatalogoDistanciaEstrada"
     DeletesSyncCatalogo:
       type: object
-      description: Lote de identificadores únicos (`croqui_uid` e `uid`) que foram excluídos e devem ser removidos via `DELETE` no SQLite local.
+      description: Lote de identificadores únicos (`croqui_uid`, `uid` e `no_osm_id`) que foram excluídos e devem ser removidos via `DELETE` no SQLite local.
       required:
         - croquis
         - entidades
@@ -198,6 +249,11 @@ components:
           description: Lista de `uid` a remover da tabela `catalogo_aresta`.
           items:
             type: string
+        nos_estrada:
+          type: array
+          description: Lista opcional de `no_osm_id` órfãos a remover da tabela `catalogo_nos_estrada`.
+          items:
+            type: integer
     RespostaSyncCatalogo:
       type: object
       description: Envelope de resposta do endpoint `GET /sync` instruindo o cliente sobre como sincronizar seu catálogo SQLite.
