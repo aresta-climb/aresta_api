@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import NotRequired, TypedDict
 
 DDL_TABELA_CATALOGO_CROQUIS = """
 CREATE TABLE IF NOT EXISTS catalogo_croquis (
@@ -39,6 +39,26 @@ CREATE TABLE IF NOT EXISTS catalogo_meta (
 """.strip()
 COLUNAS_CATALOGO_META: tuple[str, ...] = ("chave", "valor",)
 
+DDL_TABELA_CATALOGO_NOS_ESTRADA = """
+CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
+    no_osm_id INTEGER PRIMARY KEY,
+    latitude_e7 INTEGER NOT NULL,
+    longitude_e7 INTEGER NOT NULL
+);
+""".strip()
+COLUNAS_CATALOGO_NOS_ESTRADA: tuple[str, ...] = ("no_osm_id", "latitude_e7", "longitude_e7",)
+
+DDL_TABELA_CATALOGO_DISTANCIAS_ESTRADA = """
+CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
+    croqui_uid TEXT NOT NULL,
+    no_osm_id INTEGER NOT NULL,
+    distancia_metros INTEGER NOT NULL,
+    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (croqui_uid, no_osm_id)
+);
+""".strip()
+COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: tuple[str, ...] = ("croqui_uid", "no_osm_id", "distancia_metros", "e_portal_borda",)
+
 DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI = """
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
 ON catalogo_aresta(croqui_uid);
@@ -54,13 +74,21 @@ CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_tipo
 ON catalogo_aresta(tipo);
 """.strip()
 
+DDL_INDICE_IDX_CATALOGO_DISTANCIAS_ESTRADA_NO = """
+CREATE INDEX IF NOT EXISTS idx_catalogo_distancias_estrada_no
+ON catalogo_distancias_estrada(no_osm_id);
+""".strip()
+
 COMANDOS_DDL: tuple[str, ...] = (
     DDL_TABELA_CATALOGO_CROQUIS,
     DDL_TABELA_CATALOGO_ARESTA,
     DDL_TABELA_CATALOGO_META,
+    DDL_TABELA_CATALOGO_NOS_ESTRADA,
+    DDL_TABELA_CATALOGO_DISTANCIAS_ESTRADA,
     DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI,
     DDL_INDICE_IDX_CATALOGO_ARESTA_NOME,
     DDL_INDICE_IDX_CATALOGO_ARESTA_TIPO,
+    DDL_INDICE_IDX_CATALOGO_DISTANCIAS_ESTRADA_NO,
 )
 DDL_COMPLETO: str = "\n\n".join(COMANDOS_DDL)
 
@@ -91,3 +119,18 @@ class LinhaCatalogoMeta(TypedDict):
 
     chave: str
     valor: str
+
+class LinhaCatalogoNosEstrada(TypedDict):
+    """Estrutura tipada de linha da tabela `catalogo_nos_estrada`."""
+
+    no_osm_id: int
+    latitude_e7: int
+    longitude_e7: int
+
+class LinhaCatalogoDistanciasEstrada(TypedDict):
+    """Estrutura tipada de linha da tabela `catalogo_distancias_estrada`."""
+
+    croqui_uid: str
+    no_osm_id: int
+    distancia_metros: int
+    e_portal_borda: NotRequired[int]

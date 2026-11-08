@@ -34,11 +34,30 @@ class CatalogoEntidade(TypedDict):
     grupo_uid: str | None
 
 
+class CatalogoNoEstrada(TypedDict):
+    """Schema OpenAPI `CatalogoNoEstrada`."""
+
+    no_osm_id: int
+    latitude_e7: int
+    longitude_e7: int
+
+
+class CatalogoDistanciaEstrada(TypedDict):
+    """Schema OpenAPI `CatalogoDistanciaEstrada`."""
+
+    croqui_uid: str
+    no_osm_id: int
+    distancia_metros: int
+    e_portal_borda: NotRequired[int]
+
+
 class UpsertsSyncCatalogo(TypedDict):
     """Schema OpenAPI `UpsertsSyncCatalogo`."""
 
     croquis: list[CatalogoCroqui]
     entidades: list[CatalogoEntidade]
+    nos_estrada: NotRequired[list[CatalogoNoEstrada]]
+    distancias_estrada: NotRequired[list[CatalogoDistanciaEstrada]]
 
 
 class DeletesSyncCatalogo(TypedDict):
@@ -46,6 +65,7 @@ class DeletesSyncCatalogo(TypedDict):
 
     croquis: list[str]
     entidades: list[str]
+    nos_estrada: NotRequired[list[int]]
 
 
 class RespostaSyncCatalogo(TypedDict):

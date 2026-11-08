@@ -478,6 +478,8 @@ def test_esquemas_reais_catalogo_e_catalogo_d1_possuem_colunas_e_indices_canonic
         "catalogo_croquis",
         "catalogo_aresta",
         "catalogo_meta",
+        "catalogo_nos_estrada",
+        "catalogo_distancias_estrada",
     ]
     colunas_croquis = [c.nome for c in esquema_catalogo.tabelas[0].colunas]
     assert colunas_croquis == [
@@ -491,6 +493,7 @@ def test_esquemas_reais_catalogo_e_catalogo_d1_possuem_colunas_e_indices_canonic
         "idx_catalogo_aresta_croqui",
         "idx_catalogo_aresta_nome",
         "idx_catalogo_aresta_tipo",
+        "idx_catalogo_distancias_estrada_no",
     ]
 
     esquema_d1 = inspecionar_esquema_sql(sql_d1, nome_modulo="catalogo_d1")

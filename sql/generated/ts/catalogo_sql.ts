@@ -35,6 +35,26 @@ CREATE TABLE IF NOT EXISTS catalogo_meta (
 `.trim();
 export const COLUNAS_CATALOGO_META: readonly string[] = ["chave", "valor"];
 
+export const DDL_TABELA_CATALOGO_NOS_ESTRADA = `
+CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
+    no_osm_id INTEGER PRIMARY KEY,
+    latitude_e7 INTEGER NOT NULL,
+    longitude_e7 INTEGER NOT NULL
+);
+`.trim();
+export const COLUNAS_CATALOGO_NOS_ESTRADA: readonly string[] = ["no_osm_id", "latitude_e7", "longitude_e7"];
+
+export const DDL_TABELA_CATALOGO_DISTANCIAS_ESTRADA = `
+CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
+    croqui_uid TEXT NOT NULL,
+    no_osm_id INTEGER NOT NULL,
+    distancia_metros INTEGER NOT NULL,
+    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (croqui_uid, no_osm_id)
+);
+`.trim();
+export const COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: readonly string[] = ["croqui_uid", "no_osm_id", "distancia_metros", "e_portal_borda"];
+
 export const DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI = `
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
 ON catalogo_aresta(croqui_uid);
@@ -50,13 +70,21 @@ CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_tipo
 ON catalogo_aresta(tipo);
 `.trim();
 
+export const DDL_INDICE_IDX_CATALOGO_DISTANCIAS_ESTRADA_NO = `
+CREATE INDEX IF NOT EXISTS idx_catalogo_distancias_estrada_no
+ON catalogo_distancias_estrada(no_osm_id);
+`.trim();
+
 export const COMANDOS_DDL: readonly string[] = [
   DDL_TABELA_CATALOGO_CROQUIS,
   DDL_TABELA_CATALOGO_ARESTA,
   DDL_TABELA_CATALOGO_META,
+  DDL_TABELA_CATALOGO_NOS_ESTRADA,
+  DDL_TABELA_CATALOGO_DISTANCIAS_ESTRADA,
   DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI,
   DDL_INDICE_IDX_CATALOGO_ARESTA_NOME,
   DDL_INDICE_IDX_CATALOGO_ARESTA_TIPO,
+  DDL_INDICE_IDX_CATALOGO_DISTANCIAS_ESTRADA_NO,
 ];
 export const DDL_COMPLETO: string = COMANDOS_DDL.join("\n\n");
 
@@ -82,4 +110,17 @@ export interface LinhaCatalogoAresta {
 export interface LinhaCatalogoMeta {
   chave: string;
   valor: string;
+}
+
+export interface LinhaCatalogoNosEstrada {
+  no_osm_id: number;
+  latitude_e7: number;
+  longitude_e7: number;
+}
+
+export interface LinhaCatalogoDistanciasEstrada {
+  croqui_uid: string;
+  no_osm_id: number;
+  distancia_metros: number;
+  e_portal_borda?: number;
 }

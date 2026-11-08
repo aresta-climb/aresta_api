@@ -32,6 +32,24 @@ CREATE TABLE IF NOT EXISTS catalogo_meta (
 );
 ''';
 
+const String ddlTabelaCatalogoNosEstrada = r'''
+CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
+    no_osm_id INTEGER PRIMARY KEY,
+    latitude_e7 INTEGER NOT NULL,
+    longitude_e7 INTEGER NOT NULL
+);
+''';
+
+const String ddlTabelaCatalogoDistanciasEstrada = r'''
+CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
+    croqui_uid TEXT NOT NULL,
+    no_osm_id INTEGER NOT NULL,
+    distancia_metros INTEGER NOT NULL,
+    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (croqui_uid, no_osm_id)
+);
+''';
+
 const String ddlIndiceIdxCatalogoArestaCroqui = r'''
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
 ON catalogo_aresta(croqui_uid);
@@ -47,13 +65,21 @@ CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_tipo
 ON catalogo_aresta(tipo);
 ''';
 
+const String ddlIndiceIdxCatalogoDistanciasEstradaNo = r'''
+CREATE INDEX IF NOT EXISTS idx_catalogo_distancias_estrada_no
+ON catalogo_distancias_estrada(no_osm_id);
+''';
+
 const List<String> comandosDdlCatalogo = <String>[
   ddlTabelaCatalogoCroquis,
   ddlTabelaCatalogoAresta,
   ddlTabelaCatalogoMeta,
+  ddlTabelaCatalogoNosEstrada,
+  ddlTabelaCatalogoDistanciasEstrada,
   ddlIndiceIdxCatalogoArestaCroqui,
   ddlIndiceIdxCatalogoArestaNome,
   ddlIndiceIdxCatalogoArestaTipo,
+  ddlIndiceIdxCatalogoDistanciasEstradaNo,
 ];
 
 const String ddlCompletoCatalogo = r'''
@@ -81,6 +107,20 @@ CREATE TABLE IF NOT EXISTS catalogo_meta (
     valor TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
+    no_osm_id INTEGER PRIMARY KEY,
+    latitude_e7 INTEGER NOT NULL,
+    longitude_e7 INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
+    croqui_uid TEXT NOT NULL,
+    no_osm_id INTEGER NOT NULL,
+    distancia_metros INTEGER NOT NULL,
+    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (croqui_uid, no_osm_id)
+);
+
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
 ON catalogo_aresta(croqui_uid);
 
@@ -89,6 +129,9 @@ ON catalogo_aresta(nome COLLATE NOCASE);
 
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_tipo
 ON catalogo_aresta(tipo);
+
+CREATE INDEX IF NOT EXISTS idx_catalogo_distancias_estrada_no
+ON catalogo_distancias_estrada(no_osm_id);
 ''';
 
 class LinhaCatalogoCroquis {
@@ -195,6 +238,66 @@ class LinhaCatalogoMeta {
     return <String, dynamic>{
       'chave': chave,
       'valor': valor,
+    };
+  }
+}
+
+class LinhaCatalogoNosEstrada {
+  final int noOsmId;
+  final int latitudeE7;
+  final int longitudeE7;
+
+  const LinhaCatalogoNosEstrada({
+    required this.noOsmId,
+    required this.latitudeE7,
+    required this.longitudeE7,
+  });
+
+  factory LinhaCatalogoNosEstrada.fromMap(Map<String, dynamic> map) {
+    return LinhaCatalogoNosEstrada(
+      noOsmId: map['no_osm_id'] as int,
+      latitudeE7: map['latitude_e7'] as int,
+      longitudeE7: map['longitude_e7'] as int,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'no_osm_id': noOsmId,
+      'latitude_e7': latitudeE7,
+      'longitude_e7': longitudeE7,
+    };
+  }
+}
+
+class LinhaCatalogoDistanciasEstrada {
+  final String croquiUid;
+  final int noOsmId;
+  final int distanciaMetros;
+  final int ePortalBorda;
+
+  const LinhaCatalogoDistanciasEstrada({
+    required this.croquiUid,
+    required this.noOsmId,
+    required this.distanciaMetros,
+    this.ePortalBorda = 0,
+  });
+
+  factory LinhaCatalogoDistanciasEstrada.fromMap(Map<String, dynamic> map) {
+    return LinhaCatalogoDistanciasEstrada(
+      croquiUid: map['croqui_uid'] as String,
+      noOsmId: map['no_osm_id'] as int,
+      distanciaMetros: map['distancia_metros'] as int,
+      ePortalBorda: (map['e_portal_borda'] as int?) ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'croqui_uid': croquiUid,
+      'no_osm_id': noOsmId,
+      'distancia_metros': distanciaMetros,
+      'e_portal_borda': ePortalBorda,
     };
   }
 }

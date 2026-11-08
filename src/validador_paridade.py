@@ -21,6 +21,8 @@ EQUIVALENCIA_TIPOS_SQL_OPENAPI: dict[str, str] = {
 MAPEAMENTO_PARIDADE_CATALOGO: dict[str, str] = {
     "catalogo_croquis": "CatalogoCroqui",
     "catalogo_aresta": "CatalogoEntidade",
+    "catalogo_nos_estrada": "CatalogoNoEstrada",
+    "catalogo_distancias_estrada": "CatalogoDistanciaEstrada",
 }
 
 MAPEAMENTO_PARIDADE_FIXALOG: dict[str, str] = {

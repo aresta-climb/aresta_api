@@ -32,6 +32,12 @@ def test_validar_paridade_contratos_reais_catalogo() -> None:
     esquema_sql = inspecionar_esquema_sql(conteudo_sql, nome_modulo="catalogo")
     spec_openapi = inspecionar_especificacao_openapi(conteudo_yaml, nome_modulo="catalogo")
 
+    assert MAPEAMENTO_PARIDADE_CATALOGO == {
+        "catalogo_croquis": "CatalogoCroqui",
+        "catalogo_aresta": "CatalogoEntidade",
+        "catalogo_nos_estrada": "CatalogoNoEstrada",
+        "catalogo_distancias_estrada": "CatalogoDistanciaEstrada",
+    }
     validar_paridade_esquemas(esquema_sql, spec_openapi, MAPEAMENTO_PARIDADE_CATALOGO)
 
 
