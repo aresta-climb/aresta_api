@@ -18,6 +18,7 @@ from .gerador_openapi import inspecionar_especificacao_openapi
 from .gerador_sql import inspecionar_esquema_sql
 from .validador_paridade import (
     MAPEAMENTO_PARIDADE_CATALOGO,
+    MAPEAMENTO_PARIDADE_FIXALOG,
     ErroParidadeContrato,
     validar_paridade_esquemas,
 )
@@ -32,6 +33,17 @@ def test_validar_paridade_contratos_reais_catalogo() -> None:
     spec_openapi = inspecionar_especificacao_openapi(conteudo_yaml, nome_modulo="catalogo")
 
     validar_paridade_esquemas(esquema_sql, spec_openapi, MAPEAMENTO_PARIDADE_CATALOGO)
+
+
+def test_validar_paridade_contratos_reais_fixalog() -> None:
+    raiz_api = Path(__file__).resolve().parent.parent
+    conteudo_sql = (raiz_api / "sql" / "fixalog_d1.sql").read_text(encoding="utf-8")
+    conteudo_yaml = (raiz_api / "openapi" / "fixalog.yaml").read_text(encoding="utf-8")
+
+    esquema_sql = inspecionar_esquema_sql(conteudo_sql, nome_modulo="fixalog_d1")
+    spec_openapi = inspecionar_especificacao_openapi(conteudo_yaml, nome_modulo="fixalog")
+
+    validar_paridade_esquemas(esquema_sql, spec_openapi, MAPEAMENTO_PARIDADE_FIXALOG)
 
 
 def test_validar_paridade_aceita_todos_os_tipos_sql_e_colunas_com_default_opcionais() -> None:

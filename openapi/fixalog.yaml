@@ -1,0 +1,423 @@
+# SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
+# SPDX-License-Identifier: MPL-2.0
+
+openapi: 3.1.0
+info:
+  title: API de Laudos Periciais e Sincronização em Nuvem Fixalog
+  version: 1.0.0
+  description: |
+    Especificação formal do Cloudflare Worker `fixalog` (`https://fixalog.app`) responsável por:
+    - Registro e vinculação criptográfica de chaves públicas ECDSA (`secp256r1`) via atestado OIDC (`nonce` Google/Apple estilo OpenPubkey) + Firebase App Check;
+    - Upload e versionamento imutável (`v1`, `v2`, ...) de pacotes periciais `.epub` (Manutenções e Materiais) no bucket R2 `fixalog-laudos`;
+    - Gatekeeper de moderação CSAM e NSFW em 3 camadas (`em_analise` -> `ativo` / `bloqueado`);
+    - Visualizador web (`GET /v/{id}`) com barra de verificação criptográfica, contador em tempo real de laudos assinados pela chave e streaming de fotos/vídeos via leitura parcial Byte-Range direto do `.epub` no R2.
+servers:
+  - url: https://fixalog.app
+    description: Servidor principal de produção do Fixalog na borda da Cloudflare.
+paths:
+  /api/v1/chaves:
+    post:
+      operationId: registrar_chave_publica_fixalog
+      summary: Registra ou atualiza os metadados de uma chave pública ECDSA vinculada via atestado OIDC Google/Apple.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequisicaoRegistroChaveFixalog"
+      responses:
+        "200":
+          description: Chave pública validada e registrada com sucesso no D1.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChaveUsuarioFixalog"
+        "401":
+          description: Token Supabase Auth ou atestado OIDC inválido.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+        "403":
+          description: Token Firebase App Check ausente/inválido ou divergência de nonce/usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+  /api/v1/laudos:
+    get:
+      operationId: listar_laudos_usuario_fixalog
+      summary: Lista todos os laudos e materiais pertencentes ao usuário autenticado para restauração e sincronização.
+      responses:
+        "200":
+          description: Lista de laudos e suas versões mais recentes pertencentes à conta.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaListaLaudosFixalog"
+        "401":
+          description: Usuário não autenticado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+  /api/v1/laudos/{id}:
+    put:
+      operationId: enviar_versao_laudo_fixalog
+      summary: Envia um pacote EPUB 3 assinado criando uma nova versão imutável (`v1`, `v2`, ...) em análise de segurança.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único da sessão do laudo ou material (`id_sessao`).
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/epub+zip:
+            schema:
+              type: string
+      responses:
+        "202":
+          description: Pacote EPUB 3 validado criptograficamente, armazenado no R2 e enfileirado para moderação de mídia (`em_analise`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaUploadLaudoFixalog"
+        "400":
+          description: Pacote EPUB malformado ou assinatura XML-DSig inválida.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+        "401":
+          description: Credenciais de autenticação ausentes ou inválidas.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+        "403":
+          description: Tentativa de sobrescrever laudo de outro usuário ou falha no Firebase App Check.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+  /api/v1/laudos/{id}/denunciar:
+    post:
+      operationId: denunciar_laudo_fixalog
+      summary: Registra uma denúncia pública contra um relatório, suspendendo-o preventivamente em caso grave e disparando alerta.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequisicaoDenunciaLaudoFixalog"
+      responses:
+        "200":
+          description: Denúncia registrada e encaminhada à equipe de segurança.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaDenunciaLaudoFixalog"
+  /v/{id}:
+    get:
+      operationId: visualizar_laudo_publico_fixalog
+      summary: Renderiza a página web do relatório com barra de verificação criptográfica, contador de laudos da chave e seletor de versões.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: v
+          in: query
+          required: false
+          description: Número opcional da versão histórica a inspecionar (`1`, `2`, ...).
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Página HTML5 do laudo (ou tela de verificação em andamento enquanto `em_analise`).
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          description: Laudo inexistente ou bloqueado por violação de segurança.
+  /v/{id}/midias/{caminho}:
+    get:
+      operationId: obter_midia_byte_range_fixalog
+      summary: Serve fotos, documentos e streaming de vídeos MP4 (`HTTP Range` / `206 Partial Content`) diretamente de dentro do `.epub` no R2.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: caminho
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Bytes completos da mídia extraídos por offset do `.epub` com cache imutável na CDN.
+        "206":
+          description: Intervalo parcial de bytes (`Partial Content`) para streaming de vídeo MP4.
+        "403":
+          description: Mídia indisponível enquanto o laudo estiver `em_analise` ou `bloqueado`.
+  /v/{id}/epub:
+    get:
+      operationId: baixar_epub_assinado_fixalog
+      summary: Baixa o arquivo `.epub` original assinado digitalmente da versão solicitada.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Container `.epub` assinado.
+  /v/{id}/pdf:
+    get:
+      operationId: baixar_pdf_resumo_fixalog
+      summary: Exibe ou gera a versão para impressão (PDF) do relatório.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Documento ou visualização de impressão do sumário executivo.
+components:
+  schemas:
+    ChaveUsuarioFixalog:
+      type: object
+      description: Espelho 1:1 da tabela `chaves_usuario_fixalog` no Cloudflare D1.
+      required:
+        - fingerprint_sha256
+        - user_id
+        - chave_publica_pem
+        - certificado_x509_pem
+        - atestado_oidc_jwt
+        - provedor_oidc
+        - nome_declarado
+        - clube_declarado
+        - criado_em
+      properties:
+        fingerprint_sha256:
+          type: string
+        user_id:
+          type: string
+        chave_publica_pem:
+          type: string
+        certificado_x509_pem:
+          type: string
+        atestado_oidc_jwt:
+          type: string
+        provedor_oidc:
+          type: string
+          enum:
+            - google
+            - apple
+        nome_declarado:
+          type: string
+        clube_declarado:
+          type:
+            - string
+            - "null"
+        criado_em:
+          type: string
+    LaudoFixalog:
+      type: object
+      description: Espelho 1:1 da tabela `laudos_fixalog` no Cloudflare D1 (`aresta-catalogo`).
+      required:
+        - id_sessao
+        - user_id
+        - categoria
+        - id_protocolo
+        - titulo
+        - escalada_uid
+        - latitude
+        - longitude
+        - criado_em
+        - atualizado_em
+      properties:
+        id_sessao:
+          type: string
+        user_id:
+          type: string
+        categoria:
+          type: string
+          enum:
+            - MANUTENCAO
+            - MATERIAL
+        id_protocolo:
+          type: string
+        titulo:
+          type: string
+        escalada_uid:
+          type:
+            - string
+            - "null"
+        latitude:
+          type:
+            - number
+            - "null"
+        longitude:
+          type:
+            - number
+            - "null"
+        versao_atual:
+          type: integer
+        criado_em:
+          type: string
+        atualizado_em:
+          type: string
+    VersaoLaudoFixalog:
+      type: object
+      description: Espelho 1:1 da tabela `versoes_laudo_fixalog` no Cloudflare D1.
+      required:
+        - id_sessao
+        - versao
+        - r2_key
+        - tamanho_bytes
+        - hash_epub_sha256
+        - fingerprint_chave
+        - nome_mantenedor
+        - clube_mantenedor
+        - indices_zip_json
+        - motivo_moderacao
+        - criado_em
+      properties:
+        id_sessao:
+          type: string
+        versao:
+          type: integer
+        r2_key:
+          type: string
+        tamanho_bytes:
+          type: integer
+        hash_epub_sha256:
+          type: string
+        fingerprint_chave:
+          type: string
+        nome_mantenedor:
+          type: string
+        clube_mantenedor:
+          type:
+            - string
+            - "null"
+        indices_zip_json:
+          type: string
+        materiais_referenciados_json:
+          type: string
+        status_moderacao:
+          type: string
+          enum:
+            - em_analise
+            - ativo
+            - bloqueado
+            - suspenso
+        motivo_moderacao:
+          type:
+            - string
+            - "null"
+        criado_em:
+          type: string
+    RequisicaoRegistroChaveFixalog:
+      type: object
+      required:
+        - chave_publica_pem
+        - certificado_x509_pem
+        - atestado_oidc_jwt
+        - provedor_oidc
+        - nome_declarado
+      properties:
+        chave_publica_pem:
+          type: string
+        certificado_x509_pem:
+          type: string
+        atestado_oidc_jwt:
+          type: string
+        provedor_oidc:
+          type: string
+          enum:
+            - google
+            - apple
+        nome_declarado:
+          type: string
+        clube_declarado:
+          type:
+            - string
+            - "null"
+    RespostaUploadLaudoFixalog:
+      type: object
+      required:
+        - id_sessao
+        - versao
+        - status_moderacao
+        - url_publica
+        - hash_epub_sha256
+      properties:
+        id_sessao:
+          type: string
+        versao:
+          type: integer
+        status_moderacao:
+          type: string
+          enum:
+            - em_analise
+            - ativo
+            - bloqueado
+        url_publica:
+          type: string
+        hash_epub_sha256:
+          type: string
+    RespostaListaLaudosFixalog:
+      type: object
+      required:
+        - laudos
+      properties:
+        laudos:
+          type: array
+          items:
+            $ref: "#/components/schemas/LaudoFixalog"
+    RequisicaoDenunciaLaudoFixalog:
+      type: object
+      required:
+        - motivo
+      properties:
+        motivo:
+          type: string
+        detalhes:
+          type:
+            - string
+            - "null"
+    RespostaDenunciaLaudoFixalog:
+      type: object
+      required:
+        - registrado
+        - status_moderacao
+      properties:
+        registrado:
+          type: boolean
+        status_moderacao:
+          type: string
+    ErroApiFixalog:
+      type: object
+      required:
+        - erro
+      properties:
+        erro:
+          type: string
