@@ -24,7 +24,6 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     $core.Iterable<$core.String>? autores,
     $0.Timestamp? dataCriacao,
     $0.Timestamp? ultimaEdicao,
-    $core.String? resumoEdicao,
     $core.String? idOriginal,
     $core.String? pullRequestUrl,
     $core.String? pullRequestBranch,
@@ -36,7 +35,6 @@ class CroquiExperimental extends $pb.GeneratedMessage {
     if (autores != null) result.autores.addAll(autores);
     if (dataCriacao != null) result.dataCriacao = dataCriacao;
     if (ultimaEdicao != null) result.ultimaEdicao = ultimaEdicao;
-    if (resumoEdicao != null) result.resumoEdicao = resumoEdicao;
     if (idOriginal != null) result.idOriginal = idOriginal;
     if (pullRequestUrl != null) result.pullRequestUrl = pullRequestUrl;
     if (pullRequestBranch != null) result.pullRequestBranch = pullRequestBranch;
@@ -65,7 +63,6 @@ class CroquiExperimental extends $pb.GeneratedMessage {
         subBuilder: $0.Timestamp.$_createMessage)
     ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'ultimaEdicao',
         subBuilder: $0.Timestamp.$_createMessage)
-    ..aOS(4, _omitFieldNames ? '' : 'resumoEdicao')
     ..aOS(5, _omitFieldNames ? '' : 'idOriginal')
     ..aOS(6, _omitFieldNames ? '' : 'pullRequestUrl')
     ..aOS(7, _omitFieldNames ? '' : 'pullRequestBranch')
@@ -126,74 +123,64 @@ class CroquiExperimental extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $0.Timestamp ensureUltimaEdicao() => $_ensure(2);
 
-  /// Breve resumo ou objetivo desta edição (ex: "Corrigindo graduação do Setor 1").
-  @$pb.TagNumber(4)
-  $core.String get resumoEdicao => $_getSZ(3);
-  @$pb.TagNumber(4)
-  set resumoEdicao($core.String value) => $_setString(3, value);
-  @$pb.TagNumber(4)
-  $core.bool hasResumoEdicao() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearResumoEdicao() => $_clearField(4);
-
   /// ID original do croqui antes de qualquer renomeação.
   /// Usado para rastrear a ancestralidade na hora de publicar um PR de um croqui renomeado.
   @$pb.TagNumber(5)
-  $core.String get idOriginal => $_getSZ(4);
+  $core.String get idOriginal => $_getSZ(3);
   @$pb.TagNumber(5)
-  set idOriginal($core.String value) => $_setString(4, value);
+  set idOriginal($core.String value) => $_setString(3, value);
   @$pb.TagNumber(5)
-  $core.bool hasIdOriginal() => $_has(4);
+  $core.bool hasIdOriginal() => $_has(3);
   @$pb.TagNumber(5)
   void clearIdOriginal() => $_clearField(5);
 
   /// URL do pull request no GitHub, se este croqui já possuir um associado.
   @$pb.TagNumber(6)
-  $core.String get pullRequestUrl => $_getSZ(5);
+  $core.String get pullRequestUrl => $_getSZ(4);
   @$pb.TagNumber(6)
-  set pullRequestUrl($core.String value) => $_setString(5, value);
+  set pullRequestUrl($core.String value) => $_setString(4, value);
   @$pb.TagNumber(6)
-  $core.bool hasPullRequestUrl() => $_has(5);
+  $core.bool hasPullRequestUrl() => $_has(4);
   @$pb.TagNumber(6)
   void clearPullRequestUrl() => $_clearField(6);
 
   /// Nome da branch no fork do usuário onde este croqui está sendo editado.
   @$pb.TagNumber(7)
-  $core.String get pullRequestBranch => $_getSZ(6);
+  $core.String get pullRequestBranch => $_getSZ(5);
   @$pb.TagNumber(7)
-  set pullRequestBranch($core.String value) => $_setString(6, value);
+  set pullRequestBranch($core.String value) => $_setString(5, value);
   @$pb.TagNumber(7)
-  $core.bool hasPullRequestBranch() => $_has(6);
+  $core.bool hasPullRequestBranch() => $_has(5);
   @$pb.TagNumber(7)
   void clearPullRequestBranch() => $_clearField(7);
 
   /// Nome de usuário (login) do proprietário do fork onde a branch reside.
   @$pb.TagNumber(8)
-  $core.String get pullRequestForkOwner => $_getSZ(7);
+  $core.String get pullRequestForkOwner => $_getSZ(6);
   @$pb.TagNumber(8)
-  set pullRequestForkOwner($core.String value) => $_setString(7, value);
+  set pullRequestForkOwner($core.String value) => $_setString(6, value);
   @$pb.TagNumber(8)
-  $core.bool hasPullRequestForkOwner() => $_has(7);
+  $core.bool hasPullRequestForkOwner() => $_has(6);
   @$pb.TagNumber(8)
   void clearPullRequestForkOwner() => $_clearField(8);
 
   /// Hash SHA do commit base do repositório oficial (aresta_db) de onde este croqui se originou.
   @$pb.TagNumber(9)
-  $core.String get commitBaseSha => $_getSZ(8);
+  $core.String get commitBaseSha => $_getSZ(7);
   @$pb.TagNumber(9)
-  set commitBaseSha($core.String value) => $_setString(8, value);
+  set commitBaseSha($core.String value) => $_setString(7, value);
   @$pb.TagNumber(9)
-  $core.bool hasCommitBaseSha() => $_has(8);
+  $core.bool hasCommitBaseSha() => $_has(7);
   @$pb.TagNumber(9)
   void clearCommitBaseSha() => $_clearField(9);
 
   /// Identificador único descentralizado permanente (NanoID 14c) do croqui.
   @$pb.TagNumber(10)
-  $core.String get croquiUid => $_getSZ(9);
+  $core.String get croquiUid => $_getSZ(8);
   @$pb.TagNumber(10)
-  set croquiUid($core.String value) => $_setString(9, value);
+  set croquiUid($core.String value) => $_setString(8, value);
   @$pb.TagNumber(10)
-  $core.bool hasCroquiUid() => $_has(9);
+  $core.bool hasCroquiUid() => $_has(8);
   @$pb.TagNumber(10)
   void clearCroquiUid() => $_clearField(10);
 }

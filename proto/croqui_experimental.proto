@@ -20,9 +20,6 @@ message CroquiExperimental {
   // Timestamp da última edição do croqui experimental (ISO-8601).
   google.protobuf.Timestamp ultima_edicao = 3;
 
-  // Breve resumo ou objetivo desta edição (ex: "Corrigindo graduação do Setor 1").
-  string resumo_edicao = 4;
-
   // Identificador único descentralizado permanente (NanoID 14c) do croqui.
   string croqui_uid = 10;
 
@@ -41,4 +38,6 @@ message CroquiExperimental {
 
   // Hash SHA do commit base do repositório oficial (aresta_db) de onde este croqui se originou.
   string commit_base_sha = 9;
+
+  reserved 4;
 }

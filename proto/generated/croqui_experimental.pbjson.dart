@@ -36,7 +36,6 @@ const CroquiExperimental$json = {
       '6': '.google.protobuf.Timestamp',
       '10': 'ultimaEdicao'
     },
-    {'1': 'resumo_edicao', '3': 4, '4': 1, '5': 9, '10': 'resumoEdicao'},
     {'1': 'croqui_uid', '3': 10, '4': 1, '5': 9, '10': 'croquiUid'},
     {'1': 'id_original', '3': 5, '4': 1, '5': 9, '10': 'idOriginal'},
     {'1': 'pull_request_url', '3': 6, '4': 1, '5': 9, '10': 'pullRequestUrl'},
@@ -56,6 +55,9 @@ const CroquiExperimental$json = {
     },
     {'1': 'commit_base_sha', '3': 9, '4': 1, '5': 9, '10': 'commitBaseSha'},
   ],
+  '9': [
+    {'1': 4, '2': 5},
+  ],
 };
 
 /// Descriptor for `CroquiExperimental`. Decode as a `google.protobuf.DescriptorProto`.
@@ -63,9 +65,8 @@ final $typed_data.Uint8List croquiExperimentalDescriptor = $convert.base64Decode
     'ChJDcm9xdWlFeHBlcmltZW50YWwSGAoHYXV0b3JlcxgBIAMoCVIHYXV0b3JlcxI9CgxkYXRhX2'
     'NyaWFjYW8YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgtkYXRhQ3JpYWNhbxI/'
     'Cg11bHRpbWFfZWRpY2FvGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMdWx0aW'
-    '1hRWRpY2FvEiMKDXJlc3Vtb19lZGljYW8YBCABKAlSDHJlc3Vtb0VkaWNhbxIdCgpjcm9xdWlf'
-    'dWlkGAogASgJUgljcm9xdWlVaWQSHwoLaWRfb3JpZ2luYWwYBSABKAlSCmlkT3JpZ2luYWwSKA'
-    'oQcHVsbF9yZXF1ZXN0X3VybBgGIAEoCVIOcHVsbFJlcXVlc3RVcmwSLgoTcHVsbF9yZXF1ZXN0'
-    'X2JyYW5jaBgHIAEoCVIRcHVsbFJlcXVlc3RCcmFuY2gSNQoXcHVsbF9yZXF1ZXN0X2Zvcmtfb3'
-    'duZXIYCCABKAlSFHB1bGxSZXF1ZXN0Rm9ya093bmVyEiYKD2NvbW1pdF9iYXNlX3NoYRgJIAEo'
-    'CVINY29tbWl0QmFzZVNoYQ==');
+    '1hRWRpY2FvEh0KCmNyb3F1aV91aWQYCiABKAlSCWNyb3F1aVVpZBIfCgtpZF9vcmlnaW5hbBgF'
+    'IAEoCVIKaWRPcmlnaW5hbBIoChBwdWxsX3JlcXVlc3RfdXJsGAYgASgJUg5wdWxsUmVxdWVzdF'
+    'VybBIuChNwdWxsX3JlcXVlc3RfYnJhbmNoGAcgASgJUhFwdWxsUmVxdWVzdEJyYW5jaBI1Chdw'
+    'dWxsX3JlcXVlc3RfZm9ya19vd25lchgIIAEoCVIUcHVsbFJlcXVlc3RGb3JrT3duZXISJgoPY2'
+    '9tbWl0X2Jhc2Vfc2hhGAkgASgJUg1jb21taXRCYXNlU2hhSgQIBBAF');
