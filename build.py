@@ -27,6 +27,7 @@ try:
     )
     from aresta_api.src.validador_paridade import (
         MAPEAMENTO_PARIDADE_CATALOGO,
+        MAPEAMENTO_PARIDADE_FIXALOG,
         validar_paridade_esquemas,
     )
 except ImportError:  # pragma: no cover
@@ -40,6 +41,7 @@ except ImportError:  # pragma: no cover
     )
     from src.validador_paridade import (  # type: ignore[import-not-found,import-untyped,no-redef,unused-ignore]
         MAPEAMENTO_PARIDADE_CATALOGO,
+        MAPEAMENTO_PARIDADE_FIXALOG,
         validar_paridade_esquemas,
     )
 
@@ -164,6 +166,18 @@ def compilar_contratos_sql_e_openapi(
             arq_catalogo_yaml.read_text(encoding="utf-8"), nome_modulo="catalogo"
         )
         validar_paridade_esquemas(esquema_cat, spec_cat, MAPEAMENTO_PARIDADE_CATALOGO)
+
+    # Valida paridade entre fixalog_d1.sql e fixalog.yaml quando presentes
+    arq_fixalog_sql = dir_sql / "fixalog_d1.sql"
+    arq_fixalog_yaml = dir_openapi / "fixalog.yaml"
+    if arq_fixalog_sql.exists() and arq_fixalog_yaml.exists():
+        esquema_fix = inspecionar_esquema_sql(
+            arq_fixalog_sql.read_text(encoding="utf-8"), nome_modulo="fixalog_d1"
+        )
+        spec_fix = inspecionar_especificacao_openapi(
+            arq_fixalog_yaml.read_text(encoding="utf-8"), nome_modulo="fixalog"
+        )
+        validar_paridade_esquemas(esquema_fix, spec_fix, MAPEAMENTO_PARIDADE_FIXALOG)
 
     # Compilação SQL com cache de hash
     dir_sql_gerados = dir_sql / "generated"
