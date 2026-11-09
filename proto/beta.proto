@@ -12,6 +12,11 @@ message FonteMidia {
     YOUTUBE = 1;
     INSTAGRAM = 2;
     BLOG = 3;
+    TIKTOK = 4;
+    FACEBOOK = 5;
+    TWITTER = 6;
+    REDDIT = 7;
+    OUTRO_UGC = 8;
   }
 }
 

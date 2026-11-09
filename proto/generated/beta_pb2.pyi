@@ -37,12 +37,22 @@ class FonteMidia(_message.Message):
         YOUTUBE: FonteMidia._Enum.ValueType  # 1
         INSTAGRAM: FonteMidia._Enum.ValueType  # 2
         BLOG: FonteMidia._Enum.ValueType  # 3
+        TIKTOK: FonteMidia._Enum.ValueType  # 4
+        FACEBOOK: FonteMidia._Enum.ValueType  # 5
+        TWITTER: FonteMidia._Enum.ValueType  # 6
+        REDDIT: FonteMidia._Enum.ValueType  # 7
+        OUTRO_UGC: FonteMidia._Enum.ValueType  # 8
 
     class Enum(_Enum, metaclass=_EnumEnumTypeWrapper): ...
     INDEFINIDO: FonteMidia.Enum.ValueType  # 0
     YOUTUBE: FonteMidia.Enum.ValueType  # 1
     INSTAGRAM: FonteMidia.Enum.ValueType  # 2
     BLOG: FonteMidia.Enum.ValueType  # 3
+    TIKTOK: FonteMidia.Enum.ValueType  # 4
+    FACEBOOK: FonteMidia.Enum.ValueType  # 5
+    TWITTER: FonteMidia.Enum.ValueType  # 6
+    REDDIT: FonteMidia.Enum.ValueType  # 7
+    OUTRO_UGC: FonteMidia.Enum.ValueType  # 8
 
     def __init__(
         self,

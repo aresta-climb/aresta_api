@@ -23,16 +23,31 @@ class FonteMidia_Enum extends $pb.ProtobufEnum {
       FonteMidia_Enum._(2, _omitEnumNames ? '' : 'INSTAGRAM');
   static const FonteMidia_Enum BLOG =
       FonteMidia_Enum._(3, _omitEnumNames ? '' : 'BLOG');
+  static const FonteMidia_Enum TIKTOK =
+      FonteMidia_Enum._(4, _omitEnumNames ? '' : 'TIKTOK');
+  static const FonteMidia_Enum FACEBOOK =
+      FonteMidia_Enum._(5, _omitEnumNames ? '' : 'FACEBOOK');
+  static const FonteMidia_Enum TWITTER =
+      FonteMidia_Enum._(6, _omitEnumNames ? '' : 'TWITTER');
+  static const FonteMidia_Enum REDDIT =
+      FonteMidia_Enum._(7, _omitEnumNames ? '' : 'REDDIT');
+  static const FonteMidia_Enum OUTRO_UGC =
+      FonteMidia_Enum._(8, _omitEnumNames ? '' : 'OUTRO_UGC');
 
   static const $core.List<FonteMidia_Enum> values = <FonteMidia_Enum>[
     INDEFINIDO,
     YOUTUBE,
     INSTAGRAM,
     BLOG,
+    TIKTOK,
+    FACEBOOK,
+    TWITTER,
+    REDDIT,
+    OUTRO_UGC,
   ];
 
   static final $core.List<FonteMidia_Enum?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 3);
+      $pb.ProtobufEnum.$_initByValueList(values, 8);
   static FonteMidia_Enum? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

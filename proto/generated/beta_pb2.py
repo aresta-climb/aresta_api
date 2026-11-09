@@ -24,25 +24,25 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbeta.proto\x12\x06\x61resta\"J\n\nFonteMidia\"<\n\x04\x45num\x12\x0e\n\nINDEFINIDO\x10\x00\x12\x0b\n\x07YOUTUBE\x10\x01\x12\r\n\tINSTAGRAM\x10\x02\x12\x08\n\x04\x42LOG\x10\x03\"G\n\x10ResultadoLLMBeta\x12\x1c\n\x14llm_confidence_score\x18\x01 \x01(\x05\x12\x15\n\rllm_reasoning\x18\x02 \x01(\t\"P\n\tMidiaBeta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12&\n\x05\x66onte\x18\x03 \x01(\x0e\x32\x17.aresta.FonteMidia.Enum\"\xb8\x01\n\x12\x43\x61ndidatoMidiaBeta\x12 \n\x05midia\x18\x01 \x01(\x0b\x32\x11.aresta.MidiaBeta\x12/\n\rresultado_llm\x18\x02 \x01(\x0b\x32\x18.aresta.ResultadoLLMBeta\x12\x1e\n\x16match_multiplas_fontes\x18\x03 \x01(\x08\x12\x1d\n\x15match_nome_no_snippet\x18\x04 \x01(\x08\x12\x10\n\x08snippets\x18\x05 \x03(\t\"\xcc\x01\n\x16\x43uradoriaBetasEscalada\x12\x14\n\x0c\x65scalada_uid\x18\x01 \x01(\t\x12\x36\n\x12\x62\x65tas_nao_scorados\x18\x02 \x03(\x0b\x32\x1a.aresta.CandidatoMidiaBeta\x12\x37\n\x13\x62\x65tas_nao_revisados\x18\x03 \x03(\x0b\x32\x1a.aresta.CandidatoMidiaBeta\x12+\n\x10\x62\x65tas_rejeitados\x18\x04 \x03(\x0b\x32\x11.aresta.MidiaBeta\"J\n\x15\x43olecaoCuradoriaBetas\x12\x31\n\tescaladas\x18\x01 \x03(\x0b\x32\x1e.aresta.CuradoriaBetasEscaladab\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nbeta.proto\x12\x06\x61resta\"\x8c\x01\n\nFonteMidia\"~\n\x04\x45num\x12\x0e\n\nINDEFINIDO\x10\x00\x12\x0b\n\x07YOUTUBE\x10\x01\x12\r\n\tINSTAGRAM\x10\x02\x12\x08\n\x04\x42LOG\x10\x03\x12\n\n\x06TIKTOK\x10\x04\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x05\x12\x0b\n\x07TWITTER\x10\x06\x12\n\n\x06REDDIT\x10\x07\x12\r\n\tOUTRO_UGC\x10\x08\"G\n\x10ResultadoLLMBeta\x12\x1c\n\x14llm_confidence_score\x18\x01 \x01(\x05\x12\x15\n\rllm_reasoning\x18\x02 \x01(\t\"P\n\tMidiaBeta\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12&\n\x05\x66onte\x18\x03 \x01(\x0e\x32\x17.aresta.FonteMidia.Enum\"\xb8\x01\n\x12\x43\x61ndidatoMidiaBeta\x12 \n\x05midia\x18\x01 \x01(\x0b\x32\x11.aresta.MidiaBeta\x12/\n\rresultado_llm\x18\x02 \x01(\x0b\x32\x18.aresta.ResultadoLLMBeta\x12\x1e\n\x16match_multiplas_fontes\x18\x03 \x01(\x08\x12\x1d\n\x15match_nome_no_snippet\x18\x04 \x01(\x08\x12\x10\n\x08snippets\x18\x05 \x03(\t\"\xcc\x01\n\x16\x43uradoriaBetasEscalada\x12\x14\n\x0c\x65scalada_uid\x18\x01 \x01(\t\x12\x36\n\x12\x62\x65tas_nao_scorados\x18\x02 \x03(\x0b\x32\x1a.aresta.CandidatoMidiaBeta\x12\x37\n\x13\x62\x65tas_nao_revisados\x18\x03 \x03(\x0b\x32\x1a.aresta.CandidatoMidiaBeta\x12+\n\x10\x62\x65tas_rejeitados\x18\x04 \x03(\x0b\x32\x11.aresta.MidiaBeta\"J\n\x15\x43olecaoCuradoriaBetas\x12\x31\n\tescaladas\x18\x01 \x03(\x0b\x32\x1e.aresta.CuradoriaBetasEscaladab\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'beta_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_FONTEMIDIA']._serialized_start=22
-  _globals['_FONTEMIDIA']._serialized_end=96
-  _globals['_FONTEMIDIA_ENUM']._serialized_start=36
-  _globals['_FONTEMIDIA_ENUM']._serialized_end=96
-  _globals['_RESULTADOLLMBETA']._serialized_start=98
-  _globals['_RESULTADOLLMBETA']._serialized_end=169
-  _globals['_MIDIABETA']._serialized_start=171
-  _globals['_MIDIABETA']._serialized_end=251
-  _globals['_CANDIDATOMIDIABETA']._serialized_start=254
-  _globals['_CANDIDATOMIDIABETA']._serialized_end=438
-  _globals['_CURADORIABETASESCALADA']._serialized_start=441
-  _globals['_CURADORIABETASESCALADA']._serialized_end=645
-  _globals['_COLECAOCURADORIABETAS']._serialized_start=647
-  _globals['_COLECAOCURADORIABETAS']._serialized_end=721
+  _globals['_FONTEMIDIA']._serialized_start=23
+  _globals['_FONTEMIDIA']._serialized_end=163
+  _globals['_FONTEMIDIA_ENUM']._serialized_start=37
+  _globals['_FONTEMIDIA_ENUM']._serialized_end=163
+  _globals['_RESULTADOLLMBETA']._serialized_start=165
+  _globals['_RESULTADOLLMBETA']._serialized_end=236
+  _globals['_MIDIABETA']._serialized_start=238
+  _globals['_MIDIABETA']._serialized_end=318
+  _globals['_CANDIDATOMIDIABETA']._serialized_start=321
+  _globals['_CANDIDATOMIDIABETA']._serialized_end=505
+  _globals['_CURADORIABETASESCALADA']._serialized_start=508
+  _globals['_CURADORIABETASESCALADA']._serialized_end=712
+  _globals['_COLECAOCURADORIABETAS']._serialized_start=714
+  _globals['_COLECAOCURADORIABETAS']._serialized_end=788
 # @@protoc_insertion_point(module_scope)

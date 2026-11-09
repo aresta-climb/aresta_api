@@ -335,6 +335,11 @@ def test_escalada_serializa_betas_aprovados_e_fonte_midia_enum() -> None:
     assert beta_pb2.FonteMidia.YOUTUBE == 1
     assert beta_pb2.FonteMidia.INSTAGRAM == 2
     assert beta_pb2.FonteMidia.BLOG == 3
+    assert beta_pb2.FonteMidia.TIKTOK == 4
+    assert beta_pb2.FonteMidia.FACEBOOK == 5
+    assert beta_pb2.FonteMidia.TWITTER == 6
+    assert beta_pb2.FonteMidia.REDDIT == 7
+    assert beta_pb2.FonteMidia.OUTRO_UGC == 8
 
     escalada = croqui_pb2.Escalada()
     midia = escalada.betas.add()

@@ -29,13 +29,19 @@ const FonteMidia_Enum$json = {
     {'1': 'YOUTUBE', '2': 1},
     {'1': 'INSTAGRAM', '2': 2},
     {'1': 'BLOG', '2': 3},
+    {'1': 'TIKTOK', '2': 4},
+    {'1': 'FACEBOOK', '2': 5},
+    {'1': 'TWITTER', '2': 6},
+    {'1': 'REDDIT', '2': 7},
+    {'1': 'OUTRO_UGC', '2': 8},
   ],
 };
 
 /// Descriptor for `FonteMidia`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List fonteMidiaDescriptor = $convert.base64Decode(
-    'CgpGb250ZU1pZGlhIjwKBEVudW0SDgoKSU5ERUZJTklETxAAEgsKB1lPVVRVQkUQARINCglJTl'
-    'NUQUdSQU0QAhIICgRCTE9HEAM=');
+    'CgpGb250ZU1pZGlhIn4KBEVudW0SDgoKSU5ERUZJTklETxAAEgsKB1lPVVRVQkUQARINCglJTl'
+    'NUQUdSQU0QAhIICgRCTE9HEAMSCgoGVElLVE9LEAQSDAoIRkFDRUJPT0sQBRILCgdUV0lUVEVS'
+    'EAYSCgoGUkVERElUEAcSDQoJT1VUUk9fVUdDEAg=');
 
 @$core.Deprecated('Use resultadoLLMBetaDescriptor instead')
 const ResultadoLLMBeta$json = {
