@@ -80,14 +80,14 @@ CREATE TABLE IF NOT EXISTS catalogo_nos_estrada (
 -- Propósito:
 --   Armazena de forma esparsa a distância pré-computada (em metros) de cada nó
 --   rodoviário (`no_osm_id`) até o estacionamento de cada croqui (`croqui_uid`),
---   indicando em `e_portal_borda` (0 ou 1) se o nó atua como portal de borda
+--   indicando em `na_borda` (0 ou 1) se o nó atua como portal de borda
 --   para estimativas de longa distância (> 180 km).
 -- -----------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     croqui_uid TEXT NOT NULL,
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
-    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 );
 

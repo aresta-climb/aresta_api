@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     croqui_uid TEXT NOT NULL,
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
-    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 );
 ''';
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     croqui_uid TEXT NOT NULL,
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
-    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 );
 
@@ -274,13 +274,13 @@ class LinhaCatalogoDistanciasEstrada {
   final String croquiUid;
   final int noOsmId;
   final int distanciaMetros;
-  final int ePortalBorda;
+  final int naBorda;
 
   const LinhaCatalogoDistanciasEstrada({
     required this.croquiUid,
     required this.noOsmId,
     required this.distanciaMetros,
-    this.ePortalBorda = 0,
+    this.naBorda = 0,
   });
 
   factory LinhaCatalogoDistanciasEstrada.fromMap(Map<String, dynamic> map) {
@@ -288,7 +288,7 @@ class LinhaCatalogoDistanciasEstrada {
       croquiUid: map['croqui_uid'] as String,
       noOsmId: map['no_osm_id'] as int,
       distanciaMetros: map['distancia_metros'] as int,
-      ePortalBorda: (map['e_portal_borda'] as int?) ?? 0,
+      naBorda: (map['na_borda'] as int?) ?? 0,
     );
   }
 
@@ -297,7 +297,7 @@ class LinhaCatalogoDistanciasEstrada {
       'croqui_uid': croquiUid,
       'no_osm_id': noOsmId,
       'distancia_metros': distanciaMetros,
-      'e_portal_borda': ePortalBorda,
+      'na_borda': naBorda,
     };
   }
 }

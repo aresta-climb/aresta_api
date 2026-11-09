@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     croqui_uid TEXT NOT NULL,
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
-    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 );
 `.trim();
-export const COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: readonly string[] = ["croqui_uid", "no_osm_id", "distancia_metros", "e_portal_borda"];
+export const COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: readonly string[] = ["croqui_uid", "no_osm_id", "distancia_metros", "na_borda"];
 
 export const DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI = `
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
@@ -122,5 +122,5 @@ export interface LinhaCatalogoDistanciasEstrada {
   croqui_uid: string;
   no_osm_id: number;
   distancia_metros: number;
-  e_portal_borda?: number;
+  na_borda?: number;
 }

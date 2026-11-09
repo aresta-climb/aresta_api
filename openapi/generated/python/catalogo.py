@@ -48,7 +48,7 @@ class CatalogoDistanciaEstrada(TypedDict):
     croqui_uid: str
     no_osm_id: int
     distancia_metros: int
-    e_portal_borda: NotRequired[int]
+    na_borda: NotRequired[int]
 
 
 class UpsertsSyncCatalogo(TypedDict):

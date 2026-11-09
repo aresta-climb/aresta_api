@@ -122,13 +122,13 @@ class CatalogoDistanciaEstrada {
   final String croquiUid;
   final int noOsmId;
   final int distanciaMetros;
-  final int? ePortalBorda;
+  final int? naBorda;
 
   const CatalogoDistanciaEstrada({
     required this.croquiUid,
     required this.noOsmId,
     required this.distanciaMetros,
-    this.ePortalBorda,
+    this.naBorda,
   });
 
   factory CatalogoDistanciaEstrada.fromJson(Map<String, dynamic> json) {
@@ -136,7 +136,7 @@ class CatalogoDistanciaEstrada {
       croquiUid: json['croqui_uid'] as String,
       noOsmId: json['no_osm_id'] as int,
       distanciaMetros: json['distancia_metros'] as int,
-      ePortalBorda: json['e_portal_borda'] as int?,
+      naBorda: json['na_borda'] as int?,
     );
   }
 
@@ -145,7 +145,7 @@ class CatalogoDistanciaEstrada {
       'croqui_uid': croquiUid,
       'no_osm_id': noOsmId,
       'distancia_metros': distanciaMetros,
-      'e_portal_borda': ePortalBorda,
+      'na_borda': naBorda,
     };
   }
 }

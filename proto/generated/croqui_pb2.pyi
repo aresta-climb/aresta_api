@@ -641,7 +641,7 @@ class NoMalhaEstrada(_message.Message):
     LATITUDE_E7_FIELD_NUMBER: _builtins.int
     LONGITUDE_E7_FIELD_NUMBER: _builtins.int
     DISTANCIA_METROS_FIELD_NUMBER: _builtins.int
-    E_PORTAL_BORDA_FIELD_NUMBER: _builtins.int
+    NA_BORDA_FIELD_NUMBER: _builtins.int
     no_osm_id: _builtins.int
     """Identificador original de 64 bits do nó no OpenStreetMap."""
     latitude_e7: _builtins.int
@@ -650,7 +650,7 @@ class NoMalhaEstrada(_message.Message):
     """Longitude do nó rodoviário no padrão E7 (graus * 10^7)."""
     distancia_metros: _builtins.int
     """Distância rodoviária real em metros a partir da localização do pico até este nó."""
-    e_portal_borda: _builtins.bool
+    na_borda: _builtins.bool
     """Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false)."""
     def __init__(
         self,
@@ -659,11 +659,11 @@ class NoMalhaEstrada(_message.Message):
         latitude_e7: _builtins.int | None = ...,
         longitude_e7: _builtins.int | None = ...,
         distancia_metros: _builtins.int | None = ...,
-        e_portal_borda: _builtins.bool | None = ...,
+        na_borda: _builtins.bool | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "e_portal_borda", b"e_portal_borda", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "no_osm_id", b"no_osm_id"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "na_borda", b"na_borda", "no_osm_id", b"no_osm_id"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "e_portal_borda", b"e_portal_borda", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "no_osm_id", b"no_osm_id"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "na_borda", b"na_borda", "no_osm_id", b"no_osm_id"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

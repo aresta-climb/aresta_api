@@ -167,7 +167,7 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     no.latitude_e7 = -195600000
     no.longitude_e7 = -439600000
     no.distancia_metros = 15200
-    no.e_portal_borda = True
+    no.na_borda = True
 
     dados = pico.SerializeToString()
     recuperado = croqui_pb2.Pico()
@@ -179,4 +179,28 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     assert recuperado.malha_estrada.nos[0].latitude_e7 == -195600000
     assert recuperado.malha_estrada.nos[0].longitude_e7 == -439600000
     assert recuperado.malha_estrada.nos[0].distancia_metros == 15200
-    assert recuperado.malha_estrada.nos[0].e_portal_borda is True
+    assert recuperado.malha_estrada.nos[0].na_borda is True
+
+
+
+def test_metadados_arquivo_no_editor_formato_nome_arquivo() -> None:
+    """Valida que MetadadosArquivoNoEditor usa NOME_ARQUIVO em caminho_novo e oculta campos internos."""
+    assert croqui_pb2.CampoFormatoUi.NOME_ARQUIVO == 9
+
+    desc = croqui_pb2.MetadadosArquivoNoEditor.DESCRIPTOR
+    campo_novo = desc.fields_by_name["caminho_novo"]
+    opcoes_novo = campo_novo.GetOptions()
+    assert opcoes_novo.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.NOME_ARQUIVO
+    assert opcoes_novo.Extensions[croqui_pb2.texto_na_ui] == "Nome do arquivo"
+
+    campo_original = desc.fields_by_name["caminho_original"]
+    assert (
+        campo_original.GetOptions().Extensions[croqui_pb2.formato_na_ui]
+        == croqui_pb2.CampoFormatoUi.INVISIVEL
+    )
+
+    campo_json = desc.fields_by_name["dados_json_originais"]
+    assert (
+        campo_json.GetOptions().Extensions[croqui_pb2.formato_na_ui]
+        == croqui_pb2.CampoFormatoUi.INVISIVEL
+    )

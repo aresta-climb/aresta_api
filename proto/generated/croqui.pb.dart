@@ -1232,14 +1232,14 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
     $core.int? latitudeE7,
     $core.int? longitudeE7,
     $core.int? distanciaMetros,
-    $core.bool? ePortalBorda,
+    $core.bool? naBorda,
   }) {
     final result = NoMalhaEstrada._();
     if (noOsmId != null) result.noOsmId = noOsmId;
     if (latitudeE7 != null) result.latitudeE7 = latitudeE7;
     if (longitudeE7 != null) result.longitudeE7 = longitudeE7;
     if (distanciaMetros != null) result.distanciaMetros = distanciaMetros;
-    if (ePortalBorda != null) result.ePortalBorda = ePortalBorda;
+    if (naBorda != null) result.naBorda = naBorda;
     return result;
   }
 
@@ -1261,7 +1261,7 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
     ..aI(3, _omitFieldNames ? '' : 'longitudeE7',
         fieldType: $pb.PbFieldType.OS3)
     ..aI(4, _omitFieldNames ? '' : 'distanciaMetros')
-    ..aOB(5, _omitFieldNames ? '' : 'ePortalBorda')
+    ..aOB(5, _omitFieldNames ? '' : 'naBorda')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1328,13 +1328,13 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
 
   /// Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false).
   @$pb.TagNumber(5)
-  $core.bool get ePortalBorda => $_getBF(4);
+  $core.bool get naBorda => $_getBF(4);
   @$pb.TagNumber(5)
-  set ePortalBorda($core.bool value) => $_setBool(4, value);
+  set naBorda($core.bool value) => $_setBool(4, value);
   @$pb.TagNumber(5)
-  $core.bool hasEPortalBorda() => $_has(4);
+  $core.bool hasNaBorda() => $_has(4);
   @$pb.TagNumber(5)
-  void clearEPortalBorda() => $_clearField(5);
+  void clearNaBorda() => $_clearField(5);
 }
 
 /// Malha de nós rodoviários pré-computados a partir da localização de referência do pico.

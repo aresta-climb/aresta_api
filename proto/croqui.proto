@@ -56,6 +56,9 @@ message CampoFormatoUi {
 
     // O campo representa uma imagem com pré-visualização, metadados e pré-processamento WebP.
     IMAGEM = 8;
+
+    // O campo representa o nome de um arquivo Markdown editado via diálogo modal validado.
+    NOME_ARQUIVO = 9;
   }
 }
 
@@ -293,14 +296,14 @@ message ArquivoExterno {
 message MetadadosArquivoNoEditor {
   // Caminho original do arquivo em disco (se ele já existia antes da edição atual).
   // Serve para sabermos qual arquivo antigo deletar após salvar o novo arquivo renomeado.
-  string caminho_original = 1;
+  string caminho_original = 1 [(aresta.formato_na_ui) = INVISIVEL];
 
   // Caminho final e modificado durante a edição na UI (Shadow State).
   // Este é o nome que o arquivo receberá em disco no momento de salvar.
-  string caminho_novo = 2;
+  string caminho_novo = 2 [(aresta.formato_na_ui) = NOME_ARQUIVO, (aresta.texto_na_ui) = "Nome do arquivo"];
 
   // Estado completo original em JSON (preserva toda a ordem hierárquica das chaves para dicionários aninhados).
-  string dados_json_originais = 4;
+  string dados_json_originais = 4 [(aresta.formato_na_ui) = INVISIVEL];
 
   reserved 3;
 }
@@ -388,7 +391,7 @@ message NoMalhaEstrada {
   int32 distancia_metros = 4;
 
   // Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false).
-  bool e_portal_borda = 5;
+  bool na_borda = 5;
 }
 
 // Malha de nós rodoviários pré-computados a partir da localização de referência do pico.
