@@ -1,6 +1,6 @@
 # Princípios de Engenharia Aresta (`aresta_api`)
 
-Para garantir que o nosso código e schemas, sejam eles escritos por humanos ou por agentes autônomos de IA (como Google Antigravity e OPSX), se mantenham coesos, testáveis, sustentáveis e simples, adotamos oito princípios basilares e inegociáveis.
+Para garantir que o nosso código e schemas, sejam eles escritos por humanos ou por agentes autônomos de IA (como Google Antigravity e OPSX), se mantenham coesos, testáveis, sustentáveis e simples, adotamos nove princípios basilares e inegociáveis.
 
 Estes princípios devem guiar toda e qualquer nova implementação, evolução de schema Protobuf, revisão ou refatoração no repositório.
 
@@ -44,7 +44,13 @@ A existência de código ou testes legados no repositório que ainda não sigam 
 - Agentes autônomos e desenvolvedores estão proibidos de imitar antipadrões presentes em arquivos vizinhos (como uso de `MagicMock`/`patch`, *change-detector tests* baseados apenas em `hasattr` ou identificadores em inglês).
 - Sempre que tocar em um arquivo ou módulo existente que viole este `AGENTS.md`, você DEVE refatorar o trecho e os testes afetados para que passem a seguir integralmente estes princípios.
 
-## VIII. Design e Evolução de Schemas Protobuf
+## VIII. Fail-Fast e Proibição de Fallbacks Legados ou Silenciosos
+O código DEVE operar por padrão sob a filosofia **Fail-Fast** (falhar cedo, de forma ruidosa e explícita) e realizar **cortes limpos** ao evoluir contratos, schemas e arquiteturas.
+- **Proibição de Fallbacks Legados por Padrão**: Quando um contrato, schema, formato de arquivo ou fluxo arquitetural for substituído, o caminho antigo DEVE ser integralmente removido na mesma alteração (migrando os dados existentes de uma só vez quando necessário). Por padrão, é proibido manter parâmetros opcionais legados, leitura dupla (*dual-read*) de formatos obsoletos ou ramificações de retrocompatibilidade.
+- **Proibição de Degradação Silenciosa e Engolimento de Erros**: É proibido usar blocos `try/except` genéricos que engulam exceções (`pass`, retorno de valores vazios/padrão mágicos) ou `except ImportError` para mascarar dependências ausentes ou acoplamento indevido entre módulos. Se uma pré-condição, dependência ou invariante falhar, o sistema DEVE lançar uma exceção clara imediatamente para que a falha seja capturada nos testes, no CI ou no Sentry.
+- **Exceção Explícita (*Escape Hatch*)**: Fallbacks (sejam de compatibilidade ou dentro da lógica de negócios) e degradações graciosas **SÓ** podem ser implementados quando **explicitamente solicitados pelo usuário** para um caso específico. Agentes autônomos jamais devem introduzir fallbacks por iniciativa própria; na dúvida se um cenário exige fallback ou erro explícito, o padrão é falhar explicitamente ou perguntar ao usuário.
+
+## IX. Design e Evolução de Schemas Protobuf
 Os arquivos `.proto` definem o contrato canônico de dados entre todos os sistemas do ecossistema Aresta (`aresta_db`, `aresta_app`, `aresta_backend`) e devem seguir estritamente as seguintes regras:
 - **Encapsulamento de Enums**: Todo novo enum deve ser chamado `Enum` e ser encapsulado por uma mensagem dedicada com o nome semântico do enum (contendo apenas o `Enum`). Isso garante o escopo adequado sem necessidade de prefixos redundantes nos valores.
 - **Valor Padrão de Enums**: Todo enum deve obrigatoriamente iniciar com `INDEFINIDO = 0;`.
