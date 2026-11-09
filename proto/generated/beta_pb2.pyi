@@ -36,11 +36,13 @@ class FonteMidia(_message.Message):
         INDEFINIDO: FonteMidia._Enum.ValueType  # 0
         YOUTUBE: FonteMidia._Enum.ValueType  # 1
         INSTAGRAM: FonteMidia._Enum.ValueType  # 2
+        BLOG: FonteMidia._Enum.ValueType  # 3
 
     class Enum(_Enum, metaclass=_EnumEnumTypeWrapper): ...
     INDEFINIDO: FonteMidia.Enum.ValueType  # 0
     YOUTUBE: FonteMidia.Enum.ValueType  # 1
     INSTAGRAM: FonteMidia.Enum.ValueType  # 2
+    BLOG: FonteMidia.Enum.ValueType  # 3
 
     def __init__(
         self,
@@ -81,236 +83,138 @@ Global___ResultadoLLMBeta: _TypeAlias = ResultadoLLMBeta  # noqa: Y015
 
 @_typing.final
 class MidiaBeta(_message.Message):
-    """Representa uma referência multimídia (vídeo ou post) contendo o beta da escalada."""
+    """Representa uma referência multimídia aprovada (vídeo, post ou artigo de blog) contendo o beta da escalada."""
 
     DESCRIPTOR: _descriptor.Descriptor
 
     URL_FIELD_NUMBER: _builtins.int
     TITULO_FIELD_NUMBER: _builtins.int
-    THUMBNAIL_URL_FIELD_NUMBER: _builtins.int
     FONTE_FIELD_NUMBER: _builtins.int
-    RESULTADO_LLM_FIELD_NUMBER: _builtins.int
-    MATCH_MULTIPLAS_FONTES_FIELD_NUMBER: _builtins.int
-    MATCH_NOME_NO_SNIPPET_FIELD_NUMBER: _builtins.int
-    SNIPPETS_FIELD_NUMBER: _builtins.int
     url: _builtins.str
-    """URL pública de acesso ao vídeo ou postagem."""
+    """URL pública de acesso ao vídeo, postagem ou artigo de blog."""
     titulo: _builtins.str
-    """Título da postagem ou do vídeo."""
-    thumbnail_url: _builtins.str
-    """URL da imagem de thumbnail (se disponível)."""
+    """Título da postagem, vídeo ou artigo."""
     fonte: Global___FonteMidia.Enum.ValueType
     """Plataforma de onde a mídia foi extraída."""
-    match_multiplas_fontes: _builtins.bool
-    """Se a mídia foi encontrada em múltiplas fontes (ex: Google e DuckDuckGo)."""
-    match_nome_no_snippet: _builtins.bool
-    """Se o nome da via foi explicitamente identificado no snippet textual."""
-    @_builtins.property
-    def resultado_llm(self) -> Global___ResultadoLLMBeta:
-        """Resultado da avaliação e metadados gerados pelo modelo de IA."""
-
-    @_builtins.property
-    def snippets(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
-        """Trechos textuais e snippets coletados nas buscas."""
-
     def __init__(
         self,
         *,
         url: _builtins.str | None = ...,
         titulo: _builtins.str | None = ...,
-        thumbnail_url: _builtins.str | None = ...,
         fonte: Global___FonteMidia.Enum.ValueType | None = ...,
-        resultado_llm: Global___ResultadoLLMBeta | None = ...,
-        match_multiplas_fontes: _builtins.bool | None = ...,
-        match_nome_no_snippet: _builtins.bool | None = ...,
-        snippets: _abc.Iterable[_builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["fonte", b"fonte", "match_multiplas_fontes", b"match_multiplas_fontes", "match_nome_no_snippet", b"match_nome_no_snippet", "resultado_llm", b"resultado_llm", "snippets", b"snippets", "thumbnail_url", b"thumbnail_url", "titulo", b"titulo", "url", b"url"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["fonte", b"fonte", "titulo", b"titulo", "url", b"url"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["fonte", b"fonte", "match_multiplas_fontes", b"match_multiplas_fontes", "match_nome_no_snippet", b"match_nome_no_snippet", "resultado_llm", b"resultado_llm", "snippets", b"snippets", "thumbnail_url", b"thumbnail_url", "titulo", b"titulo", "url", b"url"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["fonte", b"fonte", "titulo", b"titulo", "url", b"url"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___MidiaBeta: _TypeAlias = MidiaBeta  # noqa: Y015
 
 @_typing.final
-class EscaladaAlvoBusca(_message.Message):
-    """Identifica uma via/boulder com seu contexto geográfico completo para busca de mídias."""
+class CandidatoMidiaBeta(_message.Message):
+    """Representa um candidato a beta em fase de coleta ou avaliação semântica."""
 
     DESCRIPTOR: _descriptor.Descriptor
 
-    ID_ESCALADA_FIELD_NUMBER: _builtins.int
-    NOME_FIELD_NUMBER: _builtins.int
-    GRAU_FIELD_NUMBER: _builtins.int
-    TIPO_FIELD_NUMBER: _builtins.int
-    NOME_SETOR_FIELD_NUMBER: _builtins.int
-    NOME_GRUPO_FIELD_NUMBER: _builtins.int
-    NOME_PICO_FIELD_NUMBER: _builtins.int
-    CIDADE_FIELD_NUMBER: _builtins.int
-    ESTADO_FIELD_NUMBER: _builtins.int
-    ARQUIVO_ORIGEM_FIELD_NUMBER: _builtins.int
-    id_escalada: _builtins.str
-    """Identificador da escalada (ex: número sequencial ou slug)."""
-    nome: _builtins.str
-    """Nome da escalada."""
-    grau: _builtins.str
-    """Grau da escalada (ex: V4, 7a, 6sup)."""
-    tipo: _builtins.str
-    """Tipo de escalada (ex: boulder, via_esportiva, via_movel, etc.)."""
-    nome_setor: _builtins.str
-    """Nome do setor onde a escalada está localizada."""
-    nome_grupo: _builtins.str
-    """Nome do grupo ou setor pai."""
-    nome_pico: _builtins.str
-    """Nome do pico ou montanha onde a escalada está localizada."""
-    cidade: _builtins.str
-    """Cidade da localização do croqui."""
-    estado: _builtins.str
-    """Estado (UF) da localização do croqui."""
-    arquivo_origem: _builtins.str
-    """Nome do arquivo markdown de origem onde a escalada está cadastrada."""
+    MIDIA_FIELD_NUMBER: _builtins.int
+    RESULTADO_LLM_FIELD_NUMBER: _builtins.int
+    MATCH_MULTIPLAS_FONTES_FIELD_NUMBER: _builtins.int
+    MATCH_NOME_NO_SNIPPET_FIELD_NUMBER: _builtins.int
+    SNIPPETS_FIELD_NUMBER: _builtins.int
+    match_multiplas_fontes: _builtins.bool
+    """Se a mídia foi encontrada em múltiplas fontes de busca."""
+    match_nome_no_snippet: _builtins.bool
+    """Se o nome da via foi explicitamente identificado no snippet textual."""
+    @_builtins.property
+    def midia(self) -> Global___MidiaBeta:
+        """Dados limpos da mídia candidata."""
+
+    @_builtins.property
+    def resultado_llm(self) -> Global___ResultadoLLMBeta:
+        """Resultado da avaliação e metadados gerados pelo modelo de IA."""
+
+    @_builtins.property
+    def snippets(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
+        """Trechos textuais e janelas de contexto coletados nas buscas ou extraídos de blogs."""
+
     def __init__(
         self,
         *,
-        id_escalada: _builtins.str | None = ...,
-        nome: _builtins.str | None = ...,
-        grau: _builtins.str | None = ...,
-        tipo: _builtins.str | None = ...,
-        nome_setor: _builtins.str | None = ...,
-        nome_grupo: _builtins.str | None = ...,
-        nome_pico: _builtins.str | None = ...,
-        cidade: _builtins.str | None = ...,
-        estado: _builtins.str | None = ...,
-        arquivo_origem: _builtins.str | None = ...,
+        midia: Global___MidiaBeta | None = ...,
+        resultado_llm: Global___ResultadoLLMBeta | None = ...,
+        match_multiplas_fontes: _builtins.bool | None = ...,
+        match_nome_no_snippet: _builtins.bool | None = ...,
+        snippets: _abc.Iterable[_builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivo_origem", b"arquivo_origem", "cidade", b"cidade", "estado", b"estado", "grau", b"grau", "id_escalada", b"id_escalada", "nome", b"nome", "nome_grupo", b"nome_grupo", "nome_pico", b"nome_pico", "nome_setor", b"nome_setor", "tipo", b"tipo"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["match_multiplas_fontes", b"match_multiplas_fontes", "match_nome_no_snippet", b"match_nome_no_snippet", "midia", b"midia", "resultado_llm", b"resultado_llm", "snippets", b"snippets"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivo_origem", b"arquivo_origem", "cidade", b"cidade", "estado", b"estado", "grau", b"grau", "id_escalada", b"id_escalada", "nome", b"nome", "nome_grupo", b"nome_grupo", "nome_pico", b"nome_pico", "nome_setor", b"nome_setor", "tipo", b"tipo"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["match_multiplas_fontes", b"match_multiplas_fontes", "match_nome_no_snippet", b"match_nome_no_snippet", "midia", b"midia", "resultado_llm", b"resultado_llm", "snippets", b"snippets"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___EscaladaAlvoBusca: _TypeAlias = EscaladaAlvoBusca  # noqa: Y015
+Global___CandidatoMidiaBeta: _TypeAlias = CandidatoMidiaBeta  # noqa: Y015
 
 @_typing.final
-class ViasExtraidasCroqui(_message.Message):
-    """Schema de dados para vias extraídas de um croqui (vias_extraidas.yaml)."""
+class CuradoriaBetasEscalada(_message.Message):
+    """Armazena as listas de curadoria de betas de uma escalada específica identificada por seu UID."""
 
     DESCRIPTOR: _descriptor.Descriptor
 
-    ID_CROQUI_FIELD_NUMBER: _builtins.int
-    NOME_CROQUI_FIELD_NUMBER: _builtins.int
-    CIDADE_FIELD_NUMBER: _builtins.int
-    ESTADO_FIELD_NUMBER: _builtins.int
-    PAIS_FIELD_NUMBER: _builtins.int
+    ESCALADA_UID_FIELD_NUMBER: _builtins.int
+    BETAS_NAO_SCORADOS_FIELD_NUMBER: _builtins.int
+    BETAS_NAO_REVISADOS_FIELD_NUMBER: _builtins.int
+    BETAS_REJEITADOS_FIELD_NUMBER: _builtins.int
+    escalada_uid: _builtins.str
+    """Identificador único permanente (NanoID 14c) da escalada associada."""
+    @_builtins.property
+    def betas_nao_scorados(self) -> _containers.RepeatedCompositeFieldContainer[Global___CandidatoMidiaBeta]:
+        """Candidatos recém-coletados que ainda não passaram pela avaliação de score do LLM."""
+
+    @_builtins.property
+    def betas_nao_revisados(self) -> _containers.RepeatedCompositeFieldContainer[Global___CandidatoMidiaBeta]:
+        """Candidatos já pontuados pelo LLM que aguardam revisão humana (aprovação ou rejeição)."""
+
+    @_builtins.property
+    def betas_rejeitados(self) -> _containers.RepeatedCompositeFieldContainer[Global___MidiaBeta]:
+        """Mídias rejeitadas manualmente na curadoria (mantidas para evitar re-scraping futuro)."""
+
+    def __init__(
+        self,
+        *,
+        escalada_uid: _builtins.str | None = ...,
+        betas_nao_scorados: _abc.Iterable[Global___CandidatoMidiaBeta] | None = ...,
+        betas_nao_revisados: _abc.Iterable[Global___CandidatoMidiaBeta] | None = ...,
+        betas_rejeitados: _abc.Iterable[Global___MidiaBeta] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["betas_nao_revisados", b"betas_nao_revisados", "betas_nao_scorados", b"betas_nao_scorados", "betas_rejeitados", b"betas_rejeitados", "escalada_uid", b"escalada_uid"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["betas_nao_revisados", b"betas_nao_revisados", "betas_nao_scorados", b"betas_nao_scorados", "betas_rejeitados", b"betas_rejeitados", "escalada_uid", b"escalada_uid"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___CuradoriaBetasEscalada: _TypeAlias = CuradoriaBetasEscalada  # noqa: Y015
+
+@_typing.final
+class ColecaoCuradoriaBetas(_message.Message):
+    """Coleção de curadoria de betas de todas as escaladas de um croqui (persistida em curadoria_betas.md)."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
     ESCALADAS_FIELD_NUMBER: _builtins.int
-    id_croqui: _builtins.str
-    """Identificador do croqui (slug da pasta)."""
-    nome_croqui: _builtins.str
-    """Nome legível do croqui."""
-    cidade: _builtins.str
-    """Cidade do croqui."""
-    estado: _builtins.str
-    """Estado (UF) do croqui."""
-    pais: _builtins.str
-    """País do croqui."""
     @_builtins.property
-    def escaladas(self) -> _containers.RepeatedCompositeFieldContainer[Global___EscaladaAlvoBusca]:
-        """Lista de escaladas alvo extraídas do croqui."""
+    def escaladas(self) -> _containers.RepeatedCompositeFieldContainer[Global___CuradoriaBetasEscalada]:
+        """Lista de entradas de curadoria por escalada."""
 
     def __init__(
         self,
         *,
-        id_croqui: _builtins.str | None = ...,
-        nome_croqui: _builtins.str | None = ...,
-        cidade: _builtins.str | None = ...,
-        estado: _builtins.str | None = ...,
-        pais: _builtins.str | None = ...,
-        escaladas: _abc.Iterable[Global___EscaladaAlvoBusca] | None = ...,
+        escaladas: _abc.Iterable[Global___CuradoriaBetasEscalada] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["cidade", b"cidade", "escaladas", b"escaladas", "estado", b"estado", "id_croqui", b"id_croqui", "nome_croqui", b"nome_croqui", "pais", b"pais"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["escaladas", b"escaladas"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["cidade", b"cidade", "escaladas", b"escaladas", "estado", b"estado", "id_croqui", b"id_croqui", "nome_croqui", b"nome_croqui", "pais", b"pais"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["escaladas", b"escaladas"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___ViasExtraidasCroqui: _TypeAlias = ViasExtraidasCroqui  # noqa: Y015
-
-@_typing.final
-class CandidatosBetaPorEscalada(_message.Message):
-    """Container para os candidatos de beta de uma escalada específica em fase de curadoria."""
-
-    DESCRIPTOR: _descriptor.Descriptor
-
-    NOME_ESCALADA_FIELD_NUMBER: _builtins.int
-    GRAU_FIELD_NUMBER: _builtins.int
-    NOME_SETOR_FIELD_NUMBER: _builtins.int
-    NOME_GRUPO_FIELD_NUMBER: _builtins.int
-    NOME_PICO_FIELD_NUMBER: _builtins.int
-    CIDADE_FIELD_NUMBER: _builtins.int
-    ESTADO_FIELD_NUMBER: _builtins.int
-    CANDIDATOS_FIELD_NUMBER: _builtins.int
-    nome_escalada: _builtins.str
-    """Identificador ou nome da escalada associada."""
-    grau: _builtins.str
-    """Grau da escalada."""
-    nome_setor: _builtins.str
-    """Nome do setor onde a escalada está localizada."""
-    nome_grupo: _builtins.str
-    """Nome do grupo ou setor pai onde a escalada está localizada."""
-    nome_pico: _builtins.str
-    """Nome do pico ou montanha onde a escalada está localizada."""
-    cidade: _builtins.str
-    """Cidade da localização do croqui."""
-    estado: _builtins.str
-    """Estado (UF) da localização do croqui."""
-    @_builtins.property
-    def candidatos(self) -> _containers.RepeatedCompositeFieldContainer[Global___MidiaBeta]:
-        """Lista de mídias candidatas coletadas para esta escalada."""
-
-    def __init__(
-        self,
-        *,
-        nome_escalada: _builtins.str | None = ...,
-        grau: _builtins.str | None = ...,
-        nome_setor: _builtins.str | None = ...,
-        nome_grupo: _builtins.str | None = ...,
-        nome_pico: _builtins.str | None = ...,
-        cidade: _builtins.str | None = ...,
-        estado: _builtins.str | None = ...,
-        candidatos: _abc.Iterable[Global___MidiaBeta] | None = ...,
-    ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["candidatos", b"candidatos", "cidade", b"cidade", "estado", b"estado", "grau", b"grau", "nome_escalada", b"nome_escalada", "nome_grupo", b"nome_grupo", "nome_pico", b"nome_pico", "nome_setor", b"nome_setor"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["candidatos", b"candidatos", "cidade", b"cidade", "estado", b"estado", "grau", b"grau", "nome_escalada", b"nome_escalada", "nome_grupo", b"nome_grupo", "nome_pico", b"nome_pico", "nome_setor", b"nome_setor"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
-
-Global___CandidatosBetaPorEscalada: _TypeAlias = CandidatosBetaPorEscalada  # noqa: Y015
-
-@_typing.final
-class BetasPendentes(_message.Message):
-    """Mensagem raiz para os arquivos intermediários (candidatos_brutos.yaml e betas_pendentes.binarypb)."""
-
-    DESCRIPTOR: _descriptor.Descriptor
-
-    ID_CROQUI_FIELD_NUMBER: _builtins.int
-    CANDIDATOS_POR_ESCALADA_FIELD_NUMBER: _builtins.int
-    id_croqui: _builtins.str
-    """Identificador único ou nome do croqui associado."""
-    @_builtins.property
-    def candidatos_por_escalada(self) -> _containers.RepeatedCompositeFieldContainer[Global___CandidatosBetaPorEscalada]:
-        """Lista de escaladas com seus respectivos candidatos a beta pendentes de curadoria."""
-
-    def __init__(
-        self,
-        *,
-        id_croqui: _builtins.str | None = ...,
-        candidatos_por_escalada: _abc.Iterable[Global___CandidatosBetaPorEscalada] | None = ...,
-    ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["candidatos_por_escalada", b"candidatos_por_escalada", "id_croqui", b"id_croqui"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["candidatos_por_escalada", b"candidatos_por_escalada", "id_croqui", b"id_croqui"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
-
-Global___BetasPendentes: _TypeAlias = BetasPendentes  # noqa: Y015
+Global___ColecaoCuradoriaBetas: _TypeAlias = ColecaoCuradoriaBetas  # noqa: Y015

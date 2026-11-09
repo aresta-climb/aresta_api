@@ -11,6 +11,7 @@ message FonteMidia {
     INDEFINIDO = 0;
     YOUTUBE = 1;
     INSTAGRAM = 2;
+    BLOG = 3;
   }
 }
 
@@ -23,119 +24,53 @@ message ResultadoLLMBeta {
   string llm_reasoning = 2;
 }
 
-// Representa uma referência multimídia (vídeo ou post) contendo o beta da escalada.
+// Representa uma referência multimídia aprovada (vídeo, post ou artigo de blog) contendo o beta da escalada.
 message MidiaBeta {
-  // URL pública de acesso ao vídeo ou postagem.
+  // URL pública de acesso ao vídeo, postagem ou artigo de blog.
   string url = 1;
 
-  // Título da postagem ou do vídeo.
+  // Título da postagem, vídeo ou artigo.
   string titulo = 2;
 
-  // URL da imagem de thumbnail (se disponível).
-  string thumbnail_url = 3;
-
   // Plataforma de onde a mídia foi extraída.
-  FonteMidia.Enum fonte = 4;
+  FonteMidia.Enum fonte = 3;
+}
+
+// Representa um candidato a beta em fase de coleta ou avaliação semântica.
+message CandidatoMidiaBeta {
+  // Dados limpos da mídia candidata.
+  MidiaBeta midia = 1;
 
   // Resultado da avaliação e metadados gerados pelo modelo de IA.
-  ResultadoLLMBeta resultado_llm = 5;
+  ResultadoLLMBeta resultado_llm = 2;
 
-  // Se a mídia foi encontrada em múltiplas fontes (ex: Google e DuckDuckGo).
-  bool match_multiplas_fontes = 6;
+  // Se a mídia foi encontrada em múltiplas fontes de busca.
+  bool match_multiplas_fontes = 3;
 
   // Se o nome da via foi explicitamente identificado no snippet textual.
-  bool match_nome_no_snippet = 7;
+  bool match_nome_no_snippet = 4;
 
-  // Trechos textuais e snippets coletados nas buscas.
-  repeated string snippets = 8;
+  // Trechos textuais e janelas de contexto coletados nas buscas ou extraídos de blogs.
+  repeated string snippets = 5;
 }
 
-// Identifica uma via/boulder com seu contexto geográfico completo para busca de mídias.
-message EscaladaAlvoBusca {
-  // Identificador da escalada (ex: número sequencial ou slug).
-  string id_escalada = 1;
+// Armazena as listas de curadoria de betas de uma escalada específica identificada por seu UID.
+message CuradoriaBetasEscalada {
+  // Identificador único permanente (NanoID 14c) da escalada associada.
+  string escalada_uid = 1;
 
-  // Nome da escalada.
-  string nome = 2;
+  // Candidatos recém-coletados que ainda não passaram pela avaliação de score do LLM.
+  repeated CandidatoMidiaBeta betas_nao_scorados = 2;
 
-  // Grau da escalada (ex: V4, 7a, 6sup).
-  string grau = 3;
+  // Candidatos já pontuados pelo LLM que aguardam revisão humana (aprovação ou rejeição).
+  repeated CandidatoMidiaBeta betas_nao_revisados = 3;
 
-  // Tipo de escalada (ex: boulder, via_esportiva, via_movel, etc.).
-  string tipo = 4;
-
-  // Nome do setor onde a escalada está localizada.
-  string nome_setor = 5;
-
-  // Nome do grupo ou setor pai.
-  string nome_grupo = 6;
-
-  // Nome do pico ou montanha onde a escalada está localizada.
-  string nome_pico = 7;
-
-  // Cidade da localização do croqui.
-  string cidade = 8;
-
-  // Estado (UF) da localização do croqui.
-  string estado = 9;
-
-  // Nome do arquivo markdown de origem onde a escalada está cadastrada.
-  string arquivo_origem = 10;
+  // Mídias rejeitadas manualmente na curadoria (mantidas para evitar re-scraping futuro).
+  repeated MidiaBeta betas_rejeitados = 4;
 }
 
-// Schema de dados para vias extraídas de um croqui (vias_extraidas.yaml).
-message ViasExtraidasCroqui {
-  // Identificador do croqui (slug da pasta).
-  string id_croqui = 1;
-
-  // Nome legível do croqui.
-  string nome_croqui = 2;
-
-  // Cidade do croqui.
-  string cidade = 3;
-
-  // Estado (UF) do croqui.
-  string estado = 4;
-
-  // País do croqui.
-  string pais = 5;
-
-  // Lista de escaladas alvo extraídas do croqui.
-  repeated EscaladaAlvoBusca escaladas = 6;
-}
-
-// Container para os candidatos de beta de uma escalada específica em fase de curadoria.
-message CandidatosBetaPorEscalada {
-  // Identificador ou nome da escalada associada.
-  string nome_escalada = 1;
-
-  // Grau da escalada.
-  string grau = 2;
-
-  // Nome do setor onde a escalada está localizada.
-  string nome_setor = 3;
-
-  // Nome do grupo ou setor pai onde a escalada está localizada.
-  string nome_grupo = 4;
-
-  // Nome do pico ou montanha onde a escalada está localizada.
-  string nome_pico = 5;
-
-  // Cidade da localização do croqui.
-  string cidade = 6;
-
-  // Estado (UF) da localização do croqui.
-  string estado = 7;
-
-  // Lista de mídias candidatas coletadas para esta escalada.
-  repeated MidiaBeta candidatos = 8;
-}
-
-// Mensagem raiz para os arquivos intermediários (candidatos_brutos.yaml e betas_pendentes.binarypb).
-message BetasPendentes {
-  // Identificador único ou nome do croqui associado.
-  string id_croqui = 1;
-
-  // Lista de escaladas com seus respectivos candidatos a beta pendentes de curadoria.
-  repeated CandidatosBetaPorEscalada candidatos_por_escalada = 2;
+// Coleção de curadoria de betas de todas as escaladas de um croqui (persistida em curadoria_betas.md).
+message ColecaoCuradoriaBetas {
+  // Lista de entradas de curadoria por escalada.
+  repeated CuradoriaBetasEscalada escaladas = 1;
 }
