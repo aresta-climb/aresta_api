@@ -55,14 +55,16 @@ const CampoFormatoUi_Enum$json = {
     {'1': 'LATITUDE_E7', '2': 6},
     {'1': 'LONGITUDE_E7', '2': 7},
     {'1': 'IMAGEM', '2': 8},
+    {'1': 'NOME_ARQUIVO', '2': 9},
   ],
 };
 
 /// Descriptor for `CampoFormatoUi`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List campoFormatoUiDescriptor = $convert.base64Decode(
-    'Cg5DYW1wb0Zvcm1hdG9VaSKQAQoERW51bRIOCgpJTkRFRklOSURPEAASCgoGSU5MSU5FEAESDQ'
+    'Cg5DYW1wb0Zvcm1hdG9VaSKiAQoERW51bRIOCgpJTkRFRklOSURPEAASCgoGSU5MSU5FEAESDQ'
     'oJSU5WSVNJVkVMEAISDwoLVEVYVE9fQ1VSVE8QAxIPCgtURVhUT19MT05HTxAEEgwKCE1BUktE'
-    'T1dOEAUSDwoLTEFUSVRVREVfRTcQBhIQCgxMT05HSVRVREVfRTcQBxIKCgZJTUFHRU0QCA==');
+    'T1dOEAUSDwoLTEFUSVRVREVfRTcQBhIQCgxMT05HSVRVREVfRTcQBxIKCgZJTUFHRU0QCBIQCg'
+    'xOT01FX0FSUVVJVk8QCQ==');
 
 @$core.Deprecated('Use mensagemFormatoUiDescriptor instead')
 const MensagemFormatoUi$json = {
@@ -302,13 +304,21 @@ final $typed_data.Uint8List arquivoExternoDescriptor = $convert.base64Decode(
 const MetadadosArquivoNoEditor$json = {
   '1': 'MetadadosArquivoNoEditor',
   '2': [
-    {'1': 'caminho_original', '3': 1, '4': 1, '5': 9, '10': 'caminhoOriginal'},
-    {'1': 'caminho_novo', '3': 2, '4': 1, '5': 9, '10': 'caminhoNovo'},
+    {
+      '1': 'caminho_original',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '8': {},
+      '10': 'caminhoOriginal'
+    },
+    {'1': 'caminho_novo', '3': 2, '4': 1, '5': 9, '8': {}, '10': 'caminhoNovo'},
     {
       '1': 'dados_json_originais',
       '3': 4,
       '4': 1,
       '5': 9,
+      '8': {},
       '10': 'dadosJsonOriginais'
     },
   ],
@@ -319,9 +329,10 @@ const MetadadosArquivoNoEditor$json = {
 
 /// Descriptor for `MetadadosArquivoNoEditor`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List metadadosArquivoNoEditorDescriptor = $convert.base64Decode(
-    'ChhNZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3ISKQoQY2FtaW5ob19vcmlnaW5hbBgBIAEoCVIPY2'
-    'FtaW5ob09yaWdpbmFsEiEKDGNhbWluaG9fbm92bxgCIAEoCVILY2FtaW5ob05vdm8SMAoUZGFk'
-    'b3NfanNvbl9vcmlnaW5haXMYBCABKAlSEmRhZG9zSnNvbk9yaWdpbmFpc0oECAMQBA==');
+    'ChhNZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3ISLwoQY2FtaW5ob19vcmlnaW5hbBgBIAEoCUIEsL'
+    'UYAlIPY2FtaW5ob09yaWdpbmFsEjoKDGNhbWluaG9fbm92bxgCIAEoCUIXkrUYD05vbWUgZG8g'
+    'YXJxdWl2b7C1GAlSC2NhbWluaG9Ob3ZvEjYKFGRhZG9zX2pzb25fb3JpZ2luYWlzGAQgASgJQg'
+    'SwtRgCUhJkYWRvc0pzb25PcmlnaW5haXNKBAgDEAQ=');
 
 @$core.Deprecated('Use arquivoMarkdownDescriptor instead')
 const ArquivoMarkdown$json = {
@@ -467,7 +478,7 @@ const NoMalhaEstrada$json = {
     {'1': 'latitude_e7', '3': 2, '4': 1, '5': 17, '10': 'latitudeE7'},
     {'1': 'longitude_e7', '3': 3, '4': 1, '5': 17, '10': 'longitudeE7'},
     {'1': 'distancia_metros', '3': 4, '4': 1, '5': 5, '10': 'distanciaMetros'},
-    {'1': 'e_portal_borda', '3': 5, '4': 1, '5': 8, '10': 'ePortalBorda'},
+    {'1': 'na_borda', '3': 5, '4': 1, '5': 8, '10': 'naBorda'},
   ],
   '7': {},
 };
@@ -476,8 +487,8 @@ const NoMalhaEstrada$json = {
 final $typed_data.Uint8List noMalhaEstradaDescriptor = $convert.base64Decode(
     'Cg5Ob01hbGhhRXN0cmFkYRIaCglub19vc21faWQYASABKANSB25vT3NtSWQSHwoLbGF0aXR1ZG'
     'VfZTcYAiABKBFSCmxhdGl0dWRlRTcSIQoMbG9uZ2l0dWRlX2U3GAMgASgRUgtsb25naXR1ZGVF'
-    'NxIpChBkaXN0YW5jaWFfbWV0cm9zGAQgASgFUg9kaXN0YW5jaWFNZXRyb3MSJAoOZV9wb3J0YW'
-    'xfYm9yZGEYBSABKAhSDGVQb3J0YWxCb3JkYToEkLUYBA==');
+    'NxIpChBkaXN0YW5jaWFfbWV0cm9zGAQgASgFUg9kaXN0YW5jaWFNZXRyb3MSGQoIbmFfYm9yZG'
+    'EYBSABKAhSB25hQm9yZGE6BJC1GAQ=');
 
 @$core.Deprecated('Use malhaEstradaPicoDescriptor instead')
 const MalhaEstradaPico$json = {

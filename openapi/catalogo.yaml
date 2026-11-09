@@ -202,7 +202,7 @@ components:
         distancia_metros:
           type: integer
           description: Distância rodoviária pré-computada em metros do nó até o estacionamento do croqui.
-        e_portal_borda:
+        na_borda:
           type: integer
           description: Indicador booleano inteiro (1 ou 0) se o nó é um portal de borda da malha do croqui.
     UpsertsSyncCatalogo:

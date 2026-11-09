@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     croqui_uid TEXT NOT NULL,
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
-    e_portal_borda INTEGER NOT NULL DEFAULT 0,
+    na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 );
 """.strip()
-COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: tuple[str, ...] = ("croqui_uid", "no_osm_id", "distancia_metros", "e_portal_borda",)
+COLUNAS_CATALOGO_DISTANCIAS_ESTRADA: tuple[str, ...] = ("croqui_uid", "no_osm_id", "distancia_metros", "na_borda",)
 
 DDL_INDICE_IDX_CATALOGO_ARESTA_CROQUI = """
 CREATE INDEX IF NOT EXISTS idx_catalogo_aresta_croqui
@@ -133,4 +133,4 @@ class LinhaCatalogoDistanciasEstrada(TypedDict):
     croqui_uid: str
     no_osm_id: int
     distancia_metros: int
-    e_portal_borda: NotRequired[int]
+    na_borda: NotRequired[int]

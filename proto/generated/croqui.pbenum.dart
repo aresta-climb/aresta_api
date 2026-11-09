@@ -83,6 +83,10 @@ class CampoFormatoUi_Enum extends $pb.ProtobufEnum {
   static const CampoFormatoUi_Enum IMAGEM =
       CampoFormatoUi_Enum._(8, _omitEnumNames ? '' : 'IMAGEM');
 
+  /// O campo representa o nome de um arquivo Markdown editado via diálogo modal validado.
+  static const CampoFormatoUi_Enum NOME_ARQUIVO =
+      CampoFormatoUi_Enum._(9, _omitEnumNames ? '' : 'NOME_ARQUIVO');
+
   static const $core.List<CampoFormatoUi_Enum> values = <CampoFormatoUi_Enum>[
     INDEFINIDO,
     INLINE,
@@ -93,10 +97,11 @@ class CampoFormatoUi_Enum extends $pb.ProtobufEnum {
     LATITUDE_E7,
     LONGITUDE_E7,
     IMAGEM,
+    NOME_ARQUIVO,
   ];
 
   static final $core.List<CampoFormatoUi_Enum?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 8);
+      $pb.ProtobufEnum.$_initByValueList(values, 9);
   static CampoFormatoUi_Enum? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

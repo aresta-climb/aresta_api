@@ -35,7 +35,7 @@ export interface CatalogoDistanciaEstrada {
   croqui_uid: string;
   no_osm_id: number;
   distancia_metros: number;
-  e_portal_borda?: number;
+  na_borda?: number;
 }
 
 export interface UpsertsSyncCatalogo {
