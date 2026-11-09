@@ -49,6 +49,7 @@ class CatalogoDistanciaEstrada(TypedDict):
     no_osm_id: int
     distancia_metros: int
     na_borda: NotRequired[int]
+    duracao_minutos: NotRequired[int]
 
 
 class UpsertsSyncCatalogo(TypedDict):
@@ -66,6 +67,7 @@ class DeletesSyncCatalogo(TypedDict):
     croquis: list[str]
     entidades: list[str]
     nos_estrada: NotRequired[list[int]]
+    distancias_estrada: NotRequired[list[str]]
 
 
 class RespostaSyncCatalogo(TypedDict):

@@ -10,6 +10,8 @@ URL_SERVIDOR_PADRAO: str = "https://fixalog.app"
 ROTA_REGISTRAR_CHAVE_PUBLICA_FIXALOG: str = "/api/v1/chaves"
 ROTA_LISTAR_LAUDOS_USUARIO_FIXALOG: str = "/api/v1/laudos"
 ROTA_ENVIAR_VERSAO_LAUDO_FIXALOG: str = "/api/v1/laudos/{id}"
+ROTA_CONSULTAR_STATUS_LAUDO_FIXALOG: str = "/api/v1/laudos/{id}/status"
+ROTA_ENVIAR_CHUNK_LAUDO_FIXALOG: str = "/api/v1/laudos/{id}/chunk"
 ROTA_DENUNCIAR_LAUDO_FIXALOG: str = "/api/v1/laudos/{id}/denunciar"
 ROTA_VISUALIZAR_LAUDO_PUBLICO_FIXALOG: str = "/v/{id}"
 ROTA_OBTER_MIDIA_BYTE_RANGE_FIXALOG: str = "/v/{id}/midias/{caminho}"
@@ -84,6 +86,31 @@ class RespostaUploadLaudoFixalog(TypedDict):
     status_moderacao: Literal["em_analise", "ativo", "bloqueado"]
     url_publica: str
     hash_epub_sha256: str
+    ja_enviado: NotRequired[bool]
+
+
+class RespostaStatusLaudoFixalog(TypedDict):
+    """Schema OpenAPI `RespostaStatusLaudoFixalog`."""
+
+    id_sessao: str
+    sha256: NotRequired[str | None]
+    ja_enviado: bool
+    versao: int | None
+    status_moderacao: str | None
+    chunks_recebidos: list[int]
+
+
+class RespostaChunkLaudoFixalog(TypedDict):
+    """Schema OpenAPI `RespostaChunkLaudoFixalog`."""
+
+    id_sessao: str
+    sha256: str
+    finalizado: bool
+    ja_enviado: NotRequired[bool]
+    versao: NotRequired[int | None]
+    status_moderacao: NotRequired[str | None]
+    url_publica: NotRequired[str | None]
+    chunks_recebidos: list[int]
 
 
 class RespostaListaLaudosFixalog(TypedDict):

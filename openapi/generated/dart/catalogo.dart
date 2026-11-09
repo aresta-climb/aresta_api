@@ -123,12 +123,14 @@ class CatalogoDistanciaEstrada {
   final int noOsmId;
   final int distanciaMetros;
   final int? naBorda;
+  final int? duracaoMinutos;
 
   const CatalogoDistanciaEstrada({
     required this.croquiUid,
     required this.noOsmId,
     required this.distanciaMetros,
     this.naBorda,
+    this.duracaoMinutos,
   });
 
   factory CatalogoDistanciaEstrada.fromJson(Map<String, dynamic> json) {
@@ -137,6 +139,7 @@ class CatalogoDistanciaEstrada {
       noOsmId: json['no_osm_id'] as int,
       distanciaMetros: json['distancia_metros'] as int,
       naBorda: json['na_borda'] as int?,
+      duracaoMinutos: json['duracao_minutos'] as int?,
     );
   }
 
@@ -146,6 +149,7 @@ class CatalogoDistanciaEstrada {
       'no_osm_id': noOsmId,
       'distancia_metros': distanciaMetros,
       'na_borda': naBorda,
+      'duracao_minutos': duracaoMinutos,
     };
   }
 }
@@ -186,11 +190,13 @@ class DeletesSyncCatalogo {
   final List<String> croquis;
   final List<String> entidades;
   final List<int>? nosEstrada;
+  final List<String>? distanciasEstrada;
 
   const DeletesSyncCatalogo({
     required this.croquis,
     required this.entidades,
     this.nosEstrada,
+    this.distanciasEstrada,
   });
 
   factory DeletesSyncCatalogo.fromJson(Map<String, dynamic> json) {
@@ -198,6 +204,7 @@ class DeletesSyncCatalogo {
       croquis: (json['croquis'] as List<dynamic>).map((e) => e as String).toList(),
       entidades: (json['entidades'] as List<dynamic>).map((e) => e as String).toList(),
       nosEstrada: json['nos_estrada'] != null ? (json['nos_estrada'] as List<dynamic>).map((e) => e as int).toList() : null,
+      distanciasEstrada: json['distancias_estrada'] != null ? (json['distancias_estrada'] as List<dynamic>).map((e) => e as String).toList() : null,
     );
   }
 
@@ -206,6 +213,7 @@ class DeletesSyncCatalogo {
       'croquis': croquis,
       'entidades': entidades,
       'nos_estrada': nosEstrada,
+      'distancias_estrada': distanciasEstrada,
     };
   }
 }

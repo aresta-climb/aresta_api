@@ -36,6 +36,7 @@ export interface CatalogoDistanciaEstrada {
   no_osm_id: number;
   distancia_metros: number;
   na_borda?: number;
+  duracao_minutos?: number;
 }
 
 export interface UpsertsSyncCatalogo {
@@ -49,6 +50,7 @@ export interface DeletesSyncCatalogo {
   croquis: string[];
   entidades: string[];
   nos_estrada?: number[];
+  distancias_estrada?: string[];
 }
 
 export interface RespostaSyncCatalogo {

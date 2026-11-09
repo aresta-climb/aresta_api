@@ -490,6 +490,7 @@ const NoMalhaEstrada$json = {
     {'1': 'longitude_e7', '3': 3, '4': 1, '5': 17, '10': 'longitudeE7'},
     {'1': 'distancia_metros', '3': 4, '4': 1, '5': 5, '10': 'distanciaMetros'},
     {'1': 'na_borda', '3': 5, '4': 1, '5': 8, '10': 'naBorda'},
+    {'1': 'duracao_minutos', '3': 6, '4': 1, '5': 5, '10': 'duracaoMinutos'},
   ],
   '7': {},
 };
@@ -499,7 +500,8 @@ final $typed_data.Uint8List noMalhaEstradaDescriptor = $convert.base64Decode(
     'Cg5Ob01hbGhhRXN0cmFkYRIaCglub19vc21faWQYASABKANSB25vT3NtSWQSHwoLbGF0aXR1ZG'
     'VfZTcYAiABKBFSCmxhdGl0dWRlRTcSIQoMbG9uZ2l0dWRlX2U3GAMgASgRUgtsb25naXR1ZGVF'
     'NxIpChBkaXN0YW5jaWFfbWV0cm9zGAQgASgFUg9kaXN0YW5jaWFNZXRyb3MSGQoIbmFfYm9yZG'
-    'EYBSABKAhSB25hQm9yZGE6BJC1GAQ=');
+    'EYBSABKAhSB25hQm9yZGESJwoPZHVyYWNhb19taW51dG9zGAYgASgFUg5kdXJhY2FvTWludXRv'
+    'czoEkLUYBA==');
 
 @$core.Deprecated('Use malhaEstradaPicoDescriptor instead')
 const MalhaEstradaPico$json = {

@@ -6,6 +6,8 @@ export const URL_SERVIDOR_PADRAO = "https://fixalog.app";
 export const ROTA_REGISTRAR_CHAVE_PUBLICA_FIXALOG = "/api/v1/chaves";
 export const ROTA_LISTAR_LAUDOS_USUARIO_FIXALOG = "/api/v1/laudos";
 export const ROTA_ENVIAR_VERSAO_LAUDO_FIXALOG = "/api/v1/laudos/{id}";
+export const ROTA_CONSULTAR_STATUS_LAUDO_FIXALOG = "/api/v1/laudos/{id}/status";
+export const ROTA_ENVIAR_CHUNK_LAUDO_FIXALOG = "/api/v1/laudos/{id}/chunk";
 export const ROTA_DENUNCIAR_LAUDO_FIXALOG = "/api/v1/laudos/{id}/denunciar";
 export const ROTA_VISUALIZAR_LAUDO_PUBLICO_FIXALOG = "/v/{id}";
 export const ROTA_OBTER_MIDIA_BYTE_RANGE_FIXALOG = "/v/{id}/midias/{caminho}";
@@ -69,6 +71,27 @@ export interface RespostaUploadLaudoFixalog {
   status_moderacao: "em_analise" | "ativo" | "bloqueado";
   url_publica: string;
   hash_epub_sha256: string;
+  ja_enviado?: boolean;
+}
+
+export interface RespostaStatusLaudoFixalog {
+  id_sessao: string;
+  sha256?: string | null;
+  ja_enviado: boolean;
+  versao: number | null;
+  status_moderacao: string | null;
+  chunks_recebidos: number[];
+}
+
+export interface RespostaChunkLaudoFixalog {
+  id_sessao: string;
+  sha256: string;
+  finalizado: boolean;
+  ja_enviado?: boolean;
+  versao?: number | null;
+  status_moderacao?: string | null;
+  url_publica?: string | null;
+  chunks_recebidos: number[];
 }
 
 export interface RespostaListaLaudosFixalog {

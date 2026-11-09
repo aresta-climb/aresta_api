@@ -39,6 +39,9 @@ def test_validar_paridade_contratos_reais_catalogo() -> None:
         "catalogo_distancias_estrada": "CatalogoDistanciaEstrada",
     }
     validar_paridade_esquemas(esquema_sql, spec_openapi, MAPEAMENTO_PARIDADE_CATALOGO)
+    schema_deletes = next(s for s in spec_openapi.schemas if s.nome == "DeletesSyncCatalogo")
+    nomes_props_deletes = [p.nome for p in schema_deletes.propriedades]
+    assert "distancias_estrada" in nomes_props_deletes
 
 
 def test_validar_paridade_contratos_reais_fixalog() -> None:
