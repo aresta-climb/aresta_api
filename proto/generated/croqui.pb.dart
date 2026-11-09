@@ -12,6 +12,7 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'beta.pb.dart' as $0;
@@ -1224,8 +1225,204 @@ class PrecomputadosPico extends $pb.GeneratedMessage {
   void clearTotalHighlines() => $_clearField(8);
 }
 
+/// Nó rodoviário do OpenStreetMap pré-computado para estimativa offline de distância por estrada.
+class NoMalhaEstrada extends $pb.GeneratedMessage {
+  factory NoMalhaEstrada({
+    $fixnum.Int64? noOsmId,
+    $core.int? latitudeE7,
+    $core.int? longitudeE7,
+    $core.int? distanciaMetros,
+    $core.bool? ePortalBorda,
+  }) {
+    final result = NoMalhaEstrada._();
+    if (noOsmId != null) result.noOsmId = noOsmId;
+    if (latitudeE7 != null) result.latitudeE7 = latitudeE7;
+    if (longitudeE7 != null) result.longitudeE7 = longitudeE7;
+    if (distanciaMetros != null) result.distanciaMetros = distanciaMetros;
+    if (ePortalBorda != null) result.ePortalBorda = ePortalBorda;
+    return result;
+  }
+
+  NoMalhaEstrada._();
+
+  factory NoMalhaEstrada.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      NoMalhaEstrada()..mergeFromBuffer(data, registry);
+  factory NoMalhaEstrada.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      NoMalhaEstrada()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'NoMalhaEstrada',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: NoMalhaEstrada.$_createMessage)
+    ..aInt64(1, _omitFieldNames ? '' : 'noOsmId')
+    ..aI(2, _omitFieldNames ? '' : 'latitudeE7', fieldType: $pb.PbFieldType.OS3)
+    ..aI(3, _omitFieldNames ? '' : 'longitudeE7',
+        fieldType: $pb.PbFieldType.OS3)
+    ..aI(4, _omitFieldNames ? '' : 'distanciaMetros')
+    ..aOB(5, _omitFieldNames ? '' : 'ePortalBorda')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  NoMalhaEstrada clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  NoMalhaEstrada copyWith(void Function(NoMalhaEstrada) updates) =>
+      super.copyWith((message) => updates(message as NoMalhaEstrada))
+          as NoMalhaEstrada;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use NoMalhaEstrada() / NoMalhaEstrada.new instead')
+  static NoMalhaEstrada create() => NoMalhaEstrada._();
+  static $pb.GeneratedMessage $_createMessage() => NoMalhaEstrada._();
+  @$core.override
+  NoMalhaEstrada createEmptyInstance() => NoMalhaEstrada._();
+  @$core.pragma('dart2js:noInline')
+  static NoMalhaEstrada getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NoMalhaEstrada>(
+          NoMalhaEstrada.$_createMessage);
+  static NoMalhaEstrada? _defaultInstance;
+
+  /// Identificador original de 64 bits do nó no OpenStreetMap.
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get noOsmId => $_getI64(0);
+  @$pb.TagNumber(1)
+  set noOsmId($fixnum.Int64 value) => $_setInt64(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasNoOsmId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearNoOsmId() => $_clearField(1);
+
+  /// Latitude do nó rodoviário no padrão E7 (graus * 10^7).
+  @$pb.TagNumber(2)
+  $core.int get latitudeE7 => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set latitudeE7($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLatitudeE7() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLatitudeE7() => $_clearField(2);
+
+  /// Longitude do nó rodoviário no padrão E7 (graus * 10^7).
+  @$pb.TagNumber(3)
+  $core.int get longitudeE7 => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set longitudeE7($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasLongitudeE7() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLongitudeE7() => $_clearField(3);
+
+  /// Distância rodoviária real em metros a partir da localização do pico até este nó.
+  @$pb.TagNumber(4)
+  $core.int get distanciaMetros => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set distanciaMetros($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasDistanciaMetros() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDistanciaMetros() => $_clearField(4);
+
+  /// Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false).
+  @$pb.TagNumber(5)
+  $core.bool get ePortalBorda => $_getBF(4);
+  @$pb.TagNumber(5)
+  set ePortalBorda($core.bool value) => $_setBool(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasEPortalBorda() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearEPortalBorda() => $_clearField(5);
+}
+
+/// Malha de nós rodoviários pré-computados a partir da localização de referência do pico.
+class MalhaEstradaPico extends $pb.GeneratedMessage {
+  factory MalhaEstradaPico({
+    $core.int? latitudeReferenciaE7,
+    $core.int? longitudeReferenciaE7,
+    $core.Iterable<NoMalhaEstrada>? nos,
+  }) {
+    final result = MalhaEstradaPico._();
+    if (latitudeReferenciaE7 != null)
+      result.latitudeReferenciaE7 = latitudeReferenciaE7;
+    if (longitudeReferenciaE7 != null)
+      result.longitudeReferenciaE7 = longitudeReferenciaE7;
+    if (nos != null) result.nos.addAll(nos);
+    return result;
+  }
+
+  MalhaEstradaPico._();
+
+  factory MalhaEstradaPico.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      MalhaEstradaPico()..mergeFromBuffer(data, registry);
+  factory MalhaEstradaPico.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      MalhaEstradaPico()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'MalhaEstradaPico',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: MalhaEstradaPico.$_createMessage)
+    ..aI(1, _omitFieldNames ? '' : 'latitudeReferenciaE7',
+        fieldType: $pb.PbFieldType.OS3)
+    ..aI(2, _omitFieldNames ? '' : 'longitudeReferenciaE7',
+        fieldType: $pb.PbFieldType.OS3)
+    ..pPM<NoMalhaEstrada>(3, _omitFieldNames ? '' : 'nos',
+        subBuilder: NoMalhaEstrada.$_createMessage)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  MalhaEstradaPico clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  MalhaEstradaPico copyWith(void Function(MalhaEstradaPico) updates) =>
+      super.copyWith((message) => updates(message as MalhaEstradaPico))
+          as MalhaEstradaPico;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use MalhaEstradaPico() / MalhaEstradaPico.new instead')
+  static MalhaEstradaPico create() => MalhaEstradaPico._();
+  static $pb.GeneratedMessage $_createMessage() => MalhaEstradaPico._();
+  @$core.override
+  MalhaEstradaPico createEmptyInstance() => MalhaEstradaPico._();
+  @$core.pragma('dart2js:noInline')
+  static MalhaEstradaPico getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MalhaEstradaPico>(
+          MalhaEstradaPico.$_createMessage);
+  static MalhaEstradaPico? _defaultInstance;
+
+  /// Latitude de referência (Pico.localizacao.latitude) para a qual a malha foi gerada.
+  @$pb.TagNumber(1)
+  $core.int get latitudeReferenciaE7 => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set latitudeReferenciaE7($core.int value) => $_setSignedInt32(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasLatitudeReferenciaE7() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLatitudeReferenciaE7() => $_clearField(1);
+
+  /// Longitude de referência (Pico.localizacao.longitude) para a qual a malha foi gerada.
+  @$pb.TagNumber(2)
+  $core.int get longitudeReferenciaE7 => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set longitudeReferenciaE7($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLongitudeReferenciaE7() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLongitudeReferenciaE7() => $_clearField(2);
+
+  /// Lista ordenada de nós rodoviários pré-computados para o pico.
+  @$pb.TagNumber(3)
+  $pb.PbList<NoMalhaEstrada> get nos => $_getList(2);
+}
+
 /// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
-/// NEXT_ID: 15
+/// NEXT_ID: 16
 class Pico extends $pb.GeneratedMessage {
   factory Pico({
     $core.String? nome,
@@ -1241,6 +1438,7 @@ class Pico extends $pb.GeneratedMessage {
     ArquivoMapas? mapasGerais,
     PrecomputadosPico? precomputados,
     $core.String? cidade,
+    MalhaEstradaPico? malhaEstrada,
   }) {
     final result = Pico._();
     if (nome != null) result.nome = nome;
@@ -1258,6 +1456,7 @@ class Pico extends $pb.GeneratedMessage {
     if (mapasGerais != null) result.mapasGerais = mapasGerais;
     if (precomputados != null) result.precomputados = precomputados;
     if (cidade != null) result.cidade = cidade;
+    if (malhaEstrada != null) result.malhaEstrada = malhaEstrada;
     return result;
   }
 
@@ -1291,7 +1490,9 @@ class Pico extends $pb.GeneratedMessage {
         subBuilder: ArquivoMapas.$_createMessage)
     ..aOM<PrecomputadosPico>(13, _omitFieldNames ? '' : 'precomputados',
         subBuilder: PrecomputadosPico.$_createMessage)
-    ..aOS(14, _omitFieldNames ? '' : 'cidade');
+    ..aOS(14, _omitFieldNames ? '' : 'cidade')
+    ..aOM<MalhaEstradaPico>(15, _omitFieldNames ? '' : 'malhaEstrada',
+        subBuilder: MalhaEstradaPico.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -1436,6 +1637,18 @@ class Pico extends $pb.GeneratedMessage {
   $core.bool hasCidade() => $_has(12);
   @$pb.TagNumber(14)
   void clearCidade() => $_clearField(14);
+
+  /// Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico.
+  @$pb.TagNumber(15)
+  MalhaEstradaPico get malhaEstrada => $_getN(13);
+  @$pb.TagNumber(15)
+  set malhaEstrada(MalhaEstradaPico value) => $_setField(15, value);
+  @$pb.TagNumber(15)
+  $core.bool hasMalhaEstrada() => $_has(13);
+  @$pb.TagNumber(15)
+  void clearMalhaEstrada() => $_clearField(15);
+  @$pb.TagNumber(15)
+  MalhaEstradaPico ensureMalhaEstrada() => $_ensure(13);
 }
 
 /// Coleção de mapas para uso externo.

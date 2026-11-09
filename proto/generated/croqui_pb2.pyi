@@ -632,9 +632,79 @@ class PrecomputadosPico(_message.Message):
 Global___PrecomputadosPico: _TypeAlias = PrecomputadosPico  # noqa: Y015
 
 @_typing.final
+class NoMalhaEstrada(_message.Message):
+    """Nó rodoviário do OpenStreetMap pré-computado para estimativa offline de distância por estrada."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    NO_OSM_ID_FIELD_NUMBER: _builtins.int
+    LATITUDE_E7_FIELD_NUMBER: _builtins.int
+    LONGITUDE_E7_FIELD_NUMBER: _builtins.int
+    DISTANCIA_METROS_FIELD_NUMBER: _builtins.int
+    E_PORTAL_BORDA_FIELD_NUMBER: _builtins.int
+    no_osm_id: _builtins.int
+    """Identificador original de 64 bits do nó no OpenStreetMap."""
+    latitude_e7: _builtins.int
+    """Latitude do nó rodoviário no padrão E7 (graus * 10^7)."""
+    longitude_e7: _builtins.int
+    """Longitude do nó rodoviário no padrão E7 (graus * 10^7)."""
+    distancia_metros: _builtins.int
+    """Distância rodoviária real em metros a partir da localização do pico até este nó."""
+    e_portal_borda: _builtins.bool
+    """Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false)."""
+    def __init__(
+        self,
+        *,
+        no_osm_id: _builtins.int | None = ...,
+        latitude_e7: _builtins.int | None = ...,
+        longitude_e7: _builtins.int | None = ...,
+        distancia_metros: _builtins.int | None = ...,
+        e_portal_borda: _builtins.bool | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "e_portal_borda", b"e_portal_borda", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "no_osm_id", b"no_osm_id"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["distancia_metros", b"distancia_metros", "e_portal_borda", b"e_portal_borda", "latitude_e7", b"latitude_e7", "longitude_e7", b"longitude_e7", "no_osm_id", b"no_osm_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___NoMalhaEstrada: _TypeAlias = NoMalhaEstrada  # noqa: Y015
+
+@_typing.final
+class MalhaEstradaPico(_message.Message):
+    """Malha de nós rodoviários pré-computados a partir da localização de referência do pico."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    LATITUDE_REFERENCIA_E7_FIELD_NUMBER: _builtins.int
+    LONGITUDE_REFERENCIA_E7_FIELD_NUMBER: _builtins.int
+    NOS_FIELD_NUMBER: _builtins.int
+    latitude_referencia_e7: _builtins.int
+    """Latitude de referência (Pico.localizacao.latitude) para a qual a malha foi gerada."""
+    longitude_referencia_e7: _builtins.int
+    """Longitude de referência (Pico.localizacao.longitude) para a qual a malha foi gerada."""
+    @_builtins.property
+    def nos(self) -> _containers.RepeatedCompositeFieldContainer[Global___NoMalhaEstrada]:
+        """Lista ordenada de nós rodoviários pré-computados para o pico."""
+
+    def __init__(
+        self,
+        *,
+        latitude_referencia_e7: _builtins.int | None = ...,
+        longitude_referencia_e7: _builtins.int | None = ...,
+        nos: _abc.Iterable[Global___NoMalhaEstrada] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___MalhaEstradaPico: _TypeAlias = MalhaEstradaPico  # noqa: Y015
+
+@_typing.final
 class Pico(_message.Message):
     """Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
-    NEXT_ID: 15
+    NEXT_ID: 16
     """
 
     DESCRIPTOR: _descriptor.Descriptor
@@ -652,6 +722,7 @@ class Pico(_message.Message):
     SETORES_OU_GRUPOS_FIELD_NUMBER: _builtins.int
     MAPAS_GERAIS_FIELD_NUMBER: _builtins.int
     PRECOMPUTADOS_FIELD_NUMBER: _builtins.int
+    MALHA_ESTRADA_FIELD_NUMBER: _builtins.int
     nome: _builtins.str
     """Nome oficial do pico de escalada."""
     descricao: _builtins.str
@@ -688,6 +759,10 @@ class Pico(_message.Message):
     def precomputados(self) -> Global___PrecomputadosPico:
         """Estatísticas pré-computadas do pico, geradas na compilação."""
 
+    @_builtins.property
+    def malha_estrada(self) -> Global___MalhaEstradaPico:
+        """Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico."""
+
     def __init__(
         self,
         *,
@@ -704,10 +779,11 @@ class Pico(_message.Message):
         setores_ou_grupos: _abc.Iterable[Global___SetorOuGrupo] | None = ...,
         mapas_gerais: Global___ArquivoMapas | None = ...,
         precomputados: Global___PrecomputadosPico | None = ...,
+        malha_estrada: Global___MalhaEstradaPico | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "malha_estrada", b"malha_estrada", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "malha_estrada", b"malha_estrada", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

@@ -143,3 +143,40 @@ def test_setor_e_grupo_possuem_campo_caminho_imagem_capa() -> None:
     recuperado_grupo = croqui_pb2.Grupo()
     recuperado_grupo.ParseFromString(dados_grupo)
     assert recuperado_grupo.caminho_imagem_capa == "imagens/capa_grupo.webp"
+
+
+def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
+    """Valida que Pico possui o campo malha_estrada (MalhaEstradaPico e NoMalhaEstrada) invisível na UI."""
+    assert "malha_estrada" in croqui_pb2.Pico.DESCRIPTOR.fields_by_name
+    campo = croqui_pb2.Pico.DESCRIPTOR.fields_by_name["malha_estrada"]
+    opcoes = campo.GetOptions()
+    assert opcoes.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.INVISIVEL
+
+    for msg_cls in (croqui_pb2.NoMalhaEstrada, croqui_pb2.MalhaEstradaPico):
+        opts_msg = msg_cls.DESCRIPTOR.GetOptions()
+        assert (
+            opts_msg.Extensions[croqui_pb2.mensagem_formato_na_ui]
+            == croqui_pb2.MensagemFormatoUi.INVISIVEL
+        )
+
+    pico = croqui_pb2.Pico(nome="Gruta da Lapinha")
+    pico.malha_estrada.latitude_referencia_e7 = -195622616
+    pico.malha_estrada.longitude_referencia_e7 = -439595684
+    no = pico.malha_estrada.nos.add()
+    no.no_osm_id = 9876543210
+    no.latitude_e7 = -195600000
+    no.longitude_e7 = -439600000
+    no.distancia_metros = 15200
+    no.e_portal_borda = True
+
+    dados = pico.SerializeToString()
+    recuperado = croqui_pb2.Pico()
+    recuperado.ParseFromString(dados)
+    assert recuperado.malha_estrada.latitude_referencia_e7 == -195622616
+    assert recuperado.malha_estrada.longitude_referencia_e7 == -439595684
+    assert len(recuperado.malha_estrada.nos) == 1
+    assert recuperado.malha_estrada.nos[0].no_osm_id == 9876543210
+    assert recuperado.malha_estrada.nos[0].latitude_e7 == -195600000
+    assert recuperado.malha_estrada.nos[0].longitude_e7 == -439600000
+    assert recuperado.malha_estrada.nos[0].distancia_metros == 15200
+    assert recuperado.malha_estrada.nos[0].e_portal_borda is True

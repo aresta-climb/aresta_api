@@ -459,6 +459,63 @@ final $typed_data.Uint8List precomputadosPicoDescriptor = $convert.base64Decode(
     'gHIAEoBVIWdG90YWxNdWx0aXBsYXNFbmZpYWRhcxInCg90b3RhbF9oaWdobGluZXMYCCABKAVS'
     'DnRvdGFsSGlnaGxpbmVzOgSQtRgE');
 
+@$core.Deprecated('Use noMalhaEstradaDescriptor instead')
+const NoMalhaEstrada$json = {
+  '1': 'NoMalhaEstrada',
+  '2': [
+    {'1': 'no_osm_id', '3': 1, '4': 1, '5': 3, '10': 'noOsmId'},
+    {'1': 'latitude_e7', '3': 2, '4': 1, '5': 17, '10': 'latitudeE7'},
+    {'1': 'longitude_e7', '3': 3, '4': 1, '5': 17, '10': 'longitudeE7'},
+    {'1': 'distancia_metros', '3': 4, '4': 1, '5': 5, '10': 'distanciaMetros'},
+    {'1': 'e_portal_borda', '3': 5, '4': 1, '5': 8, '10': 'ePortalBorda'},
+  ],
+  '7': {},
+};
+
+/// Descriptor for `NoMalhaEstrada`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List noMalhaEstradaDescriptor = $convert.base64Decode(
+    'Cg5Ob01hbGhhRXN0cmFkYRIaCglub19vc21faWQYASABKANSB25vT3NtSWQSHwoLbGF0aXR1ZG'
+    'VfZTcYAiABKBFSCmxhdGl0dWRlRTcSIQoMbG9uZ2l0dWRlX2U3GAMgASgRUgtsb25naXR1ZGVF'
+    'NxIpChBkaXN0YW5jaWFfbWV0cm9zGAQgASgFUg9kaXN0YW5jaWFNZXRyb3MSJAoOZV9wb3J0YW'
+    'xfYm9yZGEYBSABKAhSDGVQb3J0YWxCb3JkYToEkLUYBA==');
+
+@$core.Deprecated('Use malhaEstradaPicoDescriptor instead')
+const MalhaEstradaPico$json = {
+  '1': 'MalhaEstradaPico',
+  '2': [
+    {
+      '1': 'latitude_referencia_e7',
+      '3': 1,
+      '4': 1,
+      '5': 17,
+      '10': 'latitudeReferenciaE7'
+    },
+    {
+      '1': 'longitude_referencia_e7',
+      '3': 2,
+      '4': 1,
+      '5': 17,
+      '10': 'longitudeReferenciaE7'
+    },
+    {
+      '1': 'nos',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.aresta.NoMalhaEstrada',
+      '10': 'nos'
+    },
+  ],
+  '7': {},
+};
+
+/// Descriptor for `MalhaEstradaPico`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List malhaEstradaPicoDescriptor = $convert.base64Decode(
+    'ChBNYWxoYUVzdHJhZGFQaWNvEjQKFmxhdGl0dWRlX3JlZmVyZW5jaWFfZTcYASABKBFSFGxhdG'
+    'l0dWRlUmVmZXJlbmNpYUU3EjYKF2xvbmdpdHVkZV9yZWZlcmVuY2lhX2U3GAIgASgRUhVsb25n'
+    'aXR1ZGVSZWZlcmVuY2lhRTcSKAoDbm9zGAMgAygLMhYuYXJlc3RhLk5vTWFsaGFFc3RyYWRhUg'
+    'Nub3M6BJC1GAQ=');
+
 @$core.Deprecated('Use picoDescriptor instead')
 const Pico$json = {
   '1': 'Pico',
@@ -543,6 +600,15 @@ const Pico$json = {
       '8': {},
       '10': 'precomputados'
     },
+    {
+      '1': 'malha_estrada',
+      '3': 15,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MalhaEstradaPico',
+      '8': {},
+      '10': 'malhaEstrada'
+    },
   ],
   '7': {},
   '9': [
@@ -565,7 +631,9 @@ final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'cmVzX291X2dydXBvcxgLIAMoCzIULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydX'
     'BvcxJJCgxtYXBhc19nZXJhaXMYDCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFw'
     'YXMgR2VyYWlzUgttYXBhc0dlcmFpcxJFCg1wcmVjb21wdXRhZG9zGA0gASgLMhkuYXJlc3RhLl'
-    'ByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG9zOgSQtRgBSgQIChAL');
+    'ByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG9zEkMKDW1hbGhhX2VzdHJhZGEY'
+    'DyABKAsyGC5hcmVzdGEuTWFsaGFFc3RyYWRhUGljb0IEsLUYAlIMbWFsaGFFc3RyYWRhOgSQtR'
+    'gBSgQIChAL');
 
 @$core.Deprecated('Use colecaoDeMapasDescriptor instead')
 const ColecaoDeMapas$json = {

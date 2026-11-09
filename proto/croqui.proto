@@ -371,8 +371,42 @@ message PrecomputadosPico {
   int32 total_highlines = 8;
 }
 
+// Nó rodoviário do OpenStreetMap pré-computado para estimativa offline de distância por estrada.
+message NoMalhaEstrada {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Identificador original de 64 bits do nó no OpenStreetMap.
+  int64 no_osm_id = 1;
+
+  // Latitude do nó rodoviário no padrão E7 (graus * 10^7).
+  sint32 latitude_e7 = 2;
+
+  // Longitude do nó rodoviário no padrão E7 (graus * 10^7).
+  sint32 longitude_e7 = 3;
+
+  // Distância rodoviária real em metros a partir da localização do pico até este nó.
+  int32 distancia_metros = 4;
+
+  // Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false).
+  bool e_portal_borda = 5;
+}
+
+// Malha de nós rodoviários pré-computados a partir da localização de referência do pico.
+message MalhaEstradaPico {
+  option (aresta.mensagem_formato_na_ui) = INVISIVEL;
+
+  // Latitude de referência (Pico.localizacao.latitude) para a qual a malha foi gerada.
+  sint32 latitude_referencia_e7 = 1;
+
+  // Longitude de referência (Pico.localizacao.longitude) para a qual a malha foi gerada.
+  sint32 longitude_referencia_e7 = 2;
+
+  // Lista ordenada de nós rodoviários pré-computados para o pico.
+  repeated NoMalhaEstrada nos = 3;
+}
+
 // Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
-// NEXT_ID: 15
+// NEXT_ID: 16
 message Pico {
   option (aresta.mensagem_formato_na_ui) = SEPARADO;
   // Nome oficial do pico de escalada.
@@ -413,6 +447,9 @@ message Pico {
 
   // Estatísticas pré-computadas do pico, geradas na compilação.
   PrecomputadosPico precomputados = 13 [(aresta.formato_na_ui) = INVISIVEL];
+
+  // Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico.
+  MalhaEstradaPico malha_estrada = 15 [(aresta.formato_na_ui) = INVISIVEL];
 
   reserved 10;
 }
