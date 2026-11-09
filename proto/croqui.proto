@@ -697,6 +697,10 @@ message Mapa {
     // Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
     string texto_visivel = 11 [(aresta.texto_na_ui) = "Texto Visível no Mapa"];
 
+    // Tamanho da fonte do texto visível em pontos/pixels.
+    // Se omitido ou zero, o tamanho é calculado automaticamente a partir da geometria da área.
+    int32 tamanho_fonte = 14 [(aresta.texto_na_ui) = "Tamanho da Fonte"];
+
     // Cor customizada em formato hexadecimal (ex: "#FF6D00").
     // Se omitida, o editor e o app utilizam a cor padrão.
     string cor = 10 [(aresta.texto_na_ui) = "Cor"];
