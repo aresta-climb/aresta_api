@@ -451,10 +451,25 @@ message Pico {
   // Estatísticas pré-computadas do pico, geradas na compilação.
   PrecomputadosPico precomputados = 13 [(aresta.formato_na_ui) = INVISIVEL];
 
-  // Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico.
-  MalhaEstradaPico malha_estrada = 15 [(aresta.formato_na_ui) = INVISIVEL];
+  // Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico (malha_estrada.yaml).
+  ArquivoMalhaEstrada malha_estrada = 15 [(aresta.formato_na_ui) = INVISIVEL];
 
   reserved 10;
+}
+
+// Arquivo externo que contém a MalhaEstradaPico em formato YAML.
+message ArquivoMalhaEstrada {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  oneof arquivo {
+    string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "application/x-yaml", (aresta.oneof_default) = true, (aresta.mensagem) = "aresta.MalhaEstradaPico"];
+    MalhaEstradaPico conteudo = 2 [(aresta.tipo_conteudo) = INLINE];
+  }
+
+  extensions 1000 to max;
+  extend ArquivoMalhaEstrada {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
 }
 
 // Coleção de mapas para uso externo.

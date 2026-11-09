@@ -146,7 +146,7 @@ def test_setor_e_grupo_possuem_campo_caminho_imagem_capa() -> None:
 
 
 def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
-    """Valida que Pico possui o campo malha_estrada (MalhaEstradaPico e NoMalhaEstrada) invisível na UI."""
+    """Valida que Pico possui o campo malha_estrada (ArquivoMalhaEstrada) invisível na UI."""
     assert "malha_estrada" in croqui_pb2.Pico.DESCRIPTOR.fields_by_name
     campo = croqui_pb2.Pico.DESCRIPTOR.fields_by_name["malha_estrada"]
     opcoes = campo.GetOptions()
@@ -159,10 +159,20 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
             == croqui_pb2.MensagemFormatoUi.INVISIVEL
         )
 
+    opts_arq = croqui_pb2.ArquivoMalhaEstrada.DESCRIPTOR.GetOptions()
+    assert (
+        opts_arq.Extensions[croqui_pb2.mensagem_formato_na_ui]
+        == croqui_pb2.MensagemFormatoUi.ONEOF_CONTEUDO
+    )
+
+    pico_ref = croqui_pb2.Pico(nome="Gruta da Lapinha")
+    pico_ref.malha_estrada.caminho = "malha_estrada.yaml"
+    assert pico_ref.malha_estrada.WhichOneof("arquivo") == "caminho"
+
     pico = croqui_pb2.Pico(nome="Gruta da Lapinha")
-    pico.malha_estrada.latitude_referencia_e7 = -195622616
-    pico.malha_estrada.longitude_referencia_e7 = -439595684
-    no = pico.malha_estrada.nos.add()
+    pico.malha_estrada.conteudo.latitude_referencia_e7 = -195622616
+    pico.malha_estrada.conteudo.longitude_referencia_e7 = -439595684
+    no = pico.malha_estrada.conteudo.nos.add()
     no.no_osm_id = 9876543210
     no.latitude_e7 = -195600000
     no.longitude_e7 = -439600000
@@ -172,14 +182,15 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     dados = pico.SerializeToString()
     recuperado = croqui_pb2.Pico()
     recuperado.ParseFromString(dados)
-    assert recuperado.malha_estrada.latitude_referencia_e7 == -195622616
-    assert recuperado.malha_estrada.longitude_referencia_e7 == -439595684
-    assert len(recuperado.malha_estrada.nos) == 1
-    assert recuperado.malha_estrada.nos[0].no_osm_id == 9876543210
-    assert recuperado.malha_estrada.nos[0].latitude_e7 == -195600000
-    assert recuperado.malha_estrada.nos[0].longitude_e7 == -439600000
-    assert recuperado.malha_estrada.nos[0].distancia_metros == 15200
-    assert recuperado.malha_estrada.nos[0].na_borda is True
+    assert recuperado.malha_estrada.WhichOneof("arquivo") == "conteudo"
+    assert recuperado.malha_estrada.conteudo.latitude_referencia_e7 == -195622616
+    assert recuperado.malha_estrada.conteudo.longitude_referencia_e7 == -439595684
+    assert len(recuperado.malha_estrada.conteudo.nos) == 1
+    assert recuperado.malha_estrada.conteudo.nos[0].no_osm_id == 9876543210
+    assert recuperado.malha_estrada.conteudo.nos[0].latitude_e7 == -195600000
+    assert recuperado.malha_estrada.conteudo.nos[0].longitude_e7 == -439600000
+    assert recuperado.malha_estrada.conteudo.nos[0].distancia_metros == 15200
+    assert recuperado.malha_estrada.conteudo.nos[0].na_borda is True
 
 
 

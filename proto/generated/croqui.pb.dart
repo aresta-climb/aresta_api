@@ -1438,7 +1438,7 @@ class Pico extends $pb.GeneratedMessage {
     ArquivoMapas? mapasGerais,
     PrecomputadosPico? precomputados,
     $core.String? cidade,
-    MalhaEstradaPico? malhaEstrada,
+    ArquivoMalhaEstrada? malhaEstrada,
   }) {
     final result = Pico._();
     if (nome != null) result.nome = nome;
@@ -1491,8 +1491,8 @@ class Pico extends $pb.GeneratedMessage {
     ..aOM<PrecomputadosPico>(13, _omitFieldNames ? '' : 'precomputados',
         subBuilder: PrecomputadosPico.$_createMessage)
     ..aOS(14, _omitFieldNames ? '' : 'cidade')
-    ..aOM<MalhaEstradaPico>(15, _omitFieldNames ? '' : 'malhaEstrada',
-        subBuilder: MalhaEstradaPico.$_createMessage);
+    ..aOM<ArquivoMalhaEstrada>(15, _omitFieldNames ? '' : 'malhaEstrada',
+        subBuilder: ArquivoMalhaEstrada.$_createMessage);
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Pico clone() => deepCopy();
@@ -1638,17 +1638,115 @@ class Pico extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   void clearCidade() => $_clearField(14);
 
-  /// Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico.
+  /// Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico (malha_estrada.yaml).
   @$pb.TagNumber(15)
-  MalhaEstradaPico get malhaEstrada => $_getN(13);
+  ArquivoMalhaEstrada get malhaEstrada => $_getN(13);
   @$pb.TagNumber(15)
-  set malhaEstrada(MalhaEstradaPico value) => $_setField(15, value);
+  set malhaEstrada(ArquivoMalhaEstrada value) => $_setField(15, value);
   @$pb.TagNumber(15)
   $core.bool hasMalhaEstrada() => $_has(13);
   @$pb.TagNumber(15)
   void clearMalhaEstrada() => $_clearField(15);
   @$pb.TagNumber(15)
-  MalhaEstradaPico ensureMalhaEstrada() => $_ensure(13);
+  ArquivoMalhaEstrada ensureMalhaEstrada() => $_ensure(13);
+}
+
+enum ArquivoMalhaEstrada_Arquivo { caminho, conteudo, notSet }
+
+/// Arquivo externo que contém a MalhaEstradaPico em formato YAML.
+class ArquivoMalhaEstrada extends $pb.GeneratedMessage {
+  factory ArquivoMalhaEstrada({
+    $core.String? caminho,
+    MalhaEstradaPico? conteudo,
+  }) {
+    final result = ArquivoMalhaEstrada._();
+    if (caminho != null) result.caminho = caminho;
+    if (conteudo != null) result.conteudo = conteudo;
+    return result;
+  }
+
+  ArquivoMalhaEstrada._();
+
+  factory ArquivoMalhaEstrada.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      ArquivoMalhaEstrada()..mergeFromBuffer(data, registry);
+  factory ArquivoMalhaEstrada.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      ArquivoMalhaEstrada()..mergeFromJson(json, registry);
+
+  static const $core.Map<$core.int, ArquivoMalhaEstrada_Arquivo>
+      _ArquivoMalhaEstrada_ArquivoByTag = {
+    1: ArquivoMalhaEstrada_Arquivo.caminho,
+    2: ArquivoMalhaEstrada_Arquivo.conteudo,
+    0: ArquivoMalhaEstrada_Arquivo.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ArquivoMalhaEstrada',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: ArquivoMalhaEstrada.$_createMessage)
+    ..oo(0, [1, 2])
+    ..aOS(1, _omitFieldNames ? '' : 'caminho')
+    ..aOM<MalhaEstradaPico>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: MalhaEstradaPico.$_createMessage)
+    ..hasExtensions = true;
+  static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
+      _omitMessageNames ? '' : 'aresta.ArquivoMalhaEstrada',
+      _omitFieldNames ? '' : 'extMetadadosArquivo',
+      1000,
+      $pb.PbFieldType.OM,
+      defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoMalhaEstrada clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoMalhaEstrada copyWith(void Function(ArquivoMalhaEstrada) updates) =>
+      super.copyWith((message) => updates(message as ArquivoMalhaEstrada))
+          as ArquivoMalhaEstrada;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core
+      .Deprecated('Use ArquivoMalhaEstrada() / ArquivoMalhaEstrada.new instead')
+  static ArquivoMalhaEstrada create() => ArquivoMalhaEstrada._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoMalhaEstrada._();
+  @$core.override
+  ArquivoMalhaEstrada createEmptyInstance() => ArquivoMalhaEstrada._();
+  @$core.pragma('dart2js:noInline')
+  static ArquivoMalhaEstrada getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ArquivoMalhaEstrada>(
+          ArquivoMalhaEstrada.$_createMessage);
+  static ArquivoMalhaEstrada? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  ArquivoMalhaEstrada_Arquivo whichArquivo() =>
+      _ArquivoMalhaEstrada_ArquivoByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  void clearArquivo() => $_clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.String get caminho => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set caminho($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCaminho() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCaminho() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  MalhaEstradaPico get conteudo => $_getN(1);
+  @$pb.TagNumber(2)
+  set conteudo(MalhaEstradaPico value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasConteudo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearConteudo() => $_clearField(2);
+  @$pb.TagNumber(2)
+  MalhaEstradaPico ensureConteudo() => $_ensure(1);
 }
 
 /// Coleção de mapas para uso externo.

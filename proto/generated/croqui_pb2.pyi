@@ -764,8 +764,8 @@ class Pico(_message.Message):
         """Estatísticas pré-computadas do pico, geradas na compilação."""
 
     @_builtins.property
-    def malha_estrada(self) -> Global___MalhaEstradaPico:
-        """Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico."""
+    def malha_estrada(self) -> Global___ArquivoMalhaEstrada:
+        """Malha de nós rodoviários do OpenStreetMap pré-computada para a localização do pico (malha_estrada.yaml)."""
 
     def __init__(
         self,
@@ -783,7 +783,7 @@ class Pico(_message.Message):
         setores_ou_grupos: _abc.Iterable[Global___SetorOuGrupo] | None = ...,
         mapas_gerais: Global___ArquivoMapas | None = ...,
         precomputados: Global___PrecomputadosPico | None = ...,
-        malha_estrada: Global___MalhaEstradaPico | None = ...,
+        malha_estrada: Global___ArquivoMalhaEstrada | None = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["chave_pix_manutencao", b"chave_pix_manutencao", "cidade", b"cidade", "descricao", b"descricao", "estado", b"estado", "localizacao", b"localizacao", "malha_estrada", b"malha_estrada", "mapas_gerais", b"mapas_gerais", "nome", b"nome", "nome_associacao", b"nome_associacao", "patrocinadores", b"patrocinadores", "precomputados", b"precomputados", "setores_ou_grupos", b"setores_ou_grupos", "url_filiacao_associacao", b"url_filiacao_associacao", "url_google_maps", b"url_google_maps"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
@@ -792,6 +792,35 @@ class Pico(_message.Message):
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
 Global___Pico: _TypeAlias = Pico  # noqa: Y015
+
+@_typing.final
+class ArquivoMalhaEstrada(_message.Message):
+    """Arquivo externo que contém a MalhaEstradaPico em formato YAML."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    CAMINHO_FIELD_NUMBER: _builtins.int
+    CONTEUDO_FIELD_NUMBER: _builtins.int
+    caminho: _builtins.str
+    @_builtins.property
+    def conteudo(self) -> Global___MalhaEstradaPico: ...
+    EXT_METADADOS_ARQUIVO_FIELD_NUMBER: _builtins.int
+    ext_metadados_arquivo: _extension_dict._ExtensionFieldDescriptor[Global___ArquivoMalhaEstrada, Global___MetadadosArquivoNoEditor]
+    def __init__(
+        self,
+        *,
+        caminho: _builtins.str | None = ...,
+        conteudo: Global___MalhaEstradaPico | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivo", b"arquivo", "caminho", b"caminho", "conteudo", b"conteudo"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivo", b"arquivo", "caminho", b"caminho", "conteudo", b"conteudo"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_arquivo: _TypeAlias = _typing.Literal["caminho", "conteudo"]  # noqa: Y015
+    _WhichOneofArgType_arquivo: _TypeAlias = _typing.Literal["arquivo", b"arquivo"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_arquivo) -> _WhichOneofReturnType_arquivo | None: ...
+
+Global___ArquivoMalhaEstrada: _TypeAlias = ArquivoMalhaEstrada  # noqa: Y015
 
 @_typing.final
 class ColecaoDeMapas(_message.Message):

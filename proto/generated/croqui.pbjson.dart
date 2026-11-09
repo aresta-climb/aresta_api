@@ -616,7 +616,7 @@ const Pico$json = {
       '3': 15,
       '4': 1,
       '5': 11,
-      '6': '.aresta.MalhaEstradaPico',
+      '6': '.aresta.ArquivoMalhaEstrada',
       '8': {},
       '10': 'malhaEstrada'
     },
@@ -642,9 +642,54 @@ final $typed_data.Uint8List picoDescriptor = $convert.base64Decode(
     'cmVzX291X2dydXBvcxgLIAMoCzIULmFyZXN0YS5TZXRvck91R3J1cG9SD3NldG9yZXNPdUdydX'
     'BvcxJJCgxtYXBhc19nZXJhaXMYDCABKAsyFC5hcmVzdGEuQXJxdWl2b01hcGFzQhCStRgMTWFw'
     'YXMgR2VyYWlzUgttYXBhc0dlcmFpcxJFCg1wcmVjb21wdXRhZG9zGA0gASgLMhkuYXJlc3RhLl'
-    'ByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG9zEkMKDW1hbGhhX2VzdHJhZGEY'
-    'DyABKAsyGC5hcmVzdGEuTWFsaGFFc3RyYWRhUGljb0IEsLUYAlIMbWFsaGFFc3RyYWRhOgSQtR'
-    'gBSgQIChAL');
+    'ByZWNvbXB1dGFkb3NQaWNvQgSwtRgCUg1wcmVjb21wdXRhZG9zEkYKDW1hbGhhX2VzdHJhZGEY'
+    'DyABKAsyGy5hcmVzdGEuQXJxdWl2b01hbGhhRXN0cmFkYUIEsLUYAlIMbWFsaGFFc3RyYWRhOg'
+    'SQtRgBSgQIChAL');
+
+@$core.Deprecated('Use arquivoMalhaEstradaDescriptor instead')
+const ArquivoMalhaEstrada$json = {
+  '1': 'ArquivoMalhaEstrada',
+  '2': [
+    {'1': 'caminho', '3': 1, '4': 1, '5': 9, '8': {}, '9': 0, '10': 'caminho'},
+    {
+      '1': 'conteudo',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MalhaEstradaPico',
+      '8': {},
+      '9': 0,
+      '10': 'conteudo'
+    },
+  ],
+  '5': [
+    {'1': 1000, '2': 536870912},
+  ],
+  '6': [
+    {
+      '1': 'ext_metadados_arquivo',
+      '2': '.aresta.ArquivoMalhaEstrada',
+      '3': 1000,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MetadadosArquivoNoEditor',
+      '10': 'extMetadadosArquivo'
+    },
+  ],
+  '7': {},
+  '8': [
+    {'1': 'arquivo'},
+  ],
+};
+
+/// Descriptor for `ArquivoMalhaEstrada`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List arquivoMalhaEstradaDescriptor = $convert.base64Decode(
+    'ChNBcnF1aXZvTWFsaGFFc3RyYWRhElUKB2NhbWluaG8YASABKAlCOYq1GBJhcHBsaWNhdGlvbi'
+    '94LXlhbWyYtRgCorUYF2FyZXN0YS5NYWxoYUVzdHJhZGFQaWNvuLUYAUgAUgdjYW1pbmhvEjwK'
+    'CGNvbnRldWRvGAIgASgLMhguYXJlc3RhLk1hbGhhRXN0cmFkYVBpY29CBJi1GAFIAFIIY29udG'
+    'V1ZG8qCQjoBxCAgICAAjJyChVleHRfbWV0YWRhZG9zX2FycXVpdm8SGy5hcmVzdGEuQXJxdWl2'
+    'b01hbGhhRXN0cmFkYRjoByABKAsyIC5hcmVzdGEuTWV0YWRhZG9zQXJxdWl2b05vRWRpdG9yUh'
+    'NleHRNZXRhZGFkb3NBcnF1aXZvOgSQtRgFQgkKB2FycXVpdm8=');
 
 @$core.Deprecated('Use colecaoDeMapasDescriptor instead')
 const ColecaoDeMapas$json = {
