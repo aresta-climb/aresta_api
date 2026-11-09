@@ -1249,6 +1249,7 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
     $core.int? longitudeE7,
     $core.int? distanciaMetros,
     $core.bool? naBorda,
+    $core.int? duracaoMinutos,
   }) {
     final result = NoMalhaEstrada._();
     if (noOsmId != null) result.noOsmId = noOsmId;
@@ -1256,6 +1257,7 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
     if (longitudeE7 != null) result.longitudeE7 = longitudeE7;
     if (distanciaMetros != null) result.distanciaMetros = distanciaMetros;
     if (naBorda != null) result.naBorda = naBorda;
+    if (duracaoMinutos != null) result.duracaoMinutos = duracaoMinutos;
     return result;
   }
 
@@ -1278,6 +1280,7 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
         fieldType: $pb.PbFieldType.OS3)
     ..aI(4, _omitFieldNames ? '' : 'distanciaMetros')
     ..aOB(5, _omitFieldNames ? '' : 'naBorda')
+    ..aI(6, _omitFieldNames ? '' : 'duracaoMinutos')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1351,6 +1354,16 @@ class NoMalhaEstrada extends $pb.GeneratedMessage {
   $core.bool hasNaBorda() => $_has(4);
   @$pb.TagNumber(5)
   void clearNaBorda() => $_clearField(5);
+
+  /// Duração estimada de direção sem trânsito (em minutos) do nó até o estacionamento do pico.
+  @$pb.TagNumber(6)
+  $core.int get duracaoMinutos => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set duracaoMinutos($core.int value) => $_setSignedInt32(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasDuracaoMinutos() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearDuracaoMinutos() => $_clearField(6);
 }
 
 /// Malha de nós rodoviários pré-computados a partir da localização de referência do pico.

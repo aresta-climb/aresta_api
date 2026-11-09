@@ -178,6 +178,7 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     no.longitude_e7 = -439600000
     no.distancia_metros = 15200
     no.na_borda = True
+    no.duracao_minutos = 18
 
     dados = pico.SerializeToString()
     recuperado = croqui_pb2.Pico()
@@ -191,6 +192,7 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     assert recuperado.malha_estrada.conteudo.nos[0].longitude_e7 == -439600000
     assert recuperado.malha_estrada.conteudo.nos[0].distancia_metros == 15200
     assert recuperado.malha_estrada.conteudo.nos[0].na_borda is True
+    assert recuperado.malha_estrada.conteudo.nos[0].duracao_minutos == 18
 
 
 

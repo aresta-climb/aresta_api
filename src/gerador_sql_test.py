@@ -498,6 +498,13 @@ def test_esquemas_reais_catalogo_e_catalogo_d1_possuem_colunas_e_indices_canonic
         t for t in esquema_catalogo.tabelas if t.nome == "catalogo_distancias_estrada"
     )
     assert "WITHOUT ROWID" in tabela_dist.ddl.upper()
+    assert [c.nome for c in tabela_dist.colunas] == [
+        "croqui_uid",
+        "no_osm_id",
+        "distancia_metros",
+        "na_borda",
+        "duracao_minutos",
+    ]
 
     esquema_d1 = inspecionar_esquema_sql(sql_d1, nome_modulo="catalogo_d1")
     assert [t.nome for t in esquema_d1.tabelas] == ["deltas_catalogo"]

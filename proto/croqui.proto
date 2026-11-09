@@ -395,6 +395,9 @@ message NoMalhaEstrada {
 
   // Indica se o nó pertence aos anéis de borda da malha (true) ou é o ponto de ancoragem (false).
   bool na_borda = 5;
+
+  // Duração estimada de direção sem trânsito (em minutos) do nó até o estacionamento do pico.
+  int32 duracao_minutos = 6;
 }
 
 // Malha de nós rodoviários pré-computados a partir da localização de referência do pico.

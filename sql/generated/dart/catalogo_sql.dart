@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
     na_borda INTEGER NOT NULL DEFAULT 0,
+    duracao_minutos INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 ) WITHOUT ROWID;
 ''';
@@ -112,6 +113,7 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     no_osm_id INTEGER NOT NULL,
     distancia_metros INTEGER NOT NULL,
     na_borda INTEGER NOT NULL DEFAULT 0,
+    duracao_minutos INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
 ) WITHOUT ROWID;
 
@@ -266,12 +268,14 @@ class LinhaCatalogoDistanciasEstrada {
   final int noOsmId;
   final int distanciaMetros;
   final int naBorda;
+  final int duracaoMinutos;
 
   const LinhaCatalogoDistanciasEstrada({
     required this.croquiUid,
     required this.noOsmId,
     required this.distanciaMetros,
     this.naBorda = 0,
+    this.duracaoMinutos = 0,
   });
 
   factory LinhaCatalogoDistanciasEstrada.fromMap(Map<String, dynamic> map) {
@@ -280,6 +284,7 @@ class LinhaCatalogoDistanciasEstrada {
       noOsmId: map['no_osm_id'] as int,
       distanciaMetros: map['distancia_metros'] as int,
       naBorda: (map['na_borda'] as int?) ?? 0,
+      duracaoMinutos: (map['duracao_minutos'] as int?) ?? 0,
     );
   }
 
@@ -289,6 +294,7 @@ class LinhaCatalogoDistanciasEstrada {
       'no_osm_id': noOsmId,
       'distancia_metros': distanciaMetros,
       'na_borda': naBorda,
+      'duracao_minutos': duracaoMinutos,
     };
   }
 }
