@@ -160,7 +160,7 @@ extend google.protobuf.EnumValueOptions {
 }
 
 // Representa um croqui de escalada, que pode incluir um ou mais picos.
-// NEXT_ID: 18
+// NEXT_ID: 19
 message Croqui {
   // Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande".
   string id = 1 [(aresta.avancado) = true];
@@ -246,6 +246,9 @@ message Croqui {
     (aresta.booleano_texto_nao) = "Rascunho",
     (aresta.booleano_texto_indefinido) = "Não informado"
   ];
+
+  // Arquivo externo contendo os candidatos e rejeitados da curadoria de betas (curadoria_betas.md).
+  ArquivoCuradoriaBetas curadoria_betas = 18 [(aresta.formato_na_ui) = INVISIVEL];
 
   extensions 1000 to max;
   reserved 5, 10, 12;
@@ -491,6 +494,21 @@ message ArquivoMapas {
 
   extensions 1000 to max;
   extend ArquivoMapas {
+    MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
+  }
+}
+
+// Arquivo externo que contém a ColecaoCuradoriaBetas em seu frontmatter.
+message ArquivoCuradoriaBetas {
+  option (aresta.mensagem_formato_na_ui) = ONEOF_CONTEUDO;
+
+  oneof arquivo {
+    string caminho = 1 [(aresta.tipo_conteudo) = CAMINHO, (aresta.mime_type) = "text/markdown", (aresta.oneof_default) = true, (aresta.mensagem) = "aresta.ColecaoCuradoriaBetas"];
+    ColecaoCuradoriaBetas conteudo = 2 [(aresta.tipo_conteudo) = INLINE];
+  }
+
+  extensions 1000 to max;
+  extend ArquivoCuradoriaBetas {
     MetadadosArquivoNoEditor ext_metadados_arquivo = 1000;
   }
 }
@@ -1572,6 +1590,7 @@ message GrauBoulder {
 
   enum GrauBoulder {
     INDEFINIDO = 0;
+    PROJETO = 38;
 
     VB = 1;
     VB_BARRA_V0 = 20;  // VB/0

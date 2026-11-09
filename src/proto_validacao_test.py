@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (C) 2026 Aresta Climb Contributors
 # SPDX-License-Identifier: MPL-2.0
 
-from aresta_api.proto.generated import croqui_pb2
+from aresta_api.proto.generated import beta_pb2, croqui_pb2, indice_pb2
 
 
 def test_no_maximo_um_campo_conteudo_markdown_por_mensagem() -> None:
@@ -215,3 +215,89 @@ def test_metadados_arquivo_no_editor_formato_nome_arquivo() -> None:
         campo_json.GetOptions().Extensions[croqui_pb2.formato_na_ui]
         == croqui_pb2.CampoFormatoUi.INVISIVEL
     )
+
+
+def test_grau_boulder_projeto_e_nota_qualidade_precomputados_indice() -> None:
+    """Valida a presença de GrauBoulder.PROJETO e PrecomputadosResumoCroqui.nota_qualidade."""
+    assert croqui_pb2.GrauBoulder.GrauBoulder.PROJETO == 38
+    boulder = croqui_pb2.Boulder(
+        nome="Projeto Secreto",
+        dificuldade=croqui_pb2.GrauBoulder.GrauBoulder.PROJETO,
+    )
+    recuperado_boulder = croqui_pb2.Boulder()
+    recuperado_boulder.ParseFromString(boulder.SerializeToString())
+    assert recuperado_boulder.dificuldade == croqui_pb2.GrauBoulder.GrauBoulder.PROJETO
+
+    resumo = indice_pb2.ResumoCroqui(id="br_mg_teste")
+    resumo.precomputados.total_escaladas = 10
+    resumo.precomputados.nota_qualidade = 6450
+    recuperado_resumo = indice_pb2.ResumoCroqui()
+    recuperado_resumo.ParseFromString(resumo.SerializeToString())
+    assert recuperado_resumo.precomputados.nota_qualidade == 6450
+
+
+def test_contratos_beta_midia_limpa_e_arquivo_curadoria_betas() -> None:
+    """
+    Valida que MidiaBeta possui apenas campos de publicação (incluindo FonteMidia.BLOG = 3),
+    CandidatoMidiaBeta e ColecaoCuradoriaBetas encapsulam a curadoria por escalada_uid,
+    e Croqui possui curadoria_betas (ArquivoCuradoriaBetas com ONEOF_CONTEUDO).
+    """
+    assert beta_pb2.FonteMidia.BLOG == 3
+
+    campos_midia = set(beta_pb2.MidiaBeta.DESCRIPTOR.fields_by_name.keys())
+    assert campos_midia == {"url", "titulo", "fonte"}
+
+    midia = beta_pb2.MidiaBeta(
+        url="https://blog.exemplo.com/escalada-pedra-grande",
+        titulo="Relato Pedra Grande",
+        fonte=beta_pb2.FonteMidia.BLOG,
+    )
+    candidato = beta_pb2.CandidatoMidiaBeta(
+        midia=midia,
+        match_multiplas_fontes=True,
+        match_nome_no_snippet=True,
+        snippets=["Trecho do blog falando sobre a via..."],
+    )
+    candidato.resultado_llm.llm_confidence_score = 91
+    candidato.resultado_llm.llm_reasoning = "Menciona a via e o setor com detalhes."
+
+    curadoria_esc = beta_pb2.CuradoriaBetasEscalada(escalada_uid="JeenN3HpFf1fWM")
+    curadoria_esc.betas_nao_scorados.append(candidato)
+    curadoria_esc.betas_nao_revisados.append(candidato)
+    curadoria_esc.betas_rejeitados.append(
+        beta_pb2.MidiaBeta(
+            url="https://www.youtube.com/watch?v=invalido",
+            titulo="Vídeo irrelevante",
+            fonte=beta_pb2.FonteMidia.YOUTUBE,
+        )
+    )
+
+    croqui = croqui_pb2.Croqui(id="br_mg_teste", nome="Croqui Teste")
+    croqui.curadoria_betas.conteudo.escaladas.append(curadoria_esc)
+
+    dados = croqui.SerializeToString()
+    recuperado = croqui_pb2.Croqui()
+    recuperado.ParseFromString(dados)
+
+    assert len(recuperado.curadoria_betas.conteudo.escaladas) == 1
+    esc_rec = recuperado.curadoria_betas.conteudo.escaladas[0]
+    assert esc_rec.escalada_uid == "JeenN3HpFf1fWM"
+    assert len(esc_rec.betas_nao_scorados) == 1
+    assert esc_rec.betas_nao_scorados[0].midia.fonte == beta_pb2.FonteMidia.BLOG
+    assert len(esc_rec.betas_nao_revisados) == 1
+    assert esc_rec.betas_nao_revisados[0].resultado_llm.llm_confidence_score == 91
+    assert len(esc_rec.betas_rejeitados) == 1
+    assert esc_rec.betas_rejeitados[0].url == "https://www.youtube.com/watch?v=invalido"
+
+    campo_curadoria = croqui_pb2.Croqui.DESCRIPTOR.fields_by_name["curadoria_betas"]
+    assert (
+        campo_curadoria.GetOptions().Extensions[croqui_pb2.formato_na_ui]
+        == croqui_pb2.CampoFormatoUi.INVISIVEL
+    )
+    opts_arq = croqui_pb2.ArquivoCuradoriaBetas.DESCRIPTOR.GetOptions()
+    assert (
+        opts_arq.Extensions[croqui_pb2.mensagem_formato_na_ui]
+        == croqui_pb2.MensagemFormatoUi.ONEOF_CONTEUDO
+    )
+
+
