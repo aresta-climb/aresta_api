@@ -103,6 +103,98 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErroApiFixalog"
+  /api/v1/laudos/{id}/status:
+    get:
+      operationId: consultar_status_laudo_fixalog
+      summary: Consulta o status de envio, blocos já recebidos e status de moderação de um laudo por `{id, sha256}`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Identificador único da sessão do laudo ou material (`id_sessao`).
+          schema:
+            type: string
+        - name: sha256
+          in: query
+          required: false
+          description: Hash SHA-256 hexadecimal do pacote `.epub` calculado no cliente.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Status atual do laudo/versão e lista de índices de blocos já presentes em staging.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaStatusLaudoFixalog"
+        "401":
+          description: Credenciais de autenticação ausentes ou inválidas.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+  /api/v1/laudos/{id}/chunk:
+    put:
+      operationId: enviar_chunk_laudo_fixalog
+      summary: Envia um bloco (`chunk`) de 512 KB de um pacote EPUB 3 assinado e finaliza a versão ao receber o último bloco.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: sha256
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: index
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: total
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Bloco intermediário armazenado em staging ou versão já enviada anteriormente para este `sha256`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaChunkLaudoFixalog"
+        "201":
+          description: Último bloco recebido, pacote EPUB 3 concatenado, validado criptograficamente e enfileirado para moderação (`em_analise`).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RespostaChunkLaudoFixalog"
+        "400":
+          description: Parâmetros de bloco inválidos, divergência de hash SHA-256 ou assinatura XML-DSig inválida.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+        "401":
+          description: Credenciais de autenticação ausentes ou inválidas.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
+        "403":
+          description: Tentativa de sobrescrever laudo de outro usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
   /api/v1/laudos/{id}/denunciar:
     post:
       operationId: denunciar_laudo_fixalog
@@ -384,6 +476,69 @@ components:
           type: string
         hash_epub_sha256:
           type: string
+        ja_enviado:
+          type: boolean
+    RespostaStatusLaudoFixalog:
+      type: object
+      required:
+        - id_sessao
+        - ja_enviado
+        - versao
+        - status_moderacao
+        - chunks_recebidos
+      properties:
+        id_sessao:
+          type: string
+        sha256:
+          type:
+            - string
+            - "null"
+        ja_enviado:
+          type: boolean
+        versao:
+          type:
+            - integer
+            - "null"
+        status_moderacao:
+          type:
+            - string
+            - "null"
+        chunks_recebidos:
+          type: array
+          items:
+            type: integer
+    RespostaChunkLaudoFixalog:
+      type: object
+      required:
+        - id_sessao
+        - sha256
+        - finalizado
+        - chunks_recebidos
+      properties:
+        id_sessao:
+          type: string
+        sha256:
+          type: string
+        finalizado:
+          type: boolean
+        ja_enviado:
+          type: boolean
+        versao:
+          type:
+            - integer
+            - "null"
+        status_moderacao:
+          type:
+            - string
+            - "null"
+        url_publica:
+          type:
+            - string
+            - "null"
+        chunks_recebidos:
+          type: array
+          items:
+            type: integer
     RespostaListaLaudosFixalog:
       type: object
       required:

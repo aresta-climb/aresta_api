@@ -6,6 +6,8 @@ const String urlServidorPadraoFixalog = 'https://fixalog.app';
 const String rotaRegistrarChavePublicaFixalog = '/api/v1/chaves';
 const String rotaListarLaudosUsuarioFixalog = '/api/v1/laudos';
 const String rotaEnviarVersaoLaudoFixalog = '/api/v1/laudos/{id}';
+const String rotaConsultarStatusLaudoFixalog = '/api/v1/laudos/{id}/status';
+const String rotaEnviarChunkLaudoFixalog = '/api/v1/laudos/{id}/chunk';
 const String rotaDenunciarLaudoFixalog = '/api/v1/laudos/{id}/denunciar';
 const String rotaVisualizarLaudoPublicoFixalog = '/v/{id}';
 const String rotaObterMidiaByteRangeFixalog = '/v/{id}/midias/{caminho}';
@@ -238,6 +240,7 @@ class RespostaUploadLaudoFixalog {
   final String statusModeracao;
   final String urlPublica;
   final String hashEpubSha256;
+  final bool? jaEnviado;
 
   const RespostaUploadLaudoFixalog({
     required this.idSessao,
@@ -245,6 +248,7 @@ class RespostaUploadLaudoFixalog {
     required this.statusModeracao,
     required this.urlPublica,
     required this.hashEpubSha256,
+    this.jaEnviado,
   });
 
   factory RespostaUploadLaudoFixalog.fromJson(Map<String, dynamic> json) {
@@ -254,6 +258,7 @@ class RespostaUploadLaudoFixalog {
       statusModeracao: json['status_moderacao'] as String,
       urlPublica: json['url_publica'] as String,
       hashEpubSha256: json['hash_epub_sha256'] as String,
+      jaEnviado: json['ja_enviado'] as bool?,
     );
   }
 
@@ -264,6 +269,95 @@ class RespostaUploadLaudoFixalog {
       'status_moderacao': statusModeracao,
       'url_publica': urlPublica,
       'hash_epub_sha256': hashEpubSha256,
+      'ja_enviado': jaEnviado,
+    };
+  }
+}
+
+class RespostaStatusLaudoFixalog {
+  final String idSessao;
+  final String? sha256;
+  final bool jaEnviado;
+  final int? versao;
+  final String? statusModeracao;
+  final List<int> chunksRecebidos;
+
+  const RespostaStatusLaudoFixalog({
+    required this.idSessao,
+    this.sha256,
+    required this.jaEnviado,
+    this.versao,
+    this.statusModeracao,
+    required this.chunksRecebidos,
+  });
+
+  factory RespostaStatusLaudoFixalog.fromJson(Map<String, dynamic> json) {
+    return RespostaStatusLaudoFixalog(
+      idSessao: json['id_sessao'] as String,
+      sha256: json['sha256'] as String?,
+      jaEnviado: json['ja_enviado'] as bool,
+      versao: json['versao'] as int?,
+      statusModeracao: json['status_moderacao'] as String?,
+      chunksRecebidos: (json['chunks_recebidos'] as List<dynamic>).map((e) => e as int).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id_sessao': idSessao,
+      'sha256': sha256,
+      'ja_enviado': jaEnviado,
+      'versao': versao,
+      'status_moderacao': statusModeracao,
+      'chunks_recebidos': chunksRecebidos,
+    };
+  }
+}
+
+class RespostaChunkLaudoFixalog {
+  final String idSessao;
+  final String sha256;
+  final bool finalizado;
+  final bool? jaEnviado;
+  final int? versao;
+  final String? statusModeracao;
+  final String? urlPublica;
+  final List<int> chunksRecebidos;
+
+  const RespostaChunkLaudoFixalog({
+    required this.idSessao,
+    required this.sha256,
+    required this.finalizado,
+    this.jaEnviado,
+    this.versao,
+    this.statusModeracao,
+    this.urlPublica,
+    required this.chunksRecebidos,
+  });
+
+  factory RespostaChunkLaudoFixalog.fromJson(Map<String, dynamic> json) {
+    return RespostaChunkLaudoFixalog(
+      idSessao: json['id_sessao'] as String,
+      sha256: json['sha256'] as String,
+      finalizado: json['finalizado'] as bool,
+      jaEnviado: json['ja_enviado'] as bool?,
+      versao: json['versao'] as int?,
+      statusModeracao: json['status_moderacao'] as String?,
+      urlPublica: json['url_publica'] as String?,
+      chunksRecebidos: (json['chunks_recebidos'] as List<dynamic>).map((e) => e as int).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id_sessao': idSessao,
+      'sha256': sha256,
+      'finalizado': finalizado,
+      'ja_enviado': jaEnviado,
+      'versao': versao,
+      'status_moderacao': statusModeracao,
+      'url_publica': urlPublica,
+      'chunks_recebidos': chunksRecebidos,
     };
   }
 }
