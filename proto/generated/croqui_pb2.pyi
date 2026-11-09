@@ -105,6 +105,8 @@ class CampoFormatoUi(_message.Message):
         """O campo é um valor de longitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos."""
         IMAGEM: CampoFormatoUi._Enum.ValueType  # 8
         """O campo representa uma imagem com pré-visualização, metadados e pré-processamento WebP."""
+        NOME_ARQUIVO: CampoFormatoUi._Enum.ValueType  # 9
+        """O campo representa o nome de um arquivo Markdown editado via diálogo modal validado."""
 
     class Enum(_Enum, metaclass=_EnumEnumTypeWrapper): ...
     INDEFINIDO: CampoFormatoUi.Enum.ValueType  # 0
@@ -133,6 +135,8 @@ class CampoFormatoUi(_message.Message):
     """O campo é um valor de longitude no padrão E7 (graus * 10^7), editado como ponto flutuante com rosa dos ventos."""
     IMAGEM: CampoFormatoUi.Enum.ValueType  # 8
     """O campo representa uma imagem com pré-visualização, metadados e pré-processamento WebP."""
+    NOME_ARQUIVO: CampoFormatoUi.Enum.ValueType  # 9
+    """O campo representa o nome de um arquivo Markdown editado via diálogo modal validado."""
 
     def __init__(
         self,
