@@ -66,6 +66,7 @@ const PrecomputadosResumoCroqui$json = {
       '5': 3,
       '10': 'tamanhoDownloadBytes'
     },
+    {'1': 'nota_qualidade', '3': 10, '4': 1, '5': 5, '10': 'notaQualidade'},
   ],
 };
 
@@ -78,7 +79,8 @@ final $typed_data.Uint8List precomputadosResumoCroquiDescriptor = $convert.base6
     'dG90YWxfYm91bGRlcnMYBiABKAVSDXRvdGFsQm91bGRlcnMSOAoYdG90YWxfbXVsdGlwbGFzX2'
     'VuZmlhZGFzGAcgASgFUhZ0b3RhbE11bHRpcGxhc0VuZmlhZGFzEicKD3RvdGFsX2hpZ2hsaW5l'
     'cxgIIAEoBVIOdG90YWxIaWdobGluZXMSNAoWdGFtYW5ob19kb3dubG9hZF9ieXRlcxgJIAEoA1'
-    'IUdGFtYW5ob0Rvd25sb2FkQnl0ZXM=');
+    'IUdGFtYW5ob0Rvd25sb2FkQnl0ZXMSJQoObm90YV9xdWFsaWRhZGUYCiABKAVSDW5vdGFRdWFs'
+    'aWRhZGU=');
 
 @$core.Deprecated('Use resumoCroquiDescriptor instead')
 const ResumoCroqui$json = {

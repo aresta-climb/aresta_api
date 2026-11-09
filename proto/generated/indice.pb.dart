@@ -99,6 +99,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     $core.int? totalMultiplasEnfiadas,
     $core.int? totalHighlines,
     $fixnum.Int64? tamanhoDownloadBytes,
+    $core.int? notaQualidade,
   }) {
     final result = PrecomputadosResumoCroqui._();
     if (totalEscaladas != null) result.totalEscaladas = totalEscaladas;
@@ -112,6 +113,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     if (totalHighlines != null) result.totalHighlines = totalHighlines;
     if (tamanhoDownloadBytes != null)
       result.tamanhoDownloadBytes = tamanhoDownloadBytes;
+    if (notaQualidade != null) result.notaQualidade = notaQualidade;
     return result;
   }
 
@@ -137,6 +139,7 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
     ..aI(7, _omitFieldNames ? '' : 'totalMultiplasEnfiadas')
     ..aI(8, _omitFieldNames ? '' : 'totalHighlines')
     ..aInt64(9, _omitFieldNames ? '' : 'tamanhoDownloadBytes')
+    ..aI(10, _omitFieldNames ? '' : 'notaQualidade')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -249,6 +252,16 @@ class PrecomputadosResumoCroqui extends $pb.GeneratedMessage {
   $core.bool hasTamanhoDownloadBytes() => $_has(8);
   @$pb.TagNumber(9)
   void clearTamanhoDownloadBytes() => $_clearField(9);
+
+  /// Pontuação aditiva de qualidade e prontidão do croqui (calculada na compilação).
+  @$pb.TagNumber(10)
+  $core.int get notaQualidade => $_getIZ(9);
+  @$pb.TagNumber(10)
+  set notaQualidade($core.int value) => $_setSignedInt32(9, value);
+  @$pb.TagNumber(10)
+  $core.bool hasNotaQualidade() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearNotaQualidade() => $_clearField(10);
 }
 
 /// Resumo de um croqui que está disponível para o índice.

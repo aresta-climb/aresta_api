@@ -199,7 +199,7 @@ class Croqui_StatusDesenhoExtraivel extends $pb.GeneratedMessage {
 }
 
 /// Representa um croqui de escalada, que pode incluir um ou mais picos.
-/// NEXT_ID: 18
+/// NEXT_ID: 19
 class Croqui extends $pb.GeneratedMessage {
   factory Croqui({
     $core.String? id,
@@ -216,6 +216,7 @@ class Croqui extends $pb.GeneratedMessage {
     $core.int? ultimaMigracao,
     $core.bool? publicarCroqui,
     $core.String? uid,
+    ArquivoCuradoriaBetas? curadoriaBetas,
   }) {
     final result = Croqui._();
     if (id != null) result.id = id;
@@ -236,6 +237,7 @@ class Croqui extends $pb.GeneratedMessage {
     if (ultimaMigracao != null) result.ultimaMigracao = ultimaMigracao;
     if (publicarCroqui != null) result.publicarCroqui = publicarCroqui;
     if (uid != null) result.uid = uid;
+    if (curadoriaBetas != null) result.curadoriaBetas = curadoriaBetas;
     return result;
   }
 
@@ -271,6 +273,8 @@ class Croqui extends $pb.GeneratedMessage {
     ..aI(15, _omitFieldNames ? '' : 'ultimaMigracao')
     ..aOB(16, _omitFieldNames ? '' : 'publicarCroqui')
     ..aOS(17, _omitFieldNames ? '' : 'uid')
+    ..aOM<ArquivoCuradoriaBetas>(18, _omitFieldNames ? '' : 'curadoriaBetas',
+        subBuilder: ArquivoCuradoriaBetas.$_createMessage)
     ..hasExtensions = true;
   static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
       _omitMessageNames ? '' : 'aresta.Croqui',
@@ -418,6 +422,18 @@ class Croqui extends $pb.GeneratedMessage {
   $core.bool hasUid() => $_has(13);
   @$pb.TagNumber(17)
   void clearUid() => $_clearField(17);
+
+  /// Arquivo externo contendo os candidatos e rejeitados da curadoria de betas (curadoria_betas.md).
+  @$pb.TagNumber(18)
+  ArquivoCuradoriaBetas get curadoriaBetas => $_getN(14);
+  @$pb.TagNumber(18)
+  set curadoriaBetas(ArquivoCuradoriaBetas value) => $_setField(18, value);
+  @$pb.TagNumber(18)
+  $core.bool hasCuradoriaBetas() => $_has(14);
+  @$pb.TagNumber(18)
+  void clearCuradoriaBetas() => $_clearField(18);
+  @$pb.TagNumber(18)
+  ArquivoCuradoriaBetas ensureCuradoriaBetas() => $_ensure(14);
 }
 
 /// Representa um botão que leva a alguma outra parte do croqui.
@@ -1898,6 +1914,105 @@ class ArquivoMapas extends $pb.GeneratedMessage {
   void clearConteudo() => $_clearField(2);
   @$pb.TagNumber(2)
   ColecaoDeMapas ensureConteudo() => $_ensure(1);
+}
+
+enum ArquivoCuradoriaBetas_Arquivo { caminho, conteudo, notSet }
+
+/// Arquivo externo que contém a ColecaoCuradoriaBetas em seu frontmatter.
+class ArquivoCuradoriaBetas extends $pb.GeneratedMessage {
+  factory ArquivoCuradoriaBetas({
+    $core.String? caminho,
+    $0.ColecaoCuradoriaBetas? conteudo,
+  }) {
+    final result = ArquivoCuradoriaBetas._();
+    if (caminho != null) result.caminho = caminho;
+    if (conteudo != null) result.conteudo = conteudo;
+    return result;
+  }
+
+  ArquivoCuradoriaBetas._();
+
+  factory ArquivoCuradoriaBetas.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      ArquivoCuradoriaBetas()..mergeFromBuffer(data, registry);
+  factory ArquivoCuradoriaBetas.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      ArquivoCuradoriaBetas()..mergeFromJson(json, registry);
+
+  static const $core.Map<$core.int, ArquivoCuradoriaBetas_Arquivo>
+      _ArquivoCuradoriaBetas_ArquivoByTag = {
+    1: ArquivoCuradoriaBetas_Arquivo.caminho,
+    2: ArquivoCuradoriaBetas_Arquivo.conteudo,
+    0: ArquivoCuradoriaBetas_Arquivo.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ArquivoCuradoriaBetas',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'aresta'),
+      createEmptyInstance: ArquivoCuradoriaBetas.$_createMessage)
+    ..oo(0, [1, 2])
+    ..aOS(1, _omitFieldNames ? '' : 'caminho')
+    ..aOM<$0.ColecaoCuradoriaBetas>(2, _omitFieldNames ? '' : 'conteudo',
+        subBuilder: $0.ColecaoCuradoriaBetas.$_createMessage)
+    ..hasExtensions = true;
+  static final extMetadadosArquivo = $pb.Extension<MetadadosArquivoNoEditor>(
+      _omitMessageNames ? '' : 'aresta.ArquivoCuradoriaBetas',
+      _omitFieldNames ? '' : 'extMetadadosArquivo',
+      1000,
+      $pb.PbFieldType.OM,
+      defaultOrMaker: MetadadosArquivoNoEditor.getDefault,
+      subBuilder: MetadadosArquivoNoEditor.$_createMessage);
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoCuradoriaBetas clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  ArquivoCuradoriaBetas copyWith(
+          void Function(ArquivoCuradoriaBetas) updates) =>
+      super.copyWith((message) => updates(message as ArquivoCuradoriaBetas))
+          as ArquivoCuradoriaBetas;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ArquivoCuradoriaBetas() / ArquivoCuradoriaBetas.new instead')
+  static ArquivoCuradoriaBetas create() => ArquivoCuradoriaBetas._();
+  static $pb.GeneratedMessage $_createMessage() => ArquivoCuradoriaBetas._();
+  @$core.override
+  ArquivoCuradoriaBetas createEmptyInstance() => ArquivoCuradoriaBetas._();
+  @$core.pragma('dart2js:noInline')
+  static ArquivoCuradoriaBetas getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ArquivoCuradoriaBetas>(
+          ArquivoCuradoriaBetas.$_createMessage);
+  static ArquivoCuradoriaBetas? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  ArquivoCuradoriaBetas_Arquivo whichArquivo() =>
+      _ArquivoCuradoriaBetas_ArquivoByTag[$_whichOneof(0)]!;
+  @$pb.TagNumber(1)
+  @$pb.TagNumber(2)
+  void clearArquivo() => $_clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.String get caminho => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set caminho($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasCaminho() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCaminho() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $0.ColecaoCuradoriaBetas get conteudo => $_getN(1);
+  @$pb.TagNumber(2)
+  set conteudo($0.ColecaoCuradoriaBetas value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasConteudo() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearConteudo() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $0.ColecaoCuradoriaBetas ensureConteudo() => $_ensure(1);
 }
 
 enum SetorOuGrupo_Tipo { setor, grupo, notSet }

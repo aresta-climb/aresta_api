@@ -236,7 +236,7 @@ Global___MensagemFormatoUi: _TypeAlias = MensagemFormatoUi  # noqa: Y015
 @_typing.final
 class Croqui(_message.Message):
     """Representa um croqui de escalada, que pode incluir um ou mais picos.
-    NEXT_ID: 18
+    NEXT_ID: 19
     """
 
     DESCRIPTOR: _descriptor.Descriptor
@@ -298,6 +298,7 @@ class Croqui(_message.Message):
     STATUS_DESENHO_EXTRAIVEL_FIELD_NUMBER: _builtins.int
     ULTIMA_MIGRACAO_FIELD_NUMBER: _builtins.int
     PUBLICAR_CROQUI_FIELD_NUMBER: _builtins.int
+    CURADORIA_BETAS_FIELD_NUMBER: _builtins.int
     id: _builtins.str
     """Identificador único do croqui. Ideal formato como "br_mg_igarape_pedra_grande"."""
     uid: _builtins.str
@@ -339,6 +340,10 @@ class Croqui(_message.Message):
     def arquivos_externos(self) -> _containers.RepeatedCompositeFieldContainer[Global___ArquivoExterno]:
         """Repositório interno de arquivos externos que não estão incluídos no .binarypb."""
 
+    @_builtins.property
+    def curadoria_betas(self) -> Global___ArquivoCuradoriaBetas:
+        """Arquivo externo contendo os candidatos e rejeitados da curadoria de betas (curadoria_betas.md)."""
+
     EXT_METADADOS_ARQUIVO_FIELD_NUMBER: _builtins.int
     ext_metadados_arquivo: _extension_dict._ExtensionFieldDescriptor[Global___Croqui, Global___MetadadosArquivoNoEditor]
     def __init__(
@@ -358,10 +363,11 @@ class Croqui(_message.Message):
         status_desenho_extraivel: Global___Croqui.StatusDesenhoExtraivel.Enum.ValueType | None = ...,
         ultima_migracao: _builtins.int | None = ...,
         publicar_croqui: _builtins.bool | None = ...,
+        curadoria_betas: Global___ArquivoCuradoriaBetas | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "curadoria_betas", b"curadoria_betas", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivos_externos", b"arquivos_externos", "botoes", b"botoes", "caminho_thumbnail", b"caminho_thumbnail", "creditos", b"creditos", "curadoria_betas", b"curadoria_betas", "descricao", b"descricao", "id", b"id", "nome", b"nome", "picos", b"picos", "publicar_croqui", b"publicar_croqui", "revisado_bounding_circle", b"revisado_bounding_circle", "revisado_manualmente", b"revisado_manualmente", "status_desenho_extraivel", b"status_desenho_extraivel", "uid", b"uid", "ultima_migracao", b"ultima_migracao"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -874,6 +880,35 @@ class ArquivoMapas(_message.Message):
     def WhichOneof(self, oneof_group: _WhichOneofArgType_arquivo) -> _WhichOneofReturnType_arquivo | None: ...
 
 Global___ArquivoMapas: _TypeAlias = ArquivoMapas  # noqa: Y015
+
+@_typing.final
+class ArquivoCuradoriaBetas(_message.Message):
+    """Arquivo externo que contém a ColecaoCuradoriaBetas em seu frontmatter."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    CAMINHO_FIELD_NUMBER: _builtins.int
+    CONTEUDO_FIELD_NUMBER: _builtins.int
+    caminho: _builtins.str
+    @_builtins.property
+    def conteudo(self) -> _beta_pb2.ColecaoCuradoriaBetas: ...
+    EXT_METADADOS_ARQUIVO_FIELD_NUMBER: _builtins.int
+    ext_metadados_arquivo: _extension_dict._ExtensionFieldDescriptor[Global___ArquivoCuradoriaBetas, Global___MetadadosArquivoNoEditor]
+    def __init__(
+        self,
+        *,
+        caminho: _builtins.str | None = ...,
+        conteudo: _beta_pb2.ColecaoCuradoriaBetas | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["arquivo", b"arquivo", "caminho", b"caminho", "conteudo", b"conteudo"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["arquivo", b"arquivo", "caminho", b"caminho", "conteudo", b"conteudo"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_arquivo: _TypeAlias = _typing.Literal["caminho", "conteudo"]  # noqa: Y015
+    _WhichOneofArgType_arquivo: _TypeAlias = _typing.Literal["arquivo", b"arquivo"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_arquivo) -> _WhichOneofReturnType_arquivo | None: ...
+
+Global___ArquivoCuradoriaBetas: _TypeAlias = ArquivoCuradoriaBetas  # noqa: Y015
 
 @_typing.final
 class SetorOuGrupo(_message.Message):
@@ -2783,6 +2818,7 @@ class GrauBoulder(_message.Message):
     class _GrauBoulderEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[GrauBoulder._GrauBoulder.ValueType], _builtins.type):
         DESCRIPTOR: _descriptor.EnumDescriptor
         INDEFINIDO: GrauBoulder._GrauBoulder.ValueType  # 0
+        PROJETO: GrauBoulder._GrauBoulder.ValueType  # 38
         VB: GrauBoulder._GrauBoulder.ValueType  # 1
         VB_BARRA_V0: GrauBoulder._GrauBoulder.ValueType  # 20
         """VB/0"""
@@ -2841,6 +2877,7 @@ class GrauBoulder(_message.Message):
 
     class GrauBoulder(_GrauBoulder, metaclass=_GrauBoulderEnumTypeWrapper): ...
     INDEFINIDO: GrauBoulder.GrauBoulder.ValueType  # 0
+    PROJETO: GrauBoulder.GrauBoulder.ValueType  # 38
     VB: GrauBoulder.GrauBoulder.ValueType  # 1
     VB_BARRA_V0: GrauBoulder.GrauBoulder.ValueType  # 20
     """VB/0"""

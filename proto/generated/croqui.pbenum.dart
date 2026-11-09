@@ -643,6 +643,8 @@ class GrauVia_GrauVia extends $pb.ProtobufEnum {
 class GrauBoulder_GrauBoulder extends $pb.ProtobufEnum {
   static const GrauBoulder_GrauBoulder INDEFINIDO =
       GrauBoulder_GrauBoulder._(0, _omitEnumNames ? '' : 'INDEFINIDO');
+  static const GrauBoulder_GrauBoulder PROJETO =
+      GrauBoulder_GrauBoulder._(38, _omitEnumNames ? '' : 'PROJETO');
   static const GrauBoulder_GrauBoulder VB =
       GrauBoulder_GrauBoulder._(1, _omitEnumNames ? '' : 'VB');
   static const GrauBoulder_GrauBoulder VB_BARRA_V0 =
@@ -721,6 +723,7 @@ class GrauBoulder_GrauBoulder extends $pb.ProtobufEnum {
   static const $core.List<GrauBoulder_GrauBoulder> values =
       <GrauBoulder_GrauBoulder>[
     INDEFINIDO,
+    PROJETO,
     VB,
     VB_BARRA_V0,
     V0,
@@ -761,7 +764,7 @@ class GrauBoulder_GrauBoulder extends $pb.ProtobufEnum {
   ];
 
   static final $core.List<GrauBoulder_GrauBoulder?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 37);
+      $pb.ProtobufEnum.$_initByValueList(values, 38);
   static GrauBoulder_GrauBoulder? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

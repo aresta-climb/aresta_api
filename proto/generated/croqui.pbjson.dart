@@ -170,6 +170,15 @@ const Croqui$json = {
       '8': {},
       '10': 'publicarCroqui'
     },
+    {
+      '1': 'curadoria_betas',
+      '3': 18,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.ArquivoCuradoriaBetas',
+      '8': {},
+      '10': 'curadoriaBetas'
+    },
   ],
   '3': [Croqui_StatusDesenhoExtraivel$json],
   '5': [
@@ -229,13 +238,15 @@ final $typed_data.Uint8List croquiDescriptor = $convert.base64Decode(
     'eHRyYWl2ZWwuRW51bUIE6LUYAVIWc3RhdHVzRGVzZW5ob0V4dHJhaXZlbBItCg91bHRpbWFfbW'
     'lncmFjYW8YDyABKAVCBLC1GAJSDnVsdGltYU1pZ3JhY2FvEmcKD3B1YmxpY2FyX2Nyb3F1aRgQ'
     'IAEoCEI+krUYD1B1YmxpY2FyIENyb3F1acq1GA5Ow6NvIGluZm9ybWFkb9K1GAlQdWJsaWNhZG'
-    '/atRgIUmFzY3VuaG9SDnB1YmxpY2FyQ3JvcXVpGtQBChZTdGF0dXNEZXNlbmhvRXh0cmFpdmVs'
-    'IrkBCgRFbnVtEg4KCklOREVGSU5JRE8QABIpCg9OQU9fVEVNX0RFU0VOSE8QARoUirUYEE7Do2'
-    '8gdGVtIGRlc2VuaG8SSQocVEVNX0RFU0VOSE9fTUFTX05BT19FWFRSQUlETxACGieKtRgjVGVt'
-    'IGRlc2VuaG8sIG1hcyBuw6NvIGZvaSBleHRyYcOtZG8SKwoQREVTRU5IT19FWFRSQUlETxADGh'
-    'WKtRgRRGVzZW5obyBleHRyYcOtZG8qCQjoBxCAgICAAjJlChVleHRfbWV0YWRhZG9zX2FycXVp'
-    'dm8SDi5hcmVzdGEuQ3JvcXVpGOgHIAEoCzIgLmFyZXN0YS5NZXRhZGFkb3NBcnF1aXZvTm9FZG'
-    'l0b3JSE2V4dE1ldGFkYWRvc0FycXVpdm9KBAgFEAZKBAgKEAtKBAgMEA0=');
+    '/atRgIUmFzY3VuaG9SDnB1YmxpY2FyQ3JvcXVpEkwKD2N1cmFkb3JpYV9iZXRhcxgSIAEoCzId'
+    'LmFyZXN0YS5BcnF1aXZvQ3VyYWRvcmlhQmV0YXNCBLC1GAJSDmN1cmFkb3JpYUJldGFzGtQBCh'
+    'ZTdGF0dXNEZXNlbmhvRXh0cmFpdmVsIrkBCgRFbnVtEg4KCklOREVGSU5JRE8QABIpCg9OQU9f'
+    'VEVNX0RFU0VOSE8QARoUirUYEE7Do28gdGVtIGRlc2VuaG8SSQocVEVNX0RFU0VOSE9fTUFTX0'
+    '5BT19FWFRSQUlETxACGieKtRgjVGVtIGRlc2VuaG8sIG1hcyBuw6NvIGZvaSBleHRyYcOtZG8S'
+    'KwoQREVTRU5IT19FWFRSQUlETxADGhWKtRgRRGVzZW5obyBleHRyYcOtZG8qCQjoBxCAgICAAj'
+    'JlChVleHRfbWV0YWRhZG9zX2FycXVpdm8SDi5hcmVzdGEuQ3JvcXVpGOgHIAEoCzIgLmFyZXN0'
+    'YS5NZXRhZGFkb3NBcnF1aXZvTm9FZGl0b3JSE2V4dE1ldGFkYWRvc0FycXVpdm9KBAgFEAZKBA'
+    'gKEAtKBAgMEA0=');
 
 @$core.Deprecated('Use botaoDescriptor instead')
 const Botao$json = {
@@ -749,6 +760,51 @@ final $typed_data.Uint8List arquivoMapasDescriptor = $convert.base64Decode(
     'sKFWV4dF9tZXRhZGFkb3NfYXJxdWl2bxIULmFyZXN0YS5BcnF1aXZvTWFwYXMY6AcgASgLMiAu'
     'YXJlc3RhLk1ldGFkYWRvc0FycXVpdm9Ob0VkaXRvclITZXh0TWV0YWRhZG9zQXJxdWl2bzoEkL'
     'UYBUIJCgdhcnF1aXZv');
+
+@$core.Deprecated('Use arquivoCuradoriaBetasDescriptor instead')
+const ArquivoCuradoriaBetas$json = {
+  '1': 'ArquivoCuradoriaBetas',
+  '2': [
+    {'1': 'caminho', '3': 1, '4': 1, '5': 9, '8': {}, '9': 0, '10': 'caminho'},
+    {
+      '1': 'conteudo',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.ColecaoCuradoriaBetas',
+      '8': {},
+      '9': 0,
+      '10': 'conteudo'
+    },
+  ],
+  '5': [
+    {'1': 1000, '2': 536870912},
+  ],
+  '6': [
+    {
+      '1': 'ext_metadados_arquivo',
+      '2': '.aresta.ArquivoCuradoriaBetas',
+      '3': 1000,
+      '4': 1,
+      '5': 11,
+      '6': '.aresta.MetadadosArquivoNoEditor',
+      '10': 'extMetadadosArquivo'
+    },
+  ],
+  '7': {},
+  '8': [
+    {'1': 'arquivo'},
+  ],
+};
+
+/// Descriptor for `ArquivoCuradoriaBetas`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List arquivoCuradoriaBetasDescriptor = $convert.base64Decode(
+    'ChVBcnF1aXZvQ3VyYWRvcmlhQmV0YXMSVQoHY2FtaW5obxgBIAEoCUI5irUYDXRleHQvbWFya2'
+    'Rvd26YtRgCorUYHGFyZXN0YS5Db2xlY2FvQ3VyYWRvcmlhQmV0YXO4tRgBSABSB2NhbWluaG8S'
+    'QQoIY29udGV1ZG8YAiABKAsyHS5hcmVzdGEuQ29sZWNhb0N1cmFkb3JpYUJldGFzQgSYtRgBSA'
+    'BSCGNvbnRldWRvKgkI6AcQgICAgAIydAoVZXh0X21ldGFkYWRvc19hcnF1aXZvEh0uYXJlc3Rh'
+    'LkFycXVpdm9DdXJhZG9yaWFCZXRhcxjoByABKAsyIC5hcmVzdGEuTWV0YWRhZG9zQXJxdWl2b0'
+    '5vRWRpdG9yUhNleHRNZXRhZGFkb3NBcnF1aXZvOgSQtRgFQgkKB2FycXVpdm8=');
 
 @$core.Deprecated('Use setorOuGrupoDescriptor instead')
 const SetorOuGrupo$json = {
@@ -2635,6 +2691,7 @@ const GrauBoulder_GrauBoulder$json = {
   '1': 'GrauBoulder',
   '2': [
     {'1': 'INDEFINIDO', '2': 0},
+    {'1': 'PROJETO', '2': 38},
     {'1': 'VB', '2': 1},
     {'1': 'VB_BARRA_V0', '2': 20},
     {'1': 'V0', '2': 2},
@@ -2677,16 +2734,16 @@ const GrauBoulder_GrauBoulder$json = {
 
 /// Descriptor for `GrauBoulder`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List grauBoulderDescriptor = $convert.base64Decode(
-    'CgtHcmF1Qm91bGRlciL+AwoLR3JhdUJvdWxkZXISDgoKSU5ERUZJTklETxAAEgYKAlZCEAESDw'
-    'oLVkJfQkFSUkFfVjAQFBIGCgJWMBACEg8KC1YwX0JBUlJBX1YxEBUSBgoCVjEQAxIPCgtWMV9C'
-    'QVJSQV9WMhAWEgYKAlYyEAQSDwoLVjJfQkFSUkFfVjMQFxIGCgJWMxAFEg8KC1YzX0JBUlJBX1'
-    'Y0EBgSBgoCVjQQBhIPCgtWNF9CQVJSQV9WNRAZEgYKAlY1EAcSDwoLVjVfQkFSUkFfVjYQGhIG'
-    'CgJWNhAIEg8KC1Y2X0JBUlJBX1Y3EBsSBgoCVjcQCRIPCgtWN19CQVJSQV9WOBAcEgYKAlY4EA'
-    'oSDwoLVjhfQkFSUkFfVjkQHRIGCgJWORALEhAKDFY5X0JBUlJBX1YxMBAeEgcKA1YxMBAMEhEK'
-    'DVYxMF9CQVJSQV9WMTEQHxIHCgNWMTEQDRIRCg1WMTFfQkFSUkFfVjEyECASBwoDVjEyEA4SEQ'
-    'oNVjEyX0JBUlJBX1YxMxAhEgcKA1YxMxAPEhEKDVYxM19CQVJSQV9WMTQQIhIHCgNWMTQQEBIR'
-    'Cg1WMTRfQkFSUkFfVjE1ECMSBwoDVjE1EBESEQoNVjE1X0JBUlJBX1YxNhAkEgcKA1YxNhASEh'
-    'EKDVYxNl9CQVJSQV9WMTcQJRIHCgNWMTcQEzoEkLUYAg==');
+    'CgtHcmF1Qm91bGRlciKLBAoLR3JhdUJvdWxkZXISDgoKSU5ERUZJTklETxAAEgsKB1BST0pFVE'
+    '8QJhIGCgJWQhABEg8KC1ZCX0JBUlJBX1YwEBQSBgoCVjAQAhIPCgtWMF9CQVJSQV9WMRAVEgYK'
+    'AlYxEAMSDwoLVjFfQkFSUkFfVjIQFhIGCgJWMhAEEg8KC1YyX0JBUlJBX1YzEBcSBgoCVjMQBR'
+    'IPCgtWM19CQVJSQV9WNBAYEgYKAlY0EAYSDwoLVjRfQkFSUkFfVjUQGRIGCgJWNRAHEg8KC1Y1'
+    'X0JBUlJBX1Y2EBoSBgoCVjYQCBIPCgtWNl9CQVJSQV9WNxAbEgYKAlY3EAkSDwoLVjdfQkFSUk'
+    'FfVjgQHBIGCgJWOBAKEg8KC1Y4X0JBUlJBX1Y5EB0SBgoCVjkQCxIQCgxWOV9CQVJSQV9WMTAQ'
+    'HhIHCgNWMTAQDBIRCg1WMTBfQkFSUkFfVjExEB8SBwoDVjExEA0SEQoNVjExX0JBUlJBX1YxMh'
+    'AgEgcKA1YxMhAOEhEKDVYxMl9CQVJSQV9WMTMQIRIHCgNWMTMQDxIRCg1WMTNfQkFSUkFfVjE0'
+    'ECISBwoDVjE0EBASEQoNVjE0X0JBUlJBX1YxNRAjEgcKA1YxNRAREhEKDVYxNV9CQVJSQV9WMT'
+    'YQJBIHCgNWMTYQEhIRCg1WMTZfQkFSUkFfVjE3ECUSBwoDVjE3EBM6BJC1GAI=');
 
 @$core.Deprecated('Use grauArtificialDescriptor instead')
 const GrauArtificial$json = {
