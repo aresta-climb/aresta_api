@@ -301,3 +301,51 @@ def test_contratos_beta_midia_limpa_e_arquivo_curadoria_betas() -> None:
     )
 
 
+def test_ponto_de_interesse_possui_tamanho_fonte_serializavel() -> None:
+    """Valida que Mapa.PontoDeInteresse possui o campo int32 tamanho_fonte com texto_na_ui."""
+    desc_poi = croqui_pb2.Mapa.PontoDeInteresse.DESCRIPTOR
+    assert "tamanho_fonte" in desc_poi.fields_by_name
+    campo_tf = desc_poi.fields_by_name["tamanho_fonte"]
+    assert campo_tf.number == 14
+    assert campo_tf.GetOptions().Extensions[croqui_pb2.texto_na_ui] == "Tamanho da Fonte"
+
+    poi = croqui_pb2.Mapa.PontoDeInteresse(
+        uid="poi_teste_1234",
+        texto_visivel="132",
+        tamanho_fonte=20,
+    )
+    poi.retangulo.x = 100
+    poi.retangulo.y = 200
+    poi.retangulo.comprimento = 40
+    poi.retangulo.largura = 30
+
+    recuperado = croqui_pb2.Mapa.PontoDeInteresse()
+    recuperado.ParseFromString(poi.SerializeToString())
+    assert recuperado.texto_visivel == "132"
+    assert recuperado.tamanho_fonte == 20
+
+
+def test_escalada_serializa_betas_aprovados_e_fonte_midia_enum() -> None:
+    """
+    Valida que FonteMidia segue o encapsulamento Enum com INDEFINIDO = 0 e que
+    Escalada.betas serializa e desserializa instâncias limpas de MidiaBeta.
+    """
+    assert hasattr(beta_pb2.FonteMidia, "Enum")
+    assert beta_pb2.FonteMidia.INDEFINIDO == 0
+    assert beta_pb2.FonteMidia.YOUTUBE == 1
+    assert beta_pb2.FonteMidia.INSTAGRAM == 2
+    assert beta_pb2.FonteMidia.BLOG == 3
+
+    escalada = croqui_pb2.Escalada()
+    midia = escalada.betas.add()
+    midia.url = "https://youtube.com/watch?v=123"
+    midia.titulo = "Beta Teste"
+    midia.fonte = beta_pb2.FonteMidia.YOUTUBE
+
+    recuperada = croqui_pb2.Escalada()
+    recuperada.ParseFromString(escalada.SerializeToString())
+    assert len(recuperada.betas) == 1
+    assert recuperada.betas[0].url == "https://youtube.com/watch?v=123"
+    assert recuperada.betas[0].titulo == "Beta Teste"
+    assert recuperada.betas[0].fonte == beta_pb2.FonteMidia.YOUTUBE
+

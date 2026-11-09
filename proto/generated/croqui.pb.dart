@@ -2695,6 +2695,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     $core.String? textoVisivel,
     $core.String? rotulo,
     $core.String? uid,
+    $core.int? tamanhoFonte,
   }) {
     final result = Mapa_PontoDeInteresse._();
     if (id != null) result.id = id;
@@ -2708,6 +2709,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     if (textoVisivel != null) result.textoVisivel = textoVisivel;
     if (rotulo != null) result.rotulo = rotulo;
     if (uid != null) result.uid = uid;
+    if (tamanhoFonte != null) result.tamanhoFonte = tamanhoFonte;
     return result;
   }
 
@@ -2750,6 +2752,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     ..aOS(11, _omitFieldNames ? '' : 'textoVisivel')
     ..aOS(12, _omitFieldNames ? '' : 'rotulo')
     ..aOS(13, _omitFieldNames ? '' : 'uid')
+    ..aI(14, _omitFieldNames ? '' : 'tamanhoFonte')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2919,6 +2922,17 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   $core.bool hasUid() => $_has(10);
   @$pb.TagNumber(13)
   void clearUid() => $_clearField(13);
+
+  /// Tamanho da fonte do texto visível em pontos/pixels.
+  /// Se omitido ou zero, o tamanho é calculado automaticamente a partir da geometria da área.
+  @$pb.TagNumber(14)
+  $core.int get tamanhoFonte => $_getIZ(11);
+  @$pb.TagNumber(14)
+  set tamanhoFonte($core.int value) => $_setSignedInt32(11, value);
+  @$pb.TagNumber(14)
+  $core.bool hasTamanhoFonte() => $_has(11);
+  @$pb.TagNumber(14)
+  void clearTamanhoFonte() => $_clearField(14);
 }
 
 /// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.

@@ -1162,6 +1162,7 @@ class Mapa(_message.Message):
         LABEL_FIELD_NUMBER: _builtins.int
         ROTULO_FIELD_NUMBER: _builtins.int
         TEXTO_VISIVEL_FIELD_NUMBER: _builtins.int
+        TAMANHO_FONTE_FIELD_NUMBER: _builtins.int
         COR_FIELD_NUMBER: _builtins.int
         CIRCULO_FIELD_NUMBER: _builtins.int
         QUADRADO_FIELD_NUMBER: _builtins.int
@@ -1196,6 +1197,10 @@ class Mapa(_message.Message):
         """Texto explícito a ser renderizado visualmente dentro ou junto da área no mapa.
         Se omitido ou vazio, nenhum texto será desenhado sobre a imagem da rocha.
         """
+        tamanho_fonte: _builtins.int
+        """Tamanho da fonte do texto visível em pontos/pixels.
+        Se omitido ou zero, o tamanho é calculado automaticamente a partir da geometria da área.
+        """
         cor: _builtins.str
         """Cor customizada em formato hexadecimal (ex: "#FF6D00").
         Se omitida, o editor e o app utilizam a cor padrão.
@@ -1228,6 +1233,7 @@ class Mapa(_message.Message):
             label: _builtins.str | None = ...,
             rotulo: _builtins.str | None = ...,
             texto_visivel: _builtins.str | None = ...,
+            tamanho_fonte: _builtins.int | None = ...,
             cor: _builtins.str | None = ...,
             circulo: Global___BoundingCirculo | None = ...,
             quadrado: Global___BoundingQuadrado | None = ...,
@@ -1235,9 +1241,9 @@ class Mapa(_message.Message):
             poligono: Global___BoundingPoligono | None = ...,
             linha: Global___LinhaTrajeto | None = ...,
         ) -> None: ...
-        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
+        _HasFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
         def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
+        _ClearFieldArgType: _TypeAlias = _typing.Literal["circulo", b"circulo", "cor", b"cor", "id", b"id", "label", b"label", "linha", b"linha", "poligono", b"poligono", "quadrado", b"quadrado", "retangulo", b"retangulo", "rotulo", b"rotulo", "tamanho_fonte", b"tamanho_fonte", "texto_visivel", b"texto_visivel", "tipo_area", b"tipo_area", "uid", b"uid"]  # noqa: Y015
         def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
         _WhichOneofReturnType_tipo_area: _TypeAlias = _typing.Literal["circulo", "quadrado", "retangulo", "poligono", "linha"]  # noqa: Y015
         _WhichOneofArgType_tipo_area: _TypeAlias = _typing.Literal["tipo_area", b"tipo_area"]  # noqa: Y015
