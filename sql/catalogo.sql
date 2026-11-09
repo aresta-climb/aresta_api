@@ -89,7 +89,4 @@ CREATE TABLE IF NOT EXISTS catalogo_distancias_estrada (
     distancia_metros INTEGER NOT NULL,
     na_borda INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (croqui_uid, no_osm_id)
-);
-
-CREATE INDEX IF NOT EXISTS idx_catalogo_distancias_estrada_no
-ON catalogo_distancias_estrada(no_osm_id);
+) WITHOUT ROWID;
