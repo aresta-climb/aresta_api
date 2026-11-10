@@ -327,6 +327,30 @@ def test_ponto_de_interesse_possui_tamanho_fonte_serializavel() -> None:
     assert recuperado.tamanho_fonte == 20
 
 
+def test_ponto_de_interesse_possui_preenchido_serializavel() -> None:
+    """Valida que Mapa.PontoDeInteresse possui o campo bool preenchido = 15 com texto_na_ui."""
+    desc_poi = croqui_pb2.Mapa.PontoDeInteresse.DESCRIPTOR
+    assert "preenchido" in desc_poi.fields_by_name
+    campo_preenchido = desc_poi.fields_by_name["preenchido"]
+    assert campo_preenchido.number == 15
+    assert campo_preenchido.GetOptions().Extensions[croqui_pb2.texto_na_ui] == "Preenchido (Opaco)"
+
+    poi = croqui_pb2.Mapa.PontoDeInteresse(
+        uid="poi_opaco_1234",
+        cor="#000000",
+        preenchido=True,
+    )
+    poi.circulo.x = 50
+    poi.circulo.y = 60
+    poi.circulo.raio = 12
+
+    recuperado = croqui_pb2.Mapa.PontoDeInteresse()
+    recuperado.ParseFromString(poi.SerializeToString())
+    assert recuperado.preenchido is True
+    assert recuperado.cor == "#000000"
+    assert recuperado.circulo.raio == 12
+
+
 def test_escalada_serializa_betas_aprovados_e_fonte_midia_enum() -> None:
     """
     Valida que FonteMidia segue o encapsulamento Enum com INDEFINIDO = 0 e que

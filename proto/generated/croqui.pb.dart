@@ -2709,6 +2709,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     $core.String? rotulo,
     $core.String? uid,
     $core.int? tamanhoFonte,
+    $core.bool? preenchido,
   }) {
     final result = Mapa_PontoDeInteresse._();
     if (id != null) result.id = id;
@@ -2723,6 +2724,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     if (rotulo != null) result.rotulo = rotulo;
     if (uid != null) result.uid = uid;
     if (tamanhoFonte != null) result.tamanhoFonte = tamanhoFonte;
+    if (preenchido != null) result.preenchido = preenchido;
     return result;
   }
 
@@ -2766,6 +2768,7 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
     ..aOS(12, _omitFieldNames ? '' : 'rotulo')
     ..aOS(13, _omitFieldNames ? '' : 'uid')
     ..aI(14, _omitFieldNames ? '' : 'tamanhoFonte')
+    ..aOB(15, _omitFieldNames ? '' : 'preenchido')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -2946,6 +2949,16 @@ class Mapa_PontoDeInteresse extends $pb.GeneratedMessage {
   $core.bool hasTamanhoFonte() => $_has(11);
   @$pb.TagNumber(14)
   void clearTamanhoFonte() => $_clearField(14);
+
+  /// Define se a forma geométrica (círculo, retângulo, quadrado, polígono) deve ter preenchimento sólido (opaco).
+  @$pb.TagNumber(15)
+  $core.bool get preenchido => $_getBF(12);
+  @$pb.TagNumber(15)
+  set preenchido($core.bool value) => $_setBool(12, value);
+  @$pb.TagNumber(15)
+  $core.bool hasPreenchido() => $_has(12);
+  @$pb.TagNumber(15)
+  void clearPreenchido() => $_clearField(15);
 }
 
 /// Ajuste fino de câmera a ser utilizado quando a referência estiver selecionada.
