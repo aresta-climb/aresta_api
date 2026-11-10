@@ -412,6 +412,9 @@ message MalhaEstradaPico {
 
   // Lista ordenada de nós rodoviários pré-computados para o pico.
   repeated NoMalhaEstrada nos = 3;
+
+  // Versão do algoritmo de geração da malha de pontos rodoviários.
+  int32 versao = 4;
 }
 
 // Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).

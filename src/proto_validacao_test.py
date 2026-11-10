@@ -380,3 +380,20 @@ def test_escalada_serializa_betas_aprovados_e_fonte_midia_enum() -> None:
     assert recuperada.betas[0].titulo == "Beta Teste"
     assert recuperada.betas[0].fonte == beta_pb2.FonteMidia.YOUTUBE
 
+
+def test_malha_estrada_pico_possui_versao_serializavel() -> None:
+    """Valida que MalhaEstradaPico possui o campo int32 versao = 4."""
+    desc_malha = croqui_pb2.MalhaEstradaPico.DESCRIPTOR
+    assert "versao" in desc_malha.fields_by_name
+    assert desc_malha.fields_by_name["versao"].number == 4
+
+    malha = croqui_pb2.MalhaEstradaPico(
+        latitude_referencia_e7=-195600000,
+        longitude_referencia_e7=-439600000,
+        versao=2,
+    )
+    recuperada = croqui_pb2.MalhaEstradaPico()
+    recuperada.ParseFromString(malha.SerializeToString())
+    assert recuperada.versao == 2
+
+

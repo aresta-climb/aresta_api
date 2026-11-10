@@ -529,6 +529,7 @@ const MalhaEstradaPico$json = {
       '6': '.aresta.NoMalhaEstrada',
       '10': 'nos'
     },
+    {'1': 'versao', '3': 4, '4': 1, '5': 5, '10': 'versao'},
   ],
   '7': {},
 };
@@ -538,7 +539,7 @@ final $typed_data.Uint8List malhaEstradaPicoDescriptor = $convert.base64Decode(
     'ChBNYWxoYUVzdHJhZGFQaWNvEjQKFmxhdGl0dWRlX3JlZmVyZW5jaWFfZTcYASABKBFSFGxhdG'
     'l0dWRlUmVmZXJlbmNpYUU3EjYKF2xvbmdpdHVkZV9yZWZlcmVuY2lhX2U3GAIgASgRUhVsb25n'
     'aXR1ZGVSZWZlcmVuY2lhRTcSKAoDbm9zGAMgAygLMhYuYXJlc3RhLk5vTWFsaGFFc3RyYWRhUg'
-    'Nub3M6BJC1GAQ=');
+    'Nub3MSFgoGdmVyc2FvGAQgASgFUgZ2ZXJzYW86BJC1GAQ=');
 
 @$core.Deprecated('Use picoDescriptor instead')
 const Pico$json = {

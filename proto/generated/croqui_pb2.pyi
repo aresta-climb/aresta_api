@@ -692,10 +692,13 @@ class MalhaEstradaPico(_message.Message):
     LATITUDE_REFERENCIA_E7_FIELD_NUMBER: _builtins.int
     LONGITUDE_REFERENCIA_E7_FIELD_NUMBER: _builtins.int
     NOS_FIELD_NUMBER: _builtins.int
+    VERSAO_FIELD_NUMBER: _builtins.int
     latitude_referencia_e7: _builtins.int
     """Latitude de referência (Pico.localizacao.latitude) para a qual a malha foi gerada."""
     longitude_referencia_e7: _builtins.int
     """Longitude de referência (Pico.localizacao.longitude) para a qual a malha foi gerada."""
+    versao: _builtins.int
+    """Versão do algoritmo de geração da malha de pontos rodoviários."""
     @_builtins.property
     def nos(self) -> _containers.RepeatedCompositeFieldContainer[Global___NoMalhaEstrada]:
         """Lista ordenada de nós rodoviários pré-computados para o pico."""
@@ -706,10 +709,11 @@ class MalhaEstradaPico(_message.Message):
         latitude_referencia_e7: _builtins.int | None = ...,
         longitude_referencia_e7: _builtins.int | None = ...,
         nos: _abc.Iterable[Global___NoMalhaEstrada] | None = ...,
+        versao: _builtins.int | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos"]  # noqa: Y015
+    _HasFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos", "versao", b"versao"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["latitude_referencia_e7", b"latitude_referencia_e7", "longitude_referencia_e7", b"longitude_referencia_e7", "nos", b"nos", "versao", b"versao"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 

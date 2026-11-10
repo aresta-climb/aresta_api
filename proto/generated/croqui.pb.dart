@@ -1372,6 +1372,7 @@ class MalhaEstradaPico extends $pb.GeneratedMessage {
     $core.int? latitudeReferenciaE7,
     $core.int? longitudeReferenciaE7,
     $core.Iterable<NoMalhaEstrada>? nos,
+    $core.int? versao,
   }) {
     final result = MalhaEstradaPico._();
     if (latitudeReferenciaE7 != null)
@@ -1379,6 +1380,7 @@ class MalhaEstradaPico extends $pb.GeneratedMessage {
     if (longitudeReferenciaE7 != null)
       result.longitudeReferenciaE7 = longitudeReferenciaE7;
     if (nos != null) result.nos.addAll(nos);
+    if (versao != null) result.versao = versao;
     return result;
   }
 
@@ -1401,6 +1403,7 @@ class MalhaEstradaPico extends $pb.GeneratedMessage {
         fieldType: $pb.PbFieldType.OS3)
     ..pPM<NoMalhaEstrada>(3, _omitFieldNames ? '' : 'nos',
         subBuilder: NoMalhaEstrada.$_createMessage)
+    ..aI(4, _omitFieldNames ? '' : 'versao')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1448,6 +1451,16 @@ class MalhaEstradaPico extends $pb.GeneratedMessage {
   /// Lista ordenada de nós rodoviários pré-computados para o pico.
   @$pb.TagNumber(3)
   $pb.PbList<NoMalhaEstrada> get nos => $_getList(2);
+
+  /// Versão do algoritmo de geração da malha de pontos rodoviários.
+  @$pb.TagNumber(4)
+  $core.int get versao => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set versao($core.int value) => $_setSignedInt32(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasVersao() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearVersao() => $_clearField(4);
 }
 
 /// Representa um pico de escalada completo (ex: Serra do Cipó, Gruta da Lapinha).
