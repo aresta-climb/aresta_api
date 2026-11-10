@@ -708,6 +708,9 @@ message Mapa {
     // Se omitida, o editor e o app utilizam a cor padrão.
     string cor = 10 [(aresta.texto_na_ui) = "Cor"];
 
+    // Define se a forma geométrica (círculo, retângulo, quadrado, polígono) deve ter preenchimento sólido (opaco).
+    bool preenchido = 15 [(aresta.texto_na_ui) = "Preenchido (Opaco)"];
+
     // Bounding area do ponto de interesse na imagem.
     // Prefira usar na seguinte ordem de preferência:
     //  - 'circulo': mais preciso e simples, use sempre que possível.
