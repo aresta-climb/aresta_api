@@ -64,6 +64,8 @@ class VersaoLaudoFixalog(TypedDict):
     materiais_referenciados_json: NotRequired[str]
     status_moderacao: NotRequired[Literal["em_analise", "ativo", "bloqueado", "suspenso"]]
     motivo_moderacao: str | None
+    verificacao_concluida: NotRequired[int]
+    verificacao_total: NotRequired[int]
     criado_em: str
 
 
@@ -97,6 +99,9 @@ class RespostaStatusLaudoFixalog(TypedDict):
     ja_enviado: bool
     versao: int | None
     status_moderacao: str | None
+    motivo_moderacao: NotRequired[str | None]
+    verificacao_concluida: NotRequired[int]
+    verificacao_total: NotRequired[int]
     chunks_recebidos: list[int]
 
 
@@ -109,6 +114,8 @@ class RespostaChunkLaudoFixalog(TypedDict):
     ja_enviado: NotRequired[bool]
     versao: NotRequired[int | None]
     status_moderacao: NotRequired[str | None]
+    verificacao_concluida: NotRequired[int]
+    verificacao_total: NotRequired[int]
     url_publica: NotRequired[str | None]
     chunks_recebidos: list[int]
 

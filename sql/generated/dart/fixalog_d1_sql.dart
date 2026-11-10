@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS versoes_laudo_fixalog (
     materiais_referenciados_json TEXT NOT NULL DEFAULT '[]',
     status_moderacao TEXT NOT NULL DEFAULT 'em_analise',
     motivo_moderacao TEXT,
+    verificacao_concluida INTEGER NOT NULL DEFAULT 0,
+    verificacao_total INTEGER NOT NULL DEFAULT 1,
     criado_em TEXT NOT NULL,
     PRIMARY KEY (id_sessao, versao)
 );
@@ -127,6 +129,8 @@ CREATE TABLE IF NOT EXISTS versoes_laudo_fixalog (
     materiais_referenciados_json TEXT NOT NULL DEFAULT '[]',
     status_moderacao TEXT NOT NULL DEFAULT 'em_analise',
     motivo_moderacao TEXT,
+    verificacao_concluida INTEGER NOT NULL DEFAULT 0,
+    verificacao_total INTEGER NOT NULL DEFAULT 1,
     criado_em TEXT NOT NULL,
     PRIMARY KEY (id_sessao, versao)
 );
@@ -272,6 +276,8 @@ class LinhaVersoesLaudoFixalog {
   final String materiaisReferenciadosJson;
   final String statusModeracao;
   final String? motivoModeracao;
+  final int verificacaoConcluida;
+  final int verificacaoTotal;
   final String criadoEm;
 
   const LinhaVersoesLaudoFixalog({
@@ -287,6 +293,8 @@ class LinhaVersoesLaudoFixalog {
     this.materiaisReferenciadosJson = '',
     this.statusModeracao = '',
     this.motivoModeracao,
+    this.verificacaoConcluida = 0,
+    this.verificacaoTotal = 0,
     required this.criadoEm,
   });
 
@@ -304,6 +312,8 @@ class LinhaVersoesLaudoFixalog {
       materiaisReferenciadosJson: (map['materiais_referenciados_json'] as String?) ?? '',
       statusModeracao: (map['status_moderacao'] as String?) ?? '',
       motivoModeracao: map['motivo_moderacao'] as String?,
+      verificacaoConcluida: (map['verificacao_concluida'] as int?) ?? 0,
+      verificacaoTotal: (map['verificacao_total'] as int?) ?? 0,
       criadoEm: map['criado_em'] as String,
     );
   }
@@ -322,6 +332,8 @@ class LinhaVersoesLaudoFixalog {
       'materiais_referenciados_json': materiaisReferenciadosJson,
       'status_moderacao': statusModeracao,
       'motivo_moderacao': motivoModeracao,
+      'verificacao_concluida': verificacaoConcluida,
+      'verificacao_total': verificacaoTotal,
       'criado_em': criadoEm,
     };
   }

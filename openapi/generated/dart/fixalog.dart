@@ -139,6 +139,8 @@ class VersaoLaudoFixalog {
   final String? materiaisReferenciadosJson;
   final String? statusModeracao;
   final String? motivoModeracao;
+  final int? verificacaoConcluida;
+  final int? verificacaoTotal;
   final String criadoEm;
 
   const VersaoLaudoFixalog({
@@ -154,6 +156,8 @@ class VersaoLaudoFixalog {
     this.materiaisReferenciadosJson,
     this.statusModeracao,
     this.motivoModeracao,
+    this.verificacaoConcluida,
+    this.verificacaoTotal,
     required this.criadoEm,
   });
 
@@ -171,6 +175,8 @@ class VersaoLaudoFixalog {
       materiaisReferenciadosJson: json['materiais_referenciados_json'] as String?,
       statusModeracao: json['status_moderacao'] as String?,
       motivoModeracao: json['motivo_moderacao'] as String?,
+      verificacaoConcluida: json['verificacao_concluida'] as int?,
+      verificacaoTotal: json['verificacao_total'] as int?,
       criadoEm: json['criado_em'] as String,
     );
   }
@@ -189,6 +195,8 @@ class VersaoLaudoFixalog {
       'materiais_referenciados_json': materiaisReferenciadosJson,
       'status_moderacao': statusModeracao,
       'motivo_moderacao': motivoModeracao,
+      'verificacao_concluida': verificacaoConcluida,
+      'verificacao_total': verificacaoTotal,
       'criado_em': criadoEm,
     };
   }
@@ -280,6 +288,9 @@ class RespostaStatusLaudoFixalog {
   final bool jaEnviado;
   final int? versao;
   final String? statusModeracao;
+  final String? motivoModeracao;
+  final int? verificacaoConcluida;
+  final int? verificacaoTotal;
   final List<int> chunksRecebidos;
 
   const RespostaStatusLaudoFixalog({
@@ -288,6 +299,9 @@ class RespostaStatusLaudoFixalog {
     required this.jaEnviado,
     this.versao,
     this.statusModeracao,
+    this.motivoModeracao,
+    this.verificacaoConcluida,
+    this.verificacaoTotal,
     required this.chunksRecebidos,
   });
 
@@ -298,6 +312,9 @@ class RespostaStatusLaudoFixalog {
       jaEnviado: json['ja_enviado'] as bool,
       versao: json['versao'] as int?,
       statusModeracao: json['status_moderacao'] as String?,
+      motivoModeracao: json['motivo_moderacao'] as String?,
+      verificacaoConcluida: json['verificacao_concluida'] as int?,
+      verificacaoTotal: json['verificacao_total'] as int?,
       chunksRecebidos: (json['chunks_recebidos'] as List<dynamic>).map((e) => e as int).toList(),
     );
   }
@@ -309,6 +326,9 @@ class RespostaStatusLaudoFixalog {
       'ja_enviado': jaEnviado,
       'versao': versao,
       'status_moderacao': statusModeracao,
+      'motivo_moderacao': motivoModeracao,
+      'verificacao_concluida': verificacaoConcluida,
+      'verificacao_total': verificacaoTotal,
       'chunks_recebidos': chunksRecebidos,
     };
   }
@@ -321,6 +341,8 @@ class RespostaChunkLaudoFixalog {
   final bool? jaEnviado;
   final int? versao;
   final String? statusModeracao;
+  final int? verificacaoConcluida;
+  final int? verificacaoTotal;
   final String? urlPublica;
   final List<int> chunksRecebidos;
 
@@ -331,6 +353,8 @@ class RespostaChunkLaudoFixalog {
     this.jaEnviado,
     this.versao,
     this.statusModeracao,
+    this.verificacaoConcluida,
+    this.verificacaoTotal,
     this.urlPublica,
     required this.chunksRecebidos,
   });
@@ -343,6 +367,8 @@ class RespostaChunkLaudoFixalog {
       jaEnviado: json['ja_enviado'] as bool?,
       versao: json['versao'] as int?,
       statusModeracao: json['status_moderacao'] as String?,
+      verificacaoConcluida: json['verificacao_concluida'] as int?,
+      verificacaoTotal: json['verificacao_total'] as int?,
       urlPublica: json['url_publica'] as String?,
       chunksRecebidos: (json['chunks_recebidos'] as List<dynamic>).map((e) => e as int).toList(),
     );
@@ -356,6 +382,8 @@ class RespostaChunkLaudoFixalog {
       'ja_enviado': jaEnviado,
       'versao': versao,
       'status_moderacao': statusModeracao,
+      'verificacao_concluida': verificacaoConcluida,
+      'verificacao_total': verificacaoTotal,
       'url_publica': urlPublica,
       'chunks_recebidos': chunksRecebidos,
     };

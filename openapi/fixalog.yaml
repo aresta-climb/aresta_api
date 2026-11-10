@@ -133,6 +133,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErroApiFixalog"
+        "403":
+          description: Tentativa de consultar status de laudo pertencente a outro usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErroApiFixalog"
   /api/v1/laudos/{id}/chunk:
     put:
       operationId: enviar_chunk_laudo_fixalog
@@ -425,6 +431,10 @@ components:
           type:
             - string
             - "null"
+        verificacao_concluida:
+          type: integer
+        verificacao_total:
+          type: integer
         criado_em:
           type: string
     RequisicaoRegistroChaveFixalog:
@@ -503,6 +513,14 @@ components:
           type:
             - string
             - "null"
+        motivo_moderacao:
+          type:
+            - string
+            - "null"
+        verificacao_concluida:
+          type: integer
+        verificacao_total:
+          type: integer
         chunks_recebidos:
           type: array
           items:
@@ -531,6 +549,10 @@ components:
           type:
             - string
             - "null"
+        verificacao_concluida:
+          type: integer
+        verificacao_total:
+          type: integer
         url_publica:
           type:
             - string

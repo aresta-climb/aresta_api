@@ -52,6 +52,8 @@ CREATE TABLE IF NOT EXISTS versoes_laudo_fixalog (
     materiais_referenciados_json TEXT NOT NULL DEFAULT '[]',
     status_moderacao TEXT NOT NULL DEFAULT 'em_analise',
     motivo_moderacao TEXT,
+    verificacao_concluida INTEGER NOT NULL DEFAULT 0,
+    verificacao_total INTEGER NOT NULL DEFAULT 1,
     criado_em TEXT NOT NULL,
     PRIMARY KEY (id_sessao, versao)
 );

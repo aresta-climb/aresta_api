@@ -52,11 +52,13 @@ CREATE TABLE IF NOT EXISTS versoes_laudo_fixalog (
     materiais_referenciados_json TEXT NOT NULL DEFAULT '[]',
     status_moderacao TEXT NOT NULL DEFAULT 'em_analise',
     motivo_moderacao TEXT,
+    verificacao_concluida INTEGER NOT NULL DEFAULT 0,
+    verificacao_total INTEGER NOT NULL DEFAULT 1,
     criado_em TEXT NOT NULL,
     PRIMARY KEY (id_sessao, versao)
 );
 """.strip()
-COLUNAS_VERSOES_LAUDO_FIXALOG: tuple[str, ...] = ("id_sessao", "versao", "r2_key", "tamanho_bytes", "hash_epub_sha256", "fingerprint_chave", "nome_mantenedor", "clube_mantenedor", "indices_zip_json", "materiais_referenciados_json", "status_moderacao", "motivo_moderacao", "criado_em",)
+COLUNAS_VERSOES_LAUDO_FIXALOG: tuple[str, ...] = ("id_sessao", "versao", "r2_key", "tamanho_bytes", "hash_epub_sha256", "fingerprint_chave", "nome_mantenedor", "clube_mantenedor", "indices_zip_json", "materiais_referenciados_json", "status_moderacao", "motivo_moderacao", "verificacao_concluida", "verificacao_total", "criado_em",)
 
 DDL_INDICE_IDX_CHAVES_FIXALOG_USER = """
 CREATE INDEX IF NOT EXISTS idx_chaves_fixalog_user
@@ -139,4 +141,6 @@ class LinhaVersoesLaudoFixalog(TypedDict):
     materiais_referenciados_json: NotRequired[str]
     status_moderacao: NotRequired[str]
     motivo_moderacao: str | None
+    verificacao_concluida: NotRequired[int]
+    verificacao_total: NotRequired[int]
     criado_em: str

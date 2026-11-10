@@ -53,6 +53,8 @@ export interface VersaoLaudoFixalog {
   materiais_referenciados_json?: string;
   status_moderacao?: "em_analise" | "ativo" | "bloqueado" | "suspenso";
   motivo_moderacao: string | null;
+  verificacao_concluida?: number;
+  verificacao_total?: number;
   criado_em: string;
 }
 
@@ -80,6 +82,9 @@ export interface RespostaStatusLaudoFixalog {
   ja_enviado: boolean;
   versao: number | null;
   status_moderacao: string | null;
+  motivo_moderacao?: string | null;
+  verificacao_concluida?: number;
+  verificacao_total?: number;
   chunks_recebidos: number[];
 }
 
@@ -90,6 +95,8 @@ export interface RespostaChunkLaudoFixalog {
   ja_enviado?: boolean;
   versao?: number | null;
   status_moderacao?: string | null;
+  verificacao_concluida?: number;
+  verificacao_total?: number;
   url_publica?: string | null;
   chunks_recebidos: number[];
 }
