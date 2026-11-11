@@ -195,7 +195,6 @@ def test_pico_possui_malha_estrada_invisivel_e_serializavel() -> None:
     assert recuperado.malha_estrada.conteudo.nos[0].duracao_minutos == 18
 
 
-
 def test_metadados_arquivo_no_editor_formato_nome_arquivo() -> None:
     """Valida que MetadadosArquivoNoEditor usa NOME_ARQUIVO em caminho_novo e oculta campos internos."""
     assert croqui_pb2.CampoFormatoUi.NOME_ARQUIVO == 9
@@ -203,7 +202,9 @@ def test_metadados_arquivo_no_editor_formato_nome_arquivo() -> None:
     desc = croqui_pb2.MetadadosArquivoNoEditor.DESCRIPTOR
     campo_novo = desc.fields_by_name["caminho_novo"]
     opcoes_novo = campo_novo.GetOptions()
-    assert opcoes_novo.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.NOME_ARQUIVO
+    assert (
+        opcoes_novo.Extensions[croqui_pb2.formato_na_ui] == croqui_pb2.CampoFormatoUi.NOME_ARQUIVO
+    )
     assert opcoes_novo.Extensions[croqui_pb2.texto_na_ui] == "Nome do arquivo"
 
     campo_original = desc.fields_by_name["caminho_original"]
@@ -395,5 +396,3 @@ def test_malha_estrada_pico_possui_versao_serializavel() -> None:
     recuperada = croqui_pb2.MalhaEstradaPico()
     recuperada.ParseFromString(malha.SerializeToString())
     assert recuperada.versao == 2
-
-
