@@ -39,9 +39,37 @@ def test_validar_paridade_contratos_reais_catalogo() -> None:
         "catalogo_distancias_estrada": "CatalogoDistanciaEstrada",
     }
     validar_paridade_esquemas(esquema_sql, spec_openapi, MAPEAMENTO_PARIDADE_CATALOGO)
+    tabela_croquis = next(t for t in esquema_sql.tabelas if t.nome == "catalogo_croquis")
+    nomes_colunas_croquis = [c.nome for c in tabela_croquis.colunas]
+    assert "latitude_e7" in nomes_colunas_croquis
+    assert "longitude_e7" in nomes_colunas_croquis
+    assert "url_google_maps" in nomes_colunas_croquis
     schema_deletes = next(s for s in spec_openapi.schemas if s.nome == "DeletesSyncCatalogo")
     nomes_props_deletes = [p.nome for p in schema_deletes.propriedades]
     assert "distancias_estrada" in nomes_props_deletes
+
+
+def test_validar_contrato_real_app_links_e_vitrine_croquis() -> None:
+    raiz_api = Path(__file__).resolve().parent.parent
+    conteudo_yaml = (raiz_api / "openapi" / "app_links.yaml").read_text(encoding="utf-8")
+    spec = inspecionar_especificacao_openapi(conteudo_yaml, nome_modulo="app_links")
+
+    caminhos = {r.caminho for r in spec.rotas}
+    assert "/croquis" in caminhos
+    assert "/croquis/busca.json" in caminhos
+    assert "/croquis/sitemap.xml" in caminhos
+    assert "/croquis/{uid}" in caminhos
+    assert "/croquis/{uid}/{slug}" in caminhos
+
+    schema_entidade = next(s for s in spec.schemas if s.nome == "ResumoEntidadeLink")
+    props_entidade = {p.nome for p in schema_entidade.propriedades}
+    assert {
+        "setor_uid",
+        "grupo_uid",
+        "latitude_e7",
+        "longitude_e7",
+        "url_google_maps",
+    }.issubset(props_entidade)
 
 
 def test_validar_paridade_contratos_reais_fixalog() -> None:

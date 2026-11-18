@@ -488,6 +488,9 @@ def test_esquemas_reais_catalogo_e_catalogo_d1_possuem_colunas_e_indices_canonic
         "nome",
         "cidade",
         "estado",
+        "latitude_e7",
+        "longitude_e7",
+        "url_google_maps",
     ]
     assert [i.nome for i in esquema_catalogo.indices] == [
         "idx_catalogo_aresta_croqui",

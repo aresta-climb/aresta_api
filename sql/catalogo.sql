@@ -8,12 +8,12 @@
 --   Define a estrutura do banco de dados SQLite local (`catalogo.db`) embarcado
 --   e sincronizado no aplicativo móvel Aresta (`aresta_app`), gerado pelo
 --   pipeline de compilação de dados (`aresta_db`) e espelhado no Cloudflare D1
---   (`aresta_backend/cloudflare/catalogo`).
+--   (`aresta_backend/cloudflare/catalogo` e `aresta_backend/cloudflare/app-links`).
 --
 --   O catálogo permite busca instantânea offline/online por picos, croquis,
 --   grupos, setores, vias/boulders e botões de ação, além de resolução direta
 --   de qualquer entidade pelo seu identificador único imutável (`uid`) para
---   integração com cadenas, favoritos, projetos e deep links.
+--   integração com cadenas, favoritos, projetos, vitrine web e deep links.
 -- =============================================================================
 
 -- -----------------------------------------------------------------------------
@@ -24,7 +24,10 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT
+    estado TEXT,
+    latitude_e7 INTEGER,
+    longitude_e7 INTEGER,
+    url_google_maps TEXT
 );
 
 -- -----------------------------------------------------------------------------

@@ -8,10 +8,13 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT
+    estado TEXT,
+    latitude_e7 INTEGER,
+    longitude_e7 INTEGER,
+    url_google_maps TEXT
 );
 `.trim();
-export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = ["croqui_uid", "id_slug", "nome", "cidade", "estado"];
+export const COLUNAS_CATALOGO_CROQUIS: readonly string[] = ["croqui_uid", "id_slug", "nome", "cidade", "estado", "latitude_e7", "longitude_e7", "url_google_maps"];
 
 export const DDL_TABELA_CATALOGO_ARESTA = `
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -89,6 +92,9 @@ export interface LinhaCatalogoCroquis {
   nome: string;
   cidade: string | null;
   estado: string | null;
+  latitude_e7: number | null;
+  longitude_e7: number | null;
+  url_google_maps: string | null;
 }
 
 export interface LinhaCatalogoAresta {

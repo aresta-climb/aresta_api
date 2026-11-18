@@ -117,6 +117,21 @@ components:
             - string
             - "null"
           description: Sigla da unidade federativa / estado em 2 letras maiúsculas (ex. `MG`, `RJ`, `SP`) ou `null`.
+        latitude_e7:
+          type:
+            - integer
+            - "null"
+          description: Latitude de referência do pico multiplicada por 10^7 (micrograus E7) ou `null` quando indisponível.
+        longitude_e7:
+          type:
+            - integer
+            - "null"
+          description: Longitude de referência do pico multiplicada por 10^7 (micrograus E7) ou `null` quando indisponível.
+        url_google_maps:
+          type:
+            - string
+            - "null"
+          description: Link principal de referência do pico no Google Maps ou `null` quando não informado.
     CatalogoEntidade:
       type: object
       description: |

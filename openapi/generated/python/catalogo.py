@@ -19,6 +19,9 @@ class CatalogoCroqui(TypedDict):
     nome: str
     cidade: str | None
     estado: str | None
+    latitude_e7: NotRequired[int | None]
+    longitude_e7: NotRequired[int | None]
+    url_google_maps: NotRequired[str | None]
 
 
 class CatalogoEntidade(TypedDict):

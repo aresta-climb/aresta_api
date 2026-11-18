@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT
+    estado TEXT,
+    latitude_e7 INTEGER,
+    longitude_e7 INTEGER,
+    url_google_maps TEXT
 );
 ''';
 
@@ -83,7 +86,10 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT
+    estado TEXT,
+    latitude_e7 INTEGER,
+    longitude_e7 INTEGER,
+    url_google_maps TEXT
 );
 
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -133,6 +139,9 @@ class LinhaCatalogoCroquis {
   final String nome;
   final String? cidade;
   final String? estado;
+  final int? latitudeE7;
+  final int? longitudeE7;
+  final String? urlGoogleMaps;
 
   const LinhaCatalogoCroquis({
     required this.croquiUid,
@@ -140,6 +149,9 @@ class LinhaCatalogoCroquis {
     required this.nome,
     this.cidade,
     this.estado,
+    this.latitudeE7,
+    this.longitudeE7,
+    this.urlGoogleMaps,
   });
 
   factory LinhaCatalogoCroquis.fromMap(Map<String, dynamic> map) {
@@ -149,6 +161,9 @@ class LinhaCatalogoCroquis {
       nome: map['nome'] as String,
       cidade: map['cidade'] as String?,
       estado: map['estado'] as String?,
+      latitudeE7: map['latitude_e7'] as int?,
+      longitudeE7: map['longitude_e7'] as int?,
+      urlGoogleMaps: map['url_google_maps'] as String?,
     );
   }
 
@@ -159,6 +174,9 @@ class LinhaCatalogoCroquis {
       'nome': nome,
       'cidade': cidade,
       'estado': estado,
+      'latitude_e7': latitudeE7,
+      'longitude_e7': longitudeE7,
+      'url_google_maps': urlGoogleMaps,
     };
   }
 }

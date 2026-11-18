@@ -12,6 +12,9 @@ export interface CatalogoCroqui {
   nome: string;
   cidade: string | null;
   estado: string | null;
+  latitude_e7?: number | null;
+  longitude_e7?: number | null;
+  url_google_maps?: string | null;
 }
 
 export interface CatalogoEntidade {

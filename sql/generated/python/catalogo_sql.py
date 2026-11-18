@@ -12,10 +12,13 @@ CREATE TABLE IF NOT EXISTS catalogo_croquis (
     id_slug TEXT NOT NULL,
     nome TEXT NOT NULL,
     cidade TEXT,
-    estado TEXT
+    estado TEXT,
+    latitude_e7 INTEGER,
+    longitude_e7 INTEGER,
+    url_google_maps TEXT
 );
 """.strip()
-COLUNAS_CATALOGO_CROQUIS: tuple[str, ...] = ("croqui_uid", "id_slug", "nome", "cidade", "estado",)
+COLUNAS_CATALOGO_CROQUIS: tuple[str, ...] = ("croqui_uid", "id_slug", "nome", "cidade", "estado", "latitude_e7", "longitude_e7", "url_google_maps",)
 
 DDL_TABELA_CATALOGO_ARESTA = """
 CREATE TABLE IF NOT EXISTS catalogo_aresta (
@@ -96,6 +99,9 @@ class LinhaCatalogoCroquis(TypedDict):
     nome: str
     cidade: str | None
     estado: str | None
+    latitude_e7: int | None
+    longitude_e7: int | None
+    url_google_maps: str | None
 
 class LinhaCatalogoAresta(TypedDict):
     """Estrutura tipada de linha da tabela `catalogo_aresta`."""

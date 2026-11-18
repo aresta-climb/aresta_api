@@ -12,6 +12,9 @@ class CatalogoCroqui {
   final String nome;
   final String? cidade;
   final String? estado;
+  final int? latitudeE7;
+  final int? longitudeE7;
+  final String? urlGoogleMaps;
 
   const CatalogoCroqui({
     required this.croquiUid,
@@ -19,6 +22,9 @@ class CatalogoCroqui {
     required this.nome,
     this.cidade,
     this.estado,
+    this.latitudeE7,
+    this.longitudeE7,
+    this.urlGoogleMaps,
   });
 
   factory CatalogoCroqui.fromJson(Map<String, dynamic> json) {
@@ -28,6 +34,9 @@ class CatalogoCroqui {
       nome: json['nome'] as String,
       cidade: json['cidade'] as String?,
       estado: json['estado'] as String?,
+      latitudeE7: json['latitude_e7'] as int?,
+      longitudeE7: json['longitude_e7'] as int?,
+      urlGoogleMaps: json['url_google_maps'] as String?,
     );
   }
 
@@ -38,6 +47,9 @@ class CatalogoCroqui {
       'nome': nome,
       'cidade': cidade,
       'estado': estado,
+      'latitude_e7': latitudeE7,
+      'longitude_e7': longitudeE7,
+      'url_google_maps': urlGoogleMaps,
     };
   }
 }

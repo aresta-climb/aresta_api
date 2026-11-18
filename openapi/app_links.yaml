@@ -3,33 +3,27 @@
 
 openapi: 3.1.0
 info:
-  title: API de Links Curtos e Resolução SSR Aresta (aresta.cc)
-  version: 1.0.0
+  title: API de Links Curtos (aresta.cc) e Vitrine Web SSR de Croquis (arestaclimb.com/croquis)
+  version: 2.0.0
   description: |
-    Serviço de borda executado no Cloudflare Workers + Cloudflare D1 (`https://aresta.cc`)
+    Serviço unificado de borda executado no Cloudflare Workers + Cloudflare D1 (`aresta-catalogo`)
     responsável pela verificação de domínios de deep links nativos (Android App Links e iOS Universal Links),
-    pré-visualização OpenGraph em redes sociais/mensageiros (WhatsApp, Telegram, Instagram) e página de
-    fallback SSR consultando o catálogo relacional no Cloudflare D1 (`aresta-catalogo`).
-
-    ### Formato Compacto de 35 Caracteres (QR Code Version 3-H)
-    Suporta links curtos com ou sem prefixo de contexto e modo de abertura:
-    - `https://aresta.cc/{uid}`: abre a página principal da entidade sem origem predefinida.
-    - `https://aresta.cc/m/{uid}`: abre diretamente o Mapa Interativo da entidade.
-    - `https://aresta.cc/s/{uid}`: marca origem como compartilhamento (`utm_source=compartilhamento`, `utm_medium=social`).
-    - `https://aresta.cc/sm/{uid}` ou `https://aresta.cc/ms/{uid}`: compartilhamento abrindo diretamente no mapa.
-    - `https://aresta.cc/q/{uid}`: marca origem como placa física QR Code (`utm_source=placa_rocha`, `utm_medium=qrcode`).
-    - `https://aresta.cc/qm/{uid}` ou `https://aresta.cc/mq/{uid}`: placa QR Code abrindo diretamente no mapa.
+    redirecionamento permanente (`301`) de links curtos `https://aresta.cc` preservando CGI args/UTMs e
+    renderização da vitrine pública indexável em `https://arestaclimb.com/croquis` (diretório por estado,
+    Mapão nacional, JSON compacto de busca client-side, sitemap XML e teasers SSR com OpenGraph).
 servers:
+  - url: https://arestaclimb.com
+    description: Domínio institucional e vitrine canônica indexável (`/croquis*`).
   - url: https://aresta.cc
-    description: Gateway de links curtos, verificação App/Universal Links e SSR OpenGraph na borda Cloudflare.
+    description: Encurtador canônico de placas físicas e compartilhamentos (`301` para `/croquis*`).
 paths:
   /health:
     get:
       operationId: verificar_saude_app_links
-      summary: Verifica a disponibilidade operacional do Worker de App Links.
+      summary: Verifica a disponibilidade operacional do Worker de App Links e Vitrine.
       responses:
         "200":
-          description: Worker de App Links operacional.
+          description: Worker operacional.
           content:
             text/plain:
               schema:
@@ -81,91 +75,185 @@ paths:
       responses:
         "301":
           description: Redirecionamento permanente para https://arestaclimb.com/favicon.svg.
-  /{uid}:
+  /og/{id_slug}.webp:
     get:
-      operationId: resolver_link_uid
-      summary: Renderiza a página HTML SSR com metadados OpenGraph e links das lojas para o UID informado.
+      operationId: obter_thumbnail_og
+      summary: Proxy em borda para miniaturas OpenGraph `600x600` WebP com cache de 7 dias.
       parameters:
-        - name: uid
+        - name: id_slug
           in: path
           required: true
-          description: Identificador único de 14 caracteres alfanuméricos do croqui, grupo, setor ou escalada.
-          schema:
-            type: string
-        - name: utm_source
-          in: query
-          required: false
-          description: Fonte explícita da campanha/link para rastreamento analítico.
-          schema:
-            type: string
-        - name: utm_medium
-          in: query
-          required: false
-          description: Meio explícito da campanha/link para rastreamento analítico.
           schema:
             type: string
       responses:
         "200":
-          description: Página HTML SSR com resumo da entidade, tags OpenGraph e script Umami.
+          description: Imagem WebP da miniatura do croqui.
           content:
-            text/html:
+            image/webp:
               schema:
                 type: string
         "404":
-          description: Entidade não encontrada no catálogo D1 ou formato de UID inválido.
+          description: Miniatura não encontrada.
+  /croquis:
+    get:
+      operationId: listar_vitrine_croquis
+      summary: Renderiza a página índice da vitrine com Mapão nacional, busca rápida e diretório por estado.
+      responses:
+        "200":
+          description: Página HTML SSR do catálogo público de croquis.
           content:
             text/html:
               schema:
                 type: string
+  /croquis/busca.json:
+    get:
+      operationId: obter_indice_busca_vitrine
+      summary: Retorna o índice JSON compacto de croquis, grupos, setores e escaladas para busca client-side.
+      responses:
+        "200":
+          description: Lista JSON compacta de entidades pesquisáveis.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ItemBuscaVitrine"
+  /croquis/sitemap.xml:
+    get:
+      operationId: obter_sitemap_vitrine
+      summary: Retorna o sitemap XML completo de todas as URLs canônicas da vitrine `/croquis`.
+      responses:
+        "200":
+          description: Documento XML do sitemap do catálogo.
+          content:
+            application/xml:
+              schema:
+                type: string
+  /croquis/{uid}:
+    get:
+      operationId: redirecionar_vitrine_uid
+      summary: Redireciona permanentemente (`301`) para a URL canônica `/croquis/{uid}/{slug}` preservando CGI args.
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "301":
+          description: Redirecionamento permanente para `/croquis/{uid}/{slug}`.
+        "404":
+          description: Entidade não encontrada no catálogo D1.
+  /croquis/{uid}/{slug}:
+    get:
+      operationId: exibir_entidade_vitrine
+      summary: Renderiza a página SSR de teaser de uma entidade (`croqui`, `grupo`, `setor` ou `escalada`) ou redireciona `301` se o slug divergir do canônico.
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Página HTML SSR com teaser hierárquico, OpenGraph, Google Maps e CTAs do aplicativo.
+          content:
+            text/html:
+              schema:
+                type: string
+        "301":
+          description: Redirecionamento para o slug canônico atualizado.
+        "404":
+          description: UID inválido ou entidade inexistente no D1.
+  /{uid}:
+    get:
+      operationId: resolver_link_uid
+      summary: Redireciona permanentemente (`301`) links curtos `aresta.cc/{uid}` para `arestaclimb.com/croquis/{uid}/{slug}` preservando CGI args.
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "301":
+          description: Redirecionamento permanente para a vitrine canônica.
+        "404":
+          description: Entidade não encontrada no catálogo D1 ou formato de UID inválido.
   /{prefixo}/{uid}:
     get:
       operationId: resolver_link_prefixado_uid
-      summary: Renderiza a página HTML SSR com prefixo compacto de modo mapa e/ou origem (`m`, `s`, `sm`, `ms`, `q`, `qm`, `mq`).
+      summary: Redireciona permanentemente (`301`) links prefixados `aresta.cc/{prefixo}/{uid}` convertendo prefixos em `?mapa=1` e UTMs.
       parameters:
         - name: prefixo
           in: path
           required: true
-          description: Prefixo compacto combinando modo mapa (`m`) e origem (`s` para compartilhamento, `q` para QR Code).
           schema:
             type: string
         - name: uid
           in: path
           required: true
-          description: Identificador único de 14 caracteres alfanuméricos do croqui, grupo, setor ou escalada.
-          schema:
-            type: string
-        - name: utm_source
-          in: query
-          required: false
-          description: Fonte explícita da campanha/link (sobrescreve a fonte inferida pelo prefixo).
-          schema:
-            type: string
-        - name: utm_medium
-          in: query
-          required: false
-          description: Meio explícito da campanha/link (sobrescreve o meio inferido pelo prefixo).
           schema:
             type: string
       responses:
-        "200":
-          description: Página HTML SSR com resumo da entidade, tags OpenGraph e script Umami.
-          content:
-            text/html:
-              schema:
-                type: string
+        "301":
+          description: Redirecionamento permanente para a vitrine canônica preservando CGI args e UTMs.
         "404":
           description: Prefixo inválido, formato de UID inválido ou entidade não encontrada no catálogo D1.
-          content:
-            text/html:
-              schema:
-                type: string
 components:
   schemas:
+    SubentidadeVitrine:
+      type: object
+      description: Item filho pertencente a um croqui, grupo ou setor exibido na listagem de teaser.
+      required:
+        - uid
+        - tipo
+        - nome
+      properties:
+        uid:
+          type: string
+        tipo:
+          type: string
+          enum:
+            - grupo
+            - setor
+            - escalada
+        nome:
+          type: string
+        escalada_grau:
+          type:
+            - string
+            - "null"
+        escalada_tipo:
+          type:
+            - string
+            - "null"
+        setor_uid:
+          type:
+            - string
+            - "null"
+        setor_nome:
+          type:
+            - string
+            - "null"
+        grupo_uid:
+          type:
+            - string
+            - "null"
+        grupo_nome:
+          type:
+            - string
+            - "null"
     ResumoEntidadeLink:
       type: object
       description: |
         Dados consolidados de uma entidade do catálogo (`croqui`, `grupo`, `setor` ou `escalada`)
-        recuperados do Cloudflare D1 para renderização do cartão SSR e das meta tags OpenGraph.
+        recuperados do Cloudflare D1 para redirecionamento canônico e renderização do teaser SSR.
       required:
         - uid
         - tipo
@@ -182,10 +270,8 @@ components:
       properties:
         uid:
           type: string
-          description: Identificador único de 14 caracteres alfanuméricos da entidade.
         tipo:
           type: string
-          description: Categoria da entidade resolvida.
           enum:
             - croqui
             - grupo
@@ -193,51 +279,142 @@ components:
             - escalada
         nome:
           type: string
-          description: Nome principal da entidade (nome da via, setor, grupo ou croqui).
         croqui_uid:
           type: string
-          description: UID do croqui ao qual a entidade pertence (igual a `uid` quando `tipo == "croqui"`).
         id_slug:
           type: string
-          description: Slug identificador do croqui usado para construir a URL da thumbnail na CDN.
         croqui_nome:
           type: string
-          description: Nome legível do croqui/pico onde a entidade está localizada.
         cidade:
           type:
             - string
             - "null"
-          description: Município do croqui (ex. `Igarapé`) ou `null`.
         estado:
           type:
             - string
             - "null"
-          description: Sigla da unidade federativa do croqui (ex. `MG`) ou `null`.
         escalada_grau:
           type:
             - string
             - "null"
-          description: Graduação da escalada (ex. `6ºsup`, `V4`) quando `tipo == "escalada"`, ou `null`.
         escalada_tipo:
           type:
             - string
             - "null"
-          description: Modalidade da escalada (`esportiva`, `tradicional`, `boulder`, `multienfiada`, `highline`) ou `null`.
+        setor_uid:
+          type:
+            - string
+            - "null"
         setor_nome:
           type:
             - string
             - "null"
-          description: Nome do setor pai imediato (quando `tipo == "escalada"`), ou `null`.
+        grupo_uid:
+          type:
+            - string
+            - "null"
         grupo_nome:
           type:
             - string
             - "null"
-          description: Nome do grupo pai (quando aplicável), ou `null`.
+        latitude_e7:
+          type:
+            - integer
+            - "null"
+        longitude_e7:
+          type:
+            - integer
+            - "null"
+        url_google_maps:
+          type:
+            - string
+            - "null"
+        subentidades:
+          type: array
+          items:
+            $ref: "#/components/schemas/SubentidadeVitrine"
+    ResumoCroquiVitrine:
+      type: object
+      description: Resumo agregado de um croqui para o diretório por estado e o Mapão nacional em `/croquis`.
+      required:
+        - croqui_uid
+        - id_slug
+        - nome
+        - total_setores
+        - total_escaladas
+      properties:
+        croqui_uid:
+          type: string
+        id_slug:
+          type: string
+        nome:
+          type: string
+        cidade:
+          type:
+            - string
+            - "null"
+        estado:
+          type:
+            - string
+            - "null"
+        latitude_e7:
+          type:
+            - integer
+            - "null"
+        longitude_e7:
+          type:
+            - integer
+            - "null"
+        url_google_maps:
+          type:
+            - string
+            - "null"
+        total_setores:
+          type: integer
+        total_escaladas:
+          type: integer
+    ItemBuscaVitrine:
+      type: object
+      description: Registro compacto serializado em `/croquis/busca.json` para busca client-side instantânea.
+      required:
+        - uid
+        - tipo
+        - nome
+        - croqui_nome
+        - slug
+      properties:
+        uid:
+          type: string
+        tipo:
+          type: string
+          enum:
+            - croqui
+            - grupo
+            - setor
+            - escalada
+        nome:
+          type: string
+        grau:
+          type:
+            - string
+            - "null"
+        modalidade:
+          type:
+            - string
+            - "null"
+        croqui_nome:
+          type: string
+        localizacao:
+          type:
+            - string
+            - "null"
+        slug:
+          type: string
     MetadadosRotaLink:
       type: object
       description: |
-        Resultado da análise sintática de um link curto `aresta.cc`, incluindo flags de abertura
-        em mapa e parâmetros analíticos de origem (`utm_source` e `utm_medium`).
+        Resultado da análise sintática de um link curto `aresta.cc` ou rota `/croquis/{uid}/{slug}`,
+        incluindo flags de abertura em mapa e parâmetros analíticos de origem (`utm_source` e `utm_medium`).
       required:
         - uid
         - prefixo
@@ -248,20 +425,16 @@ components:
       properties:
         uid:
           type: string
-          description: UID validado de 14 caracteres alfanuméricos.
         prefixo:
           type:
             - string
             - "null"
-          description: Prefixo de rota utilizado (`m`, `s`, `sm`, `ms`, `q`, `qm`, `mq`) ou `null` na rota direta `/{uid}`.
         abrir_mapa:
           type: boolean
-          description: Indica se o link solicita abertura direta no Mapa Interativo (`true` quando o prefixo contém `m`).
         origem_link:
           type:
             - string
             - "null"
-          description: Origem semântica inferida do link (`compartilhamento`, `qrcode` ou `null`).
           enum:
             - compartilhamento
             - qrcode
@@ -270,9 +443,7 @@ components:
           type:
             - string
             - "null"
-          description: Valor efetivo de `utm_source` (query parameter explícito ou inferido do prefixo).
         utm_medium:
           type:
             - string
             - "null"
-          description: Valor efetivo de `utm_medium` (query parameter explícito ou inferido do prefixo).
